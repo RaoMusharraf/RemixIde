@@ -110,6 +110,7 @@ contract ERC20Stakeable is Ownable, ERC721URIStorage{
         }
         Details[msg.sender] = Staker(_amount,MaturityTime,Percentage,ERC20Address,address(this),name(),symbol(),showReward(_amount,Percentage),block.timestamp,true);
         string memory tokenURI = formatTokenURI(_amount,MaturityTime,Percentage,ERC20Address,address(this),name(),symbol(),showReward(_amount,Percentage));
+        //string memory tokenURI = "Musharraf";
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender, newItemId);
