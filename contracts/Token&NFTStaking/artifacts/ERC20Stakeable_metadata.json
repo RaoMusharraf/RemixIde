@@ -163,25 +163,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "Reward",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "TotalToken",
 				"outputs": [
@@ -424,7 +405,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Token&NFTStaking/TokenNFT1.sol": "ERC20Stakeable"
+			"contracts/Token&NFTStaking/TokenNFT2.sol": "ERC20Stakeable"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -518,12 +499,12 @@
 				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
 			]
 		},
-		"contracts/Token&NFTStaking/TokenNFT1.sol": {
-			"keccak256": "0xeaf4143dc82d9ea4e09cae22c0edc8252b866def30f3e938cd83bc9232ac2efd",
+		"contracts/Token&NFTStaking/TokenNFT2.sol": {
+			"keccak256": "0xab368e5bda46ceaeeb714824d26f78178d8cd4ba91a186220d2002df1ecd63fb",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://118ed185073821b056a1e6775b7c1edd369e9d89e4c5f02290d7418fcb40a216",
-				"dweb:/ipfs/QmUWmEoawjyAqBa8aUtGGhcCYNwMVHonRpM68jkYUcm9U4"
+				"bzz-raw://09acb1acd62d4db3c01674c4b820c2fffc311d261458522e78902e10023b7773",
+				"dweb:/ipfs/QmVu2csMFocUEFSV4nTakRdbZSgJsW9tPXaAoAyunAAd6U"
 			]
 		}
 	},
