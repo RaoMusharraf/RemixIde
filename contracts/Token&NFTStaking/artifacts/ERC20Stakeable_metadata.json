@@ -64,6 +64,11 @@
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
 					}
 				],
 				"name": "AdminWithDrawToken",
@@ -165,7 +170,7 @@
 						"type": "address"
 					}
 				],
-				"name": "OwnerTokens",
+				"name": "Reward",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -177,14 +182,8 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "Reward",
+				"inputs": [],
+				"name": "TotalToken",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -338,19 +337,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "owenerERC20",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
@@ -382,19 +368,6 @@
 					{
 						"internalType": "uint256",
 						"name": "result",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "totalOwnerToken",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -451,7 +424,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Token&NFTStaking/Contract.sol": "ERC20Stakeable"
+			"contracts/Token&NFTStaking/NFTBoster.sol": "ERC20Stakeable"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -545,12 +518,12 @@
 				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
 			]
 		},
-		"contracts/Token&NFTStaking/Contract.sol": {
-			"keccak256": "0x1f6919af41e9134bab0288f4c638cf15ab73a0901af6226fe7516732a2ad4a2c",
+		"contracts/Token&NFTStaking/NFTBoster.sol": {
+			"keccak256": "0x67869a24aa10be25cbee0b5af3b001eb23c7684a47c47957b804108490a1a3bb",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d296a204ecba8e9c663500649089cc824f9bee05a23cc2fcd4764651eed27f86",
-				"dweb:/ipfs/QmVFpv4t74mzUsgkfEGHaSQj4VbVvytScrhvJGYmdx3MXE"
+				"bzz-raw://c1f557cf4ee63b46302ff3ab6f375fd0ea5d83e7f3cfd0c7f931ac9dcd8f7309",
+				"dweb:/ipfs/QmX4DxAhan5NXtd2XUwWbr2Zjui6XditpkqKKCe6dSupgg"
 			]
 		}
 	},

@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.7+commit.e28d00a7"
 	},
 	"language": "Solidity",
 	"output": {
@@ -26,6 +26,11 @@
 						"internalType": "uint256",
 						"name": "percentage1y",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_encoder",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -144,11 +149,70 @@
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
 					}
 				],
 				"name": "AdminWithDrawToken",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "C_Details",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "deposited",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "MaturityTime",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Persentage",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "ERC20ContractAddress",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "NFTContractAddress",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "ContractName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "ContractSymbol",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "TotalClaim",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -273,7 +337,7 @@
 						"type": "address"
 					}
 				],
-				"name": "Reward",
+				"name": "TokenId",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -285,14 +349,8 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "TokenId",
+				"inputs": [],
+				"name": "TotalToken",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -384,60 +442,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_maturity",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_percentage",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "_ERC20ContractAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_NFTContractAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "_ContractName",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_ContractSymbol",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_TotalClaim",
-						"type": "uint256"
-					}
-				],
-				"name": "formatTokenURI",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -712,19 +716,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "totalOwnerToken",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -823,7 +814,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/OnChain/Onchain.sol": "ERC20Stakeable"
+			"contracts/OnChain/FinalContract.sol": "ERC20Stakeable"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -973,20 +964,20 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/OnChain/Base64.sol": {
-			"keccak256": "0x2a678b6003264920f6f82ec8b20ee2ad01213fe7998e592f9c182f717960cfc2",
+		"contracts/OnChain/FinalContract.sol": {
+			"keccak256": "0x77ffbe1429bf9e606d14d3fa7e5cc1b7283f6398b1d9a5fea52e2cb534eadb3f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7d60f2d86c61d24a0321e17a65cbc98548d871b594cbed4a75ef10e2b89120ca",
-				"dweb:/ipfs/Qmb2Nrs13u5fWCdFduyTMcGDGsZNyyuP7BDkN6FNaeLz77"
+				"bzz-raw://fc02fcb0e8ae3a84326d06eb14299c53c382cc1539ec60c3aa94bca22943ae4c",
+				"dweb:/ipfs/QmUpD6KzLgizERtc6sVsqWdViBjUrrA5UraJD1xFWBQ6wB"
 			]
 		},
-		"contracts/OnChain/Onchain.sol": {
-			"keccak256": "0xb6542c025aaf58c79370f48055967965d2d3640df19dbef332ff8dbeaec438be",
+		"contracts/OnChain/IIERC20.sol": {
+			"keccak256": "0x44455a6f062a7b511b840192f76cde3f4c359de5a4750a63e82ff25b74d888ec",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a3f344ffb8b3334b0fc8e6c996a97b625f8d4f77e1dad283df0bee7698fb62d3",
-				"dweb:/ipfs/QmabhG3n7S1zuMvi49oa6KkDDyr1yjVyWSas9TaZKUxuJD"
+				"bzz-raw://81ea33f5f29d7377dd61df7321f123e8ad631e2cc633dfe0bb6466b9ad66709b",
+				"dweb:/ipfs/QmaexwcGqWwmzRQHqBkUuwuUvSuWgpteyKTSuVQTxSxcLA"
 			]
 		}
 	},

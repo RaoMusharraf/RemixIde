@@ -1,0 +1,80 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Interface of the ERC20 standard as defined in the EIP.",
+			"kind": "dev",
+			"methods": {
+				"name()": {
+					"details": "Returns the name of token in existence."
+				},
+				"symbol()": {
+					"details": "Returns the symbol of token in existence."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/OnChain/IIERC20.sol": "IIERC20"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/OnChain/IIERC20.sol": {
+			"keccak256": "0x44455a6f062a7b511b840192f76cde3f4c359de5a4750a63e82ff25b74d888ec",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://81ea33f5f29d7377dd61df7321f123e8ad631e2cc633dfe0bb6466b9ad66709b",
+				"dweb:/ipfs/QmaexwcGqWwmzRQHqBkUuwuUvSuWgpteyKTSuVQTxSxcLA"
+			]
+		}
+	},
+	"version": 1
+}
