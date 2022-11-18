@@ -424,7 +424,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Token&NFTStaking/NFTBoster.sol": "ERC20Stakeable"
+			"contracts/Token&NFTStaking/TokenNFT1.sol": "ERC20Stakeable"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -518,12 +518,12 @@
 				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
 			]
 		},
-		"contracts/Token&NFTStaking/NFTBoster.sol": {
-			"keccak256": "0x67869a24aa10be25cbee0b5af3b001eb23c7684a47c47957b804108490a1a3bb",
+		"contracts/Token&NFTStaking/TokenNFT1.sol": {
+			"keccak256": "0xeaf4143dc82d9ea4e09cae22c0edc8252b866def30f3e938cd83bc9232ac2efd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c1f557cf4ee63b46302ff3ab6f375fd0ea5d83e7f3cfd0c7f931ac9dcd8f7309",
-				"dweb:/ipfs/QmX4DxAhan5NXtd2XUwWbr2Zjui6XditpkqKKCe6dSupgg"
+				"bzz-raw://118ed185073821b056a1e6775b7c1edd369e9d89e4c5f02290d7418fcb40a216",
+				"dweb:/ipfs/QmUWmEoawjyAqBa8aUtGGhcCYNwMVHonRpM68jkYUcm9U4"
 			]
 		}
 	},
