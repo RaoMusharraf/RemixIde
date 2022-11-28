@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.17+commit.8df45f5f"
 	},
 	"language": "Solidity",
 	"output": {
@@ -16,6 +16,11 @@
 				"outputs": [
 					{
 						"components": [
+							{
+								"internalType": "uint256",
+								"name": "TokenId",
+								"type": "uint256"
+							},
 							{
 								"internalType": "string",
 								"name": "name",
@@ -48,13 +53,37 @@
 							},
 							{
 								"internalType": "address",
-								"name": "Owner",
+								"name": "owner",
 								"type": "address"
 							}
 						],
 						"internalType": "struct Storage.Tender[]",
 						"name": "",
 						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "Ch",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -82,6 +111,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "SizeVender",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
@@ -89,6 +137,11 @@
 				],
 				"name": "Total",
 				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "TokenId",
+						"type": "uint256"
+					},
 					{
 						"internalType": "string",
 						"name": "name",
@@ -121,7 +174,7 @@
 					},
 					{
 						"internalType": "address",
-						"name": "Owner",
+						"name": "owner",
 						"type": "address"
 					}
 				],
@@ -144,6 +197,40 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "Venders",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "Token",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "Description",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "_to",
 						"type": "address"
@@ -153,6 +240,11 @@
 				"outputs": [
 					{
 						"components": [
+							{
+								"internalType": "uint256",
+								"name": "TokenId",
+								"type": "uint256"
+							},
 							{
 								"internalType": "string",
 								"name": "name",
@@ -185,7 +277,7 @@
 							},
 							{
 								"internalType": "address",
-								"name": "Owner",
+								"name": "owner",
 								"type": "address"
 							}
 						],
@@ -226,6 +318,29 @@
 					}
 				],
 				"name": "tender",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_token",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_description",
+						"type": "string"
+					}
+				],
+				"name": "vender",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -270,11 +385,11 @@
 			]
 		},
 		"contracts/Fast/contract.sol": {
-			"keccak256": "0x2d9774629f485ad350cbf5528cf75c37d719a6e599247e9db5f22e5d5554166b",
+			"keccak256": "0xdf1d3aafa660b181df6582280b32e406c2cdb4f8342b1472b627877b67fdd143",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://b2169755ab008d1462c5c6284164ead7ac2b7ec1f3d3d2f01ee0b630a6c74c19",
-				"dweb:/ipfs/QmcwFJbCHDgTn3uBsYAcwhCmNpAL6Agz6Vu2evMzJi9K9g"
+				"bzz-raw://1d623cfb828e4c9e90f756f139a73afd624947a40a46b781fe1a745c7e33bc6b",
+				"dweb:/ipfs/QmagR2cRwuP91CAStPjvYcv8sR5byUtvMVKvZnHQiYFjN8"
 			]
 		}
 	},
