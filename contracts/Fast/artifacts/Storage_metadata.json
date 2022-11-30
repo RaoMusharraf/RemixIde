@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.7+commit.e28d00a7"
 	},
 	"language": "Solidity",
 	"output": {
@@ -68,6 +68,47 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "_token",
+						"type": "uint256"
+					}
+				],
+				"name": "AllVender",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "Token",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Price",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "Description",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							}
+						],
+						"internalType": "struct Storage.Vender[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
@@ -84,6 +125,38 @@
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "Che",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Requests",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -111,9 +184,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
+						"internalType": "uint256",
 						"name": "",
-						"type": "address"
+						"type": "uint256"
 					}
 				],
 				"name": "SizeVender",
@@ -195,7 +268,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "TotalVender",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
 					{
 						"internalType": "uint256",
 						"name": "",
@@ -282,6 +373,47 @@
 							}
 						],
 						"internalType": "struct Storage.Tender[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "getVender",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "Token",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Price",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "Description",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							}
+						],
+						"internalType": "struct Storage.Vender[]",
 						"name": "",
 						"type": "tuple[]"
 					}
@@ -385,11 +517,11 @@
 			]
 		},
 		"contracts/Fast/contract.sol": {
-			"keccak256": "0xdf1d3aafa660b181df6582280b32e406c2cdb4f8342b1472b627877b67fdd143",
+			"keccak256": "0x233f3e5d6294a9060e881a34b378167315e82b869693c92e313c0ac3e5ea9f8d",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://1d623cfb828e4c9e90f756f139a73afd624947a40a46b781fe1a745c7e33bc6b",
-				"dweb:/ipfs/QmagR2cRwuP91CAStPjvYcv8sR5byUtvMVKvZnHQiYFjN8"
+				"bzz-raw://3e46e2f50589d9a8b9a5901f8c7d61cf27970e78b44690cc176eee21686fa938",
+				"dweb:/ipfs/QmNNbSg2cckCrr2YTsTDcdwcuHKFvk46HEnByh8sK3qjWM"
 			]
 		}
 	},
