@@ -131,19 +131,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "Che",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "_value",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -517,11 +504,11 @@
 			]
 		},
 		"contracts/Fast/contract.sol": {
-			"keccak256": "0x233f3e5d6294a9060e881a34b378167315e82b869693c92e313c0ac3e5ea9f8d",
+			"keccak256": "0xb4e94613f2ac55d10a94bdaf0eb348f37d99bc93fada5e585d1c9e5b6ddf40d4",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://3e46e2f50589d9a8b9a5901f8c7d61cf27970e78b44690cc176eee21686fa938",
-				"dweb:/ipfs/QmNNbSg2cckCrr2YTsTDcdwcuHKFvk46HEnByh8sK3qjWM"
+				"bzz-raw://09e5c81dec767be6afaf257cbe1e7ca77928ecc3c42ff3176eeb8b4e8f71e89f",
+				"dweb:/ipfs/QmWmgYRuK7yiegZreHf5oPHbCRmqEvUxinXFjtKQD4584w"
 			]
 		}
 	},

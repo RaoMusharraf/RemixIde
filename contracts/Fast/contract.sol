@@ -15,7 +15,6 @@ contract Storage {
     using Counters for Counters.Counter;
     Counters.Counter public TotalTender;
     Counters.Counter public TotalVender;
-    Counters.Counter public Che;
 
     struct Vender {
         uint Token;
