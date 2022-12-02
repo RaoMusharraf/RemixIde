@@ -96,6 +96,11 @@
 								"internalType": "address",
 								"name": "owner",
 								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DeleveryTime",
+								"type": "uint256"
 							}
 						],
 						"internalType": "struct Storage.Vender[]",
@@ -125,6 +130,57 @@
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_token",
+						"type": "uint256"
+					}
+				],
+				"name": "CheckTime",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_token",
+						"type": "uint256"
+					}
+				],
+				"name": "DeleteVRequest",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "Finder",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -301,6 +357,11 @@
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "DeleveryTime",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -398,6 +459,11 @@
 								"internalType": "address",
 								"name": "owner",
 								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DeleveryTime",
+								"type": "uint256"
 							}
 						],
 						"internalType": "struct Storage.Vender[]",
@@ -457,6 +523,11 @@
 						"internalType": "string",
 						"name": "_description",
 						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_deleveryTime",
+						"type": "uint256"
 					}
 				],
 				"name": "vender",
@@ -504,11 +575,11 @@
 			]
 		},
 		"contracts/Fast/contract.sol": {
-			"keccak256": "0xb4e94613f2ac55d10a94bdaf0eb348f37d99bc93fada5e585d1c9e5b6ddf40d4",
+			"keccak256": "0xdb0429148a8a632523ede910b1432cda95be17447428d12e75888958a75bb5b5",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://09e5c81dec767be6afaf257cbe1e7ca77928ecc3c42ff3176eeb8b4e8f71e89f",
-				"dweb:/ipfs/QmWmgYRuK7yiegZreHf5oPHbCRmqEvUxinXFjtKQD4584w"
+				"bzz-raw://9be291819c54a33cb76b02796629620563fce3fe90102e3742370217f1f966ef",
+				"dweb:/ipfs/QmYBHZKycZKvNYev1NiDR829yP6xoiueg9Ezj8ziwJquu7"
 			]
 		}
 	},

@@ -21,6 +21,7 @@ contract Storage {
         uint Price;
         string Description;
         address owner;
+        uint DeleveryTime;
     }
     struct Tender {
         uint TokenId;
@@ -38,6 +39,7 @@ contract Storage {
     mapping (uint => mapping(uint => Vender )) public Venders;
     mapping (address => mapping(uint => bool)) public Ch; 
     mapping (address => uint) public Requests;
+    mapping (uint => uint) public Finder;
     
     constructor(){
     }
@@ -66,14 +68,23 @@ contract Storage {
         }
         return memoryArray;
     }
-    function vender(uint _token,uint _price,string memory _description) public {
+    function CheckTime(uint _token) public view returns (bool)  {
+        if(Total[_token].start + (Total[_token].time*60) <= block.timestamp){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    function vender(uint _token,uint _price,string memory _description,uint _deleveryTime) public {
         require(!Ch[msg.sender][_token],"You Already Apply for this Request");
         require(Total[_token].owner != msg.sender,"You are Owner of this Tender");
         TotalVender.increment();
         Ch[msg.sender][_token] = true;
         SizeVender[_token] += 1; 
         Requests[msg.sender] += 1; 
-        Venders[TotalVender.current()][_token] = Vender(_token,_price,_description,msg.sender);
+        Finder[_token] = TotalVender.current();
+        Venders[TotalVender.current()][_token] = Vender(_token,_price,_description,msg.sender,_deleveryTime);
     }
     function AllVender(uint _token) public view returns (Vender[] memory)  {
         Vender[] memory memoryArray = new Vender[](SizeVender[_token]);
@@ -98,5 +109,13 @@ contract Storage {
             } 
         }
         return memoryArray;
+    }
+    function DeleteVRequest(uint _token) public {
+        require(Ch[msg.sender][_token],"You can Not Delete");
+        Requests[msg.sender] -= 1;
+        SizeVender[_token] -= 1; 
+        Ch[msg.sender][_token] = false;
+        delete Venders[Finder[_token]][_token];
+        delete Finder[_token];
     }
 }
