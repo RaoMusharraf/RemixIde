@@ -39,7 +39,7 @@ contract Storage {
     mapping (uint => mapping(uint => Vender )) public Venders;
     mapping (address => mapping(uint => bool)) public Ch; 
     mapping (address => uint) public Requests;
-    mapping (uint => uint) public Finder;
+    mapping (uint => mapping(address => uint)) public Finder;
     
     constructor(){
     }
@@ -83,7 +83,7 @@ contract Storage {
         Ch[msg.sender][_token] = true;
         SizeVender[_token] += 1; 
         Requests[msg.sender] += 1; 
-        Finder[_token] = TotalVender.current();
+        Finder[_token][msg.sender] = TotalVender.current();
         Venders[TotalVender.current()][_token] = Vender(_token,_price,_description,msg.sender,_deleveryTime);
     }
     function AllVender(uint _token) public view returns (Vender[] memory)  {
@@ -111,11 +111,14 @@ contract Storage {
         return memoryArray;
     }
     function DeleteVRequest(uint _token) public {
-        require(Ch[msg.sender][_token],"You can Not Delete");
+        require(Ch[msg.sender][_token],"You canNot Delete");
         Requests[msg.sender] -= 1;
         SizeVender[_token] -= 1; 
         Ch[msg.sender][_token] = false;
-        delete Venders[Finder[_token]][_token];
-        delete Finder[_token];
+        delete Venders[Finder[_token][msg.sender]][_token];
+        Finder[_token][msg.sender];
+    }
+    function UpdateRequest(uint _token,uint _price,string memory _description,uint _deleveryTime) public {
+        Venders[Finder[_token][msg.sender]][_token] = Vender(_token,_price,_description,msg.sender,_deleveryTime);
     }
 }
