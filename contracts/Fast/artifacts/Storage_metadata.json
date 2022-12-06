@@ -11,6 +11,63 @@
 				"type": "constructor"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_token",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "AcceptInvitation",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_token",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					}
+				],
+				"name": "Accepted",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "AllTender",
 				"outputs": [
@@ -45,6 +102,11 @@
 								"internalType": "uint256",
 								"name": "start",
 								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "_address",
+								"type": "string"
 							},
 							{
 								"internalType": "string",
@@ -158,6 +220,53 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Communication",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "done",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "Contract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "_token",
 						"type": "uint256"
 					}
@@ -165,6 +274,29 @@
 				"name": "DeleteVRequest",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Done",
+				"outputs": [],
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -181,6 +313,78 @@
 					}
 				],
 				"name": "Finder",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Invite",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "Pending",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Ratting",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -287,6 +491,11 @@
 						"internalType": "uint256",
 						"name": "start",
 						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_address",
+						"type": "string"
 					},
 					{
 						"internalType": "string",
@@ -444,6 +653,11 @@
 							},
 							{
 								"internalType": "string",
+								"name": "_address",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
 								"name": "description",
 								"type": "string"
 							},
@@ -531,6 +745,11 @@
 					},
 					{
 						"internalType": "string",
+						"name": "Address",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
 						"name": "_description",
 						"type": "string"
 					}
@@ -608,11 +827,11 @@
 			]
 		},
 		"contracts/Fast/contract.sol": {
-			"keccak256": "0x7d31ce7fd362fbfa8196c976bad0995fef6e07817ac5e96886ea8da1026c14e1",
+			"keccak256": "0xe2202d21fc7e08a5761e3c2e1f39e82f82e0d0db8bcb83c236cd7bd4b7aca97e",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://3e3dfef8f843c7d4a9b74ac5a7d6004cf8e1e69ce27c2eecc6767f0d92047dda",
-				"dweb:/ipfs/QmPdf6idxJRpxUN2PywG6QXQFDayzzsdCZ7KeKZx5sf4yL"
+				"bzz-raw://d54b21b1be30e391c015ad2b06e5a20b188facef0b98a468e20735f6c3051ea1",
+				"dweb:/ipfs/QmQGrrfuwDHkA9w4Z3VMdoThur62HSsZqo38jpq5wcXouo"
 			]
 		}
 	},

@@ -2,7 +2,6 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 /**
@@ -15,6 +14,8 @@ contract Storage {
     using Counters for Counters.Counter;
     Counters.Counter public TotalTender;
     Counters.Counter public TotalVender;
+
+    address public Contract;
 
     struct Vender {
         uint Token;
@@ -30,23 +31,40 @@ contract Storage {
         uint budget;
         uint time;
         uint start;
+        string _address;
         string description;
         address owner;
     }
+    struct Accept{
+        uint tokenId;
+        address _address;
+        bool check;
+    }
+    struct Comm{
+        address receiver;
+        uint price;
+        bool done;
+
+    }
     mapping (address => uint) public Size;
+    mapping (address => mapping(uint => bool)) public Pending;
     mapping (uint => uint) public SizeVender;
     mapping (uint => Tender ) public Total;
     mapping (uint => mapping(uint => Vender )) public Venders;
     mapping (address => mapping(uint => bool)) public Ch; 
     mapping (address => uint) public Requests;
     mapping (uint => mapping(address => uint)) public Finder;
+    mapping (uint => mapping(address => Comm)) public Communication;
+    mapping (address => mapping(uint => mapping(address => bool))) public Invite;
+    mapping (address => uint) public Ratting;
     
     constructor(){
+        Contract = address(this);
     }
-    function tender(string memory _name,uint _quantity,uint _budget,uint _time,string memory _description) public {
+    function tender(string memory _name,uint _quantity,uint _budget,uint _time,string memory Address,string memory _description) public {
         TotalTender.increment();
         Size[msg.sender] += 1; 
-        Total[TotalTender.current()] = Tender(TotalTender.current(),_name,_quantity,_budget,_time,block.timestamp,_description,msg.sender);
+        Total[TotalTender.current()] = Tender(TotalTender.current(),_name,_quantity,_budget,_time,block.timestamp,Address,_description,msg.sender);
     }
     function getTender(address _to) public view returns (Tender[] memory)  {
         Tender[] memory memoryArray = new Tender[](Size[_to]);
@@ -121,4 +139,19 @@ contract Storage {
     function UpdateRequest(uint _token,uint _price,string memory _description,uint _deleveryTime) public {
         Venders[Finder[_token][msg.sender]][_token] = Vender(_token,_price,_description,msg.sender,_deleveryTime);
     }
+    function AcceptInvitation(uint _token,address _receiver,address _to,uint _price) public {
+        Communication[_token][_to] = Comm(_receiver,_price,true);
+        Pending[_to][_token] = true;
+        Invite[_to][_token][_receiver] = true;
+    }
+    function Accepted(uint _token,address receiver,address _to) public view returns(bool){    
+        return Invite[_to][_token][receiver];
+    }
+    function Done(address _to,address from,uint tokenId) public payable {
+        require(Communication[tokenId][from].receiver == _to,"Please Sellect the correct Recepient");
+        require(Communication[tokenId][from].done,"You already payment");
+        Communication[tokenId][from].done = false;
+        payable(_to).transfer(Communication[tokenId][from].price);
+    }
+    
 }
