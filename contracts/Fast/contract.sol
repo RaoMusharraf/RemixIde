@@ -144,9 +144,6 @@ contract Storage {
         Pending[_to][_token] = true;
         Invite[_to][_token][_receiver] = true;
     }
-    function Accepted(uint _token,address receiver,address _to) public view returns(bool){    
-        return Invite[_to][_token][receiver];
-    }
     function Done(address _to,address from,uint tokenId) public payable {
         require(Communication[tokenId][from].receiver == _to,"Please Sellect the correct Recepient");
         require(Communication[tokenId][from].done,"You already payment");

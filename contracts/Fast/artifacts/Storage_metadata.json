@@ -39,35 +39,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_token",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "receiver",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_to",
-						"type": "address"
-					}
-				],
-				"name": "Accepted",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "AllTender",
 				"outputs": [
@@ -827,11 +798,11 @@
 			]
 		},
 		"contracts/Fast/contract.sol": {
-			"keccak256": "0xe2202d21fc7e08a5761e3c2e1f39e82f82e0d0db8bcb83c236cd7bd4b7aca97e",
+			"keccak256": "0xd7e8c07301e95efac691f8959b721faff0b47de80161a2d39b0936f4232e7e0d",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://d54b21b1be30e391c015ad2b06e5a20b188facef0b98a468e20735f6c3051ea1",
-				"dweb:/ipfs/QmQGrrfuwDHkA9w4Z3VMdoThur62HSsZqo38jpq5wcXouo"
+				"bzz-raw://28eaab7c6dedba01d1acd8170d5aad8e163ad422c3f1d790e0536e55fd3b65ec",
+				"dweb:/ipfs/QmQ9SrhM7yqYud9ohZkvnaUFb6Fiqe9Sh85uMmabjEFxSy"
 			]
 		}
 	},
