@@ -886,11 +886,11 @@
 			]
 		},
 		"contracts/Fast/contract.sol": {
-			"keccak256": "0x7b587b38a1d9202bd1fe052f0f190d731c0abb0a9c268e1865c99e18dbbbc4da",
+			"keccak256": "0xd047db8712726f4fff172e089d30fffe8a51e93a3ac004a5d2e4e17f0bdfef5c",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://acc2a06cdff8cce2cafab805f6caedc3a2a48a49d8bf3d1066142051ac1d505d",
-				"dweb:/ipfs/QmVBDwxv46ur7xaS6tA4A63ZxoE9UKNmL265sBNeJVyhWb"
+				"bzz-raw://ecfd1cef15830adbdd2b48decf178d615a78b6fa540f372a9c770db2d38a5696",
+				"dweb:/ipfs/QmbjhKqtnMXnmapmbzvPPEoq1doK1xwgUYr3GuYfwSpDx1"
 			]
 		}
 	},

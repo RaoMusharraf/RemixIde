@@ -9,7 +9,6 @@ import "@openzeppelin/contracts/utils/Counters.sol";
  * @dev Store & retrieve value in a variable
  * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
  */
-
 contract Storage {
     using Counters for Counters.Counter;
     Counters.Counter public TotalTender;
