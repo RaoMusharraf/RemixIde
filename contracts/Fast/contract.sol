@@ -46,6 +46,11 @@ contract Storage {
         bool done;
 
     }
+    struct Rating {
+        uint start;
+        uint end;
+        uint Total;
+    }
     mapping (address => uint) public Size;
     mapping (address => mapping(uint => bool)) public Pending;
     mapping (uint => uint) public SizeVender;
@@ -56,6 +61,7 @@ contract Storage {
     mapping (uint => mapping(address => uint)) public Finder;
     mapping (uint => mapping(address => Comm)) public Communication;
     mapping (address => mapping(uint => mapping(address => bool))) public Invite;
+    mapping (address => Rating) public RattingDetails;
     mapping (address => uint) public Ratting;
     
     constructor(){
@@ -141,6 +147,7 @@ contract Storage {
     }
     function AcceptInvitation(uint _token,address _receiver,address _to,uint _price) public {
         Communication[_token][_to] = Comm(_receiver,_price,true);
+        
         Pending[_to][_token] = true;
         Invite[_to][_token][_receiver] = true;
     }
@@ -149,6 +156,9 @@ contract Storage {
         require(Communication[tokenId][from].done,"You already payment");
         Communication[tokenId][from].done = false;
         payable(_to).transfer(Communication[tokenId][from].price);
+    }
+    function ratting() public{
+
     }
     
 }

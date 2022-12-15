@@ -374,6 +374,35 @@
 						"type": "address"
 					}
 				],
+				"name": "RattingDetails",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "start",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "end",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Total",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
 				"name": "Requests",
 				"outputs": [
 					{
@@ -693,6 +722,13 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "ratting",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -798,11 +834,11 @@
 			]
 		},
 		"contracts/Fast/contract.sol": {
-			"keccak256": "0xd7e8c07301e95efac691f8959b721faff0b47de80161a2d39b0936f4232e7e0d",
+			"keccak256": "0x9b8427ff2de4597465a4eba4ac63d6aa8bb463de72fb7141fe7578efaa5bd2a0",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://28eaab7c6dedba01d1acd8170d5aad8e163ad422c3f1d790e0536e55fd3b65ec",
-				"dweb:/ipfs/QmQ9SrhM7yqYud9ohZkvnaUFb6Fiqe9Sh85uMmabjEFxSy"
+				"bzz-raw://1d9f3a80ed577f25b684ad348afe5c3113c47f4897cba3b2988108af80d1d28b",
+				"dweb:/ipfs/QmXyomQks9GrdP6rhBz92gqRbizUKe2ZeLGz6awNwNudKZ"
 			]
 		}
 	},
