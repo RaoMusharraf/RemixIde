@@ -134,6 +134,11 @@
 								"internalType": "uint256",
 								"name": "DeleveryTime",
 								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "rating",
+								"type": "uint256"
 							}
 						],
 						"internalType": "struct Storage.Vender[]",
@@ -229,6 +234,35 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "DaysDetails",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "Delivered",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Total",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tender",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -372,23 +406,18 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"name": "RattingDetails",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "start",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "end",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Total",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -541,34 +570,6 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_token",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_price",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "_description",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_deleveryTime",
-						"type": "uint256"
-					}
-				],
-				"name": "UpdateRequest",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					},
@@ -603,6 +604,59 @@
 					{
 						"internalType": "uint256",
 						"name": "DeleveryTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "rating",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "accceptedReq",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ExactPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Price",
+						"type": "uint256"
+					}
+				],
+				"name": "calRatting",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -711,6 +765,11 @@
 								"internalType": "uint256",
 								"name": "DeleveryTime",
 								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "rating",
+								"type": "uint256"
 							}
 						],
 						"internalType": "struct Storage.Vender[]",
@@ -719,13 +778,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "ratting",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -834,11 +886,11 @@
 			]
 		},
 		"contracts/Fast/contract.sol": {
-			"keccak256": "0x9b8427ff2de4597465a4eba4ac63d6aa8bb463de72fb7141fe7578efaa5bd2a0",
+			"keccak256": "0x7b587b38a1d9202bd1fe052f0f190d731c0abb0a9c268e1865c99e18dbbbc4da",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://1d9f3a80ed577f25b684ad348afe5c3113c47f4897cba3b2988108af80d1d28b",
-				"dweb:/ipfs/QmXyomQks9GrdP6rhBz92gqRbizUKe2ZeLGz6awNwNudKZ"
+				"bzz-raw://acc2a06cdff8cce2cafab805f6caedc3a2a48a49d8bf3d1066142051ac1d505d",
+				"dweb:/ipfs/QmVBDwxv46ur7xaS6tA4A63ZxoE9UKNmL265sBNeJVyhWb"
 			]
 		}
 	},

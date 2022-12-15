@@ -16,13 +16,14 @@ contract Storage {
     Counters.Counter public TotalVender;
 
     address public Contract;
-
+    
     struct Vender {
         uint Token;
         uint Price;
         string Description;
         address owner;
         uint DeleveryTime;
+        uint rating;
     }
     struct Tender {
         uint TokenId;
@@ -44,12 +45,11 @@ contract Storage {
         address receiver;
         uint price;
         bool done;
-
     }
-    struct Rating {
-        uint start;
-        uint end;
+    struct Days {
+        uint Delivered;
         uint Total;
+        uint tender;
     }
     mapping (address => uint) public Size;
     mapping (address => mapping(uint => bool)) public Pending;
@@ -58,11 +58,13 @@ contract Storage {
     mapping (uint => mapping(uint => Vender )) public Venders;
     mapping (address => mapping(uint => bool)) public Ch; 
     mapping (address => uint) public Requests;
+    mapping (address => Days) public DaysDetails;
     mapping (uint => mapping(address => uint)) public Finder;
     mapping (uint => mapping(address => Comm)) public Communication;
     mapping (address => mapping(uint => mapping(address => bool))) public Invite;
-    mapping (address => Rating) public RattingDetails;
+    mapping (address => mapping(uint => uint)) public RattingDetails;
     mapping (address => uint) public Ratting;
+    mapping (address => uint) public accceptedReq;
     
     constructor(){
         Contract = address(this);
@@ -108,7 +110,7 @@ contract Storage {
         SizeVender[_token] += 1; 
         Requests[msg.sender] += 1; 
         Finder[_token][msg.sender] = TotalVender.current();
-        Venders[TotalVender.current()][_token] = Vender(_token,_price,_description,msg.sender,_deleveryTime);
+        Venders[TotalVender.current()][_token] = Vender(_token,_price,_description,msg.sender,_deleveryTime,calRatting(msg.sender,Total[_token].budget,_price));
     }
     function AllVender(uint _token) public view returns (Vender[] memory)  {
         Vender[] memory memoryArray = new Vender[](SizeVender[_token]);
@@ -142,23 +144,28 @@ contract Storage {
         delete Venders[Finder[_token][msg.sender]][_token];
         Finder[_token][msg.sender];
     }
-    function UpdateRequest(uint _token,uint _price,string memory _description,uint _deleveryTime) public {
-        Venders[Finder[_token][msg.sender]][_token] = Vender(_token,_price,_description,msg.sender,_deleveryTime);
-    }
     function AcceptInvitation(uint _token,address _receiver,address _to,uint _price) public {
         Communication[_token][_to] = Comm(_receiver,_price,true);
-        
+        RattingDetails[_receiver][_token] = block.timestamp;
         Pending[_to][_token] = true;
         Invite[_to][_token][_receiver] = true;
     }
     function Done(address _to,address from,uint tokenId) public payable {
         require(Communication[tokenId][from].receiver == _to,"Please Sellect the correct Recepient");
         require(Communication[tokenId][from].done,"You already payment");
+        DaysDetails[_to].Total += Venders[Finder[tokenId][_to]][tokenId].DeleveryTime;
+        DaysDetails[_to].Delivered += (block.timestamp - RattingDetails[_to][tokenId])/60;
+        DaysDetails[_to].tender += 1;
+        accceptedReq[_to] += 1;
         Communication[tokenId][from].done = false;
         payable(_to).transfer(Communication[tokenId][from].price);
     }
-    function ratting() public{
-
+    function calRatting(address _to,uint ExactPrice,uint Price) public view returns(uint)  { 
+        if(accceptedReq[_to] == 0){
+            return (20 + Requests[_to] + ((ExactPrice*40)/Price));
+        }
+        else{
+            return (((DaysDetails[_to].Total*40)/DaysDetails[_to].Delivered) + ((accceptedReq[_to]*20)/Requests[_to]) + ((ExactPrice*40)/Price));
+        }
     }
-    
 }
