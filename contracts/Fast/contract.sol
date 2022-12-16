@@ -15,6 +15,7 @@ contract Storage {
     Counters.Counter public TotalVender;
 
     address public Contract;
+    uint[] arrayName;
     
     struct Vender {
         uint Token;
@@ -62,8 +63,8 @@ contract Storage {
     mapping (uint => mapping(address => Comm)) public Communication;
     mapping (address => mapping(uint => mapping(address => bool))) public Invite;
     mapping (address => mapping(uint => uint)) public RattingDetails;
-    mapping (address => uint) public Ratting;
     mapping (address => uint) public accceptedReq;
+    
     
     constructor(){
         Contract = address(this);

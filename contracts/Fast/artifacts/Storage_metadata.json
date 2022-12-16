@@ -387,25 +387,6 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
-					}
-				],
-				"name": "Ratting",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
 					},
 					{
 						"internalType": "uint256",
@@ -886,11 +867,11 @@
 			]
 		},
 		"contracts/Fast/contract.sol": {
-			"keccak256": "0xd047db8712726f4fff172e089d30fffe8a51e93a3ac004a5d2e4e17f0bdfef5c",
+			"keccak256": "0x50628003ace0e2089a5607ddc5c398dc00a2549c1a9e72ff6b83663b66cc3bf3",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://ecfd1cef15830adbdd2b48decf178d615a78b6fa540f372a9c770db2d38a5696",
-				"dweb:/ipfs/QmbjhKqtnMXnmapmbzvPPEoq1doK1xwgUYr3GuYfwSpDx1"
+				"bzz-raw://f696c2690194cd94b19e53850bf9f603ddd5a8f1f3ac182fb3f0f0d6f65c7a2a",
+				"dweb:/ipfs/QmcQFwbaiQVG3XfBGam6Hge3NQ36Trm1mwnx2Uc7JwVWyy"
 			]
 		}
 	},
