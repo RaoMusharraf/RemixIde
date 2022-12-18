@@ -72,7 +72,7 @@ contract Storage {
     function tender(string memory _name,uint _quantity,uint _budget,uint _time,string memory Address,string memory _description) public {
         TotalTender.increment();
         Size[msg.sender] += 1; 
-        Total[TotalTender.current()] = Tender(TotalTender.current(),_name,_quantity,_budget,_time,block.timestamp,Address,_description,msg.sender);
+        Total[TotalTender.current()] = Tender(TotalTender.current(),_name,_quantity,_budget,block.timestamp+(_time*60),block.timestamp,Address,_description,msg.sender);
     }
     function getTender(address _to) public view returns (Tender[] memory)  {
         Tender[] memory memoryArray = new Tender[](Size[_to]);
@@ -95,7 +95,7 @@ contract Storage {
         return memoryArray;
     }
     function CheckTime(uint _token) public view returns (bool)  {
-        if(Total[_token].start + (Total[_token].time*60) <= block.timestamp){
+        if(Total[_token].time <= block.timestamp){
             return false;
         }
         else{
@@ -110,7 +110,7 @@ contract Storage {
         SizeVender[_token] += 1; 
         Requests[msg.sender] += 1; 
         Finder[_token][msg.sender] = TotalVender.current();
-        Venders[TotalVender.current()][_token] = Vender(_token,_price,_description,msg.sender,_deleveryTime,calRatting(msg.sender,Total[_token].budget,_price));
+        Venders[TotalVender.current()][_token] = Vender(_token,_price,_description,msg.sender,block.timestamp + (_deleveryTime*60),calRatting(msg.sender,Total[_token].budget,_price));
     }
     function AllVender(uint _token) public view returns (Vender[] memory)  {
         Vender[] memory memoryArray = new Vender[](SizeVender[_token]);
