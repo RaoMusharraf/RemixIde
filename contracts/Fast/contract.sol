@@ -110,7 +110,7 @@ contract Storage {
         SizeVender[_token] += 1; 
         Requests[msg.sender] += 1; 
         Finder[_token][msg.sender] = TotalVender.current();
-        Venders[TotalVender.current()][_token] = Vender(_token,_price,_description,msg.sender,block.timestamp + (_deleveryTime*60),calRatting(msg.sender,Total[_token].budget,_price));
+        Venders[TotalVender.current()][_token] = Vender(_token,_price,_description,msg.sender,_deleveryTime,calRatting(msg.sender,Total[_token].budget,_price));
     }
     function AllVender(uint _token) public view returns (Vender[] memory)  {
         Vender[] memory memoryArray = new Vender[](SizeVender[_token]);
@@ -148,6 +148,7 @@ contract Storage {
         Communication[_token][_to] = Comm(_receiver,_price,true);
         RattingDetails[_receiver][_token] = block.timestamp;
         Pending[_to][_token] = true;
+        Venders[Finder[_token][_receiver]][_token].DeleveryTime = block.timestamp + (Venders[Finder[_token][_receiver]][_token].DeleveryTime*60);
         Invite[_to][_token][_receiver] = true;
     }
     function Done(address _to,address from,uint tokenId) public payable {
