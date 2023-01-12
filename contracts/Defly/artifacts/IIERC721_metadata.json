@@ -19,14 +19,8 @@
 					}
 				],
 				"name": "safeMint",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "balance",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -63,11 +57,11 @@
 	},
 	"sources": {
 		"contracts/Defly/IIERC721.sol": {
-			"keccak256": "0xdc20666dd0c97592538760f3e1807b677a5c2944ee5858f45d3c395dd19c9939",
+			"keccak256": "0x1feb4069ec60d92f76a480ae744cc39b0c9d3344d53bd9fd4f02aaee7fa85969",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f9624b1540f5e9412eff0fadf805c84b68f40486e1960e25228f735cee00732a",
-				"dweb:/ipfs/QmT6T1e7Uabg2MRPtjW6g31xba3kDQtvzWi1nuHmz5KV1K"
+				"bzz-raw://3837e129896d348f9d065ecfe3039435203a3048ae9a7633c299792479a6c6a0",
+				"dweb:/ipfs/Qmf7iMamL2yEDk765sQqQYmuwLf6cjFy9fXGp1qqaesnh1"
 			]
 		}
 	},

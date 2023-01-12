@@ -2,14 +2,15 @@
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 import "./IIERC721.sol";
 
 contract TokenStaking{
-
+    using Counters for Counters.Counter;
+    Counters.Counter public counter;
     using SafeERC20 for IERC20;
     address public ERC721address;
     address public ERC20Address;
-    string[] uri;
     struct Detail{
         uint tokens;
         uint day;
@@ -18,6 +19,7 @@ contract TokenStaking{
         bool DepositToken;
     }
     mapping (address => Detail) public Staker;
+    mapping (uint => string) public URI;
     constructor(address _ERC721address, address _ERC20Address) {
         ERC721address = _ERC721address;
         ERC20Address = _ERC20Address;
@@ -48,23 +50,26 @@ contract TokenStaking{
             revert("Sellect Days 15,30,60,90 !!!");
         }    
     }
-    function withdraw () public payable{
-        require (Staker[msg.sender].DepositToken,"Please First Deposit Tokens !!!");
-        uint Time = ((block.timestamp - Staker[msg.sender].StartTime)/(24*60*60));
-        if(Time > Staker[msg.sender].day){
-            uint fine = (2*Staker[msg.sender].tokens)/100;
-            IERC20(ERC20Address).safeTransfer(msg.sender, Staker[msg.sender].tokens - fine);
+    function withdraw (address _to) public {
+        require (Staker[_to].DepositToken,"Please First Deposit Tokens !!!");
+        uint Time = ((block.timestamp - Staker[_to].StartTime)/(24*60*60));
+        if(Time < Staker[_to].day){
+            uint fine = (2*Staker[_to].tokens)/100;
+            IERC20(ERC20Address).safeTransfer(_to, Staker[_to].tokens - fine);
             IERC20(ERC20Address).safeTransfer(0x000000000000000000000000000000000000dEaD, fine);
-            Staker[msg.sender].DepositToken = false;
+            Staker[_to].DepositToken = false;
         }
         else{
-            IERC20(ERC20Address).safeTransfer(msg.sender, Staker[msg.sender].tokens);
-            Staker[msg.sender].DepositToken = false;
-            for(uint i=0; i < Staker[msg.sender].NFT; i++){
-                IIERC721(ERC721address).safeMint(msg.sender,"uri[i]");
+            IERC20(ERC20Address).safeTransfer(_to, Staker[_to].tokens);
+            Staker[_to].DepositToken = false;
+            for(uint i=1; i <= Staker[_to].NFT; i++){
+                IIERC721(ERC721address).safeMint(_to,URI[i]);
             }
-            // IIERC721(ERC721address).safeMint(msg.sender,"Hello");
-            // Staker[msg.sender].NFT = true;
         }   
+    }
+    function setURI(string memory _uri) public{
+        counter.increment();
+        require(counter.current() < 5,"Stack Full");
+        URI[counter.current()]=_uri;
     }
 }

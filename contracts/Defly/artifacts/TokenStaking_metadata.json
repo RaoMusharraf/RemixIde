@@ -73,9 +73,9 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "bool",
+						"internalType": "uint256",
 						"name": "NFT",
-						"type": "bool"
+						"type": "uint256"
 					},
 					{
 						"internalType": "bool",
@@ -108,7 +108,7 @@
 				"inputs": [],
 				"name": "withdraw",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			}
 		],
@@ -180,11 +180,11 @@
 			]
 		},
 		"contracts/Defly/StakingToken.sol": {
-			"keccak256": "0x20b62a6167c4bc3967cd8bf3e5d9e44a52b70d06d49b99153497f4280a8cbcb9",
+			"keccak256": "0x12a034358bdd507bc93321e20e603fa2e938c9131c742552c61ed347e2aabfef",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a749393724ad076493983581307a73a59311898a5a8435cef15c11b1e4959364",
-				"dweb:/ipfs/QmNRTuPEvJAJMuqZdXJcoc2hLb9vYjsPWatE8349CSY5E5"
+				"bzz-raw://fa3c4dcc18355b8e7e941f5a0432def33c3509236e4d6f30da6c4e8c7fb676a2",
+				"dweb:/ipfs/QmeGAfTT7egB7QdT9MNR1pb7ezamBNqEJTCLZRw6Pg4LLW"
 			]
 		}
 	},

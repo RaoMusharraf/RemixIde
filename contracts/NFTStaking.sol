@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-
+// https://deflydogs.s3.us-east-2.amazonaws.com/d3o6g4s8/skooty/jsons/skooty_corgi.json
 // @title Moon Rabbits NFT Staking 
 // @author OctaLoop
 

@@ -1,5 +1,5 @@
 {
-	"id": "b832c82cb474a6e69f188b6014c5ca50",
+	"id": "faa9f9aa5e63cad1666edc2ba8662906",
 	"_format": "hh-sol-build-info-1",
 	"solcVersion": "0.8.17",
 	"solcLongVersion": "0.8.17+commit.8df45f5f",
@@ -7,7 +7,7 @@
 		"language": "Solidity",
 		"sources": {
 			"contracts/Defly/IIERC721.sol": {
-				"content": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.7;\n\n\n/**\n * @dev Required interface of an ERC721 compliant contract.\n */\ninterface IIERC721 {\n    /**\n     * @dev Returns the number of tokens in ``owner``'s account.\n     */\n    function safeMint(address to, string memory uri) external view returns (uint256 balance);\n}"
+				"content": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.7;\n\n\n/**\n * @dev Required interface of an ERC721 compliant contract.\n */\ninterface IIERC721 {\n    /**\n     * @dev Returns the number of tokens in ``owner``'s account.\n     */\n    function safeMint(address to, string memory uri) external;\n}"
 			}
 		},
 		"settings": {
@@ -56,14 +56,8 @@
 								}
 							],
 							"name": "safeMint",
-							"outputs": [
-								{
-									"internalType": "uint256",
-									"name": "balance",
-									"type": "uint256"
-								}
-							],
-							"stateMutability": "view",
+							"outputs": [],
+							"stateMutability": "nonpayable",
 							"type": "function"
 						}
 					],
@@ -102,7 +96,7 @@
 							"safeMint(address,string)": "d204c45e"
 						}
 					},
-					"metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"uri\",\"type\":\"string\"}],\"name\":\"safeMint\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Required interface of an ERC721 compliant contract.\",\"kind\":\"dev\",\"methods\":{\"safeMint(address,string)\":{\"details\":\"Returns the number of tokens in ``owner``'s account.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Defly/IIERC721.sol\":\"IIERC721\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Defly/IIERC721.sol\":{\"keccak256\":\"0xdc20666dd0c97592538760f3e1807b677a5c2944ee5858f45d3c395dd19c9939\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f9624b1540f5e9412eff0fadf805c84b68f40486e1960e25228f735cee00732a\",\"dweb:/ipfs/QmT6T1e7Uabg2MRPtjW6g31xba3kDQtvzWi1nuHmz5KV1K\"]}},\"version\":1}",
+					"metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"uri\",\"type\":\"string\"}],\"name\":\"safeMint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Required interface of an ERC721 compliant contract.\",\"kind\":\"dev\",\"methods\":{\"safeMint(address,string)\":{\"details\":\"Returns the number of tokens in ``owner``'s account.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Defly/IIERC721.sol\":\"IIERC721\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Defly/IIERC721.sol\":{\"keccak256\":\"0x1feb4069ec60d92f76a480ae744cc39b0c9d3344d53bd9fd4f02aaee7fa85969\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3837e129896d348f9d065ecfe3039435203a3048ae9a7633c299792479a6c6a0\",\"dweb:/ipfs/Qmf7iMamL2yEDk765sQqQYmuwLf6cjFy9fXGp1qqaesnh1\"]}},\"version\":1}",
 					"storageLayout": {
 						"storage": [],
 						"types": null
@@ -121,10 +115,10 @@
 					"absolutePath": "contracts/Defly/IIERC721.sol",
 					"exportedSymbols": {
 						"IIERC721": [
-							13
+							11
 						]
 					},
-					"id": 14,
+					"id": 12,
 					"license": "MIT",
 					"nodeType": "SourceUnit",
 					"nodes": [
@@ -152,9 +146,9 @@
 								"text": " @dev Required interface of an ERC721 compliant contract."
 							},
 							"fullyImplemented": false,
-							"id": 13,
+							"id": 11,
 							"linearizedBaseContracts": [
-								13
+								11
 							],
 							"name": "IIERC721",
 							"nameLocation": "137:8:0",
@@ -168,7 +162,7 @@
 										"text": " @dev Returns the number of tokens in ``owner``'s account."
 									},
 									"functionSelector": "d204c45e",
-									"id": 12,
+									"id": 10,
 									"implemented": false,
 									"kind": "function",
 									"modifiers": [],
@@ -186,7 +180,7 @@
 												"name": "to",
 												"nameLocation": "259:2:0",
 												"nodeType": "VariableDeclaration",
-												"scope": 12,
+												"scope": 10,
 												"src": "251:10:0",
 												"stateVariable": false,
 												"storageLocation": "default",
@@ -214,7 +208,7 @@
 												"name": "uri",
 												"nameLocation": "277:3:0",
 												"nodeType": "VariableDeclaration",
-												"scope": 12,
+												"scope": 10,
 												"src": "263:17:0",
 												"stateVariable": false,
 												"storageLocation": "memory",
@@ -238,52 +232,24 @@
 										"src": "250:31:0"
 									},
 									"returnParameters": {
-										"id": 11,
+										"id": 9,
 										"nodeType": "ParameterList",
-										"parameters": [
-											{
-												"constant": false,
-												"id": 10,
-												"mutability": "mutable",
-												"name": "balance",
-												"nameLocation": "313:7:0",
-												"nodeType": "VariableDeclaration",
-												"scope": 12,
-												"src": "305:15:0",
-												"stateVariable": false,
-												"storageLocation": "default",
-												"typeDescriptions": {
-													"typeIdentifier": "t_uint256",
-													"typeString": "uint256"
-												},
-												"typeName": {
-													"id": 9,
-													"name": "uint256",
-													"nodeType": "ElementaryTypeName",
-													"src": "305:7:0",
-													"typeDescriptions": {
-														"typeIdentifier": "t_uint256",
-														"typeString": "uint256"
-													}
-												},
-												"visibility": "internal"
-											}
-										],
-										"src": "304:17:0"
+										"parameters": [],
+										"src": "290:0:0"
 									},
-									"scope": 13,
-									"src": "233:89:0",
-									"stateMutability": "view",
+									"scope": 11,
+									"src": "233:58:0",
+									"stateMutability": "nonpayable",
 									"virtual": false,
 									"visibility": "external"
 								}
 							],
-							"scope": 14,
-							"src": "127:197:0",
+							"scope": 12,
+							"src": "127:166:0",
 							"usedErrors": []
 						}
 					],
-					"src": "33:291:0"
+					"src": "33:260:0"
 				},
 				"id": 0
 			}

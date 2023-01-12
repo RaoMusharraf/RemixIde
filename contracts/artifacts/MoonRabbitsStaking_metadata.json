@@ -498,11 +498,11 @@
 			]
 		},
 		"contracts/NFTStaking.sol": {
-			"keccak256": "0xa2aa515dc771c14843abb20a957113444585b7c32ddd08bb6fb411ba9d8da2be",
+			"keccak256": "0x79ef65ef98b755466d13942a3ef243cf333e41fa6cb5e4b2ab274b050bc712c4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e187bfc316983be4c58454660d3e83a4a6ed66344d900bb7fc52efaf76c7b201",
-				"dweb:/ipfs/QmTzkeTcFznNh74VTUV7hR4U74b62NxgcgEHGRS1FiLoKn"
+				"bzz-raw://5f972e736ff1a0252a384c640763aec89602a70806539904ab04051ebbcc0a0b",
+				"dweb:/ipfs/QmV39wk9VHt4K8v7qKftVA1LkEf1vFnDojCALiKmUtQByj"
 			]
 		}
 	},

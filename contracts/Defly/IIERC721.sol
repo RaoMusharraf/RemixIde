@@ -10,5 +10,5 @@ interface IIERC721 {
     /**
      * @dev Returns the number of tokens in ``owner``'s account.
      */
-    function safeMint(address to, string memory uri) external view returns (uint256 balance);
+    function safeMint(address to, string memory uri) external;
 }
