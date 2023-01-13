@@ -108,11 +108,12 @@ contract TokenStaking is Ownable,IERC721Receiver{
             category4.decrement();   
         }  
     }
+    
+    // ============= Admin Add Token Function ==============
     /*
-    ~~~~~~~~~~~~~Admin Add Token Function~~~~~~~~~~~~~~~
-    1. Owner add tokens into contract with this function
-    2. These tokens are used as rewards for staking
-    3. Only Owner can call this function
+        @dev Owner add tokens into contract with this function
+        @param These tokens are used as rewards for staking
+        @param Only Owner can call this function
     */
     function AdminAddToken(uint _amount) public onlyOwner{
         TotalRemaningToken += _amount;
