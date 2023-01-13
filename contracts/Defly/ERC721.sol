@@ -11,10 +11,10 @@ contract MyToken is ERC721, ERC721URIStorage, Ownable {
     Counters.Counter public tokenID;
     constructor() ERC721("MyToken", "MTK") {}
 
-    function safeMint(address to,string memory uri) public
+    function safeMint(string memory uri) public
     {
         tokenID.increment();
-        _safeMint(to, tokenID.current());
+        _safeMint(msg.sender, tokenID.current());
         _setTokenURI(tokenID.current(), uri);
     }
 

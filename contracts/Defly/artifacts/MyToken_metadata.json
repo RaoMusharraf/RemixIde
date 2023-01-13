@@ -239,11 +239,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "to",
-						"type": "address"
-					},
-					{
 						"internalType": "string",
 						"name": "uri",
 						"type": "string"
@@ -602,11 +597,11 @@
 			]
 		},
 		"contracts/Defly/ERC721.sol": {
-			"keccak256": "0xa084cb57c46f3a5a6a2749c78f3ca86adf3efe6407a430c76fb90db674368c98",
+			"keccak256": "0x2565ff910f013a9ac6264b20c20dceda05b273b1fc63eb2d28fc03047e0a26f6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6a33cfb1b9371dc6c622703c4fe2ce962e11c6cb08a971b7c8ad8d7801e2faa6",
-				"dweb:/ipfs/Qmc3neYCJ7Aaz5FJSsfLLKaCefZTohQXCrNevfLmauhu47"
+				"bzz-raw://1e55a59628eec6b5cdfcfc9db5edd03ee9c5607698610e911730843724f979db",
+				"dweb:/ipfs/QmVf9dzHASbvvdhXje2US3EG4kdfWgSNw96vUsmoo3PhwW"
 			]
 		}
 	},

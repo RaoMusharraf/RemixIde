@@ -16,6 +16,16 @@
 						"internalType": "string",
 						"name": "uri",
 						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint8",
+						"name": "typ",
+						"type": "uint8"
 					}
 				],
 				"name": "safeMint",
@@ -28,7 +38,7 @@
 			"details": "Required interface of an ERC721 compliant contract.",
 			"kind": "dev",
 			"methods": {
-				"safeMint(address,string)": {
+				"safeMint(address,string,uint256,uint8)": {
 					"details": "Returns the number of tokens in ``owner``'s account."
 				}
 			},
@@ -57,11 +67,11 @@
 	},
 	"sources": {
 		"contracts/Defly/IIERC721.sol": {
-			"keccak256": "0x1feb4069ec60d92f76a480ae744cc39b0c9d3344d53bd9fd4f02aaee7fa85969",
+			"keccak256": "0xef5ff57a7808b26072a271617baa5af1bf24bfe0004f04d84046b7be0867e086",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3837e129896d348f9d065ecfe3039435203a3048ae9a7633c299792479a6c6a0",
-				"dweb:/ipfs/Qmf7iMamL2yEDk765sQqQYmuwLf6cjFy9fXGp1qqaesnh1"
+				"bzz-raw://7c5a4af92092f5fe055d6194aef29e64ab9201b19707c9103fc0ed67c313d3fc",
+				"dweb:/ipfs/Qmay9egwhxDa8mGNgkohchRxkmuRz7v6KEnpPfswaMVTUa"
 			]
 		}
 	},

@@ -49,7 +49,7 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"safeMint(address,string)": "d204c45e"
+			"safeMint(address,string,uint256,uint8)": "64ac7814"
 		}
 	},
 	"abi": [
@@ -64,6 +64,16 @@
 					"internalType": "string",
 					"name": "uri",
 					"type": "string"
+				},
+				{
+					"internalType": "uint256",
+					"name": "price",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint8",
+					"name": "typ",
+					"type": "uint8"
 				}
 			],
 			"name": "safeMint",
