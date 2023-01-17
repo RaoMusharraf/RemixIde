@@ -16,6 +16,11 @@
 						"internalType": "address",
 						"name": "ERC20",
 						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -115,6 +120,50 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "AddminAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_uri",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "AdminEnterData",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "BuyAdmin",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -143,6 +192,48 @@
 				"name": "ListNft",
 				"outputs": [],
 				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "URI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "URI",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Count",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "_URICount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -428,6 +519,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "tokenID",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -608,11 +712,19 @@
 			]
 		},
 		"contracts/Marketplace/Contract.sol": {
-			"keccak256": "0xf043d989bd6292b7da90fb1538218099f701e1f0734e312941131503dbed66c6",
+			"keccak256": "0x24100cc695947693e3aa5861999a4db4385745b27fb3ce54a14019fd7081e818",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7a49db5815f4e10423c775e8f4dc936570f9a576122ed6069a5e2d3fb47d5c53",
-				"dweb:/ipfs/QmTzWVuSSj37GAwL7pXCJMRx3ncVqu7tw2KW9QSzYXJM9v"
+				"bzz-raw://78a0b7a1f0843cb0c3ee95ac6871b2e6c87d91223561834fa74a97718d48f79a",
+				"dweb:/ipfs/QmXt63Lbd2bN1v8K7fFuhqqRvz2po5LQuY8JYLEdVXiqaw"
+			]
+		},
+		"contracts/Marketplace/IIERC721.sol": {
+			"keccak256": "0xb90ae4839b9bdc3c28cb993df8331e0f9c753cd9b695ac94edcbbb229a26070e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://918ff02eaab6696a149549631c8a15d00970824cc1573cd2af15d6411e11cd10",
+				"dweb:/ipfs/Qmb2oxJYbNLnLMrUpwNNWWgt5jiWLPCbcgQftDH8xsBXCo"
 			]
 		}
 	},

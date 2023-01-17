@@ -416,11 +416,11 @@
 			]
 		},
 		"contracts/Defly/NFTStaking.sol": {
-			"keccak256": "0xac49423c9290fd79fb22f35be089a9d8fcb2e53b83c844cf068a735e8f6a73db",
+			"keccak256": "0x6a550f168cab3682683f5204e5eaa03027d7ab0f8cf9f9af5c32bfdaf9800d2e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8d778252930223db6a4d0f44c1b948c7f07817fec5dff0791aa24926189f39d2",
-				"dweb:/ipfs/QmVbVagriSMqd4WbeEBGSBALcEMwsmTX5wXYUfqSuHyiax"
+				"bzz-raw://e8fc71671685a622e0bbf7e7b8fc74302834d7572774fd58ed972b662e859cbb",
+				"dweb:/ipfs/QmXDiHjkBVP7eAVuTvRPNjqZrxakYeYcxXcP5BgTfzjKMb"
 			]
 		}
 	},

@@ -1,21 +1,19 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract MyToken is ERC721, ERC721URIStorage, Ownable {
+contract ERC721NFT is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
-    Counters.Counter public tokenID;
     constructor() ERC721("MyToken", "MTK") {}
 
-    function safeMint(string memory uri) public
+    function safeMint(address _to ,uint256 tokenID, string memory uri) public
     {
-        tokenID.increment();
-        _safeMint(msg.sender, tokenID.current());
-        _setTokenURI(tokenID.current(), uri);
+        _safeMint(_to, tokenID);
+        _setTokenURI(tokenID, uri);
     }
 
     // The following functions are overrides required by Solidity.
