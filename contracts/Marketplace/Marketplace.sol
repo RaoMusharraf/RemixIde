@@ -89,8 +89,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         require(msg.value >= _idToNFT[_tokenId].price , "Not enough ether to cover asking price !!!");
         IERC20(paymentToken).safeTransferFrom(msg.sender, _idToNFT[_tokenId].seller ,_idToNFT[_tokenId].price);
         token.transferFrom(address(this), msg.sender, _tokenId); 
-        _idToNFT[_tokenId].owner = msg.sender;
-        _idToNFT[_tokenId].listed=true;
+        _idToNFT[_tokenId] = NFT(_tokenId,msg.sender,msg.sender,_idToNFT[_tokenId].price,true);
         _nftCount.decrement();
         emit NFTSold(_idToNFT[_tokenId].tokenId, _idToNFT[_tokenId].seller, msg.sender, msg.value);
     }
@@ -158,7 +157,6 @@ contract Marketplace is ReentrancyGuard , Ownable{
         }
         return nfts;
     }
-
     // ============ GetMyListedNFTs FUNCTIONS ============
     /* 
         @dev getMyNfts fetch all the NFTs that are listed by current address
