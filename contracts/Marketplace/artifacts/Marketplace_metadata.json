@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -141,27 +141,14 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "_uri",
-						"type": "string"
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
 					},
 					{
-						"internalType": "uint256",
-						"name": "_price",
-						"type": "uint256"
-					}
-				],
-				"name": "AdminEnterData",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
 					}
 				],
 				"name": "BuyAdmin",
@@ -308,7 +295,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					}
+				],
 				"name": "getListedNfts",
 				"outputs": [
 					{
@@ -512,7 +505,7 @@
 		"compilationTarget": {
 			"contracts/Marketplace/Marketplace.sol": "Marketplace"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -661,11 +654,11 @@
 			]
 		},
 		"contracts/Marketplace/Marketplace.sol": {
-			"keccak256": "0xb35064619dc98f509efe8ba0fa2e45163987f1c044d16dde3e543985c512dfee",
+			"keccak256": "0x91e3ccdeefbe21f896817abf785edfe9096fe63398ff502b09f7d15f3a43a38d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://994850ec7e4cd1ee0dc9efc82c55ecb26428902341921f50b48b594b315c4adc",
-				"dweb:/ipfs/QmXUmhPA1q82r6PC3h3WsLvFtURc1H8Ef5VMkUjignyZjS"
+				"bzz-raw://0d41031f283cafb00d0c692ebcb35b34b15954e7ec5b90df62471a849f81d450",
+				"dweb:/ipfs/QmVEB7EX9DUe4zjGXYS14W2FN4Zg7FV39WpLtVqdeLDcy8"
 			]
 		}
 	},

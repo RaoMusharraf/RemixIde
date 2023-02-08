@@ -208,7 +208,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
 				"name": "mint",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -451,11 +457,11 @@
 			]
 		},
 		"contracts/Marketplace/ERC20.sol": {
-			"keccak256": "0x7b294456defb62e5cc8978c6aead058c2aa81f276f2bc485586e5ac98c116465",
+			"keccak256": "0x7ff2b6e15ecb191a2f843bcde8662f94f7844df6bbbb4ae153297149c8226ab5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://682bc9427651564cd00c22ae9b3c6834ae961d7bdb9442f1ee845255af785f0e",
-				"dweb:/ipfs/QmQZ4R29cEAAQvN9ncA4sjLo3hjgqoJsSnbvMKjA3Fjchj"
+				"bzz-raw://d56a0c9914d3850ebfabdb6c789759efdf836ca50a74a202e6d7f0a4942a5400",
+				"dweb:/ipfs/QmS49j4SXXAsbr6eXNFSpKgWZwDW9JaqZjFKF55nh2yi2c"
 			]
 		}
 	},

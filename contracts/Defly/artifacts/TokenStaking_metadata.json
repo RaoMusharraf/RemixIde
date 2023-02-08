@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -39,19 +39,6 @@
 				],
 				"name": "OwnershipTransferred",
 				"type": "event"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					}
-				],
-				"name": "AdminAddToken",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
 			},
 			{
 				"inputs": [],
@@ -119,26 +106,19 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "TotalRemaningToken",
-				"outputs": [
+				"inputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "category1",
+				"name": "URI",
 				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "_value",
-						"type": "uint256"
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -146,33 +126,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "category2",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "_value",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "category3",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "_value",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "category4",
+				"name": "counter",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -187,7 +141,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "TokenId",
+						"name": "Tokens",
 						"type": "uint256"
 					},
 					{
@@ -199,40 +153,6 @@
 				"name": "deposit",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bytes",
-						"name": "",
-						"type": "bytes"
-					}
-				],
-				"name": "onERC721Received",
-				"outputs": [
-					{
-						"internalType": "bytes4",
-						"name": "",
-						"type": "bytes4"
-					}
-				],
-				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -251,6 +171,19 @@
 			{
 				"inputs": [],
 				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_uri",
+						"type": "string"
+					}
+				],
+				"name": "setURI",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -305,9 +238,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Defly/NFTStaking.sol": "TokenStaking"
+			"contracts/Defly/TokenTesting.sol": "TokenStaking"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -351,30 +284,6 @@
 				"dweb:/ipfs/QmVzTCwJxQAkjRQHboT5QrvsVJGWQHgfEjeTbvyxoKBrds"
 			]
 		},
-		"@openzeppelin/contracts/token/ERC721/IERC721.sol": {
-			"keccak256": "0xab28a56179c1db258c9bf5235b382698cb650debecb51b23d12be9e241374b68",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://daae589a9d6fa7e55f99f86c0a16796ca490f243fb3693632c3711c0646c1d56",
-				"dweb:/ipfs/QmR3zpd7wNw3rcUdekwiv6FYHJqksuTCXLVioTxu6Fbxk3"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
-			"keccak256": "0xa82b58eca1ee256be466e536706850163d2ec7821945abd6b4778cfb3bee37da",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://6e75cf83beb757b8855791088546b8337e9d4684e169400c20d44a515353b708",
-				"dweb:/ipfs/QmYvPafLfoquiDMEj7CKHtvbgHu7TJNPSVPSCjrtjV8HjV"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol": {
-			"keccak256": "0xd1556954440b31c97a142c6ba07d5cade45f96fafd52091d33a14ebe365aecbf",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://26fef835622b46a5ba08b3ef6b46a22e94b5f285d0f0fb66b703bd30217d2c34",
-				"dweb:/ipfs/QmZ548qdwfL1qF7aXz3xh1GCdTiST81kGGuKRqVUfYmPZR"
-			]
-		},
 		"@openzeppelin/contracts/utils/Address.sol": {
 			"keccak256": "0xf96f969e24029d43d0df89e59d365f277021dac62b48e1c1e3ebe0acdd7f1ca1",
 			"license": "MIT",
@@ -399,12 +308,12 @@
 				"dweb:/ipfs/QmezuXg5GK5oeA4F91EZhozBFekhq5TD966bHPH18cCqhu"
 			]
 		},
-		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-			"keccak256": "0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1",
+		"contracts/Defly/IIERC20.sol": {
+			"keccak256": "0x9b5f41db31d330dfcf21a282c96d816e228049aff3b5dfc23bdf1a4afb50d619",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f",
-				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
+				"bzz-raw://5c6137cbe11b1980103abf169e82255629892e1d5e04d54086359161a3e2a3f4",
+				"dweb:/ipfs/QmXXC4vF1RK9XvyBNTxJ6ia2KwUh9NSAWSSVvUArhVHYYA"
 			]
 		},
 		"contracts/Defly/IIERC721.sol": {
@@ -415,12 +324,12 @@
 				"dweb:/ipfs/Qmay9egwhxDa8mGNgkohchRxkmuRz7v6KEnpPfswaMVTUa"
 			]
 		},
-		"contracts/Defly/NFTStaking.sol": {
-			"keccak256": "0x6a550f168cab3682683f5204e5eaa03027d7ab0f8cf9f9af5c32bfdaf9800d2e",
+		"contracts/Defly/TokenTesting.sol": {
+			"keccak256": "0x1781596ee2623dbd8248d60d44461287ccabe88d1967f564b565fd126a33af14",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e8fc71671685a622e0bbf7e7b8fc74302834d7572774fd58ed972b662e859cbb",
-				"dweb:/ipfs/QmXDiHjkBVP7eAVuTvRPNjqZrxakYeYcxXcP5BgTfzjKMb"
+				"bzz-raw://527e71ae0764996925a5200c66150c07ae58542fcda1d6718ad85bbce6b406b1",
+				"dweb:/ipfs/QmQ3QCJYUk95E7GZbZSUAq5LEUfjpByYnxN5u8QV5x6LnP"
 			]
 		}
 	},

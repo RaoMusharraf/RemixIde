@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -208,7 +208,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
 				"name": "mint",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -341,6 +347,14 @@
 			}
 		],
 		"devdoc": {
+			"events": {
+				"Approval(address,address,uint256)": {
+					"details": "Emitted when the allowance of a `spender` for an `owner` is set by a call to {approve}. `value` is the new allowance."
+				},
+				"Transfer(address,address,uint256)": {
+					"details": "Emitted when `value` tokens are moved from one account (`from`) to another (`to`). Note that `value` may be zero."
+				}
+			},
 			"kind": "dev",
 			"methods": {
 				"allowance(address,address)": {
@@ -398,7 +412,7 @@
 		"compilationTarget": {
 			"contracts/Defly/ERC20.sol": "ERC20FT"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -451,11 +465,11 @@
 			]
 		},
 		"contracts/Defly/ERC20.sol": {
-			"keccak256": "0x5d491126bccbb35eae71ea4ad2ef421dd33ea65d69d2ea4caebf6eeeb5cd35af",
+			"keccak256": "0xfb2e60ee110a752c91bf422d749e712dbee46904d1f4bc93bc4e72e7f27a0d95",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://25256a9088725adc482f362b199705a2b5184cafd20f42764ad59db34894fb68",
-				"dweb:/ipfs/QmTkHHqnjpxMNZBAZLKJKjyTk3ePHSqeEZMVYFVZadyg1q"
+				"bzz-raw://5695b66349628d12d0a16627542e5e27f0ce8f2612dce5eda791a6b1374ed1c4",
+				"dweb:/ipfs/Qma1bzZBGnzurxuKYgb5gaKxsgpPtFdwmkx9vMaMga2Zpf"
 			]
 		}
 	},

@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -305,9 +305,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Defly/NFTStaking.sol": "NFTStaking"
+			"contracts/Defly/NFTStakingStart.sol": "NFTStaking"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -415,12 +415,12 @@
 				"dweb:/ipfs/Qmay9egwhxDa8mGNgkohchRxkmuRz7v6KEnpPfswaMVTUa"
 			]
 		},
-		"contracts/Defly/NFTStaking.sol": {
-			"keccak256": "0x1d383046fbe3c2cb5175f6aab80b74a938ba92aaacfbca99c73fa01753adddcf",
+		"contracts/Defly/NFTStakingStart.sol": {
+			"keccak256": "0xed73dbc01c360002b8826ce39c5709e791c20f08debdb814cda2d8e2c3128fca",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e505bfa2fc26a2e3c02b54beea07bf5394ff1da0802949ed86db99647d278d27",
-				"dweb:/ipfs/QmaFReAffNxNRMoyWW3wiLnX9StLgyCLL24Sh9rRw9Tk1z"
+				"bzz-raw://cff6c34e996ff5ff31aeaa94955999578f6bc15cb3e2f1568a993121e0eff2cc",
+				"dweb:/ipfs/QmW5FbzwnXSkwrZRHvn5wsTf2xQciKHFK1SpmyFa6LnPLh"
 			]
 		}
 	},

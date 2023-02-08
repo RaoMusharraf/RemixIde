@@ -45,26 +45,26 @@ contract Marketplace is ReentrancyGuard , Ownable{
         paymentToken = ERC20FT;
         AddminAddress = admin;
     }
-    // ============ AdminEnterData FUNCTIONS ============
-    /* 
-        @dev AdminEnterData in this function admin enter data related Cars.
-        @param _uri URI contains data like price & image etc.
-        @param _price is the required amount to buy any NFT.
-    */
-    function AdminEnterData (string memory _uri,uint _price) public onlyOwner{
-        _URICount.increment();
-        URI[_URICount.current()] = Admin(_uri,_price,_URICount.current());
-    }
+    // // ============ AdminEnterData FUNCTIONS ============
+    // /* 
+    //     @dev AdminEnterData in this function admin enter data related Cars.
+    //     @param _uri URI contains data like price & image etc.
+    //     @param _price is the required amount to buy any NFT.
+    // */
+    // function AdminEnterData (string memory _uri,uint _price) public onlyOwner{
+    //     _URICount.increment();
+    //     URI[_URICount.current()] = Admin(_uri,_price,_URICount.current());
+    // }
     // ============ BuyAdmin FUNCTIONS ============
     /* 
         @dev BuyAdmin buy NFTs from Admin using id.
         @param id that are created by admin when admin enter data.
     */
-    function BuyAdmin (uint256 id) public payable{
+    function BuyAdmin (uint256 price,string memory uri) public payable{
         tokenID.increment();
-        IIERC721(MinterAddress).safeMint(msg.sender,tokenID.current(), URI[id].URI);
-        IERC20(paymentToken).safeTransferFrom(msg.sender, AddminAddress , URI[id].Price);
-        _idToNFT[tokenID.current()] = NFT(tokenID.current(),msg.sender,msg.sender,URI[id].Price,true);
+        IIERC721(MinterAddress).safeMint(msg.sender,tokenID.current(), uri);
+        IERC20(paymentToken).safeTransferFrom(msg.sender, AddminAddress , price);
+        _idToNFT[tokenID.current()] = NFT(tokenID.current(),msg.sender,msg.sender,price,true);
     }
     // ============ ListNft FUNCTIONS ============
     /* 
@@ -114,12 +114,12 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @dev getListedNfts fetch all the NFTs that are listed
         @return array of NFTs that are listed
     */
-    function getListedNfts() public view returns (NFT[] memory) {
+    function getListedNfts(address _to) public view returns (NFT[] memory) {
         uint nftCount = tokenID.current();
         uint list = _nftCount.current();
         uint myListedNftCount = 0;
         for (uint i = 1; i <= nftCount; i++) {
-            if ((_idToNFT[i].seller == msg.sender) && (!_idToNFT[i].listed)) {
+            if ((_idToNFT[i].seller == _to) && (!_idToNFT[i].listed)) {
                 myListedNftCount++;
             }
         }
@@ -127,7 +127,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         NFT[] memory nfts = new NFT[](remaning);
         uint nftsIndex = 0;
         for (uint i = 1; i <= nftCount ; i++) {
-            if ((_idToNFT[i].seller != msg.sender) && (!_idToNFT[i].listed)) {
+            if ((_idToNFT[i].seller != _to) && (!_idToNFT[i].listed)) {
                 nfts[nftsIndex] = _idToNFT[i];
                 nftsIndex++;
             }

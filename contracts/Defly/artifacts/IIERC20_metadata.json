@@ -1,0 +1,85 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Interface of the ERC20 standard as defined in the EIP.",
+			"kind": "dev",
+			"methods": {
+				"approve(address,uint256)": {
+					"details": "Returns the name of token in existence."
+				},
+				"symbol()": {
+					"details": "Returns the symbol of token in existence."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Defly/IIERC20.sol": "IIERC20"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Defly/IIERC20.sol": {
+			"keccak256": "0x9b5f41db31d330dfcf21a282c96d816e228049aff3b5dfc23bdf1a4afb50d619",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5c6137cbe11b1980103abf169e82255629892e1d5e04d54086359161a3e2a3f4",
+				"dweb:/ipfs/QmXXC4vF1RK9XvyBNTxJ6ia2KwUh9NSAWSSVvUArhVHYYA"
+			]
+		}
+	},
+	"version": 1
+}

@@ -800,7 +800,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Defly/MintDeflyERC721.sol": "DeflyMint"
+			"contracts/Defly/ERC721.sol": "DeflyMint"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -974,7 +974,7 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/Defly/MintDeflyERC721.sol": {
+		"contracts/Defly/ERC721.sol": {
 			"keccak256": "0x9b1a2f4a36a25d0909f0aca84f30f724228e98a78633bde70ccd4b622113ceae",
 			"license": "MIT",
 			"urls": [
