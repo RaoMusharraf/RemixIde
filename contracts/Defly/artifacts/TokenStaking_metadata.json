@@ -41,6 +41,25 @@
 				"type": "event"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "Tier",
+						"type": "uint256"
+					}
+				],
+				"name": "CheckTierURI",
+				"outputs": [
+					{
+						"internalType": "string[]",
+						"name": "",
+						"type": "string[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "ERC20Address",
 				"outputs": [
@@ -111,27 +130,19 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
-				"name": "URI",
+				"name": "URITier",
 				"outputs": [
 					{
 						"internalType": "string",
 						"name": "",
 						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "counter",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "_value",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -183,7 +194,76 @@
 						"type": "string"
 					}
 				],
-				"name": "setURI",
+				"name": "setTier1",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_uri1",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_uri2",
+						"type": "string"
+					}
+				],
+				"name": "setTier2",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_uri1",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_uri2",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_uri3",
+						"type": "string"
+					}
+				],
+				"name": "setTier3",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_uri1",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_uri2",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_uri3",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_uri4",
+						"type": "string"
+					}
+				],
+				"name": "setTier4",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -300,14 +380,6 @@
 				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
 			]
 		},
-		"@openzeppelin/contracts/utils/Counters.sol": {
-			"keccak256": "0xf0018c2440fbe238dd3a8732fa8e17a0f9dce84d31451dc8a32f6d62b349c9f1",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://59e1c62884d55b70f3ae5432b44bb3166ad71ae3acd19c57ab6ddc3c87c325ee",
-				"dweb:/ipfs/QmezuXg5GK5oeA4F91EZhozBFekhq5TD966bHPH18cCqhu"
-			]
-		},
 		"contracts/Defly/IIERC20.sol": {
 			"keccak256": "0x9b5f41db31d330dfcf21a282c96d816e228049aff3b5dfc23bdf1a4afb50d619",
 			"license": "MIT",
@@ -325,11 +397,11 @@
 			]
 		},
 		"contracts/Defly/TokenTesting.sol": {
-			"keccak256": "0x1781596ee2623dbd8248d60d44461287ccabe88d1967f564b565fd126a33af14",
+			"keccak256": "0xa47c05eb902c8740598a9082e4cccbb055017d8a4d038666fc9ba2b90762c4c7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://527e71ae0764996925a5200c66150c07ae58542fcda1d6718ad85bbce6b406b1",
-				"dweb:/ipfs/QmQ3QCJYUk95E7GZbZSUAq5LEUfjpByYnxN5u8QV5x6LnP"
+				"bzz-raw://2854637158315a9d2c34f3382ad0bdbfab6b7cea318ed1898de4f06aeb921d7c",
+				"dweb:/ipfs/QmVePeBMsKGPesvXHFgj2picSHRG6rW4Mcf1wKSGTRaCtg"
 			]
 		}
 	},

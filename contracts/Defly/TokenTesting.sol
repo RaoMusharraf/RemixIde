@@ -2,14 +2,13 @@
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./IIERC721.sol";
 import "./IIERC20.sol";
 
 contract TokenStaking is Ownable{
-    using Counters for Counters.Counter;
-    Counters.Counter public counter;
+    // using Counters for Counters.Counter;
+    // Counters.Counter public counter;
     using SafeERC20 for IERC20;
     uint256 _amount = 1000000000000000000 ;
 
@@ -23,7 +22,7 @@ contract TokenStaking is Ownable{
         bool DepositToken;
     }
     mapping (address => Detail) public Staker;
-    mapping (uint => string) public URI;
+    mapping (uint => mapping(uint => string)) public URITier;
     // ============ Constructor ============
     /* 
         @dev get _ERC721address and _ERC20Address
@@ -85,19 +84,46 @@ contract TokenStaking is Ownable{
         else{
             IERC20(ERC20Address).safeTransfer(_to, Staker[_to].tokens);
             for(uint i=1; i <= Staker[_to].NFT; i++){
-                IIERC721(ERC721address).safeMint(_to,URI[i],0,3);
+                IIERC721(ERC721address).safeMint(_to,URITier[Staker[_to].NFT][i],0,3);
             }
             delete Staker[_to];
         }   
     }
-    // ============ SetURI ============
+    // ============ SetTierURIs ============
     /* 
         @dev get uri and save according to the category of Staking.
         @param _uri get the url of the Pinata || IPFS of NFTs
     */
-    function setURI(string memory _uri) public onlyOwner{
-        counter.increment();
-        require(counter.current() < 5,"Stack Full");
-        URI[counter.current()]=_uri;
+    function setTier1(string memory _uri) public onlyOwner{
+        URITier[1][1]=_uri;
+    }
+    function setTier2(string memory _uri1,string memory _uri2) public onlyOwner{
+        URITier[2][1] =_uri1;
+        URITier[2][2] =_uri2;
+    }
+    function setTier3(string memory _uri1,string memory _uri2,string memory _uri3) public onlyOwner{
+        URITier[3][1] =_uri1;
+        URITier[3][2] =_uri2;
+        URITier[3][3] =_uri3;
+    }
+    function setTier4(string memory _uri1,string memory _uri2,string memory _uri3,string memory _uri4) public onlyOwner{
+        URITier[4][1] =_uri1;
+        URITier[4][2] =_uri2;
+        URITier[4][3] =_uri3;
+        URITier[4][4] =_uri4;
+    }
+    // ============ CheckTierURI ============
+    /* 
+        @dev get uri and save according to the category of Staking.
+        @param Tier get the url of the Pinata || IPFS of NFTs 1,2,3,4 Respectively.
+    */
+    function CheckTierURI(uint Tier) view public returns(string[] memory){
+        string[] memory memoryArray = new string[](Tier);
+        uint counter=0;
+        for(uint i = 1; i <= Tier; i++) {
+            memoryArray[counter] = URITier[Tier][i];
+            counter++;    
+        }
+        return memoryArray;
     }
 }
