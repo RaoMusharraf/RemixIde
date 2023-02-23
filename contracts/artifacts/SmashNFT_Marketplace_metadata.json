@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -9,12 +9,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "MintERC721",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "ERC20",
+						"name": "contractAddr",
 						"type": "address"
 					}
 				],
@@ -131,6 +126,25 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "ClaculatePrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					}
@@ -141,6 +155,32 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "GetListingFee",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "LISTING_FEE",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -162,6 +202,37 @@
 				"name": "ListNft",
 				"outputs": [],
 				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "ReSellNft",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_ListingFee",
+						"type": "uint256"
+					}
+				],
+				"name": "SetListingFee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -214,6 +285,11 @@
 				"name": "check",
 				"outputs": [
 					{
+						"internalType": "bool",
+						"name": "_check",
+						"type": "bool"
+					},
+					{
 						"internalType": "address",
 						"name": "_address",
 						"type": "address"
@@ -239,12 +315,12 @@
 								"type": "uint256"
 							},
 							{
-								"internalType": "address",
+								"internalType": "address payable",
 								"name": "seller",
 								"type": "address"
 							},
 							{
-								"internalType": "address",
+								"internalType": "address payable",
 								"name": "owner",
 								"type": "address"
 							},
@@ -284,12 +360,12 @@
 								"type": "uint256"
 							},
 							{
-								"internalType": "address",
+								"internalType": "address payable",
 								"name": "seller",
 								"type": "address"
 							},
 							{
-								"internalType": "address",
+								"internalType": "address payable",
 								"name": "owner",
 								"type": "address"
 							},
@@ -329,12 +405,12 @@
 								"type": "uint256"
 							},
 							{
-								"internalType": "address",
+								"internalType": "address payable",
 								"name": "seller",
 								"type": "address"
 							},
 							{
-								"internalType": "address",
+								"internalType": "address payable",
 								"name": "owner",
 								"type": "address"
 							},
@@ -360,19 +436,6 @@
 			{
 				"inputs": [],
 				"name": "owner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "paymentToken",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -428,9 +491,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MarketPlace.sol": "SmashNFT_Marketplace"
+			"contracts/SmashNFT_Marketplace_1.sol": "SmashNFT_Marketplace"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -456,30 +519,6 @@
 			"urls": [
 				"bzz-raw://4ce8dfb62d0c4fa260d6eec8f1cd47f5f2a044e11bde5b31d18072fa6e7d9010",
 				"dweb:/ipfs/QmTyFztU3tLEcEDnqqiaW4UJetqsU77LXc6pjc9oTXCK5u"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34",
-				"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/extensions/draft-IERC20Permit.sol": {
-			"keccak256": "0xf41ca991f30855bf80ffd11e9347856a517b977f0a6c2d52e6421a99b7840329",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://b2717fd2bdac99daa960a6de500754ea1b932093c946388c381da48658234b95",
-				"dweb:/ipfs/QmP6QVMn6UeA3ByahyJbYQr5M6coHKBKsf3ySZSfbyA8R7"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
-			"keccak256": "0x9b72f93be69ca894d8492c244259615c4a742afc8d63720dbc8bb81087d9b238",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://f5a7b96e511be78d5cdf635c784e6ab8cdd38625bb8cafb8a80914a1c89cf0f6",
-				"dweb:/ipfs/QmVzTCwJxQAkjRQHboT5QrvsVJGWQHgfEjeTbvyxoKBrds"
 			]
 		},
 		"@openzeppelin/contracts/token/ERC721/ERC721.sol": {
@@ -570,12 +609,12 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/MarketPlace.sol": {
-			"keccak256": "0xd888dd1f4618144093a79a681a07513589c6b0dfa25174f1fd303c190282635a",
+		"contracts/SmashNFT_Marketplace_1.sol": {
+			"keccak256": "0x43ca7b8c737a4c22d226ab56f2a0141ee72e394eaa98dceeed2a064b40bd4b99",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c068ae769cc946e03b9e6bd02a713afe108a9df0d7346ffcacbe692c6f37f596",
-				"dweb:/ipfs/QmcaUaaE4Rr23NSVXimJEk8d5332S5M5X1d7FoeAzAvjHe"
+				"bzz-raw://8822f285f0c3c597c84761f9eba69b020bb35982c5d9958be7f04caf7cc3eb19",
+				"dweb:/ipfs/QmU5TWBxE4gEYeckXVnVXVughae4FCkay5aZ5Z1tJyGruS"
 			]
 		}
 	},
