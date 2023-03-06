@@ -39,24 +39,49 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_amount",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "AdminAddToken",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "APY",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "AdminWithDrawToken",
+				"name": "APYPer",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "AdminAddToken",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -144,6 +169,52 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "Month1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Month2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Month3",
+						"type": "uint256"
+					}
+				],
+				"name": "SetAPY",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "Month1Per",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Month2Per",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Month3Per",
+						"type": "uint256"
+					}
+				],
+				"name": "SetRewardPersentage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
@@ -189,6 +260,24 @@
 			{
 				"inputs": [],
 				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "taxFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_penalty",
+						"type": "uint256"
+					}
+				],
+				"name": "setTexAndPenalty",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -243,7 +332,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Staking/StakingFinal.sol": "TokenStaking"
+			"contracts/Staking/staking.sol": "TokenStaking"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -329,12 +418,12 @@
 				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
 			]
 		},
-		"contracts/Staking/StakingFinal.sol": {
-			"keccak256": "0xb2606555864c41b1c560ec8bfc4749bf728de81ee5667860bec0e34de97808bf",
+		"contracts/Staking/staking.sol": {
+			"keccak256": "0xaf3dbcce6a39b37a232da634d4220ae570b76039dc9e317f62a5edd094ffeaf2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5b596cbe6f951201e0f08ad1ff24de57c2c1927e35cfc3394e9970b4ae693aa0",
-				"dweb:/ipfs/Qmd9sfG5fSMWRiPn3rfYy2c1yNgJfQBu4PyfQabCcagCRo"
+				"bzz-raw://c95e8a169a1a990ff0e88da56665fe075eb1e162c4242ccaf609be082ec120f5",
+				"dweb:/ipfs/QmNVTkmSLsDwA7vJ5quSnGWBZQUKtQkt2EQ6vMFvDPM5Pj"
 			]
 		}
 	},

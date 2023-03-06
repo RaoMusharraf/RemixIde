@@ -318,7 +318,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Defly/StakingTokenFinal.sol": "TokenStaking"
+			"contracts/Defly/TokenTesting.sol": "TokenStaking"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -396,12 +396,12 @@
 				"dweb:/ipfs/Qmay9egwhxDa8mGNgkohchRxkmuRz7v6KEnpPfswaMVTUa"
 			]
 		},
-		"contracts/Defly/StakingTokenFinal.sol": {
-			"keccak256": "0xbce24e7cb70f096363d9b7ace4af4ee9e3e14d439b2f19711d885b5e743a25d9",
+		"contracts/Defly/TokenTesting.sol": {
+			"keccak256": "0xa47c05eb902c8740598a9082e4cccbb055017d8a4d038666fc9ba2b90762c4c7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://368247797a660e113795d370dcaac4603d87dc6e91c24b7ec5cb46d3500ecbb8",
-				"dweb:/ipfs/QmcQz4A5vfvAphegviEPNNaCUe5J6VkvMXWMJuEEGzCvoK"
+				"bzz-raw://2854637158315a9d2c34f3382ad0bdbfab6b7cea318ed1898de4f06aeb921d7c",
+				"dweb:/ipfs/QmVePeBMsKGPesvXHFgj2picSHRG6rW4Mcf1wKSGTRaCtg"
 			]
 		}
 	},

@@ -14,7 +14,6 @@ contract MetaPark is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter public _tokenIdCounter;
     Counters.Counter public PKGCounter; 
-
     address public mintAuthority;
     bool public transferNftsToWalletCheck;
 
