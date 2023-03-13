@@ -88,7 +88,6 @@ contract TokenStaking is Ownable{
         uint EarnToken;
         uint BurnToken;
         if(((Details[to].StakeMonth*30*60) + Details[to].stakeTime) < block.timestamp){
-            
             if(Details[to].EarnPersentage == 100){
                 IERC20(ERC20Address).transfer(to, Details[to].depositTokens + InterestAmount[to]);
             }else if(Details[to].EarnPersentage == 75){
@@ -133,7 +132,15 @@ contract TokenStaking is Ownable{
         Tokens[to] -= Details[to].depositTokens;
         totalStakedTokens -= Details[to].depositTokens;    
     }
-    function viewRewards(address to) public view returns(uint){
+    function ClaimRewards(address to) public {
+        require(((Details[to].StakeMonth*30*60) + Details[to].stakeTime) < block.timestamp,"Your Stake Time Complete, Please Call Withdraw Function !");
+        uint Stakdays = (block.timestamp - Details[to].stakeTime)/60; 
+        uint InterestAmountperday = InterestAmount[to]/(Details[to].StakeMonth*30);
+        uint EarnToken = InterestAmountperday*Stakdays;
+        InterestAmount[to] -=  EarnToken;
+        IERC20(ERC20Address).transfer(to,EarnToken);
+    }
+    function viewRewards(address to) public view returns(uint reward){
         if(((Details[to].StakeMonth*30*60) + Details[to].stakeTime) < block.timestamp){
             return(InterestAmount[to]);
         }

@@ -92,6 +92,19 @@
 						"internalType": "address",
 						"name": "to",
 						"type": "address"
+					}
+				],
+				"name": "ClaimRewards",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
 					},
 					{
 						"internalType": "uint256",
@@ -357,7 +370,7 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "reward",
 						"type": "uint256"
 					}
 				],
@@ -475,11 +488,11 @@
 			]
 		},
 		"contracts/Staking/staking.sol": {
-			"keccak256": "0xdc63f842b9f0ae63d5e4bd6c0a1d8fa6b590ec160f3f0a42d865b4869baced85",
+			"keccak256": "0xb8149395334ee8de8aa0ed5074f942bc08c1ce7cdc09b707d0f7f8a562fbb8ed",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://93c5f2accb620e86685db777a9897a403f91518f6d8c8b131261acde14984f80",
-				"dweb:/ipfs/QmXFdtqNAaFSET6ucski7pc6g8EuSk3CsKUfojBR98vv2K"
+				"bzz-raw://40249d1abb0893ef68a2658594dad33851b376e371610573a933c512d8010935",
+				"dweb:/ipfs/QmTipvHHUf6w39xz8LgsLMYWsukdtDVgC8X68FCY88X98E"
 			]
 		}
 	},
