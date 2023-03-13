@@ -95,7 +95,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "_amount",
+						"name": "_payment",
 						"type": "uint256"
 					},
 					{
@@ -161,6 +161,25 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "InterestAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -246,6 +265,24 @@
 			},
 			{
 				"inputs": [],
+				"name": "getTaxPenalty",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "tax",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pen",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
@@ -306,6 +343,25 @@
 				"name": "transferOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "viewRewards",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -419,11 +475,11 @@
 			]
 		},
 		"contracts/Staking/staking.sol": {
-			"keccak256": "0xaf3dbcce6a39b37a232da634d4220ae570b76039dc9e317f62a5edd094ffeaf2",
+			"keccak256": "0xdc63f842b9f0ae63d5e4bd6c0a1d8fa6b590ec160f3f0a42d865b4869baced85",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c95e8a169a1a990ff0e88da56665fe075eb1e162c4242ccaf609be082ec120f5",
-				"dweb:/ipfs/QmNVTkmSLsDwA7vJ5quSnGWBZQUKtQkt2EQ6vMFvDPM5Pj"
+				"bzz-raw://93c5f2accb620e86685db777a9897a403f91518f6d8c8b131261acde14984f80",
+				"dweb:/ipfs/QmXFdtqNAaFSET6ucski7pc6g8EuSk3CsKUfojBR98vv2K"
 			]
 		}
 	},

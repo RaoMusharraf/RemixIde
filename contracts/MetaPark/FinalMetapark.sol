@@ -33,6 +33,7 @@ contract MetaPark is ERC721, ERC721URIStorage, Ownable {
     }
     //Struct of package's buyer list
     struct PackageBuyersList {
+        uint256 userPKGindex;
         string nft_url;
         uint256 pricePerNft;
         uint256 timestamp;
@@ -81,7 +82,7 @@ contract MetaPark is ERC721, ERC721URIStorage, Ownable {
         require(ViewPackage[id].r_quantity >= quantity,"Select Right Quantity");
         Detail[to][CountBuyerIds[to]] = id; 
         ViewPackage[id].r_quantity = ViewPackage[id].r_quantity - quantity;
-        BuyPackage[to][CountBuyerIds[to]] = PackageBuyersList(URL,price,block.timestamp,false);
+        BuyPackage[to][CountBuyerIds[to]] = PackageBuyersList(CountBuyerIds[to],URL,price,block.timestamp,false);
         CountBuyerIds[to] += 1;  
         IERC20(USDTToken).safeTransferFrom(
             to,
