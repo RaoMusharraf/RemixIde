@@ -201,6 +201,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "RewardAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "Month1",
 						"type": "uint256"
@@ -488,11 +507,11 @@
 			]
 		},
 		"contracts/Staking/staking.sol": {
-			"keccak256": "0xb8149395334ee8de8aa0ed5074f942bc08c1ce7cdc09b707d0f7f8a562fbb8ed",
+			"keccak256": "0x06f5692f3c061a2a487c1b424e67d4bcb8333b6b0ef3a9c4cdc5bc9e18124d60",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://40249d1abb0893ef68a2658594dad33851b376e371610573a933c512d8010935",
-				"dweb:/ipfs/QmTipvHHUf6w39xz8LgsLMYWsukdtDVgC8X68FCY88X98E"
+				"bzz-raw://fa883e1a079e035d81b563c624f2a7df978946b2fd050ad63562aa73272611c5",
+				"dweb:/ipfs/QmWFB7hw5QCQBttrZc9DixBbSUjz5WW5ss6nBTFxpXySVG"
 			]
 		}
 	},

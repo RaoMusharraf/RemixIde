@@ -11,6 +11,7 @@ contract TokenStaking is Ownable{
     address public ERC20Address;
     address ownerAddress;
     uint public totalStakedTokens;
+    bool Check;
     uint Tax;
     uint penalty;
     struct Staker {
@@ -25,7 +26,7 @@ contract TokenStaking is Ownable{
     mapping(uint => uint) public APY;
     mapping(uint => uint) public APYPer;
     mapping (address => uint ) public Tokens;
-
+    mapping (address => uint ) public RewardAmount;
     /*
     ~~~~~~~~~~~~~~~Constructor function~~~~~~~~~~~~~~~
     1. This function is called when contract is first deployed.
@@ -55,11 +56,17 @@ contract TokenStaking is Ownable{
         require(Tokens[ownerAddress] > 0,"Please Wait !!!");
         uint256 _amount= _payment*1000000000000000000;
         if(Details[to].check){
-            require(((Details[to].StakeMonth*30*24*60*60) + Details[to].stakeTime) > block.timestamp,"Your Time Period Complete.");
+            require(((Details[to].StakeMonth*30*60) + Details[to].stakeTime) > block.timestamp,"Your Time Period Complete.");
             require(Details[to].StakeMonth == StakeMonth,"Enter Right StakeMonth");
             require(Details[to].EarnPersentage == EarnPersentage,"Enter Right EarnPersentage");
             Details[to].depositTokens = Details[to].depositTokens + _amount;
-            InterestAmount[to] += (_amount*APYPer[Details[to].StakeMonth])/1000;
+            if(Details[to].StakeMonth == APY[1]){
+                InterestAmount[to] += (_amount*APYPer[1])/1000;
+            }else if(Details[to].StakeMonth == APY[2]){
+                InterestAmount[to] += (_amount*APYPer[2])/1000;
+            }else if(Details[to].StakeMonth == APY[3]){
+                InterestAmount[to] += (_amount*APYPer[3])/1000;
+            }
             IERC20(ERC20Address).safeTransferFrom(to, address(this) , _amount);         
         }else {
             require(StakeMonth == APY[1] || StakeMonth == APY[2] || StakeMonth == APY[3],"Enter Right StakeMonth");
@@ -67,11 +74,11 @@ contract TokenStaking is Ownable{
             uint AdminFee = (_amount*Tax)/1000;
             Details[to] = Staker(_amount-AdminFee,block.timestamp,StakeMonth,EarnPersentage,true);
             if(Details[to].StakeMonth == APY[1]){
-                InterestAmount[to] =  ((_amount-AdminFee)*APYPer[StakeMonth])/1000;
+                InterestAmount[to] =  ((_amount-AdminFee)*APYPer[1])/1000;
             }else if(Details[to].StakeMonth == APY[2]){
-                InterestAmount[to] =  ((_amount-AdminFee)*APYPer[StakeMonth])/1000;
+                InterestAmount[to] =  ((_amount-AdminFee)*APYPer[2])/1000;
             }else if(Details[to].StakeMonth == APY[3]){
-                InterestAmount[to] =  ((_amount-AdminFee)*APYPer[StakeMonth])/1000;
+                InterestAmount[to] =  ((_amount-AdminFee)*APYPer[3])/1000;
             }
             IERC20(ERC20Address).safeTransferFrom(to, address(this) , _amount);        
         }
@@ -89,16 +96,16 @@ contract TokenStaking is Ownable{
         uint BurnToken;
         if(((Details[to].StakeMonth*30*60) + Details[to].stakeTime) < block.timestamp){
             if(Details[to].EarnPersentage == 100){
-                IERC20(ERC20Address).transfer(to, Details[to].depositTokens + InterestAmount[to]);
+                IERC20(ERC20Address).transfer(to, Details[to].depositTokens + (InterestAmount[to] - RewardAmount[to]));
             }else if(Details[to].EarnPersentage == 75){
-                EarnToken = (InterestAmount[to]*75)/100;
+                EarnToken = ((InterestAmount[to]-RewardAmount[to])*75)/100;
                 IERC20(ERC20Address).transfer(to, Details[to].depositTokens + EarnToken);
-                BurnToken = (InterestAmount[to]*25)/100;
+                BurnToken = ((InterestAmount[to]-RewardAmount[to])*25)/100;
                 IERC20(ERC20Address).transfer(0x000000000000000000000000000000000000dEaD, BurnToken);
             }else if(Details[to].EarnPersentage == 50){
-                EarnToken = (InterestAmount[to]*50)/100;
+                EarnToken = ((InterestAmount[to]-RewardAmount[to])*50)/100;
                 IERC20(ERC20Address).transfer(to, Details[to].depositTokens + EarnToken);
-                BurnToken = (InterestAmount[to]*50)/100;
+                BurnToken = ((InterestAmount[to]-RewardAmount[to])*50)/100;
                 IERC20(ERC20Address).transfer(0x000000000000000000000000000000000000dEaD, BurnToken);
             }
         }else{
@@ -107,37 +114,49 @@ contract TokenStaking is Ownable{
             uint PenaltyResult;
             uint Stakdays = (block.timestamp - Details[to].stakeTime)/60; 
             InterestAmountperday = InterestAmount[to]/(Details[to].StakeMonth*30);
+
+             //Transfer reward to user 100%
             if(Details[to].EarnPersentage == 100){
                 EarnToken = (InterestAmountperday*Stakdays);
-                Total = Details[to].depositTokens + EarnToken;
+                Total =  Details[to].depositTokens + (EarnToken - RewardAmount[to]);
                 PenaltyResult = (Total*penalty)/1000;
                 IERC20(ERC20Address).transfer(to,(Total - PenaltyResult));
-            }else if(Details[to].EarnPersentage == 75){
-                EarnToken = ((InterestAmountperday*Stakdays)*75)/100;
-                Total = Details[to].depositTokens + EarnToken;
+            }
+             //Transfer reward to user 75% and Burn 25%
+            else if(Details[to].EarnPersentage == 75){
+                EarnToken = (((InterestAmountperday*Stakdays) - RewardAmount[to])*75)/100;
+                Total =  Details[to].depositTokens + EarnToken;
                 PenaltyResult = (Total*penalty)/1000;
                 IERC20(ERC20Address).transfer(to,(Total - PenaltyResult));
-                BurnToken = ((InterestAmountperday*Stakdays)*25)/100;
+                BurnToken = (((InterestAmountperday*Stakdays) - RewardAmount[to])*25)/100;
                 IERC20(ERC20Address).transfer(0x000000000000000000000000000000000000dEaD, BurnToken);
-            }else if(Details[to].EarnPersentage == 50){
-                EarnToken = ((InterestAmountperday*Stakdays)*50)/100;
-                Total = Details[to].depositTokens + EarnToken;
+            }
+             //Transfer reward to user 50% and Burn 50%
+            else if(Details[to].EarnPersentage == 50){
+                EarnToken = (((InterestAmountperday*Stakdays)- RewardAmount[to])*50)/100;
+                Total =  Details[to].depositTokens + EarnToken;
                 PenaltyResult = (Total*penalty)/1000;
                 IERC20(ERC20Address).transfer(to,(Total - PenaltyResult));
-                BurnToken = ((InterestAmountperday*Stakdays)*50)/100;
+                BurnToken = (((InterestAmountperday*Stakdays)-RewardAmount[to])*50)/100;
                 IERC20(ERC20Address).transfer(0x000000000000000000000000000000000000dEaD, BurnToken);
             }
         } 
         Details[to].check = false;
+        delete RewardAmount[to];
+        delete InterestAmount[to];
         Tokens[to] -= Details[to].depositTokens;
         totalStakedTokens -= Details[to].depositTokens;    
     }
+     /*   ~~~~~~~~~~~~~Claim Function~~~~~~~~~~~~~~~
+    1. This function is used to claim reward tokens.
+    2. User will call this function to claim all rewards from this contract.
+    */
     function ClaimRewards(address to) public {
-        require(((Details[to].StakeMonth*30*60) + Details[to].stakeTime) < block.timestamp,"Your Stake Time Complete, Please Call Withdraw Function !");
+        require(((Details[to].StakeMonth*30*60) + Details[to].stakeTime) > block.timestamp,"Your Stake Time Complete, Please Call Withdraw Function !");
         uint Stakdays = (block.timestamp - Details[to].stakeTime)/60; 
         uint InterestAmountperday = InterestAmount[to]/(Details[to].StakeMonth*30);
         uint EarnToken = InterestAmountperday*Stakdays;
-        InterestAmount[to] -=  EarnToken;
+        RewardAmount[to] += EarnToken - RewardAmount[to];
         IERC20(ERC20Address).transfer(to,EarnToken);
     }
     function viewRewards(address to) public view returns(uint reward){
@@ -147,7 +166,7 @@ contract TokenStaking is Ownable{
         else{
             uint Stakdays = (block.timestamp - Details[to].stakeTime)/60; 
             uint InterestAmountperday = InterestAmount[to]/(Details[to].StakeMonth*30);
-            uint EarnToken = InterestAmountperday*Stakdays;
+            uint EarnToken = (InterestAmountperday*Stakdays) - RewardAmount[to];
             return(EarnToken);
         }
     }
@@ -157,15 +176,15 @@ contract TokenStaking is Ownable{
     function SetAPY(uint Month1,uint Month2,uint Month3) public onlyOwner{
         APY[1] = Month1;
         APY[2] = Month2;
-        APY[3] = Month3;
+        APY[3] = Month3;   
     }
     /*   ~~~~~~~~~~~~~ SetAPY Function~~~~~~~~~~~~~~~
     1. This function is used to set Months.
     */
     function SetRewardPersentage(uint Month1Per,uint Month2Per,uint Month3Per) public onlyOwner{
-        APYPer[APY[1]] = Month1Per;
-        APYPer[APY[1]] = Month2Per;
-        APYPer[APY[1]] = Month3Per;
+        APYPer[1] = Month1Per;
+        APYPer[2] = Month2Per;
+        APYPer[3] = Month3Per;
     }
     /*   ~~~~~~~~~~~~~ SetTex Function~~~~~~~~~~~~~~~
     1. This function is used to set Tax fee and Penalty charges.
