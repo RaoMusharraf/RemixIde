@@ -11,11 +11,6 @@
 						"internalType": "address",
 						"name": "mintAuthority_address",
 						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "USDT",
-						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -132,7 +127,7 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "userPKGindex",
+						"name": "nft_quantity",
 						"type": "uint256"
 					},
 					{
@@ -143,11 +138,6 @@
 					{
 						"internalType": "uint256",
 						"name": "pricePerNft",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
 						"type": "uint256"
 					},
 					{
@@ -181,19 +171,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					}
-				],
-				"name": "DeletePackage",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
@@ -218,11 +195,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
 						"internalType": "uint256",
 						"name": "totalQuantity",
 						"type": "uint256"
@@ -234,12 +206,7 @@
 					},
 					{
 						"internalType": "string",
-						"name": "folderURL",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "thumbnail",
+						"name": "uri",
 						"type": "string"
 					}
 				],
@@ -293,25 +260,12 @@
 						"type": "uint256"
 					}
 				],
-				"name": "TokenURIid",
+				"name": "TokenURI",
 				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "USDTToken",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -327,11 +281,6 @@
 				],
 				"name": "ViewPackage",
 				"outputs": [
-					{
-						"internalType": "string",
-						"name": "PkgName",
-						"type": "string"
-					},
 					{
 						"internalType": "uint256",
 						"name": "quantity",
@@ -349,12 +298,7 @@
 					},
 					{
 						"internalType": "string",
-						"name": "folderURL",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "thumbnail",
+						"name": "json_url",
 						"type": "string"
 					}
 				],
@@ -432,62 +376,11 @@
 						"internalType": "uint256",
 						"name": "price",
 						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "URL",
-						"type": "string"
 					}
 				],
 				"name": "buyFromPackage",
 				"outputs": [],
 				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_to",
-						"type": "address"
-					}
-				],
-				"name": "getAllPkg",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "userPKGindex",
-								"type": "uint256"
-							},
-							{
-								"internalType": "string",
-								"name": "nft_url",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "pricePerNft",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "timestamp",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "check",
-								"type": "bool"
-							}
-						],
-						"internalType": "struct MetaPark.PackageBuyersList[]",
-						"name": "",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -863,7 +756,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MetaPark/FinalMetapark.sol": "MetaPark"
+			"contracts/MetaPark/MParkContract.sol": "MetaPark"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -883,30 +776,6 @@
 			"urls": [
 				"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2",
 				"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34",
-				"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/extensions/draft-IERC20Permit.sol": {
-			"keccak256": "0xf41ca991f30855bf80ffd11e9347856a517b977f0a6c2d52e6421a99b7840329",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://b2717fd2bdac99daa960a6de500754ea1b932093c946388c381da48658234b95",
-				"dweb:/ipfs/QmP6QVMn6UeA3ByahyJbYQr5M6coHKBKsf3ySZSfbyA8R7"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
-			"keccak256": "0x9b72f93be69ca894d8492c244259615c4a742afc8d63720dbc8bb81087d9b238",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://f5a7b96e511be78d5cdf635c784e6ab8cdd38625bb8cafb8a80914a1c89cf0f6",
-				"dweb:/ipfs/QmVzTCwJxQAkjRQHboT5QrvsVJGWQHgfEjeTbvyxoKBrds"
 			]
 		},
 		"@openzeppelin/contracts/token/ERC721/ERC721.sol": {
@@ -1005,12 +874,12 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/MetaPark/FinalMetapark.sol": {
-			"keccak256": "0x7b6c12bcc1a31fb0f8beebde9d8dcca5fad654be0b5dd2b357fd1f314a965cc9",
+		"contracts/MetaPark/MParkContract.sol": {
+			"keccak256": "0x4ad7afd9f0b2bf7da9d612aac667546044518aade9b873b5209a1ced544b29bd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4eed96f4b89af1d0c95f0086502cbaad0c36e0f0166d079ce33c539b87b278f9",
-				"dweb:/ipfs/QmWMKqaMsPFKPCMhkDseRqMzW1VayHkY6eMn8LDVhvXqez"
+				"bzz-raw://e61285d8afb259fd341d7ff3d3c0797e6cebeb18d22f96a49a6d21b3cd085b75",
+				"dweb:/ipfs/QmefKB3y1nBuoCd7kRx57PoZiMHuSsr6vWEoGbJUME49ZF"
 			]
 		}
 	},

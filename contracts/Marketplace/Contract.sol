@@ -62,6 +62,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         _URICount.increment();
         URI[_URICount.current()] = Admin(_uri,_price,_URICount.current());
     }
+    
     // ============ BuyAdmin FUNCTIONS ============
     /* 
         @dev BuyAdmin buy NFTs from Admin using id.

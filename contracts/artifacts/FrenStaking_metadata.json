@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -426,6 +426,14 @@
 			}
 		],
 		"devdoc": {
+			"events": {
+				"Paused(address)": {
+					"details": "Emitted when the pause is triggered by `account`."
+				},
+				"Unpaused(address)": {
+					"details": "Emitted when the pause is lifted by `account`."
+				}
+			},
 			"kind": "dev",
 			"methods": {
 				"owner()": {
@@ -453,7 +461,7 @@
 		"compilationTarget": {
 			"contracts/FrenStaking.sol": "FrenStaking"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -570,11 +578,11 @@
 			]
 		},
 		"contracts/FrenStaking.sol": {
-			"keccak256": "0xa33cd2d5eb9eb5e455b01840563c58d2b8aa1894d9808475fb0cad6ecaf91605",
+			"keccak256": "0xccf89ff6acec57e7f844892ce4f1edab46f20631673f81bf9299b1f113dd536c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://395855320ea7ed3735472bf8e21eb6fb31b386ea388cf5eee30089aa3ea1de8b",
-				"dweb:/ipfs/QmPv9JZcoKXCzFL4t2EJYVexHiZCKPvujXv4fQ25thPpK2"
+				"bzz-raw://d24fd13067a64289cd4a66044c2a25922bd54e1448734fb896ccfb9f9b450ee8",
+				"dweb:/ipfs/QmZADP8E8bUGcvSZPp1o5VbW3U82kFT9Kaf7gxMHp1GQkf"
 			]
 		}
 	},

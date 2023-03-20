@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.19+commit.7dd6d404"
 	},
 	"language": "Solidity",
 	"output": {
@@ -39,7 +39,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "Amount",
+						"name": "_amount",
 						"type": "uint256"
 					}
 				],
@@ -412,9 +412,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Defly/NFTtesting.sol": "NFTstaking"
+			"contracts/Defly/NFTStakingFinal.sol": "NFTstaking"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -522,12 +522,12 @@
 				"dweb:/ipfs/Qmay9egwhxDa8mGNgkohchRxkmuRz7v6KEnpPfswaMVTUa"
 			]
 		},
-		"contracts/Defly/NFTtesting.sol": {
-			"keccak256": "0x084ace9088e65431720c2d5beacbf13979d63be0dbd578c3e2b64cf8234569d9",
+		"contracts/Defly/NFTStakingFinal.sol": {
+			"keccak256": "0x1ffea55532421d77d5348c551a35f45c6d3c9381e6afe21b78b219d223296c12",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f365f65dec9614694eda00cdd8431306df02672815cbe310a4dc9c47705a6043",
-				"dweb:/ipfs/QmcrdPiNeMwkf1Hsz5XXR8A7YAXx6k15bzmgdTYHD8UZer"
+				"bzz-raw://2a66c7216b52ab09d65b26a8e4d764c21749da0c958374f51b948e198f681083",
+				"dweb:/ipfs/QmSHN8sWZEZqwzk7ugQBhGHekM8ounjKF9ZZ363SEWE3nM"
 			]
 		}
 	},
