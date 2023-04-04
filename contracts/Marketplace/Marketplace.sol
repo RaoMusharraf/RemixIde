@@ -20,7 +20,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
     ERC721 token;
     address MinterAddress;
     address paymentToken;
-    address AddminAddress;
+    // address AddminAddress;
     mapping(uint256 => NFT) public _idToNFT;
     mapping (uint256 => Admin) public URI;
     struct NFT {
@@ -39,32 +39,30 @@ contract Marketplace is ReentrancyGuard , Ownable{
     event NFTSold(uint256 tokenId,address seller,address owner,uint256 price);
     event NFTCancel(uint256 tokenId,address seller,address owner,uint256 price);
 
-    constructor(address ERC721NFT,address ERC20FT , address admin){
+    constructor(address ERC721NFT,address ERC20FT ){
         token = ERC721(ERC721NFT);
         MinterAddress = ERC721NFT;
-        paymentToken = ERC20FT;
-        AddminAddress = admin;
+        // AddminAddress = admin;
+        paymentToken = ERC20FT;    
     }
-    // // ============ AdminEnterData FUNCTIONS ============
-    // /* 
-    //     @dev AdminEnterData in this function admin enter data related Cars.
-    //     @param _uri URI contains data like price & image etc.
-    //     @param _price is the required amount to buy any NFT.
-    // */
-    // function AdminEnterData (string memory _uri,uint _price) public onlyOwner{
-    //     _URICount.increment();
-    //     URI[_URICount.current()] = Admin(_uri,_price,_URICount.current());
-    // }
-    // ============ BuyAdmin FUNCTIONS ============
-    /* 
-        @dev BuyAdmin buy NFTs from Admin using id.
-        @param id that are created by admin when admin enter data.
-    */
-    function BuyAdmin (uint256 price,string memory uri) public payable{
+    // ============ Mint FUNCTIONS ============
+    //     @dev SingleMint mint one NFT.
+    //     @dev BulkMint mint multi NFTs.
+    //     @param id that are created by admin when admin enter data.
+    function SingleMinting(string memory uri) public payable nonReentrant {
         tokenID.increment();
         IIERC721(MinterAddress).safeMint(msg.sender,tokenID.current(), uri);
-        IERC20(paymentToken).safeTransferFrom(msg.sender, AddminAddress , price);
-        _idToNFT[tokenID.current()] = NFT(tokenID.current(),msg.sender,msg.sender,price,true);
+        // IERC20(paymentToken).safeTransferFrom(msg.sender, AddminAddress , price);
+        _idToNFT[tokenID.current()] = NFT(tokenID.current(),msg.sender,msg.sender,0,true);
+    }
+    function BulkMintNFTs(uint256 _mintAmount,string[] memory _tokenURI) public payable{
+        require(_mintAmount == _tokenURI.length,"MintAmount and Length Of TokenUri must Same");
+        require(_mintAmount > 0, "You can only mint more than 0 tokens");
+        for (uint256 i = 0; i < _mintAmount; i++) {
+            IIERC721(MinterAddress).safeMint(msg.sender,tokenID.current(), _tokenURI[i]);
+            // IERC20(paymentToken).safeTransferFrom(msg.sender, AddminAddress , price);
+            _idToNFT[tokenID.current()] = NFT(tokenID.current(),msg.sender,msg.sender,0,true);
+        }
     }
     // ============ ListNft FUNCTIONS ============
     /* 
@@ -99,7 +97,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @dev CancelOffer cancel offer that is listed
         @param _tokenid identity of token
     */
-    function CancelOffer(uint256 _tokenId) public{
+    function CancelOffer(uint256 _tokenId) public nonReentrant {
         require(!_idToNFT[_tokenId].listed,"Please List First !!!");
         require(_idToNFT[_tokenId].seller == msg.sender,"Only Owner Can Cancel !!!");
         token.transferFrom(address(this), msg.sender, _tokenId);

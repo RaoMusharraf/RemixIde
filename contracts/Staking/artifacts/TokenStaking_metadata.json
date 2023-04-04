@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.18+commit.87f61d96"
+		"version": "0.8.17+commit.8df45f5f"
 	},
 	"language": "Solidity",
 	"output": {
@@ -84,6 +84,25 @@
 				"name": "AdminAddToken",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "BurnAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -385,6 +404,25 @@
 						"type": "address"
 					}
 				],
+				"name": "viewBurnRewards",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "reward",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
 				"name": "viewRewards",
 				"outputs": [
 					{
@@ -420,9 +458,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Staking/staking.sol": "TokenStaking"
+			"contracts/Staking/StakingFinal.sol": "TokenStaking"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "london",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -506,12 +544,12 @@
 				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
 			]
 		},
-		"contracts/Staking/staking.sol": {
-			"keccak256": "0xc0653012d16b251e1c390d50e0332be251115324b6359921657e4a94a960a892",
+		"contracts/Staking/StakingFinal.sol": {
+			"keccak256": "0x3a82b59b67d932cf4935f7400e7e496e64b70e81966797e981f673dd0d20777b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b1fa85da8ae4f7b8fa777db4deb5580ad69bcd137e45d1805016d070975670cd",
-				"dweb:/ipfs/QmQEJdYg9qYtDLacfdB9pD2xbVvcj34rdw95Vx2WfbCbZU"
+				"bzz-raw://28b8f7c6b5c5d33bc9b2f529c9b3ed8eb3876a5db3245628c4bbbb041f4dbae2",
+				"dweb:/ipfs/QmZypPKDtkpxHe4ENLGoqPYRdsUnPNwD8iELTtWZoMZ65o"
 			]
 		}
 	},
