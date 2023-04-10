@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.13+commit.abaa5c0e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -9,7 +9,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_ERC20Address",
+						"name": "admin",
 						"type": "address"
 					}
 				],
@@ -17,69 +17,486 @@
 				"type": "constructor"
 			},
 			{
+				"inputs": [],
+				"name": "AlreadyExcludedFromReward",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "AlreadyIncludedInReward",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "AmountExceededReflection",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "CannotAirdropRewardsFromARewardsExcludedAccount",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidAddress",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidReflectionAmount",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidTransferAmount",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MaxAmountExceeded",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OnlyOwnerCanPerformThisAction",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "RecursiveSwap",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "TotalFeeExceeded",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "TradeNotOpen",
+				"type": "error"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "previousOwner",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "AdminSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
 						"type": "address"
 					},
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "newOwner",
+						"name": "spender",
 						"type": "address"
-					}
-				],
-				"name": "OwnershipTransferred",
-				"type": "event"
-			},
-			{
-				"inputs": [
+					},
 					{
+						"indexed": false,
 						"internalType": "uint256",
-						"name": "_amount",
+						"name": "value",
 						"type": "uint256"
 					}
 				],
-				"name": "AdminAddToken",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
+				"name": "Approval",
+				"type": "event"
 			},
 			{
+				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "burnPercent",
+						"type": "uint256"
+					}
+				],
+				"name": "BurnFeePercentSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
 					}
 				],
-				"name": "AdminWithDrawToken",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "DecreasedAllowance",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "ExcludedFromFee",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "ExcludedFromReward",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "IncludedInFee",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "IncludedInReward",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "IncreasedAllowance",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isEnabled",
+						"type": "bool"
+					}
+				],
+				"name": "IsSendCollectedFeeEnabledSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isEnabled",
+						"type": "bool"
+					}
+				],
+				"name": "IsSwapAndLiquifyEnabledSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isTradeOpen",
+						"type": "bool"
+					}
+				],
+				"name": "IsTradeOpenSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "liquidityFee",
+						"type": "uint256"
+					}
+				],
+				"name": "LiquidityFeePercentSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "marketingPercent",
+						"type": "uint256"
+					}
+				],
+				"name": "MarketingFeePercentSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "MarketingWalletSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "maxTxAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "MaxTxAmountSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "NumTokensSellToAddToLiquiditySet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "NumTokensToSendCollectedFeeSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "swapV2Pair",
+						"type": "address"
+					}
+				],
+				"name": "PancakePairSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "routerAddress",
+						"type": "address"
+					}
+				],
+				"name": "PancakeRouterSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "rewardPercent",
+						"type": "uint256"
+					}
+				],
+				"name": "RewardFeePercentSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "RewardsAirdropped",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "shibbaPercent",
+						"type": "uint256"
+					}
+				],
+				"name": "ShibbaFeePercentSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "ShibbaWalletSet",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "accounts",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "marketing",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "shibba",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "router",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "pair",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "StakeMonth",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "EarnPersentage",
+						"name": "_tAmount",
 						"type": "uint256"
 					}
 				],
-				"name": "Deposit",
+				"name": "airdrop",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -88,35 +505,255 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "_owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_spender",
 						"type": "address"
 					}
 				],
-				"name": "Details",
+				"name": "allowance",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "depositTokens",
+						"name": "",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_spender",
+						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "timestake",
+						"name": "_amount",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "StakeMonth",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "EarnPersentage",
-						"type": "uint256"
-					},
+					}
+				],
+				"name": "approve",
+				"outputs": [
 					{
 						"internalType": "bool",
-						"name": "check",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_account",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "calculateTaxFee",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "decimals",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_subtractedValue",
+						"type": "uint256"
+					}
+				],
+				"name": "decreaseAllowance",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_account",
+						"type": "address"
+					}
+				],
+				"name": "excludeFromFee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_account",
+						"type": "address"
+					}
+				],
+				"name": "excludeFromReward",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fees",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "taxToDeduct",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "marketingPercent",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "shibbaPercent",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "rewardPercent",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "liquidityPercent",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "burnPercent",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "taxTotal",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "burnTotal",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "collectedFee",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_account",
+						"type": "address"
+					}
+				],
+				"name": "includeInFee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_account",
+						"type": "address"
+					}
+				],
+				"name": "includeInReward",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_addedValue",
+						"type": "uint256"
+					}
+				],
+				"name": "increaseAllowance",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_account",
+						"type": "address"
+					}
+				],
+				"name": "isExcludedFromReward",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
 						"type": "bool"
 					}
 				],
@@ -125,12 +762,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "ERC20Address",
+				"name": "name",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "string",
 						"name": "",
-						"type": "address"
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -138,7 +775,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "ERC721address",
+				"name": "pancakePair",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -151,32 +788,18 @@
 			},
 			{
 				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "OwnerTokens",
-				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "_tAmount",
 						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
+					},
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
+						"internalType": "bool",
+						"name": "_willDeductTransferFee",
+						"type": "bool"
 					}
 				],
-				"name": "Reward",
+				"name": "reflectionFromToken",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -191,11 +814,76 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_ERC20Address",
+						"name": "_account",
 						"type": "address"
 					}
 				],
-				"name": "UpdateERC20",
+				"name": "setAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_burnPercent",
+						"type": "uint256"
+					}
+				],
+				"name": "setBurnFeePercent",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_isEnabled",
+						"type": "bool"
+					}
+				],
+				"name": "setIsSendCollectedFeeEnabled",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_isTradeOpen",
+						"type": "bool"
+					}
+				],
+				"name": "setIsTradeOpen",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_liquidityFee",
+						"type": "uint256"
+					}
+				],
+				"name": "setLiquidityFeePercent",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_marketingPercent",
+						"type": "uint256"
+					}
+				],
+				"name": "setMarketingFeePercent",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -204,11 +892,11 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_ERC721address",
+						"name": "_account",
 						"type": "address"
 					}
 				],
-				"name": "UpdateERC721",
+				"name": "setMarketingWallet",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -217,149 +905,184 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_ratePersentage",
+						"name": "_maxTxAmount",
 						"type": "uint256"
 					}
 				],
-				"name": "UpdateRatePersentage",
+				"name": "setMaxTxAmount",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "Utilization",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "Withdraw",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "calculateIntrest",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "tokenIds",
+						"name": "_tokenAmount",
 						"type": "uint256"
 					}
 				],
-				"name": "depositNFT",
+				"name": "setNumTokensSellToAddToLiquidity",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "owenerERC20",
-				"outputs": [
+				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "_tokenAmount",
+						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "owner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "renounceOwnership",
+				"name": "setNumTokensToSendCollectedFee",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "rewardrate",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "showReward",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "result",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "totalOwnerToken",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "newOwner",
+						"name": "_routerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "_willCreateSwapPair",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "_swapV2Pair",
 						"type": "address"
 					}
 				],
-				"name": "transferOwnership",
+				"name": "setPancakeAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_rewardPercent",
+						"type": "uint256"
+					}
+				],
+				"name": "setRewardFeePercent",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_shibbaPercent",
+						"type": "uint256"
+					}
+				],
+				"name": "setShibbaFeePercent",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_account",
+						"type": "address"
+					}
+				],
+				"name": "setShibbaWallet",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_isEnabled",
+						"type": "bool"
+					}
+				],
+				"name": "setSwapAndLiquifyEnabled",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "unstaketimeval",
+				"name": "stats",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "numTokensToSendCollectedFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "numTokensSellToAddToLiquidity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxTxAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isSwapAndLiquifyEnabled",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "isSendCollectedFeeEnabled",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "rAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "tokenFromReflection",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -373,28 +1096,66 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "_recipient",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
-						"name": "tokenIds",
+						"name": "_amount",
 						"type": "uint256"
 					}
 				],
-				"name": "withdrawNFT",
-				"outputs": [],
+				"name": "transfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_sender",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
 			}
 		],
 		"devdoc": {
 			"kind": "dev",
 			"methods": {
-				"owner()": {
-					"details": "Returns the address of the current owner."
-				},
-				"renounceOwnership()": {
-					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
-				},
-				"transferOwnership(address)": {
-					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				"totalSupply()": {
+					"details": "Returns the amount of tokens in existence."
 				}
 			},
 			"version": 1
@@ -407,7 +1168,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Staking/staking.sol": "Token"
+			"contracts/Staking/TokenFRGST.sol": "Token"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -415,20 +1176,12 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/access/Ownable.sol": {
-			"keccak256": "0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2",
-				"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y"
-			]
-		},
 		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
 			"keccak256": "0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b",
 			"license": "MIT",
@@ -437,68 +1190,20 @@
 				"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr"
 			]
 		},
-		"@openzeppelin/contracts/token/ERC20/extensions/draft-IERC20Permit.sol": {
-			"keccak256": "0xf41ca991f30855bf80ffd11e9347856a517b977f0a6c2d52e6421a99b7840329",
+		"@openzeppelin/contracts/utils/math/SafeMath.sol": {
+			"keccak256": "0x0f633a0223d9a1dcccfcf38a64c9de0874dfcbfac0c6941ccf074d63a2ce0e1e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b2717fd2bdac99daa960a6de500754ea1b932093c946388c381da48658234b95",
-				"dweb:/ipfs/QmP6QVMn6UeA3ByahyJbYQr5M6coHKBKsf3ySZSfbyA8R7"
+				"bzz-raw://864a40efcffdf408044c332a5aa38ec5618ed7b4eecb8f65faf45671bd6cdc65",
+				"dweb:/ipfs/QmQJquTMtc6fgm5JQzGdsGpA2fqBe3MHWEdt2qzaLySMdN"
 			]
 		},
-		"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
-			"keccak256": "0x9b72f93be69ca894d8492c244259615c4a742afc8d63720dbc8bb81087d9b238",
+		"contracts/Staking/TokenFRGST.sol": {
+			"keccak256": "0x372c455511ce37a0789b0273fd2e7e9fae97fdb55be912978912c0863712b244",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f5a7b96e511be78d5cdf635c784e6ab8cdd38625bb8cafb8a80914a1c89cf0f6",
-				"dweb:/ipfs/QmVzTCwJxQAkjRQHboT5QrvsVJGWQHgfEjeTbvyxoKBrds"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC721/IERC721.sol": {
-			"keccak256": "0xab28a56179c1db258c9bf5235b382698cb650debecb51b23d12be9e241374b68",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://daae589a9d6fa7e55f99f86c0a16796ca490f243fb3693632c3711c0646c1d56",
-				"dweb:/ipfs/QmR3zpd7wNw3rcUdekwiv6FYHJqksuTCXLVioTxu6Fbxk3"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol": {
-			"keccak256": "0xd1556954440b31c97a142c6ba07d5cade45f96fafd52091d33a14ebe365aecbf",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://26fef835622b46a5ba08b3ef6b46a22e94b5f285d0f0fb66b703bd30217d2c34",
-				"dweb:/ipfs/QmZ548qdwfL1qF7aXz3xh1GCdTiST81kGGuKRqVUfYmPZR"
-			]
-		},
-		"@openzeppelin/contracts/utils/Address.sol": {
-			"keccak256": "0xf96f969e24029d43d0df89e59d365f277021dac62b48e1c1e3ebe0acdd7f1ca1",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://ec772b45a624be516f1c81970caa8a2e144301e9d0921cbc1a2789fef39a1269",
-				"dweb:/ipfs/QmNyjwxCrGhQMyzLD93oUobJXVe9ceJvRvfXwbEtuxPiEj"
-			]
-		},
-		"@openzeppelin/contracts/utils/Context.sol": {
-			"keccak256": "0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92",
-				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
-			]
-		},
-		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-			"keccak256": "0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f",
-				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
-			]
-		},
-		"contracts/Staking/staking.sol": {
-			"keccak256": "0xf0435752ea22240a7db5a8c8fb949984aa014aac477ee551e9c5168ec1b5d614",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://f063d5d36832d4a14ec4e3e1f6c5d277130b7f895a6de8d9c8e3ced055c6d19f",
-				"dweb:/ipfs/QmbTMr9i7oSjh9TDNwUmmq3omth3jJJdLbMVeLJz9mb5wH"
+				"bzz-raw://7dfb62b413a35f6c9d6691acf6ad0e6c1903cd50e4ce9816b42e72cbe908dd2f",
+				"dweb:/ipfs/QmXMybtDf4tjMZ4kt7JB3c3uJj7Nadu2Ea3P4Lxr1KGMjU"
 			]
 		}
 	},

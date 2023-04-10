@@ -1,0 +1,164 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122043768ed71ee71adfb7ac2d7979673e9c9d68b8282c63783c429afae79e6e1a3f64736f6c634300080d0033",
+			"opcodes": "PUSH1 0x56 PUSH1 0x37 PUSH1 0xB DUP3 DUP3 DUP3 CODECOPY DUP1 MLOAD PUSH1 0x0 BYTE PUSH1 0x73 EQ PUSH1 0x2A JUMPI PUSH4 0x4E487B71 PUSH1 0xE0 SHL PUSH1 0x0 MSTORE PUSH1 0x0 PUSH1 0x4 MSTORE PUSH1 0x24 PUSH1 0x0 REVERT JUMPDEST ADDRESS PUSH1 0x0 MSTORE PUSH1 0x73 DUP2 MSTORE8 DUP3 DUP2 RETURN INVALID PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 NUMBER PUSH23 0x8ED71EE71ADFB7AC2D7979673E9C9D68B8282C63783C42 SWAP11 STATICCALL 0xE7 SWAP15 PUSH15 0x1A3F64736F6C634300080D00330000 ",
+			"sourceMap": "9539:16704:2:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;9539:16704:2;;;;;;;;;;;;;;;;;"
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122043768ed71ee71adfb7ac2d7979673e9c9d68b8282c63783c429afae79e6e1a3f64736f6c634300080d0033",
+			"opcodes": "PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 NUMBER PUSH23 0x8ED71EE71ADFB7AC2D7979673E9C9D68B8282C63783C42 SWAP11 STATICCALL 0xE7 SWAP15 PUSH15 0x1A3F64736F6C634300080D00330000 ",
+			"sourceMap": "9539:16704:2:-:0;;;;;;;;"
+		},
+		"gasEstimates": {
+			"creation": {
+				"codeDepositCost": "17200",
+				"executionCost": "103",
+				"totalCost": "17303"
+			},
+			"internal": {
+				"_approve(struct Types.State storage pointer,address,address,uint256)": "infinite",
+				"_getCurrentSupply(struct Types.State storage pointer)": "infinite",
+				"_getRValues(uint256,uint256,uint256)": "infinite",
+				"_getRate(struct Types.State storage pointer)": "infinite",
+				"_getTValues(struct Types.State storage pointer,uint256)": "infinite",
+				"_getValues(struct Types.State storage pointer,uint256)": "infinite",
+				"_reflectFee(struct Types.State storage pointer,uint256,uint256,address)": "infinite",
+				"_swapTokensForBNB(struct Types.State storage pointer,uint256,address)": "infinite",
+				"_tokenTransfer(struct Types.State storage pointer,address,address,uint256,bool)": "infinite",
+				"_transfer(struct Types.State storage pointer,address,address,uint256)": "infinite",
+				"_transferBothExcluded(struct Types.State storage pointer,address,address,uint256)": "infinite",
+				"_transferFromExcluded(struct Types.State storage pointer,address,address,uint256)": "infinite",
+				"_transferInternal(struct Types.State storage pointer,address,address,uint256)": "infinite",
+				"_transferStandard(struct Types.State storage pointer,address,address,uint256)": "infinite",
+				"_transferToExcluded(struct Types.State storage pointer,address,address,uint256)": "infinite",
+				"addLiquidity(struct Types.State storage pointer,uint256,uint256)": "infinite",
+				"balanceOf(struct Types.State storage pointer,address)": "infinite",
+				"calculateTaxFee(struct Types.State storage pointer,uint256)": "infinite",
+				"calculateTaxToDeduct(struct Types.State storage pointer)": "infinite",
+				"ensureMaxFeeCap(struct Types.State storage pointer,uint256,uint256)": "infinite",
+				"reflectionFromToken(struct Types.State storage pointer,uint256,bool)": "infinite",
+				"removeAllFee(struct Types.State storage pointer)": "infinite",
+				"restoreAllFee(struct Types.State storage pointer)": "infinite",
+				"sendCollectedFee(struct Types.State storage pointer)": "infinite",
+				"swapAndLiquify(struct Types.State storage pointer,uint256)": "infinite",
+				"tokenFromReflection(struct Types.State storage pointer,uint256)": "infinite"
+			}
+		},
+		"methodIdentifiers": {}
+	},
+	"abi": [
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "sender",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "spender",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
+				}
+			],
+			"name": "Approval",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "half",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "newBalance",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "otherHalf",
+					"type": "uint256"
+				}
+			],
+			"name": "SwapAndLiquify",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "from",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "amount",
+					"type": "uint256"
+				}
+			],
+			"name": "Transfer",
+			"type": "event"
+		}
+	]
+}

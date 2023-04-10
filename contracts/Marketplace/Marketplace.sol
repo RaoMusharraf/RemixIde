@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "./IIERC721.sol";
 /**
  * @title MarketPlace
- */
+*/
 contract Marketplace is ReentrancyGuard , Ownable{
     using SafeERC20 for IERC20;
     using Counters for Counters.Counter;
@@ -91,7 +91,6 @@ contract Marketplace is ReentrancyGuard , Ownable{
         _nftCount.decrement();
         emit NFTSold(_idToNFT[_tokenId].tokenId, _idToNFT[_tokenId].seller, msg.sender, msg.value);
     }
-
     // ============ CancelOffer FUNCTIONS ============
     /* 
         @dev CancelOffer cancel offer that is listed
