@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.13+commit.abaa5c0e"
+		"version": "0.8.19+commit.7dd6d404"
 	},
 	"language": "Solidity",
 	"output": {
@@ -458,9 +458,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Staking/StakingFinal.sol": "TokenStaking"
+			"contracts/Staking/staking.sol": "TokenStaking"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -504,22 +504,6 @@
 				"dweb:/ipfs/QmVzTCwJxQAkjRQHboT5QrvsVJGWQHgfEjeTbvyxoKBrds"
 			]
 		},
-		"@openzeppelin/contracts/token/ERC721/IERC721.sol": {
-			"keccak256": "0xab28a56179c1db258c9bf5235b382698cb650debecb51b23d12be9e241374b68",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://daae589a9d6fa7e55f99f86c0a16796ca490f243fb3693632c3711c0646c1d56",
-				"dweb:/ipfs/QmR3zpd7wNw3rcUdekwiv6FYHJqksuTCXLVioTxu6Fbxk3"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol": {
-			"keccak256": "0xd1556954440b31c97a142c6ba07d5cade45f96fafd52091d33a14ebe365aecbf",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://26fef835622b46a5ba08b3ef6b46a22e94b5f285d0f0fb66b703bd30217d2c34",
-				"dweb:/ipfs/QmZ548qdwfL1qF7aXz3xh1GCdTiST81kGGuKRqVUfYmPZR"
-			]
-		},
 		"@openzeppelin/contracts/utils/Address.sol": {
 			"keccak256": "0xf96f969e24029d43d0df89e59d365f277021dac62b48e1c1e3ebe0acdd7f1ca1",
 			"license": "MIT",
@@ -536,20 +520,12 @@
 				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
 			]
 		},
-		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-			"keccak256": "0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1",
+		"contracts/Staking/staking.sol": {
+			"keccak256": "0x2dbfa105fa6883ee300be1a1cd646c310b03ce4ec550cd2d01e7b5efcb6f08eb",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f",
-				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
-			]
-		},
-		"contracts/Staking/StakingFinal.sol": {
-			"keccak256": "0x3a82b59b67d932cf4935f7400e7e496e64b70e81966797e981f673dd0d20777b",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://28b8f7c6b5c5d33bc9b2f529c9b3ed8eb3876a5db3245628c4bbbb041f4dbae2",
-				"dweb:/ipfs/QmZypPKDtkpxHe4ENLGoqPYRdsUnPNwD8iELTtWZoMZ65o"
+				"bzz-raw://5ace1c802465d7f656ac4292a705a1323312294fd0fe158c82e774fce06b0e6a",
+				"dweb:/ipfs/QmUWAWFSGZYHLHeBaXvn21op4qwAfHkf7J3bdkmC8W6bfs"
 			]
 		}
 	},

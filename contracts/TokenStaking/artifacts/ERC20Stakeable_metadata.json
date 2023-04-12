@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.13+commit.abaa5c0e"
+		"version": "0.8.19+commit.7dd6d404"
 	},
 	"language": "Solidity",
 	"output": {
@@ -399,7 +399,7 @@
 		"compilationTarget": {
 			"contracts/TokenStaking/TokenStaking.sol": "ERC20Stakeable"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -484,11 +484,11 @@
 			]
 		},
 		"contracts/TokenStaking/TokenStaking.sol": {
-			"keccak256": "0x5891b96e1e5eae9a85c28a5a178053f6650101258c2c3657cbaf12c9cef5cc9b",
+			"keccak256": "0x4c88f85d4441f8ba638f223b4fa130c20ee337c297de6703cc72dc11ecea3edf",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://966df3e9203f26a00441cbf85e271f7c6f1ca206520d3e236788a58d1f9305e8",
-				"dweb:/ipfs/QmNUm7Kc7wV1MFnpdZW4wyGnb9Sg4S83Jo56qox4ciMtCe"
+				"bzz-raw://12869311ce1a2f67066c85c3ea48af6507e84a9fc223044fff93ba5c13b0a98c",
+				"dweb:/ipfs/QmXTjhmjF33yHPvcMA1FD3u3ri5JDqBNBJq87GUaqU6sxv"
 			]
 		}
 	},
