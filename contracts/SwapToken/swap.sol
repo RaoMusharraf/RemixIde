@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.18;
+// SPDX-License-Identifier: GPL-2.0-or-later
+pragma solidity =0.7.6;
 pragma abicoder v2;
 
 import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
@@ -19,13 +19,13 @@ contract SingleSwap {
         0xE592427A0AEce92De3Edee1F18E0157C05861564;
     ISwapRouter public immutable swapRouter = ISwapRouter(routerAddress);
 
-    address public constant LINK = 0x8179D0b8345D9a87043069aBbdD4FFa86D784f9A;
+    address public constant LINK = 0x250dc3fF4f0C640763526b2E5dDCCb8f7D6F42AE;
     address public constant WETH = 0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6;
 
     IERC20 public linkToken = IERC20(LINK);
 
     // For this example, we will set the pool fee to 0.3%.
-    uint24 public constant poolFee = 3000;
+    uint24 public constant poolFee = 500;
 
     constructor() {}
 

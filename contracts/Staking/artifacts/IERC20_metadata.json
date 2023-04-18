@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.13+commit.abaa5c0e"
+		"version": "0.8.19+commit.7dd6d404"
 	},
 	"language": "Solidity",
 	"output": {
@@ -230,34 +230,26 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Staking/TokenFRGST.sol": "IERC20"
+			"contracts/Staking/FRGST_flattened.sol": "IERC20"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/utils/math/SafeMath.sol": {
-			"keccak256": "0x0f633a0223d9a1dcccfcf38a64c9de0874dfcbfac0c6941ccf074d63a2ce0e1e",
+		"contracts/Staking/FRGST_flattened.sol": {
+			"keccak256": "0x860097e2b557f1daaaf95986abd1bf4fb1907c22fe73e17d1f6ab0e7f59b1723",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://864a40efcffdf408044c332a5aa38ec5618ed7b4eecb8f65faf45671bd6cdc65",
-				"dweb:/ipfs/QmQJquTMtc6fgm5JQzGdsGpA2fqBe3MHWEdt2qzaLySMdN"
-			]
-		},
-		"contracts/Staking/TokenFRGST.sol": {
-			"keccak256": "0x0b76d4001c914d5672a1c7a435b8dc10f91456f8a232a5f7d48de37b6ed8c4e2",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://0827b315908e36442c93af1a9f26e39a20375c7365a1d9decf850402238cbf8a",
-				"dweb:/ipfs/QmVvCjFZR8aeGfig771tM1SkZEPsGPGvseQWGT5qEPvRt1"
+				"bzz-raw://2f2c78a818e56c15b6b7e64877564c545e8e3051c02af84164c34d126ee14d9e",
+				"dweb:/ipfs/QmV9ogpm44e61Poy33rVAqXSffbBLkXStzE6jdvrEbzYno"
 			]
 		}
 	},
