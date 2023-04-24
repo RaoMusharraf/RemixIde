@@ -336,7 +336,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -375,11 +375,11 @@
 			]
 		},
 		"contracts/SwapToken/ERCLINKToken.sol": {
-			"keccak256": "0xe234b9d8bfb349c0b88bc0ba30c9d0716bc8f35cdd9544f3dbdbfc2099a95aac",
+			"keccak256": "0x7802f1e7e78cfe99b3bc2159e022bd2988a3229909c3a9838fa31841767d8342",
 			"license": "Apache-2.0",
 			"urls": [
-				"bzz-raw://719dcef00d97d35de4f2f86864931841f392c33082df88691786f623604313b1",
-				"dweb:/ipfs/QmWNiqXjV2eLEDkg7uGyXeLCeudmYDxwXKsy1irBHFbMvq"
+				"bzz-raw://4275e90294d689a4473de0e93fffb88f6c2a7ceb86e4c9c71e6bd9f41cd3dbdc",
+				"dweb:/ipfs/QmdKvTTo4UXLxWs9mGAuaAqNwDf9bFaFtBRjd8UuW5K95u"
 			]
 		}
 	},

@@ -81,6 +81,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "LPTransferAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "PancakeSwap",
 				"outputs": [
 					{
@@ -141,6 +154,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "WETHToken",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "Wallet",
 				"outputs": [
 					{
@@ -161,6 +187,24 @@
 					}
 				],
 				"name": "WhiteList",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "WithdrawWETH",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -304,6 +348,25 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "contractAddress",
+						"type": "address"
+					}
+				],
+				"name": "getBalanceWETh",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "Balance",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "spender",
 						"type": "address"
 					},
@@ -322,6 +385,19 @@
 					}
 				],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "isSwap",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -503,6 +579,19 @@
 			{
 				"inputs": [
 					{
+						"internalType": "bool",
+						"name": "check",
+						"type": "bool"
+					}
+				],
+				"name": "setMarkettingSwap",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "Amount",
 						"type": "uint256"
@@ -566,7 +655,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "Amount",
 						"type": "uint256"
 					},
 					{
@@ -807,7 +896,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -878,11 +967,11 @@
 			]
 		},
 		"contracts/Staking/FRGST.sol": {
-			"keccak256": "0x9eb20fba00a07bf69113794ca603ed8cefcedad9872e6a8300dbf3a6c47dab5c",
+			"keccak256": "0xb1ea5ec0b38a0d233c9f6073bcbb215832990a5bf862419bda32465a024c3a4e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c9614a77fe9c28e74aeea1d2d2884f09c175bc4061d86e4ba48d78f6f65d2662",
-				"dweb:/ipfs/QmZyuBLmx9zK6Wzd5KMGFFtYMWt59pMniHVBNbTUEWbsA6"
+				"bzz-raw://a5863cb12872ecc252df4e4a408fb6b66aa09b70d8e10b8772a97f097844fa7a",
+				"dweb:/ipfs/QmbpTHa1iWac5Jsno6NvqFw5jdEdhPGxPqf72r4w7qELWn"
 			]
 		}
 	},

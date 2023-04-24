@@ -1,0 +1,380 @@
+{
+	"id": "e1ec65e90afe5f1df8b94cb9d0358f5e",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.19",
+	"solcLongVersion": "0.8.19+commit.7dd6d404",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"contracts/Staking/ISwap.sol": {
+				"content": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.19;\n/**\n * @dev Required interface of an ISwap compliant contract.\n */\ninterface ISwap {\n    function swapExactInputSingle(uint24 poolFee,uint256 amountIn,address FROG,address WETH,address Receiver) external returns (uint256 amountOut);\n}"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": true,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			}
+		}
+	},
+	"output": {
+		"contracts": {
+			"contracts/Staking/ISwap.sol": {
+				"ISwap": {
+					"abi": [
+						{
+							"inputs": [
+								{
+									"internalType": "uint24",
+									"name": "poolFee",
+									"type": "uint24"
+								},
+								{
+									"internalType": "uint256",
+									"name": "amountIn",
+									"type": "uint256"
+								},
+								{
+									"internalType": "address",
+									"name": "FROG",
+									"type": "address"
+								},
+								{
+									"internalType": "address",
+									"name": "WETH",
+									"type": "address"
+								},
+								{
+									"internalType": "address",
+									"name": "Receiver",
+									"type": "address"
+								}
+							],
+							"name": "swapExactInputSingle",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "amountOut",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"details": "Required interface of an ISwap compliant contract.",
+						"kind": "dev",
+						"methods": {},
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"swapExactInputSingle(uint24,uint256,address,address,address)": "9b56d891"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint24\",\"name\":\"poolFee\",\"type\":\"uint24\"},{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"FROG\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"WETH\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"Receiver\",\"type\":\"address\"}],\"name\":\"swapExactInputSingle\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Required interface of an ISwap compliant contract.\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Staking/ISwap.sol\":\"ISwap\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Staking/ISwap.sol\":{\"keccak256\":\"0x40cd6603bf525014910c70f89f07909f01a008da439841d41fcc0ab397673a7a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5d6d27a7202f6cd3a8f1188196d09f7d6d72d2c8287729fbb4045ccb41d77724\",\"dweb:/ipfs/QmfUbQjipQT9Skct6hWbohXKkuCeLjDLN52dDgtTNYWtkL\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"contracts/Staking/ISwap.sol": {
+				"ast": {
+					"absolutePath": "contracts/Staking/ISwap.sol",
+					"exportedSymbols": {
+						"ISwap": [
+							18
+						]
+					},
+					"id": 19,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".19"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "33:24:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "ISwap",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"documentation": {
+								"id": 2,
+								"nodeType": "StructuredDocumentation",
+								"src": "58:66:0",
+								"text": " @dev Required interface of an ISwap compliant contract."
+							},
+							"fullyImplemented": false,
+							"id": 18,
+							"linearizedBaseContracts": [
+								18
+							],
+							"name": "ISwap",
+							"nameLocation": "135:5:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"functionSelector": "9b56d891",
+									"id": 17,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "swapExactInputSingle",
+									"nameLocation": "156:20:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 13,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 4,
+												"mutability": "mutable",
+												"name": "poolFee",
+												"nameLocation": "184:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 17,
+												"src": "177:14:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint24",
+													"typeString": "uint24"
+												},
+												"typeName": {
+													"id": 3,
+													"name": "uint24",
+													"nodeType": "ElementaryTypeName",
+													"src": "177:6:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint24",
+														"typeString": "uint24"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 6,
+												"mutability": "mutable",
+												"name": "amountIn",
+												"nameLocation": "200:8:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 17,
+												"src": "192:16:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 5,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "192:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 8,
+												"mutability": "mutable",
+												"name": "FROG",
+												"nameLocation": "217:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 17,
+												"src": "209:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 7,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "209:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 10,
+												"mutability": "mutable",
+												"name": "WETH",
+												"nameLocation": "230:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 17,
+												"src": "222:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 9,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "222:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 12,
+												"mutability": "mutable",
+												"name": "Receiver",
+												"nameLocation": "243:8:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 17,
+												"src": "235:16:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 11,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "235:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "176:76:0"
+									},
+									"returnParameters": {
+										"id": 16,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 15,
+												"mutability": "mutable",
+												"name": "amountOut",
+												"nameLocation": "279:9:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 17,
+												"src": "271:17:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 14,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "271:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "270:19:0"
+									},
+									"scope": 18,
+									"src": "147:143:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 19,
+							"src": "125:167:0",
+							"usedErrors": []
+						}
+					],
+					"src": "33:259:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

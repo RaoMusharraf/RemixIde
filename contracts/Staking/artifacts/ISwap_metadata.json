@@ -1,0 +1,86 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint24",
+						"name": "poolFee",
+						"type": "uint24"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountIn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "FROG",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "WETH",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "Receiver",
+						"type": "address"
+					}
+				],
+				"name": "swapExactInputSingle",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "amountOut",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Required interface of an ISwap compliant contract.",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Staking/ISwap.sol": "ISwap"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Staking/ISwap.sol": {
+			"keccak256": "0x40cd6603bf525014910c70f89f07909f01a008da439841d41fcc0ab397673a7a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5d6d27a7202f6cd3a8f1188196d09f7d6d72d2c8287729fbb4045ccb41d77724",
+				"dweb:/ipfs/QmfUbQjipQT9Skct6hWbohXKkuCeLjDLN52dDgtTNYWtkL"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.19+commit.7dd6d404"
+		"version": "0.7.6+commit.7338295f"
 	},
 	"language": "Solidity",
 	"output": {
@@ -139,7 +139,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "to",
+						"name": "recipient",
 						"type": "address"
 					},
 					{
@@ -163,12 +163,12 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "from",
+						"name": "sender",
 						"type": "address"
 					},
 					{
 						"internalType": "address",
-						"name": "to",
+						"name": "recipient",
 						"type": "address"
 					},
 					{
@@ -190,36 +190,8 @@
 			}
 		],
 		"devdoc": {
-			"details": "Interface of the ERC20 standard as defined in the EIP.",
-			"events": {
-				"Approval(address,address,uint256)": {
-					"details": "Emitted when the allowance of a `spender` for an `owner` is set by a call to {approve}. `value` is the new allowance."
-				},
-				"Transfer(address,address,uint256)": {
-					"details": "Emitted when `value` tokens are moved from one account (`from`) to another (`to`). Note that `value` may be zero."
-				}
-			},
 			"kind": "dev",
-			"methods": {
-				"allowance(address,address)": {
-					"details": "Returns the remaining number of tokens that `spender` will be allowed to spend on behalf of `owner` through {transferFrom}. This is zero by default. This value changes when {approve} or {transferFrom} are called."
-				},
-				"approve(address,uint256)": {
-					"details": "Sets `amount` as the allowance of `spender` over the caller's tokens. Returns a boolean value indicating whether the operation succeeded. IMPORTANT: Beware that changing an allowance with this method brings the risk that someone may use both the old and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards: https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729 Emits an {Approval} event."
-				},
-				"balanceOf(address)": {
-					"details": "Returns the amount of tokens owned by `account`."
-				},
-				"totalSupply()": {
-					"details": "Returns the amount of tokens in existence."
-				},
-				"transfer(address,uint256)": {
-					"details": "Moves `amount` tokens from the caller's account to `to`. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event."
-				},
-				"transferFrom(address,address,uint256)": {
-					"details": "Moves `amount` tokens from `from` to `to` using the allowance mechanism. `amount` is then deducted from the caller's allowance. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event."
-				}
-			},
+			"methods": {},
 			"version": 1
 		},
 		"userdoc": {
@@ -230,26 +202,26 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Staking/FRGST_flattened.sol": "IERC20"
+			"contracts/Staking/SwapTokenV2Router.sol": "IERC20"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "istanbul",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Staking/FRGST_flattened.sol": {
-			"keccak256": "0x860097e2b557f1daaaf95986abd1bf4fb1907c22fe73e17d1f6ab0e7f59b1723",
+		"contracts/Staking/SwapTokenV2Router.sol": {
+			"keccak256": "0xc35e0f99a943c59b913212dd7d9bc2330fbad291fd10acc37949ccd2ee2187c7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2f2c78a818e56c15b6b7e64877564c545e8e3051c02af84164c34d126ee14d9e",
-				"dweb:/ipfs/QmV9ogpm44e61Poy33rVAqXSffbBLkXStzE6jdvrEbzYno"
+				"bzz-raw://de50182c2462790517b4f3ec28a331f082a2ec67529f66c530a63b32ee6f7c1f",
+				"dweb:/ipfs/QmPBECLUqTTNiRT6TwDcpqmVXb35mW4HgMWftYNiG64AjA"
 			]
 		}
 	},

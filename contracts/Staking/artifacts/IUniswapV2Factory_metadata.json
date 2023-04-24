@@ -1,133 +1,20 @@
 {
 	"compiler": {
-		"version": "0.8.13+commit.abaa5c0e"
+		"version": "0.7.6+commit.7338295f"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
 			{
-				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": true,
 						"internalType": "address",
 						"name": "token0",
 						"type": "address"
 					},
 					{
-						"indexed": true,
 						"internalType": "address",
 						"name": "token1",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "pair",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "PairCreated",
-				"type": "event"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "allPairs",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "pair",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "allPairsLength",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "tokenA",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "tokenB",
-						"type": "address"
-					}
-				],
-				"name": "createPair",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "pair",
-						"type": "address"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "feeTo",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "feeToSetter",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "tokenA",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "tokenB",
 						"type": "address"
 					}
 				],
@@ -135,36 +22,10 @@
 				"outputs": [
 					{
 						"internalType": "address",
-						"name": "pair",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
 				],
-				"name": "setFeeTo",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "setFeeToSetter",
-				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			}
@@ -182,9 +43,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Staking/TokenFRGST.sol": "IUniswapV2Factory"
+			"contracts/Staking/SwapTokenV2Router.sol": "IUniswapV2Factory"
 		},
-		"evmVersion": "london",
+		"evmVersion": "istanbul",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -196,28 +57,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b",
+		"contracts/Staking/SwapTokenV2Router.sol": {
+			"keccak256": "0xc35e0f99a943c59b913212dd7d9bc2330fbad291fd10acc37949ccd2ee2187c7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34",
-				"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr"
-			]
-		},
-		"@openzeppelin/contracts/utils/math/SafeMath.sol": {
-			"keccak256": "0x0f633a0223d9a1dcccfcf38a64c9de0874dfcbfac0c6941ccf074d63a2ce0e1e",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://864a40efcffdf408044c332a5aa38ec5618ed7b4eecb8f65faf45671bd6cdc65",
-				"dweb:/ipfs/QmQJquTMtc6fgm5JQzGdsGpA2fqBe3MHWEdt2qzaLySMdN"
-			]
-		},
-		"contracts/Staking/TokenFRGST.sol": {
-			"keccak256": "0x372c455511ce37a0789b0273fd2e7e9fae97fdb55be912978912c0863712b244",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://7dfb62b413a35f6c9d6691acf6ad0e6c1903cd50e4ce9816b42e72cbe908dd2f",
-				"dweb:/ipfs/QmXMybtDf4tjMZ4kt7JB3c3uJj7Nadu2Ea3P4Lxr1KGMjU"
+				"bzz-raw://de50182c2462790517b4f3ec28a331f082a2ec67529f66c530a63b32ee6f7c1f",
+				"dweb:/ipfs/QmPBECLUqTTNiRT6TwDcpqmVXb35mW4HgMWftYNiG64AjA"
 			]
 		}
 	},

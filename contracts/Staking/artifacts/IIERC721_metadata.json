@@ -1,0 +1,90 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint24",
+						"name": "poolFee",
+						"type": "uint24"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amountIn",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "FROG",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "WETH",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "Receiver",
+						"type": "address"
+					}
+				],
+				"name": "swapExactInputSingle",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "amountOut",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Required interface of an ERC721 compliant contract.",
+			"kind": "dev",
+			"methods": {
+				"swapExactInputSingle(uint24,uint256,address,address,address)": {
+					"details": "Returns the number of tokens in ``owner``'s account."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Staking/ISwap.sol": "IIERC721"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Staking/ISwap.sol": {
+			"keccak256": "0x6869d0131ed9ddc9423b118fc26d32e7c8e8270117d142bd7038afa9f8e8f960",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://619a1aa2493f29dec458508ceede8826295889c3964bff9ce1e5ec04f0408368",
+				"dweb:/ipfs/Qmcpc9jew6tNLUAxoFfivtDpj6U65fow1AYQxP179p2Y3k"
+			]
+		}
+	},
+	"version": 1
+}

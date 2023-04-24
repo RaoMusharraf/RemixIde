@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.7.6+commit.7338295f"
+		"version": "0.8.19+commit.7dd6d404"
 	},
 	"language": "Solidity",
 	"output": {
@@ -88,13 +88,13 @@
 		"compilationTarget": {
 			"contracts/SwapToken/swap.sol": "IERC20"
 		},
-		"evmVersion": "istanbul",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -117,11 +117,11 @@
 			]
 		},
 		"contracts/SwapToken/swap.sol": {
-			"keccak256": "0xcb9c51adfefbeb9f3a209406d133292b98160c6e816e3438b23348dfd420a57a",
+			"keccak256": "0x3c3bb2b4e9e7abe458821e45cb09ae02757f8429a02b3a9e3f2b914a297027df",
 			"license": "GPL-2.0-or-later",
 			"urls": [
-				"bzz-raw://f0fe41f3d0f871b1b46edeaa9abcb3d12b21237616eb2d18c6549ed5523e49fd",
-				"dweb:/ipfs/QmSZP62trb1sXB4E8ECpy2WWzbEEaeeLS2j4QarbHFNvLW"
+				"bzz-raw://0e71fe51c95af722c951d3ded820321e7c37cab426aa6ffa69d6355b53879d52",
+				"dweb:/ipfs/QmSqfLMWZGGkyodu54vWV7qRMqXAcodmqJ9sqgFToKpQn2"
 			]
 		}
 	},

@@ -7,19 +7,15 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
 
-
-
 contract Token is ERC20, Ownable,ERC20Burnable {
-
-    // variables
-    uint BuyTax;
-    uint SellTax; 
+ 
     address public Wallet;
+    bool public isSwap;
     address public PancakeSwap;
-    address public constant routerAddress = 0xE592427A0AEce92De3Edee1F18E0157C05861564;
+    uint256 public LPTransferAmount;
     address public constant WETH = 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889;
-
     uint24 public constant poolFee = 500;
+    address public constant routerAddress = 0xE592427A0AEce92De3Edee1F18E0157C05861564;
     ISwapRouter public immutable swapRouter = ISwapRouter(routerAddress);
 
 
@@ -34,25 +30,21 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     mapping(uint => Cap) public Taxs;
 
     IERC20 public linkToken;
-    // IERC20 public WETHToken;
+    IERC20 public WETHToken;
 
     constructor() ERC20("Froggies Token", "FRGST") {
         _mint(msg.sender, 100000000000000 * 10 ** decimals());
         linkToken = IERC20(address(this));
-        // WETHToken = IERC20(_WETHToken);
+        WETHToken = IERC20(WETH);
         Wallet = address(this);
     }
     // ============ WhiteList FUNCTIONS ============
     /* 
         @dev WhiteList take address as a parameter and make this address true in the whiteList.  
     */
-    function WhiteList(address _address) public{
+    function WhiteList(address _address) public {
         whiteList[_address] = true;
     } 
-    function setPancakeSwapAddress(address _address) public{
-        PancakeSwap = _address;
-    }
-
     // ============ swapExactInputSingle FUNCTIONS ============
     /* 
         @dev swapExactInputSingle this function take amount of token that you want to swap.  
@@ -89,7 +81,8 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 uint InvestmentAmount = ((amount*Taxs[3].BuyTax)/100);
                 uint MarkettingAmount = ((amount*Taxs[4].BuyTax)/100);
                 if((Taxs[2].currentAmount + LPAmount) >= Taxs[2].XAmount) {
-                    swapExactInputSingle(Taxs[2].XAmount,PancakeSwap);
+                    super.transfer(PancakeSwap,(Taxs[2].XAmount/2));
+                    swapExactInputSingle((Taxs[2].XAmount/2),PancakeSwap);
                     Taxs[2].currentAmount = (Taxs[2].currentAmount + LPAmount) -  Taxs[2].XAmount;
                 }else{
                     Taxs[2].currentAmount += LPAmount;
@@ -100,16 +93,16 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 }else{
                     Taxs[3].currentAmount += InvestmentAmount;
                 }
-                if((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) {
+                if(((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) && isSwap)  {
                     swapExactInputSingle(Taxs[4].XAmount,address(this));
                     Taxs[4].currentAmount = (Taxs[4].currentAmount + MarkettingAmount) -  Taxs[4].XAmount;
                 }else{
                     Taxs[4].currentAmount += MarkettingAmount;
                 }  
-                transfer(Wallet,ReflectionAmount);
-                transfer(Wallet,LPAmount);
-                transfer(Wallet,InvestmentAmount);
-                transfer(Wallet,MarkettingAmount);
+                super.transfer(Wallet,ReflectionAmount);
+                super.transfer(Wallet,LPAmount);
+                super.transfer(Wallet,InvestmentAmount);
+                super.transfer(Wallet,MarkettingAmount);
                 return super.transfer(to, (amount-(ReflectionAmount+LPAmount+InvestmentAmount+MarkettingAmount)));
             }else if(to == PancakeSwap)
             {
@@ -117,8 +110,9 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 uint LPAmount = ((amount*Taxs[2].SellTax)/100);
                 uint InvestmentAmount = ((amount*Taxs[3].SellTax)/100);
                 uint MarkettingAmount = ((amount*Taxs[4].SellTax)/100);
-                if((Taxs[2].currentAmount + LPAmount) >= Taxs[2].XAmount) {
-                    swapExactInputSingle(Taxs[2].XAmount,PancakeSwap);
+                if(((Taxs[2].currentAmount + LPAmount) >= Taxs[2].XAmount)) {
+                    super.transfer(PancakeSwap,(Taxs[2].XAmount/2));
+                    swapExactInputSingle((Taxs[2].XAmount/2),PancakeSwap);
                     Taxs[2].currentAmount = (Taxs[2].currentAmount + LPAmount) -  Taxs[2].XAmount;
                 }else{
                     Taxs[2].currentAmount += LPAmount;
@@ -129,97 +123,20 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 }else{
                     Taxs[3].currentAmount += InvestmentAmount;
                 }
-                if((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) {
+                if(((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) && isSwap) {
                     swapExactInputSingle(Taxs[4].XAmount,address(this));
                     Taxs[4].currentAmount = (Taxs[4].currentAmount + MarkettingAmount) -  Taxs[4].XAmount;
                 }else{
                     Taxs[4].currentAmount += MarkettingAmount;
                 }  
-                transfer(Wallet,ReflectionAmount);
-                transfer(Wallet,LPAmount);
-                transfer(Wallet,InvestmentAmount);
-                transfer(Wallet,MarkettingAmount);
-                return super.transfer(to, (amount-(ReflectionAmount+LPAmount+InvestmentAmount+MarkettingAmount)));
+                super.transfer(Wallet,ReflectionAmount);
+                super.transfer(Wallet,LPAmount);
+                super.transfer(Wallet,InvestmentAmount);
+                super.transfer(Wallet,MarkettingAmount);
+                return super.transfer(to,amount-(ReflectionAmount+LPAmount+InvestmentAmount+MarkettingAmount));
             }
             else{
                 return super.transfer(to, amount);
-            }
-        }  
-    }
-    // ============ transferFrom FUNCTIONS ============
-    /* 
-        @dev transfer take three parameter address of sender and receiver and amount that you want to send.  
-    */
-    function transferFrom(address from, address to, uint256 amount) public virtual override returns (bool) {
-        if(whiteList[msg.sender]){
-            return super.transferFrom(from, to, amount);      
-        }else{
-            if(from == PancakeSwap){
-                uint ReflectionAmount = ((amount*Taxs[1].BuyTax)/100);
-                uint LPAmount = ((amount*Taxs[2].BuyTax)/100);
-                uint InvestmentAmount = ((amount*Taxs[3].BuyTax)/100);
-                uint MarkettingAmount = ((amount*Taxs[4].BuyTax)/100);
-                if((Taxs[2].currentAmount  + LPAmount) >= Taxs[2].XAmount) {
-                    swapExactInputSingle(Taxs[2].XAmount,PancakeSwap);
-                    Taxs[2].currentAmount = (Taxs[2].currentAmount  + LPAmount) -  Taxs[2].XAmount;
-                }else{
-                    Taxs[2].currentAmount  += LPAmount;
-                }
-                if((Taxs[3].currentAmount + InvestmentAmount) >= Taxs[3].XAmount) {
-                    swapExactInputSingle(Taxs[3].XAmount,address(this));
-                    Taxs[3].currentAmount = (Taxs[3].currentAmount + InvestmentAmount) -  Taxs[3].XAmount;
-                }else{
-                    Taxs[3].currentAmount += InvestmentAmount;
-                }
-                if((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) {
-                    swapExactInputSingle(Taxs[4].XAmount,address(this));
-                    Taxs[4].currentAmount = (Taxs[4].currentAmount + MarkettingAmount) -  Taxs[4].XAmount;
-                }else{
-                    Taxs[4].currentAmount += MarkettingAmount;
-                }  
-                transfer(Wallet,ReflectionAmount);
-                transfer(Wallet,LPAmount);
-                transfer(Wallet,InvestmentAmount);
-                transfer(Wallet,MarkettingAmount);  
-                return super.transferFrom(from, to, amount-(ReflectionAmount+LPAmount+InvestmentAmount+MarkettingAmount));
-            }else if(to == PancakeSwap)
-            {
-                uint ReflectionAmount = ((amount*Taxs[1].SellTax)/100);
-                uint LPAmount = ((amount*Taxs[2].SellTax)/100);
-                uint InvestmentAmount = ((amount*Taxs[3].SellTax)/100);
-                uint MarkettingAmount = ((amount*Taxs[4].SellTax)/100);
-                // if((Taxs[1].currentAmount + ReflectionAmount) >= Taxs[1].XAmount) {
-                //     swapExactInputSingle(Taxs[1].XAmount);
-                //     Taxs[1].currentAmount = (Taxs[1].currentAmount + ReflectionAmount) -  Taxs[1].XAmount;
-                // }else{
-                //     Taxs[1].currentAmount += ReflectionAmount;
-                // }
-                if((Taxs[2].currentAmount  + LPAmount) >= Taxs[2].XAmount) {
-                    swapExactInputSingle(Taxs[2].XAmount,PancakeSwap);
-                    Taxs[2].currentAmount = (Taxs[2].currentAmount  + LPAmount) -  Taxs[2].XAmount;
-                }else{
-                    Taxs[2].currentAmount  += LPAmount;
-                }
-                if((Taxs[3].currentAmount  + InvestmentAmount) >= Taxs[3].XAmount) {
-                    swapExactInputSingle(Taxs[3].XAmount,address(this));
-                    Taxs[3].currentAmount = (Taxs[3].currentAmount  + InvestmentAmount) -  Taxs[3].XAmount;
-                }else{
-                    Taxs[3].currentAmount  += InvestmentAmount;
-                }
-                if((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) {
-                    swapExactInputSingle(Taxs[4].XAmount,address(this));
-                    Taxs[4].currentAmount = (Taxs[4].currentAmount + MarkettingAmount) -  Taxs[4].XAmount;
-                }else{
-                    Taxs[4].currentAmount += MarkettingAmount;
-                } 
-                transfer(Wallet,ReflectionAmount);
-                transfer(Wallet,LPAmount);
-                transfer(Wallet,InvestmentAmount);
-                transfer(Wallet,MarkettingAmount);
-                return super.transferFrom(from, to, amount-(ReflectionAmount+LPAmount+InvestmentAmount+MarkettingAmount));
-            }
-            else{
-                return super.transferFrom(from, to, amount);
             }
         }  
     }
@@ -314,13 +231,33 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     function setMarkettingXAmount(uint Amount) public onlyOwner{
         Taxs[4].XAmount = Amount;
     }
-
-    // function WithdrawWETH(uint amount) public onlyOwner{
-    //     WETHToken.transfer(msg.sender,amount);
-    // }
-
-    function setTaxData(uint SaleT,uint BuyT,uint amount,uint Typ) public {
+    // ============ setMarkettingSwap FUNCTIONS ============
+    /* 
+        @dev setMarkettingSwap take bool parameter to open Swap.  
+    */
+    function setMarkettingSwap(bool check) public onlyOwner{
+        isSwap = check;
+    }
+    // ============ getBalanceWETh FUNCTIONS ============
+    /* 
+        @dev getBalanceWETh this function takes address and return the balance of WETH.  
+    */
+    function getBalanceWETh(address contractAddress) view public returns(uint256 Balance){
+        return(WETHToken.balanceOf(contractAddress));
+    }
+    // ============ WithdrawWETH FUNCTIONS ============
+    /* 
+        @dev WithdrawWETH this function takes amount and transfer this amount to the connected address 
+        but this function is onlyOwner Function(No one can run this function except admin).  
+    */
+    function WithdrawWETH(address to,uint amount) public onlyOwner{
+        WETHToken.transfer(to,amount);
+    }
+    function setTaxData(uint SaleT,uint BuyT,uint Amount,uint Typ) public onlyOwner {
         require(Typ >0 && Typ < 5,"Typ Must Be (1,2,3,4)");
-        Taxs[Typ] = Cap(SaleT,BuyT,amount,0);
+        Taxs[Typ] = Cap(SaleT,BuyT,Amount,0);
+    }
+    function setPancakeSwapAddress(address _address) public onlyOwner {
+        PancakeSwap = _address;
     }
 }
