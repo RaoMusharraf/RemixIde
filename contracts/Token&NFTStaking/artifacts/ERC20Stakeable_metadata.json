@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.13+commit.abaa5c0e"
+		"version": "0.8.19+commit.7dd6d404"
 	},
 	"language": "Solidity",
 	"output": {
@@ -64,6 +64,11 @@
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
 					}
 				],
 				"name": "AdminWithDrawToken",
@@ -158,33 +163,8 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "OwnerTokens",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "Reward",
+				"inputs": [],
+				"name": "TotalToken",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -277,7 +257,31 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					}
+				],
+				"name": "WithDrawToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
 				"name": "Withdraw",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -338,19 +342,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "owenerERC20",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
@@ -382,19 +373,6 @@
 					{
 						"internalType": "uint256",
 						"name": "result",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "totalOwnerToken",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -451,15 +429,15 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Token&NFTStaking/Contract.sol": "ERC20Stakeable"
+			"contracts/Token&NFTStaking/TokenNFT3.sol": "ERC20Stakeable"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -545,12 +523,12 @@
 				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
 			]
 		},
-		"contracts/Token&NFTStaking/Contract.sol": {
-			"keccak256": "0x1f6919af41e9134bab0288f4c638cf15ab73a0901af6226fe7516732a2ad4a2c",
+		"contracts/Token&NFTStaking/TokenNFT3.sol": {
+			"keccak256": "0xb0806e5adeb6c7991d0dc4f2210eba04d7b78ded976c4d637e61098d3e103070",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d296a204ecba8e9c663500649089cc824f9bee05a23cc2fcd4764651eed27f86",
-				"dweb:/ipfs/QmVFpv4t74mzUsgkfEGHaSQj4VbVvytScrhvJGYmdx3MXE"
+				"bzz-raw://ac1e9f8ec7154412982e8aa9ee5dd9d33d5e3523c0f5d7d9c245c2bda02e3678",
+				"dweb:/ipfs/QmTptkUFegzwA8zQNBoVijg5LyGiZNVuhHUc8P24fdfSTs"
 			]
 		}
 	},

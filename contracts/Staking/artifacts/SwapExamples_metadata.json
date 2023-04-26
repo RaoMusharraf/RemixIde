@@ -172,7 +172,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -211,11 +211,11 @@
 			]
 		},
 		"contracts/Staking/SwapTokenV2Router.sol": {
-			"keccak256": "0xf02c42bea9c9eb644e3a277858fea2087b716cd590f6e3ec236b04e5c1190c96",
+			"keccak256": "0x1a5dffb3a4ff43b1a34898cb2caf24d31ae82e84da0f802e1d67e3601d698d06",
 			"license": "GPL-2.0-or-later",
 			"urls": [
-				"bzz-raw://0608ca3c82f346dd68abba72681373050dc1eb4a0ffe4d59e082b7f0d3040e22",
-				"dweb:/ipfs/QmcTjDMrnHjitQLxcjhF84BWEmbNSER9X46ChaepK2uhr4"
+				"bzz-raw://8186ddb1f1154a24dd43d80e4192a6664dec4c16a84074525712aee28779a384",
+				"dweb:/ipfs/QmYYV9AaUoXMXAzEbHhdgiBR4wdGvjRANNsrTfUtE3atRg"
 			]
 		}
 	},

@@ -141,7 +141,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "WETH",
+				"name": "WBNB",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -154,7 +154,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "WETHToken",
+				"name": "WBNBToken",
 				"outputs": [
 					{
 						"internalType": "contract IERC20",
@@ -402,19 +402,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "linkToken",
-				"outputs": [
-					{
-						"internalType": "contract IERC20",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "name",
 				"outputs": [
 					{
@@ -470,6 +457,34 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_PancakeSwapAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_WBNBAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_routerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint24",
+						"name": "_poolFee",
+						"type": "uint24"
+					}
+				],
+				"name": "setAddressFee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -598,19 +613,6 @@
 					}
 				],
 				"name": "setMarkettingXAmount",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					}
-				],
-				"name": "setPancakeSwapAddress",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -896,7 +898,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -967,11 +969,11 @@
 			]
 		},
 		"contracts/Staking/FRGST.sol": {
-			"keccak256": "0xb1ea5ec0b38a0d233c9f6073bcbb215832990a5bf862419bda32465a024c3a4e",
+			"keccak256": "0x7d7239707747cf05cc633a2ec2ca5254e82cd61764bccd042e47a62116d76dc4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a5863cb12872ecc252df4e4a408fb6b66aa09b70d8e10b8772a97f097844fa7a",
-				"dweb:/ipfs/QmbpTHa1iWac5Jsno6NvqFw5jdEdhPGxPqf72r4w7qELWn"
+				"bzz-raw://419259525ec66c2d6605a5681b0ac01de419b071bad219608bbdc9e43bf4b17b",
+				"dweb:/ipfs/QmakcgTSHqacFttTXeRX1e5Htkfjjmb9ArTDDYDv869M6p"
 			]
 		}
 	},

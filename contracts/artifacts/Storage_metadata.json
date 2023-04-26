@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.19+commit.7dd6d404"
+		"version": "0.8.17+commit.8df45f5f"
 	},
 	"language": "Solidity",
 	"output": {
@@ -937,9 +937,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/newProject.sol": "Storage"
+			"contracts/FYP.sol": "Storage"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "london",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -975,7 +975,7 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/newProject.sol": {
+		"contracts/FYP.sol": {
 			"keccak256": "0x73f8f316a3ef1967f8dac151f35cd26486b66d8539566529948e672d4333bed3",
 			"license": "GPL-3.0",
 			"urls": [

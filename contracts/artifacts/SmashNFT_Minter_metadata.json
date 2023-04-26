@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.19+commit.7dd6d404"
 	},
 	"language": "Solidity",
 	"output": {
@@ -576,6 +576,17 @@
 			}
 		],
 		"devdoc": {
+			"events": {
+				"Approval(address,address,uint256)": {
+					"details": "Emitted when `owner` enables `approved` to manage the `tokenId` token."
+				},
+				"ApprovalForAll(address,address,bool)": {
+					"details": "Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets."
+				},
+				"Transfer(address,address,uint256)": {
+					"details": "Emitted when `tokenId` token is transferred from `from` to `to`."
+				}
+			},
 			"kind": "dev",
 			"methods": {
 				"approve(address,uint256)": {
@@ -640,7 +651,7 @@
 		"compilationTarget": {
 			"contracts/SmashNFT_Minter.sol": "SmashNFT_Minter"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -740,14 +751,6 @@
 				"dweb:/ipfs/QmVhVa6LGuzAcB8qgDtVHRkucn4ihj5UZr8xBLcJkP6ucb"
 			]
 		},
-		"@openzeppelin/contracts/utils/cryptography/MerkleProof.sol": {
-			"keccak256": "0xd466e8b07f4c6220eac16da5127f3ff142e65f0c15c03c7d38f257b02c8585e1",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://e6b3cab69f655e40117bbdd8e68d7423f26d1b24248fb189c295f08de8940616",
-				"dweb:/ipfs/QmWoyRthsBDMa7gJpH5UCjpa8uNUQfyaGbSgY3uvhBH9F3"
-			]
-		},
 		"@openzeppelin/contracts/utils/introspection/ERC165.sol": {
 			"keccak256": "0xd10975de010d89fd1c78dc5e8a9a7e7f496198085c151648f20cba166b32582b",
 			"license": "MIT",
@@ -773,11 +776,11 @@
 			]
 		},
 		"contracts/SmashNFT_Minter.sol": {
-			"keccak256": "0x41681fe4db6346cd1d8639620cf249ddb6c62ae5d5e85f31de88ac3e6c0f8709",
+			"keccak256": "0xf532752489de95b13cf8b4a44a9823071e7d00949c383e5a9186033548c5d793",
 			"license": "Apache-2.0",
 			"urls": [
-				"bzz-raw://aa3a02215ce3da9e02fafcb054db067b1cad03d51fedb38365cefa10fa7683dc",
-				"dweb:/ipfs/QmPXUZyfmmkZP4dHx9nHsXqA3iHxsVpUFNVSY8jYvJG9cM"
+				"bzz-raw://ed55714ca2fdc6679a3d236806870eaf1411c0fd82360fdf6992fbbcf3cfe25a",
+				"dweb:/ipfs/QmSutQruBDyEMte9w5XaBoc4obRhu93TW8XY8wkfD12YmQ"
 			]
 		}
 	},

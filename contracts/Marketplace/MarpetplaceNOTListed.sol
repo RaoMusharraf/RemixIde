@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "./IIERC721.sol";
+import "./IConnected.sol";
 /**
  * @title MarketPlace
  */
@@ -67,7 +67,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
     function BuyAdmin (uint256 price,uint256 tokenId) public payable nonReentrant {
         require(AdminPrice == price,"Insuficient Fund !");
         tokenID.increment();
-        IIERC721(MinterAddress).safeMint(msg.sender,tokenId);
+        IConnected(MinterAddress).safeMint(msg.sender,tokenId);
         payable(AddminAddress).transfer(AdminPrice);
         Id[tokenId] = tokenID.current();
         // IERC20(paymentToken).safeTransferFrom(msg.sender, AddminAddress , price);

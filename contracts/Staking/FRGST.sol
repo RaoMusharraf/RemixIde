@@ -13,11 +13,14 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     bool public isSwap;
     address public PancakeSwap;
     uint256 public LPTransferAmount;
-    address public constant WETH = 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889;
-    uint24 public constant poolFee = 500;
-    address public constant routerAddress = 0xE592427A0AEce92De3Edee1F18E0157C05861564;
+    // address public constant WBNB = 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889;
+    // address public constant routerAddress = 0xE592427A0AEce92De3Edee1F18E0157C05861564;
+    // uint24 public constant poolFee = 500; 
+    uint24 public poolFee;
+    address public WBNB;
+    address public routerAddress;
     ISwapRouter public immutable swapRouter = ISwapRouter(routerAddress);
-
+     
 
     struct Cap{
         uint SellTax;
@@ -29,14 +32,14 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     mapping(address => bool) public whiteList;
     mapping(uint => Cap) public Taxs;
 
-    IERC20 public linkToken;
-    IERC20 public WETHToken;
+    // IERC20 public linkToken;
+    IERC20 public WBNBToken;
 
     constructor() ERC20("Froggies Token", "FRGST") {
         _mint(msg.sender, 100000000000000 * 10 ** decimals());
-        linkToken = IERC20(address(this));
-        WETHToken = IERC20(WETH);
+        WBNBToken = IERC20(WBNB);
         Wallet = address(this);
+        // linkToken = IERC20(address(this));
     }
     // ============ WhiteList FUNCTIONS ============
     /* 
@@ -51,11 +54,12 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     */
     function swapExactInputSingle(uint256 amountIn,address recipientAddresss) public returns (uint256 amountOut)
     {
-        linkToken.approve(address(swapRouter), amountIn);
+        // linkToken.approve(address(swapRouter), amountIn);
+        approve(address(swapRouter), amountIn);
         ISwapRouter.ExactInputSingleParams memory params = ISwapRouter
             .ExactInputSingleParams({
                 tokenIn: address(this),
-                tokenOut: WETH,
+                tokenOut: WBNB,
                 fee: poolFee,
                 recipient: recipientAddresss,
                 deadline: block.timestamp,
@@ -70,7 +74,6 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     /* 
         @dev transfer take two parameter address of receiver and amount that you want to send.  
     */
-
     function transfer(address to, uint256 amount) public virtual override returns (bool) {
         if(whiteList[msg.sender]){
             return super.transfer(to, amount);        
@@ -140,6 +143,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
             }
         }  
     }
+
     // ============ setReflectionSellTax FUNCTIONS ============
     /* 
         @dev setReflectionSellTax take Tax percentage as a parameter and set this percentage to ReflectionSellTax variable.  
@@ -166,6 +170,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         require(Tax >= 0 && Tax <=15,"Tax Amount must be 0 to 15");
         Taxs[3].SellTax = Tax;
     }
+
     // ============ setMarkettingSellTax FUNCTIONS ============
     /* 
         @dev setMarkettingSellTax take Tax percentage as a parameter and set this percentage to MarkettingSellTax variable.  
@@ -201,6 +206,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         require(Tax >= 0 && Tax <=15,"Tax Amount must be 0 to 15");
         Taxs[3].BuyTax = Tax;
     }
+
     // ============ setMarkettingBuyTax FUNCTIONS ============
     /* 
         @dev setMarkettingBuyTax take Tax percentage as a parameter and set this percentage to MarkettingBuyTax variable.  
@@ -209,6 +215,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         require(Tax >= 0 && Tax <=15,"Tax Amount must be 0 to 15");
         Taxs[4].BuyTax = Tax;
     }
+
     // ============ setLPXAmount FUNCTIONS ============
     /* 
         @dev setLPXAmount take Amount percentage as a parameter and set this percentage to LPXAmount variable.  
@@ -224,6 +231,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     function setInvestmentXAmount(uint Amount) public onlyOwner{
         Taxs[3].XAmount = Amount;
     }
+
     // ============ setMarkettingXAmount FUNCTIONS ============
     /* 
         @dev setMarkettingXAmount take Amount percentage as a parameter and set this percentage to MarkettingXAmount variable.  
@@ -231,6 +239,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     function setMarkettingXAmount(uint Amount) public onlyOwner{
         Taxs[4].XAmount = Amount;
     }
+
     // ============ setMarkettingSwap FUNCTIONS ============
     /* 
         @dev setMarkettingSwap take bool parameter to open Swap.  
@@ -238,26 +247,36 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     function setMarkettingSwap(bool check) public onlyOwner{
         isSwap = check;
     }
+
     // ============ getBalanceWETh FUNCTIONS ============
     /* 
-        @dev getBalanceWETh this function takes address and return the balance of WETH.  
+        @dev getBalanceWETh this function takes address and return the balance of WBNB.  
     */
     function getBalanceWETh(address contractAddress) view public returns(uint256 Balance){
-        return(WETHToken.balanceOf(contractAddress));
+        return(WBNBToken.balanceOf(contractAddress));
     }
+
     // ============ WithdrawWETH FUNCTIONS ============
     /* 
         @dev WithdrawWETH this function takes amount and transfer this amount to the connected address 
         but this function is onlyOwner Function(No one can run this function except admin).  
     */
     function WithdrawWETH(address to,uint amount) public onlyOwner{
-        WETHToken.transfer(to,amount);
+        WBNBToken.transfer(to,amount);
     }
     function setTaxData(uint SaleT,uint BuyT,uint Amount,uint Typ) public onlyOwner {
         require(Typ >0 && Typ < 5,"Typ Must Be (1,2,3,4)");
         Taxs[Typ] = Cap(SaleT,BuyT,Amount,0);
     }
-    function setPancakeSwapAddress(address _address) public onlyOwner {
-        PancakeSwap = _address;
+    // ============ setAddressFee FUNCTIONS ============
+    /* 
+        @dev setAddress&Fee this function takes address(_PancakeSwapAddress,_WBNBAddress,_routerAddress) and Fee amount(_poolFee). 
+        @param Given parameter set according to their variables.
+    */
+    function setAddressFee(address _PancakeSwapAddress,address _WBNBAddress,address _routerAddress,uint24 _poolFee) public onlyOwner {
+        PancakeSwap = _PancakeSwapAddress;
+        WBNB = _WBNBAddress;
+        routerAddress = _routerAddress;
+        poolFee = _poolFee;
     }
 }
