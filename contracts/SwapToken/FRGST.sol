@@ -14,11 +14,11 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     address public PancakeSwap;
     uint256 public LPTransferAmount;
     // address public constant WBNB = 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889;
-    // address public constant routerAddress = 0xE592427A0AEce92De3Edee1F18E0157C05861564;
     // uint24 public constant poolFee = 500; 
+
     uint24 public poolFee;
     address public WBNB;
-    address public routerAddress;
+    address public constant routerAddress = 0xE592427A0AEce92De3Edee1F18E0157C05861564;
     ISwapRouter public immutable swapRouter = ISwapRouter(routerAddress);
      
 
@@ -32,14 +32,14 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     mapping(address => bool) public whiteList;
     mapping(uint => Cap) public Taxs;
 
-    // IERC20 public linkToken;
+    IERC20 public linkToken;
     IERC20 public WBNBToken;
 
     constructor() ERC20("Froggies Token", "FRGST") {
         _mint(msg.sender, 100000000000000 * 10 ** decimals());
         WBNBToken = IERC20(WBNB);
         Wallet = address(this);
-        // linkToken = IERC20(address(this));
+        linkToken = IERC20(address(this));
     }
     // ============ WhiteList FUNCTIONS ============
     /* 
@@ -54,8 +54,8 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     */
     function swapExactInputSingle(uint256 amountIn,address recipientAddresss) public returns (uint256 amountOut)
     {
-        // linkToken.approve(address(swapRouter), amountIn);
-        approve(address(swapRouter), amountIn);
+        linkToken.approve(address(swapRouter), amountIn);
+        // approve(address(swapRouter), amountIn);
         ISwapRouter.ExactInputSingleParams memory params = ISwapRouter
             .ExactInputSingleParams({
                 tokenIn: address(this),
@@ -83,20 +83,20 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 uint LPAmount = ((amount*Taxs[2].BuyTax)/100);
                 uint InvestmentAmount = ((amount*Taxs[3].BuyTax)/100);
                 uint MarkettingAmount = ((amount*Taxs[4].BuyTax)/100);
-                if((Taxs[2].currentAmount + LPAmount) >= Taxs[2].XAmount) {
+                if(((Taxs[2].currentAmount + LPAmount) >= Taxs[2].XAmount) && (Taxs[2].XAmount != 0)) {
                     super.transfer(PancakeSwap,(Taxs[2].XAmount/2));
                     swapExactInputSingle((Taxs[2].XAmount/2),PancakeSwap);
                     Taxs[2].currentAmount = (Taxs[2].currentAmount + LPAmount) -  Taxs[2].XAmount;
                 }else{
                     Taxs[2].currentAmount += LPAmount;
                 }
-                if((Taxs[3].currentAmount + InvestmentAmount) >= Taxs[3].XAmount) {
+                if(((Taxs[3].currentAmount + InvestmentAmount) >= Taxs[3].XAmount) && (Taxs[3].XAmount != 0)) {
                     swapExactInputSingle(Taxs[3].XAmount,address(this));
                     Taxs[3].currentAmount = (Taxs[3].currentAmount + InvestmentAmount) -  Taxs[3].XAmount;
                 }else{
                     Taxs[3].currentAmount += InvestmentAmount;
                 }
-                if(((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) && isSwap)  {
+                if(((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) && isSwap && (Taxs[4].XAmount != 0))  {
                     swapExactInputSingle(Taxs[4].XAmount,address(this));
                     Taxs[4].currentAmount = (Taxs[4].currentAmount + MarkettingAmount) -  Taxs[4].XAmount;
                 }else{
@@ -113,20 +113,20 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 uint LPAmount = ((amount*Taxs[2].SellTax)/100);
                 uint InvestmentAmount = ((amount*Taxs[3].SellTax)/100);
                 uint MarkettingAmount = ((amount*Taxs[4].SellTax)/100);
-                if(((Taxs[2].currentAmount + LPAmount) >= Taxs[2].XAmount)) {
+                if(((Taxs[2].currentAmount + LPAmount) >= Taxs[2].XAmount) && (Taxs[2].XAmount != 0)) {
                     super.transfer(PancakeSwap,(Taxs[2].XAmount/2));
                     swapExactInputSingle((Taxs[2].XAmount/2),PancakeSwap);
                     Taxs[2].currentAmount = (Taxs[2].currentAmount + LPAmount) -  Taxs[2].XAmount;
                 }else{
                     Taxs[2].currentAmount += LPAmount;
                 }
-                if((Taxs[3].currentAmount + InvestmentAmount) >= Taxs[3].XAmount) {
+                if(((Taxs[3].currentAmount + InvestmentAmount) >= Taxs[3].XAmount) && (Taxs[3].XAmount != 0)) {
                     swapExactInputSingle(Taxs[3].XAmount,address(this));
                     Taxs[3].currentAmount = (Taxs[3].currentAmount + InvestmentAmount) -  Taxs[3].XAmount;
                 }else{
                     Taxs[3].currentAmount += InvestmentAmount;
                 }
-                if(((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) && isSwap) {
+                if(((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) && isSwap && (Taxs[4].XAmount != 0)) {
                     swapExactInputSingle(Taxs[4].XAmount,address(this));
                     Taxs[4].currentAmount = (Taxs[4].currentAmount + MarkettingAmount) -  Taxs[4].XAmount;
                 }else{
@@ -252,7 +252,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     /* 
         @dev getBalanceWETh this function takes address and return the balance of WBNB.  
     */
-    function getBalanceWETh(address contractAddress) view public returns(uint256 Balance){
+    function getBalanceWBNB(address contractAddress) view public returns(uint256 Balance){
         return(WBNBToken.balanceOf(contractAddress));
     }
 
@@ -261,7 +261,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev WithdrawWETH this function takes amount and transfer this amount to the connected address 
         but this function is onlyOwner Function(No one can run this function except admin).  
     */
-    function WithdrawWETH(address to,uint amount) public onlyOwner{
+    function WithdrawWBNB(address to,uint amount) public onlyOwner{
         WBNBToken.transfer(to,amount);
     }
     function setTaxData(uint SaleT,uint BuyT,uint Amount,uint Typ) public onlyOwner {
@@ -270,13 +270,13 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     }
     // ============ setAddressFee FUNCTIONS ============
     /* 
-        @dev setAddress&Fee this function takes address(_PancakeSwapAddress,_WBNBAddress,_routerAddress) and Fee amount(_poolFee). 
+        @dev setAddress&Fee this function takes address(_PancakeSwapAddress,_WBNBAddress) and Fee amount(_poolFee). 
         @param Given parameter set according to their variables.
     */
-    function setAddressFee(address _PancakeSwapAddress,address _WBNBAddress,address _routerAddress,uint24 _poolFee) public onlyOwner {
+    function setAddressFee(address _PancakeSwapAddress,address _WBNBAddress,uint24 _poolFee) public onlyOwner {
         PancakeSwap = _PancakeSwapAddress;
+        WBNBToken = IERC20(_WBNBAddress);
         WBNB = _WBNBAddress;
-        routerAddress = _routerAddress;
         poolFee = _poolFee;
     }
 }

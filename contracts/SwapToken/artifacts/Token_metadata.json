@@ -204,7 +204,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "WithdrawWETH",
+				"name": "WithdrawWBNB",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -352,7 +352,7 @@
 						"type": "address"
 					}
 				],
-				"name": "getBalanceWETh",
+				"name": "getBalanceWBNB",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -395,6 +395,19 @@
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "linkToken",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -469,11 +482,6 @@
 					{
 						"internalType": "address",
 						"name": "_WBNBAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_routerAddress",
 						"type": "address"
 					},
 					{
@@ -969,11 +977,11 @@
 			]
 		},
 		"contracts/SwapToken/FRGST.sol": {
-			"keccak256": "0x7d7239707747cf05cc633a2ec2ca5254e82cd61764bccd042e47a62116d76dc4",
+			"keccak256": "0xdf90f724d02e6fafc5e97f1e4e3919755b645cfdebc19172ff975000a06b5b74",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://419259525ec66c2d6605a5681b0ac01de419b071bad219608bbdc9e43bf4b17b",
-				"dweb:/ipfs/QmakcgTSHqacFttTXeRX1e5Htkfjjmb9ArTDDYDv869M6p"
+				"bzz-raw://6e3a8fbb960351d097ca11c83a3ce4e8b7c97b5f14b4b50f565ec54ba348b309",
+				"dweb:/ipfs/QmQVCdrN2a3RZ5GScKmTYeHfi7HDJ4Ex2jFtBcvDcwpUo1"
 			]
 		}
 	},
