@@ -90,12 +90,12 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 }else{
                     Taxs[2].currentAmount += LPAmount;
                 }
-                if(((Taxs[3].currentAmount + InvestmentAmount) >= Taxs[3].XAmount) && (Taxs[3].XAmount != 0)) {
-                    swapExactInputSingle(Taxs[3].XAmount,address(this));
-                    Taxs[3].currentAmount = (Taxs[3].currentAmount + InvestmentAmount) -  Taxs[3].XAmount;
-                }else{
-                    Taxs[3].currentAmount += InvestmentAmount;
-                }
+                // if(((Taxs[3].currentAmount + InvestmentAmount) >= Taxs[3].XAmount) && (Taxs[3].XAmount != 0)) {
+                //     swapExactInputSingle(Taxs[3].XAmount,address(this));
+                //     Taxs[3].currentAmount = (Taxs[3].currentAmount + InvestmentAmount) -  Taxs[3].XAmount;
+                // }else{
+                //     Taxs[3].currentAmount += InvestmentAmount;
+                // }
                 if(((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) && isSwap && (Taxs[4].XAmount != 0))  {
                     swapExactInputSingle(Taxs[4].XAmount,address(this));
                     Taxs[4].currentAmount = (Taxs[4].currentAmount + MarkettingAmount) -  Taxs[4].XAmount;
@@ -104,7 +104,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 }  
                 super.transfer(Wallet,ReflectionAmount);
                 super.transfer(Wallet,LPAmount);
-                super.transfer(Wallet,InvestmentAmount);
+                super.burn(InvestmentAmount);
                 super.transfer(Wallet,MarkettingAmount);
                 return super.transfer(to, (amount-(ReflectionAmount+LPAmount+InvestmentAmount+MarkettingAmount)));
             }else if(to == PancakeSwap)
@@ -120,12 +120,12 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 }else{
                     Taxs[2].currentAmount += LPAmount;
                 }
-                if(((Taxs[3].currentAmount + InvestmentAmount) >= Taxs[3].XAmount) && (Taxs[3].XAmount != 0)) {
-                    swapExactInputSingle(Taxs[3].XAmount,address(this));
-                    Taxs[3].currentAmount = (Taxs[3].currentAmount + InvestmentAmount) -  Taxs[3].XAmount;
-                }else{
-                    Taxs[3].currentAmount += InvestmentAmount;
-                }
+                // if(((Taxs[3].currentAmount + InvestmentAmount) >= Taxs[3].XAmount) && (Taxs[3].XAmount != 0)) {
+                //     swapExactInputSingle(Taxs[3].XAmount,address(this));
+                //     Taxs[3].currentAmount = (Taxs[3].currentAmount + InvestmentAmount) -  Taxs[3].XAmount;
+                // }else{
+                //     Taxs[3].currentAmount += InvestmentAmount;
+                // }
                 if(((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) && isSwap && (Taxs[4].XAmount != 0)) {
                     swapExactInputSingle(Taxs[4].XAmount,address(this));
                     Taxs[4].currentAmount = (Taxs[4].currentAmount + MarkettingAmount) -  Taxs[4].XAmount;
@@ -134,7 +134,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 }  
                 super.transfer(Wallet,ReflectionAmount);
                 super.transfer(Wallet,LPAmount);
-                super.transfer(Wallet,InvestmentAmount);
+                super.burn(InvestmentAmount);
                 super.transfer(Wallet,MarkettingAmount);
                 return super.transfer(to,amount-(ReflectionAmount+LPAmount+InvestmentAmount+MarkettingAmount));
             }
@@ -149,7 +149,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setReflectionSellTax take Tax percentage as a parameter and set this percentage to ReflectionSellTax variable.  
     */
     function setReflectionSellTax(uint Tax) public onlyOwner{
-        require(Tax >= 0 && Tax <=15,"Tax Amount must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[1].SellTax = Tax;
     }
 
@@ -158,7 +158,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setLPSellTax take Tax percentage as a parameter and set this percentage to LPSellTax variable.  
     */
     function setLPSellTax(uint Tax) public onlyOwner{
-        require(Tax >= 0 && Tax <=15,"Tax Amount must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[2].SellTax = Tax;
     }
 
@@ -167,7 +167,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setInvestmentSellTax take Tax percentage as a parameter and set this percentage to InvestmentSellTax variable.  
     */
     function setInvestmentSellTax(uint Tax) public onlyOwner{
-        require(Tax >= 0 && Tax <=15,"Tax Amount must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[3].SellTax = Tax;
     }
 
@@ -176,7 +176,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setMarkettingSellTax take Tax percentage as a parameter and set this percentage to MarkettingSellTax variable.  
     */
     function setMarkettingSellTax(uint Tax) public onlyOwner{
-        require(Tax >= 0 && Tax <=15,"Tax Amount must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[4].SellTax = Tax;
     }
 
@@ -185,7 +185,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setReflectionBuyTax take Tax percentage as a parameter and set this percentage to ReflectionBuyTax variable.  
     */
     function setReflectionBuyTax(uint Tax) public onlyOwner{
-        require(Tax >= 0 && Tax <=15,"Tax Amount must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[1].BuyTax = Tax;
     }
 
@@ -194,7 +194,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setLPBuyTax take Tax percentage as a parameter and set this percentage to LPBuyTax variable.  
     */
     function setLPBuyTax(uint Tax) public onlyOwner{
-        require(Tax >= 0 && Tax <=15,"Tax Amount must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[2].BuyTax = Tax;
     }
 
@@ -203,7 +203,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setInvestmentBuyTax take Tax percentage as a parameter and set this percentage to InvestmentBuyTax variable.  
     */
     function setInvestmentBuyTax(uint Tax) public onlyOwner{
-        require(Tax >= 0 && Tax <=15,"Tax Amount must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[3].BuyTax = Tax;
     }
 
@@ -212,7 +212,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setMarkettingBuyTax take Tax percentage as a parameter and set this percentage to MarkettingBuyTax variable.  
     */
     function setMarkettingBuyTax(uint Tax) public onlyOwner{
-        require(Tax >= 0 && Tax <=15,"Tax Amount must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[4].BuyTax = Tax;
     }
 
@@ -264,10 +264,10 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     function WithdrawWBNB(address to,uint amount) public onlyOwner{
         WBNBToken.transfer(to,amount);
     }
-    function setTaxData(uint SaleT,uint BuyT,uint Amount,uint Typ) public onlyOwner {
-        require(Typ >0 && Typ < 5,"Typ Must Be (1,2,3,4)");
-        Taxs[Typ] = Cap(SaleT,BuyT,Amount,0);
-    }
+    // function setTaxData(uint SaleT,uint BuyT,uint Amount,uint Typ) public onlyOwner {
+    //     require(Typ >0 && Typ < 5,"Typ Must Be (1,2,3,4)");
+    //     Taxs[Typ] = Cap(SaleT,BuyT,Amount,0);
+    // }
     // ============ setAddressFee FUNCTIONS ============
     /* 
         @dev setAddress&Fee this function takes address(_PancakeSwapAddress,_WBNBAddress) and Fee amount(_poolFee). 

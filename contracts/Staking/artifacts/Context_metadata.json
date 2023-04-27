@@ -19,7 +19,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Staking/FRGST_flattened.sol": "Context"
+			"contracts/Staking/ERC20_flattened.sol": "Context"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -27,18 +27,17 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Staking/FRGST_flattened.sol": {
-			"keccak256": "0x860097e2b557f1daaaf95986abd1bf4fb1907c22fe73e17d1f6ab0e7f59b1723",
-			"license": "MIT",
+		"contracts/Staking/ERC20_flattened.sol": {
+			"keccak256": "0x13a8b9a80982419172f83fa2ece09b6187391aa06bb574ae75150b71db3e343c",
 			"urls": [
-				"bzz-raw://2f2c78a818e56c15b6b7e64877564c545e8e3051c02af84164c34d126ee14d9e",
-				"dweb:/ipfs/QmV9ogpm44e61Poy33rVAqXSffbBLkXStzE6jdvrEbzYno"
+				"bzz-raw://d86cd08f2b830d33f0328de90e64f6719aa1e2b418e9eea95ae486fdcaaf8e6c",
+				"dweb:/ipfs/QmTv6SmMtLDy89eZB4e8SYXFcvS44ZztzJ4jeK69wePp27"
 			]
 		}
 	},
