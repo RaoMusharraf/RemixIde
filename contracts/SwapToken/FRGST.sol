@@ -12,7 +12,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     address public Wallet;
     bool public isSwap;
     address public PancakeSwap;
-    uint256 public LPTransferAmount;
+    uint256 public ReflectionTaxAmount;
     // address public constant WBNB = 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889;
     // uint24 public constant poolFee = 500; 
 
@@ -28,8 +28,13 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         uint XAmount;
         uint currentAmount;
     }
+    struct ReflectionUserTax{
+        bool withdraw;
+        bool TAmount;
+    }
     // mappings
     mapping(address => bool) public whiteList;
+    mapping(address => ReflectionUserTax) public reflectionUserDetail;
     mapping(uint => Cap) public Taxs;
 
     IERC20 public linkToken;
@@ -55,7 +60,6 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     function swapExactInputSingle(uint256 amountIn,address recipientAddresss) public returns (uint256 amountOut)
     {
         linkToken.approve(address(swapRouter), amountIn);
-        // approve(address(swapRouter), amountIn);
         ISwapRouter.ExactInputSingleParams memory params = ISwapRouter
             .ExactInputSingleParams({
                 tokenIn: address(this),
@@ -83,6 +87,8 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 uint LPAmount = ((amount*Taxs[2].BuyTax)/100);
                 uint InvestmentAmount = ((amount*Taxs[3].BuyTax)/100);
                 uint MarkettingAmount = ((amount*Taxs[4].BuyTax)/100);
+                ReflectionTaxAmount += ReflectionAmount;
+                reflectionUserDetail[msg.sender].TAmount = true;
                 if(((Taxs[2].currentAmount + LPAmount) >= Taxs[2].XAmount) && (Taxs[2].XAmount != 0)) {
                     super.transfer(PancakeSwap,(Taxs[2].XAmount/2));
                     swapExactInputSingle((Taxs[2].XAmount/2),PancakeSwap);
@@ -90,12 +96,6 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 }else{
                     Taxs[2].currentAmount += LPAmount;
                 }
-                // if(((Taxs[3].currentAmount + InvestmentAmount) >= Taxs[3].XAmount) && (Taxs[3].XAmount != 0)) {
-                //     swapExactInputSingle(Taxs[3].XAmount,address(this));
-                //     Taxs[3].currentAmount = (Taxs[3].currentAmount + InvestmentAmount) -  Taxs[3].XAmount;
-                // }else{
-                //     Taxs[3].currentAmount += InvestmentAmount;
-                // }
                 if(((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) && isSwap && (Taxs[4].XAmount != 0))  {
                     swapExactInputSingle(Taxs[4].XAmount,address(this));
                     Taxs[4].currentAmount = (Taxs[4].currentAmount + MarkettingAmount) -  Taxs[4].XAmount;
@@ -113,6 +113,8 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 uint LPAmount = ((amount*Taxs[2].SellTax)/100);
                 uint InvestmentAmount = ((amount*Taxs[3].SellTax)/100);
                 uint MarkettingAmount = ((amount*Taxs[4].SellTax)/100);
+                ReflectionTaxAmount += ReflectionAmount;
+                reflectionUserDetail[msg.sender].TAmount = true;
                 if(((Taxs[2].currentAmount + LPAmount) >= Taxs[2].XAmount) && (Taxs[2].XAmount != 0)) {
                     super.transfer(PancakeSwap,(Taxs[2].XAmount/2));
                     swapExactInputSingle((Taxs[2].XAmount/2),PancakeSwap);
@@ -120,12 +122,6 @@ contract Token is ERC20, Ownable,ERC20Burnable {
                 }else{
                     Taxs[2].currentAmount += LPAmount;
                 }
-                // if(((Taxs[3].currentAmount + InvestmentAmount) >= Taxs[3].XAmount) && (Taxs[3].XAmount != 0)) {
-                //     swapExactInputSingle(Taxs[3].XAmount,address(this));
-                //     Taxs[3].currentAmount = (Taxs[3].currentAmount + InvestmentAmount) -  Taxs[3].XAmount;
-                // }else{
-                //     Taxs[3].currentAmount += InvestmentAmount;
-                // }
                 if(((Taxs[4].currentAmount + MarkettingAmount) >= Taxs[4].XAmount) && isSwap && (Taxs[4].XAmount != 0)) {
                     swapExactInputSingle(Taxs[4].XAmount,address(this));
                     Taxs[4].currentAmount = (Taxs[4].currentAmount + MarkettingAmount) -  Taxs[4].XAmount;
@@ -144,6 +140,19 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         }  
     }
 
+    // ============ WithdrawReflectionTaxPersentage FUNCTIONS ============
+    /* 
+        @dev WithdrawReflectionTaxPersentage take one parameter(user address) and calculate reflection amount of user and send amount at the user address.  
+    */
+    function WithdrawReflectionTaxPersentage(address from) public {
+        require(reflectionUserDetail[from].TAmount,"First Transfer Tokens");
+        require(!reflectionUserDetail[from].withdraw,"You Already Withdraw");  
+        uint256 transferAmount = ((balanceOf(from)) * ReflectionTaxAmount) /totalSupply();
+        reflectionUserDetail[from].withdraw = true;
+        ReflectionTaxAmount -= transferAmount;
+        linkToken.transfer(from,transferAmount);
+    }
+
     // ============ setReflectionSellTax FUNCTIONS ============
     /* 
         @dev setReflectionSellTax take Tax percentage as a parameter and set this percentage to ReflectionSellTax variable.  
@@ -158,7 +167,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setLPSellTax take Tax percentage as a parameter and set this percentage to LPSellTax variable.  
     */
     function setLPSellTax(uint Tax) public onlyOwner{
-        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[2].SellTax = Tax;
     }
 
@@ -167,7 +176,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setInvestmentSellTax take Tax percentage as a parameter and set this percentage to InvestmentSellTax variable.  
     */
     function setInvestmentSellTax(uint Tax) public onlyOwner{
-        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[3].SellTax = Tax;
     }
 
@@ -176,7 +185,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setMarkettingSellTax take Tax percentage as a parameter and set this percentage to MarkettingSellTax variable.  
     */
     function setMarkettingSellTax(uint Tax) public onlyOwner{
-        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[4].SellTax = Tax;
     }
 
@@ -185,7 +194,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setReflectionBuyTax take Tax percentage as a parameter and set this percentage to ReflectionBuyTax variable.  
     */
     function setReflectionBuyTax(uint Tax) public onlyOwner{
-        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
+        require(Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[1].BuyTax = Tax;
     }
 
@@ -194,7 +203,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setLPBuyTax take Tax percentage as a parameter and set this percentage to LPBuyTax variable.  
     */
     function setLPBuyTax(uint Tax) public onlyOwner{
-        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[2].BuyTax = Tax;
     }
 
@@ -203,7 +212,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setInvestmentBuyTax take Tax percentage as a parameter and set this percentage to InvestmentBuyTax variable.  
     */
     function setInvestmentBuyTax(uint Tax) public onlyOwner{
-        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[3].BuyTax = Tax;
     }
 
@@ -212,7 +221,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         @dev setMarkettingBuyTax take Tax percentage as a parameter and set this percentage to MarkettingBuyTax variable.  
     */
     function setMarkettingBuyTax(uint Tax) public onlyOwner{
-        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[4].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
+        require(Taxs[1].BuyTax +Taxs[2].BuyTax+Taxs[3].BuyTax+Taxs[1].SellTax + Taxs[2].SellTax + Taxs[3].SellTax + Taxs[4].SellTax + Tax <= 15,"Sum of Tax Persentage must be 0 to 15");
         Taxs[4].BuyTax = Tax;
     }
 
@@ -222,14 +231,6 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     */
     function setLPXAmount(uint Amount) public onlyOwner{
         Taxs[2].XAmount = Amount;
-    }
-
-    // ============ setInvestmentXAmount FUNCTIONS ============
-    /* 
-        @dev setInvestmentXAmount take Amount percentage as a parameter and set this percentage to InvestmentXAmount variable.  
-    */
-    function setInvestmentXAmount(uint Amount) public onlyOwner{
-        Taxs[3].XAmount = Amount;
     }
 
     // ============ setMarkettingXAmount FUNCTIONS ============
@@ -264,10 +265,16 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     function WithdrawWBNB(address to,uint amount) public onlyOwner{
         WBNBToken.transfer(to,amount);
     }
-    // function setTaxData(uint SaleT,uint BuyT,uint Amount,uint Typ) public onlyOwner {
-    //     require(Typ >0 && Typ < 5,"Typ Must Be (1,2,3,4)");
-    //     Taxs[Typ] = Cap(SaleT,BuyT,Amount,0);
-    // }
+
+    // ============ WithdrawTokens FUNCTIONS ============
+    /* 
+        @dev WithdrawTokens this function takes amount and transfer this amount to the connected address 
+        but this function is onlyOwner Function(No one can run this function except admin).  
+    */
+    function WithdrawTokens(address to,uint amount) public onlyOwner{
+        linkToken.transfer(to,amount);
+    }
+
     // ============ setAddressFee FUNCTIONS ============
     /* 
         @dev setAddress&Fee this function takes address(_PancakeSwapAddress,_WBNBAddress) and Fee amount(_poolFee). 
@@ -279,4 +286,5 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         WBNB = _WBNBAddress;
         poolFee = _poolFee;
     }
+
 }

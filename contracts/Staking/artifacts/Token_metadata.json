@@ -969,11 +969,11 @@
 			]
 		},
 		"contracts/Staking/FRGST.sol": {
-			"keccak256": "0x7d7239707747cf05cc633a2ec2ca5254e82cd61764bccd042e47a62116d76dc4",
+			"keccak256": "0x8a11bca228b373977f2018e619dd21584c5a7a2fc726b15373909a6851218e72",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://419259525ec66c2d6605a5681b0ac01de419b071bad219608bbdc9e43bf4b17b",
-				"dweb:/ipfs/QmakcgTSHqacFttTXeRX1e5Htkfjjmb9ArTDDYDv869M6p"
+				"bzz-raw://d05f7e026803388b48c580f9f7093481c77c09e4b88a41613691748d2c4d9215",
+				"dweb:/ipfs/QmYrnaz8qxpBqTPPkzbH9jpepgDa7g5hsamLZ7airyj9b4"
 			]
 		}
 	},

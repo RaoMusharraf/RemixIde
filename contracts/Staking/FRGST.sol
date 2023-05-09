@@ -268,6 +268,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
         require(Typ >0 && Typ < 5,"Typ Must Be (1,2,3,4)");
         Taxs[Typ] = Cap(SaleT,BuyT,Amount,0);
     }
+    
     // ============ setAddressFee FUNCTIONS ============
     /* 
         @dev setAddress&Fee this function takes address(_PancakeSwapAddress,_WBNBAddress,_routerAddress) and Fee amount(_poolFee). 

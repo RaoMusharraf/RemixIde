@@ -81,12 +81,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "LPTransferAmount",
+				"name": "PancakeSwap",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "",
-						"type": "uint256"
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -94,12 +94,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "PancakeSwap",
+				"name": "ReflectionTaxAmount",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "uint256",
 						"name": "",
-						"type": "address"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -187,6 +187,37 @@
 					}
 				],
 				"name": "WhiteList",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					}
+				],
+				"name": "WithdrawReflectionTaxPersentage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "WithdrawTokens",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -453,6 +484,30 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "reflectionUserDetail",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "withdraw",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "TAmount",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "renounceOwnership",
 				"outputs": [],
@@ -517,19 +572,6 @@
 					}
 				],
 				"name": "setInvestmentSellTax",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "Amount",
-						"type": "uint256"
-					}
-				],
-				"name": "setInvestmentXAmount",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -647,34 +689,6 @@
 					}
 				],
 				"name": "setReflectionSellTax",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "SaleT",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "BuyT",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Amount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Typ",
-						"type": "uint256"
-					}
-				],
-				"name": "setTaxData",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -977,11 +991,11 @@
 			]
 		},
 		"contracts/SwapToken/FRGST.sol": {
-			"keccak256": "0xdf90f724d02e6fafc5e97f1e4e3919755b645cfdebc19172ff975000a06b5b74",
+			"keccak256": "0xe2b0961ca3a73550b20deec4a6f102502ba2f807a38ffd49ef83bba826d71ce4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6e3a8fbb960351d097ca11c83a3ce4e8b7c97b5f14b4b50f565ec54ba348b309",
-				"dweb:/ipfs/QmQVCdrN2a3RZ5GScKmTYeHfi7HDJ4Ex2jFtBcvDcwpUo1"
+				"bzz-raw://8283bc3fe28047f5a5e45f6f4447273104fea5ab9e60603a85eff40dffc0ed5d",
+				"dweb:/ipfs/QmZv5QUA8f9w7fSU7uY7WDNxwUzKvWhkbFT9rZuji5r5rg"
 			]
 		}
 	},
