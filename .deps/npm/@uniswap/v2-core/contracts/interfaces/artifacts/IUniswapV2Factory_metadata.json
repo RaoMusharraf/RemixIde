@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.13+commit.abaa5c0e"
+		"version": "0.8.20+commit.a1b79de6"
 	},
 	"language": "Solidity",
 	"output": {
@@ -184,7 +184,7 @@
 		"compilationTarget": {
 			".deps/npm/@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol": "IUniswapV2Factory"
 		},
-		"evmVersion": "london",
+		"evmVersion": "shanghai",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -197,10 +197,11 @@
 	},
 	"sources": {
 		".deps/npm/@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol": {
-			"keccak256": "0xe5905c0989cf5a865ed9bb7b9252536ca011c5b744017a82a7d4443b9c00a891",
+			"keccak256": "0xa7a60cac7084df79f5b6f5712cabadfc0bfcdb01b87fefa69ff826247b4ec4cd",
+			"license": "MIT",
 			"urls": [
-				"bzz-raw://5d2a90a0a796491507462a3da18c3f8819721d571572d765a2207c35bf0a0389",
-				"dweb:/ipfs/Qmf9ACYiT3qzjgsYuhm866FBdiBpRMXAPpQhSFbgqcyhHt"
+				"bzz-raw://9342b5600161690c567177b893785f443c80a4bf779a7dd80b038b3cdf5366c1",
+				"dweb:/ipfs/QmSg8eL7wHJHQic3KZVYjWFJChF5nTyTbA9n8YFRD9Lhq7"
 			]
 		}
 	},
