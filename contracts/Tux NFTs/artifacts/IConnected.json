@@ -49,10 +49,30 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"safeMint(address,uint256,string)": "cd279c7c"
+			"getTokenId(address)": "f1537686",
+			"safeMint(address,uint256,string,string)": "37f68552"
 		}
 	},
 	"abi": [
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_to",
+					"type": "address"
+				}
+			],
+			"name": "getTokenId",
+			"outputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "",
+					"type": "uint256[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
 		{
 			"inputs": [
 				{
@@ -68,6 +88,11 @@
 				{
 					"internalType": "string",
 					"name": "uri",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "collectionId",
 					"type": "string"
 				}
 			],

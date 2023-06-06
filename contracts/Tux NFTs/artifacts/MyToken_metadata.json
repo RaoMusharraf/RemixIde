@@ -238,6 +238,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string",
+						"name": "collectionId",
+						"type": "string"
+					}
+				],
+				"name": "getTokenIdsByCollection",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
@@ -327,10 +346,21 @@
 						"internalType": "string",
 						"name": "uri",
 						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "collectionId",
+						"type": "string"
 					}
 				],
 				"name": "safeMint",
-				"outputs": [],
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -561,7 +591,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Tux NFTs/ERC721.sol": "MyToken"
+			"contracts/Tux NFTs/newERC721.sol": "MyToken"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -679,12 +709,12 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/Tux NFTs/ERC721.sol": {
-			"keccak256": "0x0f57216f1ead4bb1ba9204161a28c115df42cb6bd76333bd070adfebd2945708",
+		"contracts/Tux NFTs/newERC721.sol": {
+			"keccak256": "0xa14b4802f35fad1e6421bdf7f783cc1322600b327d2ecd3a384ff0d16659d7e2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e5e410d3c42f4d7a009e4765e1563dd1e9c7952027b5ff5339d7e73aa92f22c2",
-				"dweb:/ipfs/QmcVwGBLtLzhMfMkDfRVAVYTqsUbJ2pTevY8MmUo37cHaN"
+				"bzz-raw://02e48a36bb6eb8c4267b3c97e1081b91d50851692c963e5ca11358687b955740",
+				"dweb:/ipfs/QmT1pKURQ6VCE1xJHvi6kUjNhrYhjyAow27VvhqvC36p1G"
 			]
 		}
 	},

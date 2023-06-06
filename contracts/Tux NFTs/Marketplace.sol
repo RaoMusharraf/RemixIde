@@ -20,7 +20,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
     address MinterAddress;
     address paymentToken;
     address AddminAddress;
-    uint256 AdminPrice;
+    uint256 AdminPricePer;
     mapping(uint256 => NFT) public _idToNFT;
     mapping (uint256 => Admin) public URI;
     // mapping (uint256 => uint256) public Id;
@@ -28,6 +28,9 @@ contract Marketplace is ReentrancyGuard , Ownable{
         uint256 tokenId;
         address seller;
         address owner;
+        address royalityAddress;
+        uint256 royalityPersentage;
+        bool royalityCheck; 
         uint256 price;
         bool listed;
     }
@@ -39,25 +42,25 @@ contract Marketplace is ReentrancyGuard , Ownable{
     event NFTListed(uint256 tokenId,address seller,address owner,uint256 price);
     event NFTSold(uint256 tokenId,address seller,address owner,uint256 price);
     event NFTCancel(uint256 tokenId,address seller,address owner,uint256 price);
-    constructor(address ERC721NFT, address _AdminAddress, uint256 _AdminPrice){
+    constructor(address ERC721NFT, address _AdminAddress, uint256 _AdminPricePer){
         token = ERC721(ERC721NFT);
         MinterAddress = ERC721NFT;
         AddminAddress = _AdminAddress;
-        AdminPrice = _AdminPrice;
+        AdminPricePer = _AdminPricePer;
     }
     // ============ setAdminPrice FUNCTIONS ============
     /* 
         @param price is the NFT value from AdminSide.
     */
-    function setAdminPrice (uint256 price) public onlyOwner{
-        AdminPrice = price;
+    function setAdminPrice (uint256 _AdminPricePer) public onlyOwner{
+        AdminPricePer = _AdminPricePer;
     }
     // ============ getAdminPrice FUNCTIONS ============
     /* 
         @param price is the NFT value from AdminSide.
     */
     function getAdminPrice () public view returns(uint256 price) {
-        return AdminPrice;
+        return AdminPricePer;
     }
     // ============ BuyAdmin FUNCTIONS ============
     /*
@@ -65,13 +68,10 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @param id that are created by admin when admin enter data.
     */
     function Mint(string memory uri) public payable nonReentrant {
-        require(AdminPrice == msg.value,"Insuficient Fund !");
+        // require(AdminPricePer == msg.value,"Insuficient Fund !");
         tokenID.increment();
         IConnected(MinterAddress).safeMint(msg.sender,tokenID.current(),uri);
-        payable(AddminAddress).transfer(AdminPrice);
-        // Id[tokenID.current()] = tokenID.current();
-        // IERC20(paymentToken).safeTransferFrom(msg.sender, AddminAddress , price);
-        _idToNFT[tokenID.current()] = NFT(tokenID.current(),msg.sender,msg.sender,AdminPrice,true);
+        _idToNFT[tokenID.current()] = NFT(tokenID.current(),msg.sender,msg.sender,msg.sender,0,false,AdminPricePer,true);
     }
     // ============ ListNft FUNCTIONS ============
     /*
@@ -79,10 +79,10 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @param _tokenId that are minted by the nftContract
         @param _price set price of NFT
     */
-    function ListNft(uint256 _price,uint256 _tokenId) public nonReentrant {
+    function ListNft(uint256 _royalityPersentage,uint256 _price,uint256 _tokenId) public nonReentrant {
         require(_price >= 0, "Price Must Be At Least 0 Wei");
         token.transferFrom(msg.sender, address(this), _tokenId);
-        _idToNFT[_tokenId] = NFT(_tokenId,msg.sender,address(this),_price,false);
+        _idToNFT[_tokenId] = NFT(_tokenId,msg.sender,address(this),_idToNFT[_tokenId].royalityAddress,_royalityPersentage,false,_price,false);
         _nftCount.increment();
         emit NFTListed(_tokenId, msg.sender, address(this), _price);
     }
@@ -94,11 +94,22 @@ contract Marketplace is ReentrancyGuard , Ownable{
     function buyNft(uint256 price,uint256 _tokenId) public payable nonReentrant {
         require(_idToNFT[_tokenId].seller != msg.sender, "An offer cannot buy this Seller !!!");
         require(price >= _idToNFT[_tokenId].price , "Not enough ether to cover asking price !!!");
-        payable(_idToNFT[_tokenId].seller).transfer(_idToNFT[_tokenId].price);
-        payable(AddminAddress).transfer(AdminPrice);
-        // IERC20(paymentToken).safeTransferFrom(msg.sender, _idToNFT[_tokenId].seller ,_idToNFT[_tokenId].price);
         token.transferFrom(address(this), msg.sender, _tokenId);
-        _idToNFT[_tokenId] = NFT(_tokenId,msg.sender,msg.sender,_idToNFT[_tokenId].price,true);
+        if(_idToNFT[_tokenId].royalityCheck){
+            uint256 AdminPrice = (AdminPricePer * _idToNFT[_tokenId].price)/100;
+            uint256 royality_amount = (_idToNFT[_tokenId].royalityPersentage * _idToNFT[_tokenId].price)/100;
+            uint256 amount = _idToNFT[_tokenId].price - (royality_amount + AdminPricePer);
+            payable(_idToNFT[_tokenId].royalityAddress).transfer(royality_amount);  
+            payable(AddminAddress).transfer(AdminPrice);
+            payable(_idToNFT[_tokenId].seller).transfer(amount);  
+        }
+        else{
+            uint256 AdminPrice = (AdminPricePer * _idToNFT[_tokenId].price)/100;
+            uint256 amount = _idToNFT[_tokenId].price - AdminPrice ;
+            payable(AddminAddress).transfer(AdminPrice);
+            payable(_idToNFT[_tokenId].seller).transfer(amount); 
+        }
+        _idToNFT[_tokenId] = NFT(_tokenId,msg.sender,msg.sender,_idToNFT[_tokenId].royalityAddress,_idToNFT[_tokenId].royalityPersentage,true,_idToNFT[_tokenId].price,true);
         _nftCount.decrement();
         emit NFTSold(_idToNFT[_tokenId].tokenId, _idToNFT[_tokenId].seller, msg.sender, msg.value);
     }

@@ -11,6 +11,25 @@
 						"internalType": "address",
 						"name": "_to",
 						"type": "address"
+					}
+				],
+				"name": "getTokenId",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
 					},
 					{
 						"internalType": "uint256",
@@ -20,6 +39,11 @@
 					{
 						"internalType": "string",
 						"name": "uri",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "collectionId",
 						"type": "string"
 					}
 				],
@@ -33,7 +57,10 @@
 			"details": "Required interface of an ERC721 compliant contract.",
 			"kind": "dev",
 			"methods": {
-				"safeMint(address,uint256,string)": {
+				"getTokenId(address)": {
+					"details": "Returns the number of tokens in ``owner``'s account."
+				},
+				"safeMint(address,uint256,string,string)": {
 					"details": "Returns the number of tokens in ``owner``'s account."
 				}
 			},
@@ -47,7 +74,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Tux NFTs/IConnected.sol": "IConnected"
+			"contracts/Tux NFTs/newIConnected.sol": "IConnected"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -61,12 +88,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Tux NFTs/IConnected.sol": {
-			"keccak256": "0x67fa7715cf1accda3acdbc5fac20c2befc5bd28a2837f634950d6278c1832679",
+		"contracts/Tux NFTs/newIConnected.sol": {
+			"keccak256": "0xa8bdf7259d7fe64abcd19f049db356fa951a85faf384d5a91f5c84c19dcb5b8b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fafd8fec85294b1fb4a9cbc6d36e84e45dab6ecd20ae440de2468b1b0fa7445e",
-				"dweb:/ipfs/Qme3b8JKKbXRaUih7uSwveJ9c1iag2jcX8QEsQ6GLGrMK6"
+				"bzz-raw://181010477a52606a6dbe38dc8a43dac84917275bba9c8ad17fa78b718efdde2b",
+				"dweb:/ipfs/QmXXmcgAVectyivr9vyGTLmQzCLDbhWCVPsVUNTWCXU5hD"
 			]
 		}
 	},

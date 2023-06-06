@@ -19,7 +19,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "_AdminPrice",
+						"name": "_AdminPricePer",
 						"type": "uint256"
 					}
 				],
@@ -155,6 +155,11 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "_royalityPercentage",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
 						"name": "_price",
 						"type": "uint256"
 					},
@@ -172,8 +177,37 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "ListedId",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "Listed",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Price",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "string",
 						"name": "uri",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "collectionId",
 						"type": "string"
 					}
 				],
@@ -248,6 +282,21 @@
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "royalityAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "royalitypercentage",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "royalityCheck",
+						"type": "bool"
 					},
 					{
 						"internalType": "uint256",
@@ -335,6 +384,21 @@
 								"type": "address"
 							},
 							{
+								"internalType": "address",
+								"name": "royalityAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "royalitypercentage",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "royalityCheck",
+								"type": "bool"
+							},
+							{
 								"internalType": "uint256",
 								"name": "price",
 								"type": "uint256"
@@ -379,6 +443,21 @@
 								"internalType": "address",
 								"name": "owner",
 								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "royalityAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "royalitypercentage",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "royalityCheck",
+								"type": "bool"
 							},
 							{
 								"internalType": "uint256",
@@ -427,6 +506,21 @@
 								"type": "address"
 							},
 							{
+								"internalType": "address",
+								"name": "royalityAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "royalitypercentage",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "royalityCheck",
+								"type": "bool"
+							},
+							{
 								"internalType": "uint256",
 								"name": "price",
 								"type": "uint256"
@@ -471,6 +565,21 @@
 								"internalType": "address",
 								"name": "owner",
 								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "royalityAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "royalitypercentage",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "royalityCheck",
+								"type": "bool"
 							},
 							{
 								"internalType": "uint256",
@@ -534,7 +643,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "price",
+						"name": "_AdminPricePer",
 						"type": "uint256"
 					}
 				],
@@ -594,7 +703,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Tux NFTs/Marketplace.sol": "Marketplace"
+			"contracts/Tux NFTs/newMarketplace.sol": "Marketplace"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -736,20 +845,20 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/Tux NFTs/IConnected.sol": {
-			"keccak256": "0xd91ebd366776daf1041c3c55af8f497a9348a69ef2be7abfe085aad55b7a9984",
+		"contracts/Tux NFTs/newIConnected.sol": {
+			"keccak256": "0xa8bdf7259d7fe64abcd19f049db356fa951a85faf384d5a91f5c84c19dcb5b8b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://dc415f32058407b8409b3b0b46202b692eff39fac90547d8a369efa159d81b02",
-				"dweb:/ipfs/QmbUbfcDtEG3jnkWSr5i5f2r915Sk5AQkP1aKrqVDPFWzQ"
+				"bzz-raw://181010477a52606a6dbe38dc8a43dac84917275bba9c8ad17fa78b718efdde2b",
+				"dweb:/ipfs/QmXXmcgAVectyivr9vyGTLmQzCLDbhWCVPsVUNTWCXU5hD"
 			]
 		},
-		"contracts/Tux NFTs/Marketplace.sol": {
-			"keccak256": "0xc5eade9d698756486dc31f5ad33b6fadc0158876bb29e651d928691b7b19f41a",
+		"contracts/Tux NFTs/newMarketplace.sol": {
+			"keccak256": "0xbca4ac1aab5127dfbe0e355440b4e43de6940e98f75462d4eff5c46bb07e573c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ebe9cd722837ff66afeb8487dd58bf2f8436bdaed4905735fc6d38070cf14911",
-				"dweb:/ipfs/QmWSX7dB2ntSh273FLueZqgjx8V46sRuiagHwsDtFta9aB"
+				"bzz-raw://ede8c2786c874dd2919a07fa542f8bcf79ff98f1b0edf82fe5d2856c2cbd0bbd",
+				"dweb:/ipfs/QmRBhqmNEgsLJfgnStJXUa9SmBHjpN9Kj42cvNDjQ3XbW6"
 			]
 		}
 	},
