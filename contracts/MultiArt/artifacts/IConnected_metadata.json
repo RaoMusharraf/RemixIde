@@ -1,0 +1,101 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					}
+				],
+				"name": "getTokenId",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "collectionId",
+						"type": "string"
+					}
+				],
+				"name": "safeMint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Required interface of an ERC721 compliant contract.",
+			"kind": "dev",
+			"methods": {
+				"getTokenId(address)": {
+					"details": "Returns the number of tokens in ``owner``'s account."
+				},
+				"safeMint(address,uint256,string,string)": {
+					"details": "Returns the number of tokens in ``owner``'s account."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/MultiArt/IConnected.sol": "IConnected"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/MultiArt/IConnected.sol": {
+			"keccak256": "0xa8bdf7259d7fe64abcd19f049db356fa951a85faf384d5a91f5c84c19dcb5b8b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://181010477a52606a6dbe38dc8a43dac84917275bba9c8ad17fa78b718efdde2b",
+				"dweb:/ipfs/QmXXmcgAVectyivr9vyGTLmQzCLDbhWCVPsVUNTWCXU5hD"
+			]
+		}
+	},
+	"version": 1
+}

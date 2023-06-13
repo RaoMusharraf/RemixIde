@@ -22,7 +22,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
     address AddminAddress;
     uint256 AdminPricePer;
     mapping(uint256 => NFT) public _idToNFT;
-    mapping (uint256 => Admin) public URI;
+    mapping (address => Admin) public AdminCalculation;
     // mapping (uint256 => uint256) public Id;
     struct NFT {
         uint256 tokenId;
@@ -35,9 +35,8 @@ contract Marketplace is ReentrancyGuard , Ownable{
         bool listed;
     }
     struct Admin {
-        string URI;
-        uint256 Price;
-        uint256 Count;
+        uint256 TotalSale;
+        uint256 TotalProfit;
     }
     event NFTListed(uint256 tokenId,address seller,address owner,uint256 price);
     event NFTSold(uint256 tokenId,address seller,address owner,uint256 price);
@@ -67,7 +66,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @dev BuyAdmin buy NFTs from Admin using id.
         @param id that are created by admin when admin enter data.
     */
-    function Mint(string memory uri, string memory collectionId) public payable nonReentrant {
+    function Mint(string memory uri, string memory collectionId) external payable nonReentrant {
         // require(AdminPricePer == msg.value,"Insuficient Fund !");
         tokenID.increment();
         IConnected(MinterAddress).safeMint(msg.sender,tokenID.current(),uri,collectionId);
@@ -103,6 +102,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
             uint256 AdminPrice = (AdminPricePer * _idToNFT[_tokenId].price)/100;
             uint256 royality_amount = (_idToNFT[_tokenId].royalitypercentage * _idToNFT[_tokenId].price)/100;
             uint256 amount = _idToNFT[_tokenId].price - (royality_amount + AdminPricePer);
+            AdminCalculation[AddminAddress] = Admin((AdminCalculation[AddminAddress].TotalSale + price),(AdminCalculation[AddminAddress].TotalProfit + AdminPrice));
             payable(_idToNFT[_tokenId].royalityAddress).transfer(royality_amount);  
             payable(AddminAddress).transfer(AdminPrice);
             payable(_idToNFT[_tokenId].seller).transfer(amount);  
@@ -110,6 +110,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         else{
             uint256 AdminPrice = (AdminPricePer * _idToNFT[_tokenId].price)/100;
             uint256 amount = _idToNFT[_tokenId].price - AdminPrice ;
+            AdminCalculation[AddminAddress] = Admin((AdminCalculation[AddminAddress].TotalSale + price),(AdminCalculation[AddminAddress].TotalProfit + AdminPrice));
             payable(AddminAddress).transfer(AdminPrice);
             payable(_idToNFT[_tokenId].seller).transfer(amount); 
         }
@@ -236,12 +237,17 @@ contract Marketplace is ReentrancyGuard , Ownable{
     function getTokenId(address to) public view returns (uint[] memory){
         return IConnected(MinterAddress).getTokenId(to);
     }
-    function ListedId(uint256 tokenId) public view returns(bool Listed,uint256 Price) {
+    // ============ ListedId FUNCTIONS ============
+    /*
+        @dev ListedId fetch owner of Id, bool List Check and Price.
+        @return Owner of Id, bool List Check and Price.
+    */
+    function ListedId(uint256 tokenId) public view returns(address seller,bool Listed,uint256 Price) {
         require(tokenId > 0 && tokenId <= tokenID.current(),"Token Id NOT Exist");
         if(!_idToNFT[tokenId].listed){
-            return (!_idToNFT[tokenId].listed,_idToNFT[tokenId].price);
+            return (_idToNFT[tokenId].seller,!_idToNFT[tokenId].listed,_idToNFT[tokenId].price);
         }else{
-            return (!_idToNFT[tokenId].listed,0);
+            return (_idToNFT[tokenId].seller,!_idToNFT[tokenId].listed,0);
         }     
-    }
+    } 
 }

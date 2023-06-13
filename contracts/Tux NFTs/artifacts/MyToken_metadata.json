@@ -710,11 +710,11 @@
 			]
 		},
 		"contracts/Tux NFTs/newERC721.sol": {
-			"keccak256": "0xa14b4802f35fad1e6421bdf7f783cc1322600b327d2ecd3a384ff0d16659d7e2",
+			"keccak256": "0xfca2f2277e74d4ce5251d84c6b582f7b57f830326ed62b1cbf9c2e3b2a5ed4a6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://02e48a36bb6eb8c4267b3c97e1081b91d50851692c963e5ca11358687b955740",
-				"dweb:/ipfs/QmT1pKURQ6VCE1xJHvi6kUjNhrYhjyAow27VvhqvC36p1G"
+				"bzz-raw://cba0c01d3a62b4c44767a35544cc9e041773252ea5255c55b19b8d3874daf1f4",
+				"dweb:/ipfs/QmeCU7dspjwZ8Z3mn34QzedWVyGdFVDaDvXPaQrUB3QPpS"
 			]
 		}
 	},

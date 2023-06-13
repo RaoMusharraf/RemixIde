@@ -19,7 +19,7 @@ contract MyToken is ERC721, ERC721URIStorage, Ownable {
 
     constructor() ERC721("MyToken", "MTK") {}
 
-    function safeMint(address to,uint256 tokenId, string memory uri,string memory collectionId) public returns (uint256) {
+    function safeMint(address to,uint256 tokenId, string memory uri,string memory collectionId) external returns (uint256) {
         _tokenIdCounter.increment();
         TokenId[to][count[to]+1] = tokenId;
         _safeMint(to, tokenId);
