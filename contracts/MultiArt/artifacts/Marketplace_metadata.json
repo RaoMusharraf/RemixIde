@@ -179,6 +179,34 @@
 						"type": "uint256"
 					}
 				],
+				"name": "IncreaseTime",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_auctionStart",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_auctionEnd",
+						"type": "uint256"
+					}
+				],
 				"name": "ListNft",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -189,11 +217,6 @@
 					{
 						"internalType": "string",
 						"name": "_uri",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "collectionId",
 						"type": "string"
 					},
 					{
@@ -210,11 +233,16 @@
 						"internalType": "uint256",
 						"name": "_auctionEnd",
 						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "collectionId",
+						"type": "string"
 					}
 				],
 				"name": "Mint",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -520,67 +548,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_to",
-						"type": "address"
-					}
-				],
-				"name": "getNotListedNfts",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "tokenId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "address",
-								"name": "ERC721",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "seller",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "owner",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "price",
-								"type": "uint256"
-							},
-							{
-								"internalType": "string",
-								"name": "uri",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "auctionStart",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "auctionEnd",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct Marketplace.NFT[]",
-						"name": "",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "to",
 						"type": "address"
 					}
@@ -594,6 +561,40 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "onERC721Received",
+				"outputs": [
+					{
+						"internalType": "bytes4",
+						"name": "",
+						"type": "bytes4"
+					}
+				],
+				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -614,6 +615,19 @@
 				"name": "renounceOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "returnUnixTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -831,11 +845,11 @@
 			]
 		},
 		"contracts/MultiArt/Marketplace.sol": {
-			"keccak256": "0xf1ce7149176d12b1e9d85ac5dc9d4baedd8e4ef2f2679315a2ef541adc3e02a1",
+			"keccak256": "0x8faa5fdb47391f67cc21dc6c17baa7625c65b21e2530c3f8153eb1dd353943db",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9f8f8b65b49df29e9b62aff2493c5f970ce19da75a8ab11ecee0f3fb51df29fc",
-				"dweb:/ipfs/QmT9FwHPVRqPeUPAMJ38WSKtXLSCkg74ij4BMVo6hvoi39"
+				"bzz-raw://c9b3ce5ed1032490298786eba66d46fd7c239a1d2e3cb3cf47c284bac884847d",
+				"dweb:/ipfs/QmaaVsQ4iVWyzTU5p5Gvxit1R4xKHbhRg4H6FbL4ovY9m2"
 			]
 		}
 	},

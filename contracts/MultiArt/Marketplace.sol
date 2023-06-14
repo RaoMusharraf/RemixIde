@@ -6,11 +6,12 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import "./IConnected.sol";
 /**
  * @title MarketPlace
  */
-contract Marketplace is ReentrancyGuard , Ownable{
+contract Marketplace is ReentrancyGuard , Ownable,IERC721Receiver{
     // using SafeERC20 for IERC20;
     using Counters for Counters.Counter;
     Counters.Counter public _nftCount;
@@ -67,9 +68,10 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @dev BuyAdmin buy NFTs from Admin using id.
         @param id that are created by admin when admin enter data.
     */
-    function Mint(string memory _uri,string memory collectionId,uint _price,uint _auctionStart,uint _auctionEnd) external payable nonReentrant {
+    function Mint(string memory _uri,uint _price,uint _auctionStart,uint _auctionEnd,string memory collectionId) external nonReentrant {
         tokenID.increment();
         IConnected(MinterAddress).safeMint(address(this),tokenID.current(),_uri,collectionId);
+        _nftCount.increment();
         _idToNFT[tokenID.current()] = NFT(tokenID.current(),MinterAddress,msg.sender,address(this),_price,_uri,_auctionStart,_auctionEnd);
     }
     // ============ ListNft FUNCTIONS ============
@@ -79,11 +81,23 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @param _price set price of NFT
     */
     function ListNft(uint256 _price,uint256 _tokenId,uint256 _auctionStart,uint _auctionEnd) external nonReentrant {
-        require((_idToNFT[_tokenId].auctionEnd < (_idToNFT[_tokenId].auctionStart + block.timestamp)) && (_idToNFT[_tokenId].auctionStart > block.timestamp),"Already Listed !!!");
+        require(_idToNFT[_tokenId].auctionEnd == _idToNFT[_tokenId].auctionStart,"Already Listed !!!");
         require(_price >= 0, "Price Must Be At Least 0 Wei");
         token.transferFrom(msg.sender, address(this), _tokenId);
-        _idToNFT[tokenID.current()] = NFT(tokenID.current(),MinterAddress,msg.sender,address(this),_price,_idToNFT[_tokenId].uri,_auctionStart,_auctionEnd);
+        _idToNFT[_tokenId] = NFT(_tokenId,MinterAddress,msg.sender,address(this),_price,_idToNFT[_tokenId].uri,_auctionStart,_auctionEnd);
         _nftCount.increment();
+        emit NFTListed(_tokenId, msg.sender, address(this), _price);
+    }
+    // ============ ListNft FUNCTIONS ============
+    /*
+        @dev listNft list NFTs in hestory with tokenid.
+        @param _tokenId that are minted by the nftContract
+        @param _price set price of NFT
+    */
+    function IncreaseTime(uint256 _price,uint256 _tokenId,uint256 _auctionStart,uint _auctionEnd) external nonReentrant {
+        require(_idToNFT[_tokenId].auctionEnd != _idToNFT[_tokenId].auctionStart,"Please List First !!!");
+        require(_price >= 0, "Price Must Be At Least 0 Wei");
+        _idToNFT[_tokenId] = NFT(_tokenId,MinterAddress,msg.sender,address(this),_price,_idToNFT[_tokenId].uri,_auctionStart,_auctionEnd);
         emit NFTListed(_tokenId, msg.sender, address(this), _price);
     }
     // ============ BuyNFTs FUNCTIONS ============
@@ -92,7 +106,8 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @param _tokenId that are minted by the nftContract
     */
     function buyNft(uint256 price,uint256 _tokenId,uint256 _currentTime) external payable nonReentrant {
-        require((_idToNFT[_tokenId].auctionEnd > (_idToNFT[_tokenId].auctionStart + block.timestamp)) && (_idToNFT[_tokenId].auctionStart > block.timestamp),"Time Over !!!");
+        require(_idToNFT[_tokenId].auctionEnd > block.timestamp,"Time Over !!!");
+        require(_idToNFT[_tokenId].auctionStart < block.timestamp,"Time Not Start !!!");
         require(_idToNFT[_tokenId].seller != msg.sender, "An offer cannot buy this Seller !!!");
         require(price >= _idToNFT[_tokenId].price , "Not enough ether to cover asking price !!!");
         uint256 AdminPrice = (AdminPricePer * _idToNFT[_tokenId].price)/100;
@@ -100,7 +115,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         payable(AddminAddress).transfer(AdminPrice);
         payable(_idToNFT[_tokenId].seller).transfer(amount);  
         token.transferFrom(address(this), msg.sender, _tokenId);
-        _idToNFT[_tokenId] = NFT(_tokenId,MinterAddress,msg.sender,msg.sender,0,_idToNFT[_tokenId].uri,_idToNFT[_tokenId].auctionStart,_currentTime);
+        _idToNFT[_tokenId] = NFT(_tokenId,MinterAddress,msg.sender,msg.sender,0,_idToNFT[_tokenId].uri,_currentTime,_currentTime);
         _nftCount.decrement();
     }
     // ============ CancelOffer FUNCTIONS ============
@@ -109,7 +124,8 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @param _tokenid identity of token
     */
     function CancelOffer(uint256 _tokenId,uint256 _currentTime) external nonReentrant {
-        require((_idToNFT[_tokenId].auctionEnd > (_idToNFT[_tokenId].auctionStart + block.timestamp)) && (_idToNFT[_tokenId].auctionStart > block.timestamp),"Cancel Time Over !!!");
+        require(_idToNFT[_tokenId].auctionEnd > block.timestamp,"Cancel Time Over !!!");
+        require(_idToNFT[_tokenId].auctionStart < block.timestamp,"Time Not Start !!!");
         require(_idToNFT[_tokenId].seller == msg.sender,"Only Owner Can Cancel !!!");
         token.transferFrom(address(this), msg.sender, _tokenId);
         _idToNFT[_tokenId].owner = msg.sender;
@@ -124,44 +140,23 @@ contract Marketplace is ReentrancyGuard , Ownable{
     */
     function getListedNfts(address _to) external view returns (NFT[] memory) {
         uint nftCount = tokenID.current();
-        uint list = _nftCount.current();
+        uint ListedNftCount = 0;
         uint myListedNftCount = 0;
         for (uint i = 1; i <= nftCount; i++) {
-            if ((_idToNFT[i].seller == _to) && ((_idToNFT[i].auctionEnd > (_idToNFT[i].auctionStart + block.timestamp)) && (_idToNFT[i].auctionStart > block.timestamp))) {
+            if ((_idToNFT[i].auctionEnd > block.timestamp) && (_idToNFT[i].auctionStart < block.timestamp)) {
+                ListedNftCount++;
+            }
+        }
+        for (uint i = 1; i <= nftCount; i++) {
+            if ((_idToNFT[i].seller == _to) && (_idToNFT[i].auctionEnd > block.timestamp) && (_idToNFT[i].auctionStart < block.timestamp)) {
                 myListedNftCount++;
             }
         }
-        uint remaning = list - myListedNftCount ;
+        uint remaning = ListedNftCount - myListedNftCount;
         NFT[] memory nfts = new NFT[](remaning);
         uint nftsIndex = 0;
         for (uint i = 1; i <= nftCount ; i++) {
-            if ((_idToNFT[i].seller != _to) && ((_idToNFT[i].auctionEnd > (_idToNFT[i].auctionStart + block.timestamp)) && (_idToNFT[i].auctionStart > block.timestamp))) {
-                nfts[nftsIndex] = _idToNFT[i];
-                nftsIndex++;
-            }
-        }
-        return nfts;
-    }
-    // ============ GetNotListedNFTs FUNCTIONS ============
-    /*
-        @dev getNotListedNfts fetch all the NFTs that are not listed
-        @return array of NFTs that are not listed
-    */
-    function getNotListedNfts(address _to) external view returns (NFT[] memory) {
-        uint nftCount = tokenID.current();
-        uint list = _nftCount.current();
-        uint notlist = nftCount - list;
-        uint myNotListedNftCount = 0;
-        for (uint i = 1; i <= nftCount; i++) {
-            if ((_idToNFT[i].seller == _to) && (!((_idToNFT[i].auctionEnd > (_idToNFT[i].auctionStart + block.timestamp)) && (_idToNFT[i].auctionStart > block.timestamp)))) {
-                myNotListedNftCount++;
-            }
-        }
-        uint remaning = notlist - myNotListedNftCount ;
-        NFT[] memory nfts = new NFT[](remaning);
-        uint nftsIndex = 0;
-        for (uint i = 1; i <= nftCount ; i++) {
-            if ((_idToNFT[i].seller != _to) && (!((_idToNFT[i].auctionEnd > (_idToNFT[i].auctionStart + block.timestamp)) && (_idToNFT[i].auctionStart > block.timestamp)))) {
+            if ((_idToNFT[i].seller != _to) && (_idToNFT[i].auctionEnd > block.timestamp) && (_idToNFT[i].auctionStart < block.timestamp)) {
                 nfts[nftsIndex] = _idToNFT[i];
                 nftsIndex++;
             }
@@ -177,14 +172,14 @@ contract Marketplace is ReentrancyGuard , Ownable{
         uint nftCount = tokenID.current();
         uint myNftCount = 0;
         for (uint i = 1; i <= nftCount; i++) {
-            if (_idToNFT[i].owner == _sender) {
+            if ((_idToNFT[i].seller == _sender) && ((_idToNFT[i].auctionEnd < block.timestamp) || (_idToNFT[i].auctionStart > block.timestamp))){
                 myNftCount++;
             }
         }
         NFT[] memory nfts = new NFT[](myNftCount);
         uint nftsIndex = 0;
         for (uint i = 1; i <= nftCount; i++) {
-            if (_idToNFT[i].owner == _sender) {
+            if ((_idToNFT[i].seller == _sender) && ((_idToNFT[i].auctionEnd < block.timestamp) || (_idToNFT[i].auctionStart > block.timestamp))) {
                 nfts[nftsIndex] = _idToNFT[i];
                 nftsIndex++;
             }
@@ -200,14 +195,14 @@ contract Marketplace is ReentrancyGuard , Ownable{
         uint nftCount = tokenID.current();
         uint myListedNftCount = 0;
         for (uint i = 1; i <= nftCount; i++) {
-            if ((_idToNFT[i].seller == _sender) && ((_idToNFT[i].auctionEnd > (_idToNFT[i].auctionStart + block.timestamp)) && (_idToNFT[i].auctionStart > block.timestamp))) {
+            if ((_idToNFT[i].seller == _sender) && (_idToNFT[i].auctionEnd > block.timestamp) && (_idToNFT[i].auctionStart < block.timestamp)) {
                 myListedNftCount++;
             }
         }
         NFT[] memory nfts = new NFT[](myListedNftCount);
         uint nftsIndex = 0;
         for (uint i = 1; i <= nftCount; i++) {
-            if ((_idToNFT[i].seller == _sender) && ((_idToNFT[i].auctionEnd > (_idToNFT[i].auctionStart + block.timestamp)) && (_idToNFT[i].auctionStart > block.timestamp))) {
+            if ((_idToNFT[i].seller == _sender) && (_idToNFT[i].auctionEnd > block.timestamp) && (_idToNFT[i].auctionStart < block.timestamp)) {
                 nfts[nftsIndex] = _idToNFT[i];
                 nftsIndex++;
             }
@@ -221,5 +216,11 @@ contract Marketplace is ReentrancyGuard , Ownable{
     */
     function getTokenId(address to) external view returns (uint[] memory){
         return IConnected(MinterAddress).getTokenId(to);
+    }
+    function onERC721Received(address,address,uint256,bytes calldata) external pure override returns (bytes4) {
+        return IERC721Receiver.onERC721Received.selector;
+    }
+    function returnUnixTime() external view returns(uint){
+        return block.timestamp;
     }
 }
