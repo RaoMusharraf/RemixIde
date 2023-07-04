@@ -14,13 +14,8 @@
 					},
 					{
 						"internalType": "address",
-						"name": "_AdminAddress",
+						"name": "ERC20FT",
 						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_AdminPrice",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -142,16 +137,16 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "price",
+						"name": "_mintAmount",
 						"type": "uint256"
 					},
 					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
+						"internalType": "string[]",
+						"name": "_tokenURI",
+						"type": "string[]"
 					}
 				],
-				"name": "BuyAdmin",
+				"name": "BulkMintNFTs",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -173,37 +168,31 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "Id",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_price",
+						"name": "_tokenId",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_tokenId",
+						"name": "_price",
 						"type": "uint256"
 					}
 				],
 				"name": "ListNft",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					}
+				],
+				"name": "SingleMinting",
+				"outputs": [],
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -304,11 +293,6 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
 						"name": "_tokenId",
 						"type": "uint256"
 					}
@@ -316,19 +300,6 @@
 				"name": "buyNft",
 				"outputs": [],
 				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getAdminPrice",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -470,52 +441,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_to",
-						"type": "address"
-					}
-				],
-				"name": "getNotListedNfts",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "tokenId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "address",
-								"name": "seller",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "owner",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "price",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "listed",
-								"type": "bool"
-							}
-						],
-						"internalType": "struct Marketplace.NFT[]",
-						"name": "",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "owner",
 				"outputs": [
@@ -531,19 +456,6 @@
 			{
 				"inputs": [],
 				"name": "renounceOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
-					}
-				],
-				"name": "setAdminPrice",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -599,7 +511,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Marketplace/MarpetplaceNOTListed.sol": "Marketplace"
+			"contracts/Marketplace/Marketplace.sol": "Marketplace"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -741,20 +653,20 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/Marketplace/IConnected.sol": {
-			"keccak256": "0x3ac861406c9ce0a49d929469d84ca94fa213c4b778bda9f8ad0366a2c83ea5e3",
+		"contracts/Marketplace/IIERC721.sol": {
+			"keccak256": "0x1fd6d9452f3055ed537fff5aff3e40fb45b265ac81df9a670015a28020ba076f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6d5fbb390deffff739a1a7e20f48cc7110899d8ac5bed79e8b36590053ed72ee",
-				"dweb:/ipfs/QmfHqeEo7BdHmUhT7KkaHPewF7JJsH3KZ7K2npo8MHNdSg"
+				"bzz-raw://27a9e25117420568a6a5c3a07073e857b54b4f247ec5fd83ab5923c8e8a0d847",
+				"dweb:/ipfs/QmSb5s19jqkq1xL9HCAzx6mzFracRoGtA5UEG9rE24mS8F"
 			]
 		},
-		"contracts/Marketplace/MarpetplaceNOTListed.sol": {
-			"keccak256": "0xec30f772e1bd2d6e9ca0b362d5196d1e38cfd6caae96be27e13182358ee9cd49",
+		"contracts/Marketplace/Marketplace.sol": {
+			"keccak256": "0x052322e530d17e6626c3599f1eedae359822517c52abb304da8a974a173a96a1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fff35039c8d00787d7ec8336506c6a4695cee7ed3c349a7e28b37d2f43eaae02",
-				"dweb:/ipfs/QmYYBrahpV7VaRw5Z522GTQHYgogz7DNrRMG4zaiQMxuye"
+				"bzz-raw://064e51bc57fc4c31cfd9baa362c3263438fe5f02e7bff05ce47e2f6366aa66b2",
+				"dweb:/ipfs/QmZnWGvRKt76XD2uMkiTpzbeeCTDW2BJnTQXa33Y3E2r2M"
 			]
 		}
 	},
