@@ -157,35 +157,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "ListedId",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "seller",
-						"type": "address"
-					},
-					{
-						"internalType": "bool",
-						"name": "Listed",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Price",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "_URICount",
 				"outputs": [
@@ -260,67 +231,6 @@
 						"internalType": "uint256",
 						"name": "_value",
 						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_sender",
-						"type": "address"
-					}
-				],
-				"name": "getMyListedNfts",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "tokenId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "address",
-								"name": "seller",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "owner",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "royalityAddress",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "royalitypercentage",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "royalityCheck",
-								"type": "bool"
-							},
-							{
-								"internalType": "uint256",
-								"name": "price",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "listed",
-								"type": "bool"
-							}
-						],
-						"internalType": "struct Marketplace.NFT[]",
-						"name": "",
-						"type": "tuple[]"
 					}
 				],
 				"stateMutability": "view",
@@ -628,11 +538,11 @@
 			]
 		},
 		"contracts/Gladiator/Marketplace.sol": {
-			"keccak256": "0x6c9703f4cd8e68d75cf0b14a97a2f276a2ec3b91a8111591f118b1fbf73ea6e4",
+			"keccak256": "0xe3a2f55c9740a3d5ee77ee7a7a2dfc2733e9dea52ffb601818a36e47ab040855",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9281749f4a2a29fd4aca57252514b11e822e9a8837fc62bb8c3aee69f21bc3da",
-				"dweb:/ipfs/Qmc4LMiAh7Aiz7wDT2nnZKnYcdmAv4tFw3FC5F7Q49mGFk"
+				"bzz-raw://9e34d1610fba319735f73f1e64aa07005c8e785622f7081477b79192a63f2395",
+				"dweb:/ipfs/QmcrXaznKzjTerKfa33aZwygLctkYKuaRSACuaWKqJEzAh"
 			]
 		}
 	},

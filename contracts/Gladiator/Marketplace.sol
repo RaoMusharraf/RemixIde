@@ -76,29 +76,6 @@ contract Marketplace is ReentrancyGuard , Ownable{
         }
         return nfts;
     }
-    // ============ GetMyListedNFTs FUNCTIONS ============
-    /*
-        @dev getMyNfts fetch all the NFTs that are listed by current address
-        @return array of NFTs that are listed by the current address
-    */
-    function getMyListedNfts(address _sender) public view returns (NFT[] memory) {
-        uint nftCount = tokenID.current();
-        uint myListedNftCount = 0;
-        for (uint i = 1; i <= nftCount; i++) {
-            if ((_idToNFT[i].seller == _sender) && (!_idToNFT[i].listed)) {
-                myListedNftCount++;
-            }
-        }
-        NFT[] memory nfts = new NFT[](myListedNftCount);
-        uint nftsIndex = 0;
-        for (uint i = 1; i <= nftCount; i++) {
-            if ((_idToNFT[i].seller == _sender) && (!_idToNFT[i].listed)) {
-                nfts[nftsIndex] = _idToNFT[i];
-                nftsIndex++;
-            }
-        }
-        return nfts;
-    }
     // ============ getTokenId FUNCTIONS ============
     /*
         @dev getTokenId fetch all the NFT ids that are listed by given address
@@ -107,17 +84,4 @@ contract Marketplace is ReentrancyGuard , Ownable{
     function getTokenId(address to) public view returns (uint[] memory){
         return IConnected(MinterAddress).getTokenId(to);
     }
-    // ============ ListedId FUNCTIONS ============
-    /*
-        @dev ListedId fetch owner of Id, bool List Check and Price.
-        @return Owner of Id, bool List Check and Price.
-    */
-    function ListedId(uint256 tokenId) public view returns(address seller,bool Listed,uint256 Price) {
-        require(tokenId > 0 && tokenId <= tokenID.current(),"Token Id NOT Exist");
-        if(!_idToNFT[tokenId].listed){
-            return (_idToNFT[tokenId].seller,!_idToNFT[tokenId].listed,_idToNFT[tokenId].price);
-        }else{
-            return (_idToNFT[tokenId].seller,!_idToNFT[tokenId].listed,0);
-        }     
-    } 
 }
