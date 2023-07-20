@@ -153,7 +153,7 @@
 				],
 				"name": "Buy",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -538,11 +538,11 @@
 			]
 		},
 		"contracts/Gladiator/Marketplace.sol": {
-			"keccak256": "0xe3a2f55c9740a3d5ee77ee7a7a2dfc2733e9dea52ffb601818a36e47ab040855",
+			"keccak256": "0xc13cc178ad3ef9dfef263c3b975072032e68c5ef22b03285ffa9e57cfc9cc5fc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9e34d1610fba319735f73f1e64aa07005c8e785622f7081477b79192a63f2395",
-				"dweb:/ipfs/QmcrXaznKzjTerKfa33aZwygLctkYKuaRSACuaWKqJEzAh"
+				"bzz-raw://96a00de1047f014c89c56b34b8cc3644055c1c50ace62eb9210580889c2e1c96",
+				"dweb:/ipfs/QmS1yiQckjdq3H7XDsbU2SdLwcL1s7QHnnsMA5FhvnGNhQ"
 			]
 		}
 	},

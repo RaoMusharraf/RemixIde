@@ -6,14 +6,14 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract MyToken is ERC721, ERC721URIStorage, Ownable {
+contract GladiatorNFT is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter public _tokenIdCounter;
     mapping(address=>mapping(uint=>uint)) public TokenId;
     mapping(address=>uint) public count;
 
-    constructor() ERC721("MyToken", "MTK") {}
+    constructor() ERC721("Gladiator Verse", "GAVE") {}
 
     function safeMint(address to,uint256 tokenId, string memory uri) public {
         _tokenIdCounter.increment();

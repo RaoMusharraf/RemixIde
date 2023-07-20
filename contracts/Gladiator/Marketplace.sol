@@ -47,7 +47,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @dev BuyAdmin buy NFTs from Admin using id.
         @param id that are created by admin when admin enter data.
     */
-    function Buy(uint price,string memory uri) external payable nonReentrant {
+    function Buy(uint price,string memory uri) external nonReentrant {
         tokenID.increment();
         IConnected(MinterAddress).safeMint(msg.sender,tokenID.current(),uri);
         IERC20(GladiatorToken).safeTransferFrom(msg.sender, AddminAddress , price);
