@@ -19,7 +19,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Testing/AmpFee.sol": "Address"
+			"contracts/Testing/Amppay.sol": "Address"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -33,12 +33,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Testing/AmpFee.sol": {
-			"keccak256": "0x88ac329a8d9b446dfa42199104a30a33e6e8f204d3d96fb295c155372b813c30",
+		"contracts/Testing/Amppay.sol": {
+			"keccak256": "0x1ee46a72722673833770056b21c4dcfe754e90050196c621492bc5e9e7a5f01c",
 			"license": "MIT V32",
 			"urls": [
-				"bzz-raw://3856e3638354b39a8cebb74562554e48ba188620e9f7ea7776eab68c479b3c79",
-				"dweb:/ipfs/Qma8Wb47T5zQPs8cTMVM26EdTo6KNiJyikJLFLccvUkbG4"
+				"bzz-raw://9dd70c4a5c63dbb120ee234ec9eb8720df474d31ec2e7a74f7d3282fee80fc2d",
+				"dweb:/ipfs/QmaHGX1PDtWgbN5V4mF1ub7SbUSEYm3PdvfB5AAo2S3TpE"
 			]
 		}
 	},

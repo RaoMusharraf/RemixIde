@@ -1,0 +1,96 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					}
+				],
+				"name": "getTokenId",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					}
+				],
+				"name": "safeMint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Required interface of an ERC721 compliant contract.",
+			"kind": "dev",
+			"methods": {
+				"getTokenId(address)": {
+					"details": "Returns the number of tokens in ``owner``'s account."
+				},
+				"safeMint(address,uint256,string)": {
+					"details": "Returns the number of tokens in ``owner``'s account."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Gladiator/IConnected.sol": "IConnected"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Gladiator/IConnected.sol": {
+			"keccak256": "0xd91ebd366776daf1041c3c55af8f497a9348a69ef2be7abfe085aad55b7a9984",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://dc415f32058407b8409b3b0b46202b692eff39fac90547d8a369efa159d81b02",
+				"dweb:/ipfs/QmbUbfcDtEG3jnkWSr5i5f2r915Sk5AQkP1aKrqVDPFWzQ"
+			]
+		}
+	},
+	"version": 1
+}

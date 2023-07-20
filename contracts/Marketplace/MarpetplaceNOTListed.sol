@@ -26,6 +26,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
     mapping (uint256 => uint256) public Id;
     struct NFT {
         uint256 tokenId;
+        string coordinate;
         address seller;
         address owner;
         uint256 price;
@@ -64,14 +65,14 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @dev BuyAdmin buy NFTs from Admin using id.
         @param id that are created by admin when admin enter data.
     */
-    function BuyAdmin (uint256 price,uint256 tokenId) public payable nonReentrant {
+    function Buy(uint256 price,uint256 tokenId,string memory _coordinate) public payable nonReentrant {
         require(AdminPrice == price,"Insuficient Fund !");
         tokenID.increment();
         IConnected(MinterAddress).safeMint(msg.sender,tokenId);
         payable(AddminAddress).transfer(AdminPrice);
         Id[tokenId] = tokenID.current();
         // IERC20(paymentToken).safeTransferFrom(msg.sender, AddminAddress , price);
-        _idToNFT[tokenID.current()] = NFT(tokenId,msg.sender,msg.sender,AdminPrice,true);
+        _idToNFT[tokenID.current()] = NFT(tokenId,_coordinate,msg.sender,msg.sender,AdminPrice,true);
     }
     // ============ ListNft FUNCTIONS ============
     /*
@@ -82,7 +83,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
     function ListNft(uint256 _price,uint256 _tokenId) public nonReentrant {
         require(_price >= 0, "Price Must Be At Least 0 Wei");
         token.transferFrom(msg.sender, address(this), _tokenId);
-        _idToNFT[Id[_tokenId]] = NFT(_tokenId,msg.sender,address(this),_price,false);
+        _idToNFT[Id[_tokenId]] = NFT(_tokenId,_idToNFT[Id[_tokenId]].coordinate,msg.sender,address(this),_price,false);
         _nftCount.increment();
         emit NFTListed(_tokenId, msg.sender, address(this), _price);
     }
@@ -97,7 +98,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         payable(_idToNFT[Id[_tokenId]].seller).transfer(_idToNFT[Id[_tokenId]].price);
         // IERC20(paymentToken).safeTransferFrom(msg.sender, _idToNFT[_tokenId].seller ,_idToNFT[_tokenId].price);
         token.transferFrom(address(this), msg.sender, _tokenId);
-        _idToNFT[Id[_tokenId]] = NFT(_tokenId,msg.sender,msg.sender,_idToNFT[Id[_tokenId]].price,true);
+        _idToNFT[Id[_tokenId]] = NFT(_tokenId,_idToNFT[Id[_tokenId]].coordinate,msg.sender,msg.sender,_idToNFT[Id[_tokenId]].price,true);
         _nftCount.decrement();
         emit NFTSold(_idToNFT[Id[_tokenId]].tokenId, _idToNFT[Id[_tokenId]].seller, msg.sender, msg.value);
     }

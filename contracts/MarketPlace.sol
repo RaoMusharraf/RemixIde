@@ -29,6 +29,7 @@ contract SmashNFT_Marketplace is ReentrancyGuard , Ownable{
     struct NFT {
         address nftContract;
         uint256 tokenId;
+        string coordinate;
         address seller;
         address owner;
         uint256 price;
@@ -54,11 +55,11 @@ contract SmashNFT_Marketplace is ReentrancyGuard , Ownable{
         @param _tokenId that are minted by the nftContract
         @param _price set price of NFT
     */
-    function ListNft(uint256 _tokenId, uint256 _price) public payable nonReentrant {
+    function ListNft(uint256 _tokenId,string memory _coordinate, uint256 _price) public payable nonReentrant {
         require(_price > 0, "Price must be at least 1 wei");
         token.transferFrom(msg.sender, address(this), _tokenId);
         _nftCount.increment();
-        _idToNFT[_tokenId] = NFT(MinterAddress,_tokenId,payable(msg.sender),payable(address(this)),_price,false);
+        _idToNFT[_tokenId] = NFT(MinterAddress,_tokenId,_coordinate,payable(msg.sender),payable(address(this)),_price,false);
         FirstOwner[_tokenId]=msg.sender;
         check[_tokenId]._address=msg.sender;
         emit NFTListed(MinterAddress, _tokenId, msg.sender, address(this), _price);

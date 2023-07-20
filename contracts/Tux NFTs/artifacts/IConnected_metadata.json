@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.20+commit.a1b79de6"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -40,11 +40,6 @@
 						"internalType": "string",
 						"name": "uri",
 						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "collectionId",
-						"type": "string"
 					}
 				],
 				"name": "safeMint",
@@ -60,7 +55,7 @@
 				"getTokenId(address)": {
 					"details": "Returns the number of tokens in ``owner``'s account."
 				},
-				"safeMint(address,uint256,string,string)": {
+				"safeMint(address,uint256,string)": {
 					"details": "Returns the number of tokens in ``owner``'s account."
 				}
 			},
@@ -74,9 +69,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Tux NFTs/newIConnected.sol": "IConnected"
+			"contracts/Tux NFTs/IConnected.sol": "IConnected"
 		},
-		"evmVersion": "shanghai",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -88,12 +83,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Tux NFTs/newIConnected.sol": {
-			"keccak256": "0xa8bdf7259d7fe64abcd19f049db356fa951a85faf384d5a91f5c84c19dcb5b8b",
+		"contracts/Tux NFTs/IConnected.sol": {
+			"keccak256": "0xd91ebd366776daf1041c3c55af8f497a9348a69ef2be7abfe085aad55b7a9984",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://181010477a52606a6dbe38dc8a43dac84917275bba9c8ad17fa78b718efdde2b",
-				"dweb:/ipfs/QmXXmcgAVectyivr9vyGTLmQzCLDbhWCVPsVUNTWCXU5hD"
+				"bzz-raw://dc415f32058407b8409b3b0b46202b692eff39fac90547d8a369efa159d81b02",
+				"dweb:/ipfs/QmbUbfcDtEG3jnkWSr5i5f2r915Sk5AQkP1aKrqVDPFWzQ"
 			]
 		}
 	},

@@ -50,7 +50,7 @@
 		"gasEstimates": null,
 		"methodIdentifiers": {
 			"getTokenId(address)": "f1537686",
-			"safeMint(address,uint256,string,string)": "37f68552"
+			"safeMint(address,uint256,string)": "cd279c7c"
 		}
 	},
 	"abi": [
@@ -88,11 +88,6 @@
 				{
 					"internalType": "string",
 					"name": "uri",
-					"type": "string"
-				},
-				{
-					"internalType": "string",
-					"name": "collectionId",
 					"type": "string"
 				}
 			],

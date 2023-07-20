@@ -10,10 +10,10 @@ contract ERC721NFT is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     constructor() ERC721("MyToken", "MTK") {}
 
-    function safeMint(address _to ,uint256 tokenID, string memory uri) public
+    function safeMint(address _to ,uint256 tokenID) public
     {
         _safeMint(_to, tokenID);
-        _setTokenURI(tokenID, uri);
+        // _setTokenURI(tokenID, uri);
     }
 
     // The following functions are overrides required by Solidity.

@@ -16,38 +16,45 @@ contract Multiart is ERC721, ERC721URIStorage, Ownable {
     mapping(address => mapping(uint256 => uint256)) public TokenId;
     mapping(address => uint256) public count;
     mapping(string => TokenIdByCollection) private tokenIdByCollection;
-    address mintPriceReceiver;
-    address transferFeeReceiver;
+    mapping(string => uint256) public alreadyMintedQuantity;
+    address public mintPriceReceiver;
+    address public transferFeeReceiver;
+    uint256 public royalty;
 
-    constructor(address _mintPriceReceiver, address _transferFeeReceiver)
+    struct NFT {
+        uint256 mintTime;
+        address mintArtist;
+    }
+    mapping (uint => NFT) public NFTMetadata;
+    mapping (address => uint) public ArtistAmount;
+
+    constructor(address _mintPriceReceiver, address _transferFeeReceiver,uint256 _royalty)
         ERC721("Multiart", "MAT")
     {
         mintPriceReceiver = _mintPriceReceiver;
         transferFeeReceiver = _transferFeeReceiver;
+        royalty=_royalty;
     }
 
-    function safeMint(
-        address to, 
-        uint256 feePercentage,
-        string memory uri,
-        string memory collectionId
-    ) external payable returns (uint256) {
-        require(msg.value > 0, "Invalid Price");
-        uint256 calculatedFeePrice = calculateReceiverPrice(
-            feePercentage,
-            msg.value
-        );
+    function safeMint(uint256 feePercentage,string memory uri,string memory NFT_doc,uint mintQuantity,uint TotalQuantity,address artist,uint perNFTPrice,string memory collectionId) public payable {
+        require(msg.value == (perNFTPrice*mintQuantity), "Invalid Price");
+        uint256 usedQuantity = alreadyMintedQuantity[NFT_doc];
+        require((usedQuantity + mintQuantity) <= TotalQuantity,"Remaining NFTQuantity is Less than Your NFTQuantity");
+        uint256 calculatedFeePrice = calculateReceiverPrice(feePercentage,msg.value);
         uint256 mintedPrice = msg.value - calculatedFeePrice;
-        _tokenIdCounter.increment();
-        uint256 tokenId = _tokenIdCounter.current();
-        TokenId[to][count[to] + 1] = tokenId;
-        _safeMint(to, tokenId);
-        _setTokenURI(tokenId, uri);
-        count[to]++;
+        for(uint i =1 ; i <= mintQuantity ; i++){
+            _tokenIdCounter.increment();
+            TokenId[msg.sender][count[msg.sender] + 1] = _tokenIdCounter.current();
+            _safeMint(msg.sender, _tokenIdCounter.current());
+            _setTokenURI(_tokenIdCounter.current(), uri);
+            count[msg.sender]++;
+            NFTMetadata[_tokenIdCounter.current()] = NFT(block.timestamp,artist);
+            tokenIdByCollection[collectionId].tokenIds.push(_tokenIdCounter.current());
+        }
+        alreadyMintedQuantity[NFT_doc] += mintQuantity; 
+        ArtistAmount[artist] += mintedPrice;
         payable(mintPriceReceiver).transfer(mintedPrice);
         payable(transferFeeReceiver).transfer(calculatedFeePrice);
-        tokenIdByCollection[collectionId].tokenIds.push(tokenId);
-        return tokenId;
     }
 
     function calculateReceiverPrice(uint256 _feePercentage, uint256 _TotalPrice)
@@ -56,6 +63,11 @@ contract Multiart is ERC721, ERC721URIStorage, Ownable {
         returns (uint256)
     {
         return ((_TotalPrice * _feePercentage) / 1000);
+    }
+    function viewArtistAmount(address to) public view returns(uint256 artist) {
+        return ArtistAmount[to];
+        // payable(to).transfer(ArtistAmount[to]);
+        // delete ArtistAmount[to];
     }
 
     function getTokenId(address to) public view returns (uint256[] memory) {
@@ -94,5 +106,15 @@ contract Multiart is ERC721, ERC721URIStorage, Ownable {
 
     function contractBalance() public view returns (uint256) {
         return address(this).balance;
+    }
+
+    function setMintPriceReceiver(address _mintPriceReceiver) public   {
+        mintPriceReceiver=_mintPriceReceiver;
+    }
+    function setTransferFeeReceiver(address _transferFeeReceiver) public {
+        transferFeeReceiver=_transferFeeReceiver;
+    }
+    function setRoyalty(uint256 _royalty) public {
+        royalty=_royalty ;
     }
 }

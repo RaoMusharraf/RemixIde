@@ -247,11 +247,6 @@
 						"internalType": "uint256",
 						"name": "tokenID",
 						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "uri",
-						"type": "string"
 					}
 				],
 				"name": "safeMint",
@@ -605,11 +600,11 @@
 			]
 		},
 		"contracts/Marketplace/ERC721.sol": {
-			"keccak256": "0xb9c05e021678984d7228f15946a3cb83d2e71401cb50c92589ba3ad59e96b7a9",
+			"keccak256": "0x1ca922edc53b77bd8f4be10fd9bae9c1f321e1d120f41b6bc4ac603b39284fd9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://869beebe6df323936384bd67c575ba2d5a7d5c9d6e4cc8ce9cf96b1979b3b32f",
-				"dweb:/ipfs/Qmah2briHDaWhFEnac2CsANj322L5RhMftgnpYfaGuDmrf"
+				"bzz-raw://ed9a07a59fd09137012a6fe0125471a5477d03c354309954f7d707f8a49c2eb7",
+				"dweb:/ipfs/QmSfYQvFfdRxBP6ddET1oPXokDbSYjodtfff3CNnuQUQbh"
 			]
 		}
 	},
