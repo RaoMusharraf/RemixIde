@@ -1,84 +1,79 @@
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-
+pragma solidity ^0.8.4;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-contract MyNFTContract is ERC721, Ownable {
-
-    using Counters for Counters.Counter;
-
-    Counters.Counter private _tokenIdCounter;
-    uint256 private constant MAX_NFT_SUPPLY = 12000;
-    uint256 private constant MAX_NFT_SUPPLY_PER_LEVEL = 600;
-    uint256 private constant MINT_PRICE = 100 wei;
-    enum Level { None, One, Two }
-
-    mapping(address => uint256[]) private _mintedNFTs;
-    uint256 private _totalNFTSupply;
-    Level private _currentLevel;
-    bool private _levelTwoOpen;
-
-    constructor() ERC721("MyNFT", "MNFT") {
-        _totalNFTSupply = 0;
-        _currentLevel = Level.One;
-        _levelTwoOpen = false;
+contract Octa is ERC721{
+    // user to nft id
+    mapping(address => uint256) public nfts_minted_byuser;
+    //admin 
+    address public admin;
+    uint256 public level1End;
+    uint256 public level2End;
+    uint256 public totalSupply;
+    bool public level1Closed;
+    bool public level2Closed;
+     
+    constructor (string memory name, string memory symbol ) ERC721(name,symbol){
+        totalSupply=0;
+        level1End=600;
+        level2End=1200;
+        admin = msg.sender;
+        level1Closed = false;
+        level2Closed = true;
     }
-
-    // Mint NFTs
-    function mintNFTs(uint256 amount) external payable {
-        require(amount > 0, "Amount must be greater than zero");
-        require(amount <= 5, "Cannot mint more than 5 NFTs at once");
-        require(_totalNFTSupply + amount <= MAX_NFT_SUPPLY, "Exceeds total NFT supply");
-        require(msg.value == amount * MINT_PRICE, "Insufficient funds");
-
-        if (_currentLevel == Level.One) {
-            require(_totalNFTSupply + amount <= MAX_NFT_SUPPLY_PER_LEVEL, "Exceeds Level 1 limit");
-        } else if (_currentLevel == Level.Two) {
-            require(_totalNFTSupply + amount <= MAX_NFT_SUPPLY, "Exceeds Level 2 limit");
-        } else {
-            revert("Both levels are closed");
+    function MintingNFTS(address to, uint256[] memory ids) public payable {
+        // Task requirement No 1
+        // Each User can mint only 3 NFTs at one time.
+        require(ids.length<=3,"User Can Only Mint 3NFTS");
+        //a. Use variable to record each user's nfts. One user cannot mint more than 5 nfts from total supply.
+        require(nfts_minted_byuser[to] <5,"One user cannot mint more than 5 nfts from total supply ");
+        //Task requirement No 3
+        require(totalSupply<12000,"Total Supply Limit Reached");
+        require(!level2Closed, "Level 2 is currently closed");
+        for (uint256 i=0; i<ids.length; i++) {
+            totalSupply++;
+            nfts_minted_byuser[to]++;
+            emit Transfer(address(0), to, ids[i]);
         }
-
-        for (uint256 i = 0; i < amount; i++) {
-            _safeMint(msg.sender, _tokenIdCounter.current());
-            _mintedNFTs[msg.sender].push(_tokenIdCounter.current());
-            _tokenIdCounter.increment();
-            _totalNFTSupply++;
+        //Level 1, level start when NFT count is 0 and closes when NFTs Count 600.
+       if (totalSupply == level1End && !level1Closed) {
+            level1Closed = true;
+            level2Closed = false;
         }
-
-        payable(owner()).transfer(amount * MINT_PRICE);
+        //Level 2,level start when NFT count 601 and close when NFTs Count 1200.
+        else if (totalSupply == level2End) {
+            level2Closed = true;
+        }
+        //Task requirement No 5 : When User Mint NFTs then 100wei amount should be transfered to the Admin account (100wei per nft).
+        if (msg.sender == admin) {
+            payable(msg.sender).transfer(100 * ids.length);
+        }
     }
-
-    // View minted NFTs by the caller
-    function viewMintedNFTs() external view returns (uint256[] memory) {
-        return _mintedNFTs[msg.sender];
+    //Admin will open level 1 manually.
+    function openLevel2() public {
+        //Admin cannot open stage 2 until NFT count will be 600.
+        require(level1Closed, "Level 1 must be closed before opening Level 2");
+        level2Closed = false;
     }
-
-    // Open Level 2 (Only callable by the contract owner)
-    function openLevel2() external onlyOwner {
-        require(_totalNFTSupply >= MAX_NFT_SUPPLY_PER_LEVEL, "Cannot open Level 2 yet");
-        _levelTwoOpen = true;
+    //Admin can close both levels at any time.
+    function closeLevels() public {
+        level1Closed = true;
+        level2Closed = true;
     }
-
-    // Close Level 1 (Only callable by the contract owner)
-    function closeLevel1() external onlyOwner {
-        require(_totalNFTSupply >= MAX_NFT_SUPPLY_PER_LEVEL, "Cannot close Level 1 yet");
-        _currentLevel = Level.Two;
+    // Task requirement No 6 : Make a function in which user can also view IDs of the minted NFTs.
+    function getNFTIds(address receiver)public view returns (uint256[] memory){
+       uint256[] memory ids = new uint256[](nfts_minted_byuser[receiver]);
+         for (uint256 i = 0; i < ids.length; i++) {
+            ids[i] = tokenIdByIndex(i);
+        }
+        return ids;
     }
-
-    // Close Level 2 (Only callable by the contract owner)
-    function closeLevel2() external onlyOwner {
-        require(_totalNFTSupply >= MAX_NFT_SUPPLY, "Cannot close Level 2 yet");
-        _currentLevel = Level.None;
-        _levelTwoOpen = false;
+    function tokenIdByIndex(uint256 index) public view returns (uint256) {
+    return totalSupply - index - 1;
     }
-        // Open Level 1 (Only callable by the contract owner)
-    function openLevel1() external onlyOwner {
-        require(_currentLevel == Level.None, "Level 1 is already open or Level 2 is open");
-
-        _currentLevel = Level.One;
+    function viewMintedNFTs(address receiver) public view returns (uint256[] memory) {
+        return getNFTIds(receiver);
     }
+    
+    
+    
 }
