@@ -987,11 +987,11 @@
 			]
 		},
 		"contracts/Astrline/Marketplace.sol": {
-			"keccak256": "0x077b547bedff3b233b56243cd55a55595ff6d513e53d8a96ec8a7c4409d63d51",
+			"keccak256": "0xaf1397236d0bd1a189990c5664a17ecf6e0b00f66b3fc16712707b9733112d06",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://041cd61fa2ce192304970b2d93c9a0f5fe4c0f1d273fa5d7303e0382862c7d15",
-				"dweb:/ipfs/QmXGpSL1gpEHhCSPwhdDfrsaFfobZrpy3oAg6smYxLMh4H"
+				"bzz-raw://61668c559bdc7fe9abdbebd5e6364bd9edcaf5250cfb54f1c8ce8c9e83f1b82d",
+				"dweb:/ipfs/QmYFUxtzFG4Fjqn85aBYXt4ierigVdEnuyzYndbkRLXAKh"
 			]
 		}
 	},

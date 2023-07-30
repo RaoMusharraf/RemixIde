@@ -78,6 +78,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         Id[tokenId] = tokenID.current();
         IERC20(usdtToken).safeTransferFrom(msg.sender, AddminAddress , price);
         _idToNFT[tokenID.current()] = NFT(tokenId,_coordinate,msg.sender,msg.sender,price,true);
+        
     }
     function MakeOffer(address _owner,uint _tokenId,uint _month,uint _price) external nonReentrant{
         require(token.ownerOf(_tokenId)==_owner,"You are Not Owner of this NFT");
@@ -93,6 +94,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         getRentTokenId[_buyer][countBuyRentNFTs[_buyer]+1] = _tokenId;
         IERC20(usdtToken).safeTransferFrom(_buyer,NFTOwner[_tokenId].owner,NFTOwner[_tokenId].price);
         ActiveRentOffer[_tokenId] = buyRentOffer(_tokenId,block.timestamp,((NFTOwner[_tokenId].month*2629743)+block.timestamp),true);
+        NFTOwner[_tokenId].isActive = false;
         countBuyRentNFTs[_buyer]++;
     }
     function CancelRentOffer(address _owner,uint _tokenId) external nonReentrant{
@@ -176,6 +178,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @dev getNotListedNfts fetch all the NFTs that are not listed
         @return array of NFTs that are not listed
     */
+
     function getNotListedNfts(address _to) public view returns (NFT[] memory) {
         uint nftCount = tokenID.current();
         uint list = _nftCount.current();
@@ -197,6 +200,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         }
         return nfts;
     }
+
     // ============ GetMyNFTs FUNCTIONS ============
     /*
         @dev getMyNfts fetch all the NFTs that are Buy
@@ -210,6 +214,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
                 myNftCount++;
             }
         }
+        
         NFT[] memory nfts = new NFT[](myNftCount);
         uint nftsIndex = 0;
         for (uint i = 1; i <= nftCount; i++) {
@@ -233,6 +238,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
                 myListedNftCount++;
             }
         }
+
         NFT[] memory nfts = new NFT[](myListedNftCount);
         uint nftsIndex = 0;
         for (uint i = 1; i <= nftCount; i++) {
@@ -244,3 +250,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         return nfts;
     }
 }
+
+
+
+
