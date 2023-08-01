@@ -70,6 +70,7 @@ contract Multiart is ERC721, ERC721URIStorage, Ownable {
         }
         else if(typ == 2){
             IERC20(tokenAddress).safeTransferFrom(msg.sender,mintPriceReceiver,mintedPrice);
+            IERC20(tokenAddress).safeTransferFrom(msg.sender,transferFeeReceiver,calculatedFeePrice);
         }
         else{
             revert("Please Enter the correct payment Type");

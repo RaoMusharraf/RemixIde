@@ -1011,11 +1011,11 @@
 			]
 		},
 		"contracts/MultiArt/Multiart_2_0.sol": {
-			"keccak256": "0xc537a03f11e2ad4c82b4f83e03821d065813e4810f41f4c17895a86707ec724c",
+			"keccak256": "0xd67ec7ea47b74a7b40bc832ea971da92e7f6f1f3eb2ff12b524a32d5453d3198",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://705dd5e804b3a323c6c41c8b935fd959c30e409271c7730960fd382c5438ff12",
-				"dweb:/ipfs/QmSFXtY5q66YdzH7BqJy2WV5B7ENqfZaXGuvK7DuBQtzGD"
+				"bzz-raw://48613ff4b4420d60ada060790edba0e65a494ab1a6886db1e925ab3b57c1059d",
+				"dweb:/ipfs/QmPkGkXSTwbGZhS9vGpkShvosdWPZ2xhe6kYxjEjASqCdM"
 			]
 		}
 	},
