@@ -5,8 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract TransferBNB is Ownable {
 
-    address Owner;
-
+    address public Owner;
     constructor(address _owner){
         Owner = _owner;
     }
@@ -17,7 +16,6 @@ contract TransferBNB is Ownable {
     function ownerDeposit() payable external {
         require(Owner == msg.sender,"You are Not Owner!");
         require(msg.value > 0,"Price Must be greater/equal to 1 !");
-       
     }
     // ============ ownerWithdraw FUNCTIONS ============
     /* 
@@ -34,8 +32,7 @@ contract TransferBNB is Ownable {
         @dev checkBalance owner wants to see their Contract amount.
         @returns balance return the total amount of the Owner that are in the contract.
     */
-    function checkBalance(address _owner) external view returns(uint balance) {
-        require(Owner == _owner,"You are Not Owner!");
+    function checkBalance() external view returns(uint balance) {
         return address(this).balance;
     }
     // ============ userDeposit FUNCTIONS ============

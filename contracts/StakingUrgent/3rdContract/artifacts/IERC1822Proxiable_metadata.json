@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "proxiableUUID",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "ERC1822: Universal Upgradeable Proxy Standard (UUPS) documents a method for upgradeability through a simplified proxy whose upgrades are fully controlled by the current implementation.",
+			"kind": "dev",
+			"methods": {
+				"proxiableUUID()": {
+					"details": "Returns the storage slot that the proxiable contract assumes is being used to store the implementation address. IMPORTANT: A proxy pointing at a proxiable contract should not be considered proxiable itself, because this risks bricking a proxy that upgrades to it, by delegating to itself until out of gas. Thus it is critical that this function revert if invoked through a proxy."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/StakingUrgent/3rdContract/draft-IERC1822.sol": "IERC1822Proxiable"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/StakingUrgent/3rdContract/draft-IERC1822.sol": {
+			"keccak256": "0x49759488c8b952033317460df35819ad0ecbba9b23320682e5cd5d87a1c1b5ce",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4d052f756f62b03fb3cf04138c8b5d695ac9c064e19b1f1f456473cb2b6b3a25",
+				"dweb:/ipfs/QmZPBZ6A6bVvkPxLNst2nsjBHr2X3jn5ZPZNT4XKcpsuuw"
+			]
+		}
+	},
+	"version": 1
+}

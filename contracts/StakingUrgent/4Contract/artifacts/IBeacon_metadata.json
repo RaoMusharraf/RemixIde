@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "implementation",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "This is the interface that {BeaconProxy} expects of its beacon.",
+			"kind": "dev",
+			"methods": {
+				"implementation()": {
+					"details": "Must return an address that can be used as a delegate call target. {BeaconProxy} will check that this address is a contract."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/StakingUrgent/4Contract/IBeacon.sol": "IBeacon"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/StakingUrgent/4Contract/IBeacon.sol": {
+			"keccak256": "0x9ae1599a2f5da76ff1c6898223156339b5084834801f0fcc219349026d0f2326",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3e50e6eed101c2f109a19e5cfcfdf93159b8def64b131a4ad461f38ac8a28e0b",
+				"dweb:/ipfs/QmU3nRE5YTBNBknWS76RaZD14cDgyJfseLwQELGGFjmhax"
+			]
+		}
+	},
+	"version": 1
+}

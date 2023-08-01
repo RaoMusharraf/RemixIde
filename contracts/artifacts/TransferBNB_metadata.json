@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.21+commit.d9974bed"
 	},
 	"language": "Solidity",
 	"output": {
@@ -36,13 +36,20 @@
 				"type": "event"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "Owner",
+				"outputs": [
 					{
 						"internalType": "address",
-						"name": "_owner",
+						"name": "",
 						"type": "address"
 					}
 				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "checkBalance",
 				"outputs": [
 					{
@@ -163,7 +170,7 @@
 		"compilationTarget": {
 			"contracts/Amount_Trnafering_Contreact.sol": "TransferBNB"
 		},
-		"evmVersion": "london",
+		"evmVersion": "shanghai",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -192,11 +199,11 @@
 			]
 		},
 		"contracts/Amount_Trnafering_Contreact.sol": {
-			"keccak256": "0x89eccf274b7b732ba2ce4bf45bc1fcb35608d4933c45b4bde44967b602e739c0",
+			"keccak256": "0x1801c93d047acaca950952712fab72797157242a75601f6c13493df21864e567",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://212f6b23bb564a8dda085ced0452c6c7769606774049a4f6ac2b0d8da0fc245c",
-				"dweb:/ipfs/QmSfCzdQ2XyaWh8ZtP2jkb9LG7XTwSyph9Z9BXQu41Wrsb"
+				"bzz-raw://08a9d8a535ee6b187c70226bb6b6a1335c7c0c4ad0f81ae6c840756852b9cf4c",
+				"dweb:/ipfs/QmTa9iAynbaKSj9RJLSm7nmhYmDrqoRknPFHr8Mt9B6nPu"
 			]
 		}
 	},

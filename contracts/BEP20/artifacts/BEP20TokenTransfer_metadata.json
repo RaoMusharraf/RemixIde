@@ -1,0 +1,143 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_bep20TokenAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "bep20TokenAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "depositTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "depositTokensUser",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getContractBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/BEP20/bep20.sol": "BEP20TokenTransfer"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/BEP20/IBEP20.sol": {
+			"keccak256": "0x57a946db625ab4a44e936fe266d97c77b3810ede00a6e32657b308565215298e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7c088c2e6308adcca6599d1488c6e6ac4b5d9e3d62419cc22e5ceaa84f5cf69b",
+				"dweb:/ipfs/QmReSnQW6entFZ5ofXxxL5SKMWU7v1ZoRFmv2sZVACdKfK"
+			]
+		},
+		"contracts/BEP20/bep20.sol": {
+			"keccak256": "0x5943a7b17d437467f12103180513c84fea74d469e1b8364b7d4abc52004ef223",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://66c26f4ad4871c8c856ce0a5b1b121b99768c92a00e921353ab67fb4c7587add",
+				"dweb:/ipfs/QmULbUdVrUm3hxQY3qA55dKazeZH1WtgHvAfjGpokE98Y8"
+			]
+		}
+	},
+	"version": 1
+}

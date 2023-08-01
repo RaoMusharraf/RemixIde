@@ -1,0 +1,69 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Required interface of an ERC721 compliant contract.",
+			"kind": "dev",
+			"methods": {
+				"transfer(address,uint256)": {
+					"details": "Returns the number of tokens in ``owner``'s account."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/StakingUrgent/IConnected.sol": "IConnected"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/StakingUrgent/IConnected.sol": {
+			"keccak256": "0x87bd2978d75e0f220d5b2faaf16ad9e2e2567a997d92e54d19477233f138b24f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4055fb0856a06fe4db9ab6d30c1980c9da67010618eb22d64b6f0a0eb8ee0bd7",
+				"dweb:/ipfs/QmZzdchQdv4QTjqNaq4rpjeTF5ZYL3Pb2opLcvcfXs9w3q"
+			]
+		}
+	},
+	"version": 1
+}

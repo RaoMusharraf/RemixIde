@@ -1,0 +1,244 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Minted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Revoked",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "hasValid",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "isValid",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "ownerOf",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"balanceOf(address)": {
+					"params": {
+						"owner": "Address for whom to query the balance"
+					},
+					"returns": {
+						"_0": "Number of tokens owned by `owner`"
+					}
+				},
+				"hasValid(address)": {
+					"params": {
+						"owner": "Address for whom to check the ownership"
+					},
+					"returns": {
+						"_0": "True if `owner` has a valid token, false otherwise"
+					}
+				},
+				"isValid(uint256)": {
+					"params": {
+						"tokenId": "Identifier of the token"
+					},
+					"returns": {
+						"_0": "True if the token is valid, false otherwise"
+					}
+				},
+				"ownerOf(uint256)": {
+					"params": {
+						"tokenId": "Identifier of the token"
+					},
+					"returns": {
+						"_0": "Address of the owner of `tokenId`"
+					}
+				},
+				"supportsInterface(bytes4)": {
+					"details": "Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"Minted(address,uint256)": {
+					"notice": "Event emitted when a token `tokenId` is minted for `owner`"
+				},
+				"Revoked(address,uint256)": {
+					"notice": "Event emitted when token `tokenId` of `owner` is revoked"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"balanceOf(address)": {
+					"notice": "Count all tokens assigned to an owner"
+				},
+				"hasValid(address)": {
+					"notice": "Check if an address owns a valid token in the contract"
+				},
+				"isValid(uint256)": {
+					"notice": "Check if a token hasn't been revoked"
+				},
+				"ownerOf(uint256)": {
+					"notice": "Get owner of a token"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ERC4671/ERC4671.sol": "IERC4671"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+			"keccak256": "0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f",
+				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
+			]
+		},
+		"contracts/ERC4671/ERC4671.sol": {
+			"keccak256": "0x093cfc7963226796c2af1fea30a29b479a38e731e380c61373765a446d36b6db",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://72b37eeea2f3bf40e6b30fc23ecdcdba8e228591f1ea60bf45e2dfb302e8f53b",
+				"dweb:/ipfs/QmaVtTPSpFjkqx6ADw2yG41Rc57GEH8F1U63ZrubFkQSpU"
+			]
+		}
+	},
+	"version": 1
+}

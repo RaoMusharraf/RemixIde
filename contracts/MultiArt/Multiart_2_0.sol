@@ -3,13 +3,17 @@ pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+// import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract Multiart is ERC721, ERC721URIStorage, Ownable {
-    using Counters for Counters.Counter;
 
+    using SafeERC20 for IERC20;
+    using Counters for Counters.Counter;
     Counters.Counter public _tokenIdCounter;
+    
     struct TokenIdByCollection {
         uint256[] tokenIds;
     }
@@ -18,7 +22,9 @@ contract Multiart is ERC721, ERC721URIStorage, Ownable {
     mapping(string => TokenIdByCollection) private tokenIdByCollection;
     mapping(string => uint256) public alreadyMintedQuantity;
     address public mintPriceReceiver;
+    address public adminAddress;
     address public transferFeeReceiver;
+    address tokenAddress;
     uint256 public royalty;
 
     struct NFT {
@@ -28,15 +34,19 @@ contract Multiart is ERC721, ERC721URIStorage, Ownable {
     mapping (uint => NFT) public NFTMetadata;
     mapping (address => uint) public ArtistAmount;
 
-    constructor(address _mintPriceReceiver, address _transferFeeReceiver,uint256 _royalty)
+    constructor(address _adminAddress,address _mintPriceReceiver, address _transferFeeReceiver,address _tokenAddress,uint256 _royalty)
         ERC721("Multiart", "MAT")
     {
+        adminAddress = _adminAddress;
         mintPriceReceiver = _mintPriceReceiver;
         transferFeeReceiver = _transferFeeReceiver;
+        tokenAddress = _tokenAddress;
         royalty=_royalty;
     }
-
-    function safeMint(uint256 feePercentage,string memory uri,uint StartTime,uint EndTime,string memory NFT_doc,uint mintQuantity,uint TotalQuantity,address artist,uint perNFTPrice,string memory collectionId) public payable {
+    function setAdminAddress(address _adminAddress) external {
+        adminAddress = _adminAddress;
+    }
+    function safeMint(uint256 feePercentage,string memory uri,uint StartTime,uint EndTime,string memory NFT_doc,uint mintQuantity,uint TotalQuantity,address artist,uint perNFTPrice,uint typ,string memory collectionId) public payable {
         require((StartTime < block.timestamp) && (block.timestamp < EndTime),"Time Overflow");
         require(msg.value == (perNFTPrice*mintQuantity), "Invalid Price");
         uint256 usedQuantity = alreadyMintedQuantity[NFT_doc];
@@ -54,8 +64,16 @@ contract Multiart is ERC721, ERC721URIStorage, Ownable {
         }
         alreadyMintedQuantity[NFT_doc] += mintQuantity; 
         ArtistAmount[artist] += mintedPrice;
-        payable(mintPriceReceiver).transfer(mintedPrice);
-        payable(transferFeeReceiver).transfer(calculatedFeePrice);
+        if(typ == 1){
+            payable(mintPriceReceiver).transfer(mintedPrice);
+            payable(transferFeeReceiver).transfer(calculatedFeePrice);
+        }
+        else if(typ == 2){
+            IERC20(tokenAddress).safeTransferFrom(msg.sender,mintPriceReceiver,mintedPrice);
+        }
+        else{
+            revert("Please Enter the correct payment Type");
+        } 
     }
 
     function calculateReceiverPrice(uint256 _feePercentage, uint256 _TotalPrice)

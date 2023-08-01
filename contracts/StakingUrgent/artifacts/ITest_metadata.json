@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/StakingUrgent/ITest.sol": "ITest"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/StakingUrgent/ITest.sol": {
+			"keccak256": "0xc1d171e14b9cb4c276e4663876d7ccc8acd5fd7a7517f8693f22dfde921cb7cf",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://215ed4925a5e644fc2e69175234a037a37974591486bf1c48040952e82cf1ba2",
+				"dweb:/ipfs/QmefNueCF2PfvZiMm7GHS5ki7vK4WKZVaaQ65gRmeSaaq9"
+			]
+		}
+	},
+	"version": 1
+}

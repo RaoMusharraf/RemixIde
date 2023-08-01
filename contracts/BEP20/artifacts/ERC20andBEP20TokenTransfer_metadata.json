@@ -1,0 +1,231 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_bep20TokenAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_erc20TokenAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "bep20TokenAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "depositTokensBEP20",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "depositTokensBEP20User",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "depositTokensERC20",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "depositTokensERC20User",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "erc20TokenAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getContractBalanceBEP20",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getContractBalanceERC20",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawTokensBEP20",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawTokensERC20",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/BEP20/bep20.sol": "ERC20andBEP20TokenTransfer"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/BEP20/IBEP20.sol": {
+			"keccak256": "0x57a946db625ab4a44e936fe266d97c77b3810ede00a6e32657b308565215298e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7c088c2e6308adcca6599d1488c6e6ac4b5d9e3d62419cc22e5ceaa84f5cf69b",
+				"dweb:/ipfs/QmReSnQW6entFZ5ofXxxL5SKMWU7v1ZoRFmv2sZVACdKfK"
+			]
+		},
+		"contracts/BEP20/IERC20.sol": {
+			"keccak256": "0xf30105a4f02f46b27a5807f3b23834871882f8051a83591b4e60e7c37fd638b5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ab3f6f6eec8e4e6e8e807f42d9173b95da4cbaff5492a239ac247f76eb63aa4c",
+				"dweb:/ipfs/QmSdFdqkBhupWMeMasMVE5gveRPG5tAN8m6U5zDwPK7qXS"
+			]
+		},
+		"contracts/BEP20/bep20.sol": {
+			"keccak256": "0xd650dc1d7bf9dc4743af4f07abc8858b5efe92e0f7d170048b111cff306f6d23",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://48dae386b45491d835992aaf7318203de90f6ff36f60a735161d8d929d3be5dd",
+				"dweb:/ipfs/QmbLLfWbKWwHbVSwAFSUHwn5xH1ArtZC1A9KdX8dyJbi1y"
+			]
+		}
+	},
+	"version": 1
+}

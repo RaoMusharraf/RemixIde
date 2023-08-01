@@ -155,18 +155,13 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "startData",
+						"name": "startTime",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "endData",
+						"name": "endTime",
 						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "isActive",
-						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -309,7 +304,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "MakeOffer",
+				"name": "MakeRentOffer",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -661,6 +656,43 @@
 						"internalType": "struct Marketplace.NFT[]",
 						"name": "",
 						"type": "tuple[]"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "coordinate",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "seller",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "price",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "listed",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct Marketplace.NFT[]",
+						"name": "",
+						"type": "tuple[]"
 					}
 				],
 				"stateMutability": "view",
@@ -676,6 +708,43 @@
 				],
 				"name": "getNotListedNfts",
 				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "coordinate",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "seller",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "price",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "listed",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct Marketplace.NFT[]",
+						"name": "",
+						"type": "tuple[]"
+					},
 					{
 						"components": [
 							{
@@ -987,11 +1056,11 @@
 			]
 		},
 		"contracts/Astrline/Marketplace.sol": {
-			"keccak256": "0xaf1397236d0bd1a189990c5664a17ecf6e0b00f66b3fc16712707b9733112d06",
+			"keccak256": "0x5b84dfcbcbb57ded03e3e729d47f174bf7b82422847a34e6f4b41ec8fcd901c3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://61668c559bdc7fe9abdbebd5e6364bd9edcaf5250cfb54f1c8ce8c9e83f1b82d",
-				"dweb:/ipfs/QmYFUxtzFG4Fjqn85aBYXt4ierigVdEnuyzYndbkRLXAKh"
+				"bzz-raw://eaee0ecc7c01155b2c54d9a6f36945161e89f551fd61aa971fb5833b2c935955",
+				"dweb:/ipfs/QmPzo4P2RHTvxneZPJ2BV5ZGCryGAhoA5RE7H22tgSMFzR"
 			]
 		}
 	},
