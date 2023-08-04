@@ -896,7 +896,7 @@ contract Staking is Ownable {
     } 
  
     function getStakingPeriodInNumbers(stake memory _investor) internal pure returns (uint256){
-        return _investor.stakePeriod == StakingPeriod.ONE_MONTH ? 5 minutes : _investor.stakePeriod == StakingPeriod.TWO_MONTH ? 30 days : _investor.stakePeriod == StakingPeriod.THREE_MONTH ? 90 days : _investor.stakePeriod == StakingPeriod.SIX_MONTH ? 120 days : _investor.stakePeriod == StakingPeriod.ONE_YEAR ? 365 days : 0; 
+        return _investor.stakePeriod == StakingPeriod.ONE_MONTH ? 15 days : _investor.stakePeriod == StakingPeriod.TWO_MONTH ? 30 days : _investor.stakePeriod == StakingPeriod.THREE_MONTH ? 90 days : _investor.stakePeriod == StakingPeriod.SIX_MONTH ? 120 days : _investor.stakePeriod == StakingPeriod.ONE_YEAR ? 365 days : 0; 
     }
  
     function stakeOf(address _stakeholder, StakingPeriod _stakePeriod)

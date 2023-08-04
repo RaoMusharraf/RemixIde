@@ -141,30 +141,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "AdminCalculation",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "TotalSale",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "TotalProfit",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "uint256",
 						"name": "_tokenId",
 						"type": "uint256"
@@ -179,7 +155,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_royalityPercentage",
+						"name": "_royalityPersentage",
 						"type": "uint256"
 					},
 					{
@@ -201,48 +177,43 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "ListedId",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "seller",
-						"type": "address"
-					},
-					{
-						"internalType": "bool",
-						"name": "Listed",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Price",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "string",
 						"name": "uri",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "collectionId",
 						"type": "string"
 					}
 				],
 				"name": "Mint",
 				"outputs": [],
 				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "URI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "URI",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Count",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -290,7 +261,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "royalitypercentage",
+						"name": "royalityPersentage",
 						"type": "uint256"
 					},
 					{
@@ -390,7 +361,7 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "royalitypercentage",
+								"name": "royalityPersentage",
 								"type": "uint256"
 							},
 							{
@@ -451,7 +422,7 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "royalitypercentage",
+								"name": "royalityPersentage",
 								"type": "uint256"
 							},
 							{
@@ -512,7 +483,7 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "royalitypercentage",
+								"name": "royalityPersentage",
 								"type": "uint256"
 							},
 							{
@@ -573,7 +544,7 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "royalitypercentage",
+								"name": "royalityPersentage",
 								"type": "uint256"
 							},
 							{
@@ -703,7 +674,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Tux NFTs/newMarketplace.sol": "Marketplace"
+			"contracts/Tux NFTs/Marketplace.sol": "Marketplace"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -845,20 +816,20 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/Tux NFTs/newIConnected.sol": {
-			"keccak256": "0xa8bdf7259d7fe64abcd19f049db356fa951a85faf384d5a91f5c84c19dcb5b8b",
+		"contracts/Tux NFTs/IConnected.sol": {
+			"keccak256": "0xd91ebd366776daf1041c3c55af8f497a9348a69ef2be7abfe085aad55b7a9984",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://181010477a52606a6dbe38dc8a43dac84917275bba9c8ad17fa78b718efdde2b",
-				"dweb:/ipfs/QmXXmcgAVectyivr9vyGTLmQzCLDbhWCVPsVUNTWCXU5hD"
+				"bzz-raw://dc415f32058407b8409b3b0b46202b692eff39fac90547d8a369efa159d81b02",
+				"dweb:/ipfs/QmbUbfcDtEG3jnkWSr5i5f2r915Sk5AQkP1aKrqVDPFWzQ"
 			]
 		},
-		"contracts/Tux NFTs/newMarketplace.sol": {
-			"keccak256": "0xec75e6a4ac426f799a39f62cd3d47af83eef97e467c577eab0d254785dcc75c6",
+		"contracts/Tux NFTs/Marketplace.sol": {
+			"keccak256": "0x185db1c579dd7cfded8fea264d6881bbe2c557efe0db5d8b4fb0c7fac62257df",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://dd3cecfbc7d601d31a9a8969503420d480116b8a6f2e328ddc1721330ac5bc32",
-				"dweb:/ipfs/QmVekzejSftzECU2rP45p9c4H6atBdH1pVpe5y6MzvZtpZ"
+				"bzz-raw://6766062d91c1e562a410e9f3b65d35fb5d80170ed7319ce17a697d665ef64318",
+				"dweb:/ipfs/Qmex3eVL3VtxXiCu7iY6WFiTtvWFhyKbPUQvnRDjpNgUDa"
 			]
 		}
 	},

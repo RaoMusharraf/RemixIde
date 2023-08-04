@@ -9,21 +9,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "ERC721NFT",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_AdminAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_AdminPricePer",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
 						"name": "_tokenAddress",
 						"type": "address"
 					}
@@ -146,37 +131,8 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "AdminCalculation",
-				"outputs": [
-					{
 						"internalType": "uint256",
-						"name": "TotalSale",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "TotalProfit",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_mintContract",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_tokenId",
+						"name": "listIndex",
 						"type": "uint256"
 					}
 				],
@@ -194,11 +150,6 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "_royalityPercentage",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
 						"name": "_price",
 						"type": "uint256"
 					},
@@ -211,53 +162,6 @@
 				"name": "ListNft",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "_mintContract",
-						"type": "address"
-					}
-				],
-				"name": "ListedId",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "seller",
-						"type": "address"
-					},
-					{
-						"internalType": "bool",
-						"name": "Listed",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint256",
-						"name": "Price",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "_URICount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "_value",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -291,23 +195,13 @@
 						"type": "address"
 					},
 					{
-						"internalType": "address",
-						"name": "royalityAddress",
-						"type": "address"
-					},
-					{
 						"internalType": "uint256",
-						"name": "royalitypercentage",
+						"name": "price",
 						"type": "uint256"
 					},
 					{
-						"internalType": "bool",
-						"name": "royalityCheck",
-						"type": "bool"
-					},
-					{
 						"internalType": "uint256",
-						"name": "price",
+						"name": "count",
 						"type": "uint256"
 					},
 					{
@@ -335,18 +229,13 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "_mintContract",
-						"type": "address"
-					},
-					{
 						"internalType": "uint256",
-						"name": "price",
+						"name": "listIndex",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_tokenId",
+						"name": "price",
 						"type": "uint256"
 					},
 					{
@@ -361,28 +250,10 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "getAdminPrice",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
 						"name": "_to",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_mintContract",
 						"type": "address"
 					}
 				],
@@ -406,23 +277,50 @@
 								"type": "address"
 							},
 							{
-								"internalType": "address",
-								"name": "royalityAddress",
-								"type": "address"
+								"internalType": "uint256",
+								"name": "price",
+								"type": "uint256"
 							},
 							{
 								"internalType": "uint256",
-								"name": "royalitypercentage",
+								"name": "count",
 								"type": "uint256"
 							},
 							{
 								"internalType": "bool",
-								"name": "royalityCheck",
+								"name": "listed",
 								"type": "bool"
+							}
+						],
+						"internalType": "struct Marketplace.NFT[]",
+						"name": "",
+						"type": "tuple[]"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "seller",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
 							},
 							{
 								"internalType": "uint256",
 								"name": "price",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "count",
 								"type": "uint256"
 							},
 							{
@@ -442,196 +340,22 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "listCount",
+				"outputs": [
+					{
 						"internalType": "address",
-						"name": "_sender",
+						"name": "contractAddress",
 						"type": "address"
 					},
 					{
-						"internalType": "address",
-						"name": "_mintContract",
-						"type": "address"
-					}
-				],
-				"name": "getMyListedNfts",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "tokenId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "address",
-								"name": "seller",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "owner",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "royalityAddress",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "royalitypercentage",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "royalityCheck",
-								"type": "bool"
-							},
-							{
-								"internalType": "uint256",
-								"name": "price",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "listed",
-								"type": "bool"
-							}
-						],
-						"internalType": "struct Marketplace.NFT[]",
-						"name": "",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_sender",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_mintContract",
-						"type": "address"
-					}
-				],
-				"name": "getMyNfts",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "tokenId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "address",
-								"name": "seller",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "owner",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "royalityAddress",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "royalitypercentage",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "royalityCheck",
-								"type": "bool"
-							},
-							{
-								"internalType": "uint256",
-								"name": "price",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "listed",
-								"type": "bool"
-							}
-						],
-						"internalType": "struct Marketplace.NFT[]",
-						"name": "",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_to",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_mintContract",
-						"type": "address"
-					}
-				],
-				"name": "getNotListedNfts",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "tokenId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "address",
-								"name": "seller",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "owner",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "royalityAddress",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "royalitypercentage",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "royalityCheck",
-								"type": "bool"
-							},
-							{
-								"internalType": "uint256",
-								"name": "price",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "listed",
-								"type": "bool"
-							}
-						],
-						"internalType": "struct Marketplace.NFT[]",
-						"name": "",
-						"type": "tuple[]"
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -655,32 +379,6 @@
 				"name": "renounceOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_AdminPricePer",
-						"type": "uint256"
-					}
-				],
-				"name": "setAdminPrice",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "tokenID",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "_value",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -721,7 +419,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MultiArt/MultiArtMarketplace.sol": "Marketplace"
+			"contracts/MultiArt/MultiArtMarketplace_2_0.sol": "Marketplace"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -863,12 +561,12 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/MultiArt/MultiArtMarketplace.sol": {
-			"keccak256": "0x9ef1c3c7891ead7d8789f971cb81b4fd4805b7cffe5732b2ba64e935ab361080",
+		"contracts/MultiArt/MultiArtMarketplace_2_0.sol": {
+			"keccak256": "0x522b7b9cb36d4eb41787a34ed4c63ddcb2ff593cef2dc70d91b8c9d56e15cefb",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ab0ac81bd1e783890f44ac62c3cdf3ddc845bc856dcd5cc05604420e0df34dc9",
-				"dweb:/ipfs/QmZt2XicAfoz9yfQ4rEptjJUVEhpGDza4bGjjznzheGKBn"
+				"bzz-raw://6e2757ccb8958a393f3f3a73ea92a8fcda103430adda631198fbeb984789793a",
+				"dweb:/ipfs/QmbKUW6MtuCnHFFeiQgLUtmWzgYMG5aDBm89GK3UstAfmG"
 			]
 		}
 	},
