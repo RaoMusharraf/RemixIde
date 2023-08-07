@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.21+commit.d9974bed"
 	},
 	"language": "Solidity",
 	"output": {
@@ -732,6 +732,23 @@
 			}
 		],
 		"devdoc": {
+			"events": {
+				"Approval(address,address,uint256)": {
+					"details": "Emitted when `owner` enables `approved` to manage the `tokenId` token."
+				},
+				"ApprovalForAll(address,address,bool)": {
+					"details": "Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets."
+				},
+				"Paused(address)": {
+					"details": "Emitted when the pause is triggered by `account`."
+				},
+				"Transfer(address,address,uint256)": {
+					"details": "Emitted when `tokenId` token is transferred from `from` to `to`."
+				},
+				"Unpaused(address)": {
+					"details": "Emitted when the pause is lifted by `account`."
+				}
+			},
 			"kind": "dev",
 			"methods": {
 				"approve(address,uint256)": {
@@ -802,7 +819,7 @@
 		"compilationTarget": {
 			"contracts/Defly/ERC721.sol": "MintERC721"
 		},
-		"evmVersion": "london",
+		"evmVersion": "shanghai",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
