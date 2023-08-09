@@ -213,7 +213,7 @@
 				],
 				"name": "ClaimNFT",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -301,20 +301,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "NftBudding",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_auctionListCount",
-						"type": "uint256"
-					}
-				],
-				"name": "SelectedBidder",
+				"name": "NftBidding",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -436,9 +423,97 @@
 						"type": "uint256"
 					}
 				],
-				"name": "cancelList",
+				"name": "cancelAuctionList",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					}
+				],
+				"name": "getAuctionListedNfts",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "totalBidTimeInHour",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "startTime",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "endTime",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "isActive",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct Marketplace.nftAuction[]",
+						"name": "",
+						"type": "tuple[]"
+					},
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "totalBidTimeInHour",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "startTime",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "endTime",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "isActive",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct Marketplace.nftAuction[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -599,30 +674,6 @@
 					{
 						"internalType": "address",
 						"name": "selectedUser",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "selectedBidder",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "user",
 						"type": "address"
 					},
 					{
@@ -834,11 +885,11 @@
 			]
 		},
 		"contracts/MultiArt/MultiArtMarketplace_2_0.sol": {
-			"keccak256": "0xdf23f82976363b49a9d6be3100920a62f5088fa4815113a2a5444a51f0e4e5e3",
+			"keccak256": "0x849a3a4795441b86802ec896bbbe5d24404a7963ef811a1097efb9eb47902bdf",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3aded4065702c660513a5a62e22fd0326faec025e24ef6dbd2f6f38dd7f2f3b0",
-				"dweb:/ipfs/QmZT5vjUbiF1MeAXDfp3r7286SGP97x6ZeyMVzrKXkwSrE"
+				"bzz-raw://fa33127c2edcc75b46613b69f028e29a2444320a8db07a47b643ab6593c28a50",
+				"dweb:/ipfs/QmS7T3LkJ6oVBQ3EQgJS4T93QZK4H9JAzypYhCGXHHSGyk"
 			]
 		}
 	},

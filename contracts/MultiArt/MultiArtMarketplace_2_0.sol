@@ -23,7 +23,6 @@ contract Marketplace is ReentrancyGuard , Ownable{
     mapping (uint => uint ) public userListCount;
     mapping (uint => addressToken) public auctionListCount;
     mapping (uint => mapping(uint=>userDetail)) public Bidding;
-    mapping (uint => userDetail) public selectedBidder;
     struct NFT {
         uint256 tokenId;
         address seller;
@@ -119,51 +118,53 @@ contract Marketplace is ReentrancyGuard , Ownable{
         nftAuctionCount.increment();
         NftAuction[_mintContract][_tokenId] = nftAuction(msg.sender,_tokenId,_totalBidTime,_startTime,(_startTime+(3600*_totalBidTime)),true);
         auctionListCount[nftAuctionCount.current()] = addressToken(_mintContract,_tokenId);
+        userListCount[nftAuctionCount.current()] = 0; 
         ERC721(_mintContract).transferFrom(msg.sender, address(this), _tokenId);
     }
-    function NftBudding(uint _auctionListCount,uint _price) external {
-        require(ERC721(auctionListCount[_auctionListCount].contractAddress).ownerOf(auctionListCount[_auctionListCount].tokenId) != msg.sender,"You are Eligible for Bidding");
+    function NftBidding(uint _auctionListCount,uint _price) external {
+        require(NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].owner != msg.sender,"You are Not Eligible for Bidding");
         require(NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].isActive,"Not Listed In Auction!");
         require(NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].startTime < block.timestamp ,"Bidding Not Start!");
-        require(block.timestamp < NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].startTime,"Bidding END!");
-        Bidding[_auctionListCount][userListCount[auctionListCount[_auctionListCount].tokenId]+1] = userDetail(msg.sender,_price);
-        userListCount[auctionListCount[_auctionListCount].tokenId]++;
+        require(block.timestamp < NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].endTime,"Bidding END!");
+        Bidding[_auctionListCount][userListCount[_auctionListCount]+1] = userDetail(msg.sender,_price);
+        userListCount[_auctionListCount]++;
     }
-    function cancelList(uint _auctionListCount) external {
-        require(block.timestamp < NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].startTime,"Bidding END!");
-        require(ERC721(auctionListCount[_auctionListCount].contractAddress).ownerOf(auctionListCount[_auctionListCount].tokenId) != msg.sender,"You are Not Owner Of this Token!");
+    function cancelAuctionList(uint _auctionListCount) external {
+        require(block.timestamp < NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].endTime,"Please wait bidding time is not complete!");
+        ERC721(auctionListCount[_auctionListCount].contractAddress).transferFrom(address(this), msg.sender, auctionListCount[_auctionListCount].tokenId);
         NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].isActive = false;
         auctionListCount[_auctionListCount] = auctionListCount[nftAuctionCount.current()];
-        ERC721(listCount[_auctionListCount].contractAddress).transferFrom(address(this), msg.sender, listCount[_auctionListCount].tokenId);
+        userListCount[_auctionListCount] = userListCount[nftAuctionCount.current()];
+        delete auctionListCount[nftAuctionCount.current()];
+        nftAuctionCount.decrement();
+        
     }
-    function SelectedBidder(uint _auctionListCount) external {
-        require(NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].isActive,"Already Listed In Auction!");
-        require(block.timestamp > NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].startTime,"Bidding END!");
+    function ClaimNFT(uint _auctionListCount,uint typ) external payable {
+        require(block.timestamp > NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].endTime,"Bidding END!");
         address owner;
         uint price;
         (owner,price) = selectUser(_auctionListCount);
-        selectedBidder[_auctionListCount] = userDetail(owner,price);
-    }
-    function ClaimNFT(uint _auctionListCount,uint typ) external {
-        require(block.timestamp < NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].startTime,"Bidding END!");
-        require(selectedBidder[_auctionListCount].user == msg.sender ,"you are not sellected bidder");
-        NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].isActive = false;
-        auctionListCount[_auctionListCount] = auctionListCount[nftAuctionCount.current()];
+        require(owner == msg.sender ,"you are not sellected bidder");
         if(typ == 1){ 
-            payable(NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].owner).transfer(selectedBidder[_auctionListCount].price);
+            payable(NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].owner).transfer(price);
         }  
         else if(typ == 2){  
-            IERC20(tokenAddress).safeTransferFrom(selectedBidder[_auctionListCount].user,NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].owner,selectedBidder[_auctionListCount].price);
+            IERC20(tokenAddress).safeTransferFrom(owner,NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].owner,price);
         }
         else{
             revert("Please Enter the correct payment Type");
         }
-        ERC721(listCount[_auctionListCount].contractAddress).transferFrom(address(this), msg.sender, listCount[_auctionListCount].tokenId);
+        ERC721(auctionListCount[_auctionListCount].contractAddress).transferFrom(address(this), msg.sender, auctionListCount[_auctionListCount].tokenId);
+        NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].isActive = false;
+        auctionListCount[_auctionListCount] = auctionListCount[nftAuctionCount.current()];
+        userListCount[_auctionListCount] = userListCount[nftAuctionCount.current()];
+        delete auctionListCount[nftAuctionCount.current()];
+        nftAuctionCount.decrement();
     }
     function selectUser(uint _auctionListCount) public view returns(address selectedUser,uint price){
         uint heighest = 0;
         address owner;
-        for(uint i = 1 ; i <= userListCount[auctionListCount[_auctionListCount].tokenId] ; i++){
+        for(uint i = 1 ; i <= userListCount[_auctionListCount] ; i++){
             if(heighest < Bidding[_auctionListCount][i].price){
                 heighest = Bidding[_auctionListCount][i].price;
                 owner = Bidding[_auctionListCount][i].user;
@@ -197,8 +198,36 @@ contract Marketplace is ReentrancyGuard , Ownable{
         NFT[] memory listedNFT = new NFT[](listNft);
         uint listedIndex = 0;
         for (uint i = 1; i <= _nftCount.current() ; i++) {
-            if ((_idToNFT[listCount[i].contractAddress][listCount[i].tokenId].seller != _to) && (_idToNFT[listCount[i].contractAddress][listCount[i].tokenId].listed)) {
+            if ((NftAuction[listCount[i].contractAddress][listCount[i].tokenId].owner != _to) && (NftAuction[listCount[i].contractAddress][listCount[i].tokenId].isActive)) {
                 listedNFT[listedIndex] = _idToNFT[listCount[i].contractAddress][listCount[i].tokenId];
+                listedIndex++;
+            }
+        }
+        return (myListedNFT,listedNFT);
+    }
+    function getAuctionListedNfts(address _to) public view returns (nftAuction[] memory,nftAuction[] memory) {
+        uint myListedCount = 0;
+        for (uint i = 1; i <= nftAuctionCount.current() ; i++) {
+            if ((NftAuction[auctionListCount[i].contractAddress][auctionListCount[i].tokenId].owner == _to) && (NftAuction[auctionListCount[i].contractAddress][auctionListCount[i].tokenId].isActive)) {
+                myListedCount++;
+            }
+        }
+        nftAuction[] memory myListedNFT = new nftAuction[](myListedCount);
+        if(myListedCount != 0){
+            uint myListedIndex = 0;
+            for (uint i = 1; i <= nftAuctionCount.current() ; i++) {
+                if ((NftAuction[auctionListCount[i].contractAddress][auctionListCount[i].tokenId].owner == _to) && (NftAuction[auctionListCount[i].contractAddress][auctionListCount[i].tokenId].isActive)) {
+                    myListedNFT[myListedIndex] = NftAuction[auctionListCount[i].contractAddress][auctionListCount[i].tokenId];
+                    myListedIndex++;
+                }
+            }
+        }
+        uint listNft = (nftAuctionCount.current()-myListedCount);
+        nftAuction[] memory listedNFT = new nftAuction[](listNft);
+        uint listedIndex = 0;
+        for (uint i = 1; i <= nftAuctionCount.current() ; i++) {
+            if ((NftAuction[auctionListCount[i].contractAddress][auctionListCount[i].tokenId].owner != _to) && (NftAuction[auctionListCount[i].contractAddress][auctionListCount[i].tokenId].isActive)) {
+                listedNFT[listedIndex] = NftAuction[auctionListCount[i].contractAddress][auctionListCount[i].tokenId];
                 listedIndex++;
             }
         }
