@@ -177,8 +177,18 @@
 						"type": "address"
 					},
 					{
+						"internalType": "string",
+						"name": "userName",
+						"type": "string"
+					},
+					{
 						"internalType": "uint256",
 						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "biddingTime",
 						"type": "uint256"
 					}
 				],
@@ -225,12 +235,63 @@
 					},
 					{
 						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalBidTime",
+						"type": "uint256"
+					}
+				],
+				"name": "IncreaseAuctionTime",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_mintContract",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalListTime",
+						"type": "uint256"
+					}
+				],
+				"name": "IncreaseListTime",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_mintContract",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
 						"name": "_price",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
 						"name": "_tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalTimeInHour",
 						"type": "uint256"
 					}
 				],
@@ -266,11 +327,6 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "totalBidTimeInHour",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
 						"name": "startTime",
 						"type": "uint256"
 					},
@@ -294,6 +350,11 @@
 						"internalType": "uint256",
 						"name": "_auctionListCount",
 						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
 					},
 					{
 						"internalType": "uint256",
@@ -339,6 +400,16 @@
 					{
 						"internalType": "uint256",
 						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "start",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "end",
 						"type": "uint256"
 					},
 					{
@@ -441,74 +512,148 @@
 					{
 						"components": [
 							{
-								"internalType": "address",
-								"name": "owner",
-								"type": "address"
+								"components": [
+									{
+										"internalType": "address",
+										"name": "owner",
+										"type": "address"
+									},
+									{
+										"internalType": "uint256",
+										"name": "tokenId",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "startTime",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "endTime",
+										"type": "uint256"
+									},
+									{
+										"internalType": "bool",
+										"name": "isActive",
+										"type": "bool"
+									}
+								],
+								"internalType": "struct Marketplace.nftAuction",
+								"name": "listedData",
+								"type": "tuple"
 							},
 							{
 								"internalType": "uint256",
-								"name": "tokenId",
+								"name": "listCount",
 								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "totalBidTimeInHour",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "startTime",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "endTime",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "isActive",
-								"type": "bool"
 							}
 						],
-						"internalType": "struct Marketplace.nftAuction[]",
+						"internalType": "struct Marketplace.ListTokenId[]",
 						"name": "",
 						"type": "tuple[]"
 					},
 					{
 						"components": [
 							{
+								"components": [
+									{
+										"internalType": "address",
+										"name": "owner",
+										"type": "address"
+									},
+									{
+										"internalType": "uint256",
+										"name": "tokenId",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "startTime",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "endTime",
+										"type": "uint256"
+									},
+									{
+										"internalType": "bool",
+										"name": "isActive",
+										"type": "bool"
+									}
+								],
+								"internalType": "struct Marketplace.nftAuction",
+								"name": "listedData",
+								"type": "tuple"
+							},
+							{
+								"internalType": "uint256",
+								"name": "listCount",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Marketplace.ListTokenId[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_mint",
+						"type": "address"
+					}
+				],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_listCount",
+						"type": "uint256"
+					}
+				],
+				"name": "getBiddingHistory",
+				"outputs": [
+					{
+						"components": [
+							{
 								"internalType": "address",
-								"name": "owner",
+								"name": "user",
 								"type": "address"
 							},
 							{
+								"internalType": "string",
+								"name": "userName",
+								"type": "string"
+							},
+							{
 								"internalType": "uint256",
-								"name": "tokenId",
+								"name": "price",
 								"type": "uint256"
 							},
 							{
 								"internalType": "uint256",
-								"name": "totalBidTimeInHour",
+								"name": "biddingTime",
 								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "startTime",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "endTime",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "isActive",
-								"type": "bool"
 							}
 						],
-						"internalType": "struct Marketplace.nftAuction[]",
+						"internalType": "struct Marketplace.userDetail[]",
 						"name": "",
 						"type": "tuple[]"
 					}
@@ -529,74 +674,118 @@
 					{
 						"components": [
 							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "tokenId",
+										"type": "uint256"
+									},
+									{
+										"internalType": "address",
+										"name": "seller",
+										"type": "address"
+									},
+									{
+										"internalType": "address",
+										"name": "owner",
+										"type": "address"
+									},
+									{
+										"internalType": "uint256",
+										"name": "price",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "start",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "end",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "count",
+										"type": "uint256"
+									},
+									{
+										"internalType": "bool",
+										"name": "listed",
+										"type": "bool"
+									}
+								],
+								"internalType": "struct Marketplace.NFT",
+								"name": "listedData",
+								"type": "tuple"
+							},
+							{
 								"internalType": "uint256",
-								"name": "tokenId",
+								"name": "listCount",
 								"type": "uint256"
-							},
-							{
-								"internalType": "address",
-								"name": "seller",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "owner",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "price",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "count",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "listed",
-								"type": "bool"
 							}
 						],
-						"internalType": "struct Marketplace.NFT[]",
+						"internalType": "struct Marketplace.ListedNftTokenId[]",
 						"name": "",
 						"type": "tuple[]"
 					},
 					{
 						"components": [
 							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "tokenId",
+										"type": "uint256"
+									},
+									{
+										"internalType": "address",
+										"name": "seller",
+										"type": "address"
+									},
+									{
+										"internalType": "address",
+										"name": "owner",
+										"type": "address"
+									},
+									{
+										"internalType": "uint256",
+										"name": "price",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "start",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "end",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "count",
+										"type": "uint256"
+									},
+									{
+										"internalType": "bool",
+										"name": "listed",
+										"type": "bool"
+									}
+								],
+								"internalType": "struct Marketplace.NFT",
+								"name": "listedData",
+								"type": "tuple"
+							},
+							{
 								"internalType": "uint256",
-								"name": "tokenId",
+								"name": "listCount",
 								"type": "uint256"
-							},
-							{
-								"internalType": "address",
-								"name": "seller",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "owner",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "price",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "count",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "listed",
-								"type": "bool"
 							}
 						],
-						"internalType": "struct Marketplace.NFT[]",
+						"internalType": "struct Marketplace.ListedNftTokenId[]",
 						"name": "",
 						"type": "tuple[]"
 					}
@@ -742,7 +931,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MultiArt/MultiArtMarketplace_2_0.sol": "Marketplace"
+			"contracts/MultiArt/Marketplace_3_0.sol": "Marketplace"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -750,7 +939,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -884,12 +1073,20 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/MultiArt/MultiArtMarketplace_2_0.sol": {
-			"keccak256": "0x849a3a4795441b86802ec896bbbe5d24404a7963ef811a1097efb9eb47902bdf",
+		"contracts/MultiArt/IConnected.sol": {
+			"keccak256": "0x00ad8c66dcb1f484025da1e76a0c5f56f833d53041d868141cf7a91e5ba785f9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fa33127c2edcc75b46613b69f028e29a2444320a8db07a47b643ab6593c28a50",
-				"dweb:/ipfs/QmS7T3LkJ6oVBQ3EQgJS4T93QZK4H9JAzypYhCGXHHSGyk"
+				"bzz-raw://7bc8e9a851a92eef4fcb7a7093d043d6c00d71dc70937dc3180eba33265618d7",
+				"dweb:/ipfs/QmcUwBk1WEHxV84tH2auWuYZo1jbTcATCr4xm7FWkuKe7Q"
+			]
+		},
+		"contracts/MultiArt/Marketplace_3_0.sol": {
+			"keccak256": "0xb2105bb5f05c1799464a32845d7936bf3a068b1a9103e522ccb28bb8b641dff0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://358bbb23b4c666ef3aaaa27ed04a67e2d358cb688751933a8b577958280c6d91",
+				"dweb:/ipfs/QmVhsCYd45qpo5vLVkbBrjSyvgLFdcG7URm3hzx5Cb6gTR"
 			]
 		}
 	},

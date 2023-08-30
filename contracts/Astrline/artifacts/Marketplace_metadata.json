@@ -149,6 +149,11 @@
 				"name": "ActiveRentOffer",
 				"outputs": [
 					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
 						"name": "tokenId",
 						"type": "uint256"
@@ -211,6 +216,25 @@
 				"name": "BuyRentOffer",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "BuyerAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -302,6 +326,11 @@
 						"internalType": "uint256",
 						"name": "_price",
 						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_coordinate",
+						"type": "string"
 					}
 				],
 				"name": "MakeRentOffer",
@@ -345,8 +374,18 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "string",
+						"name": "coordinate",
+						"type": "string"
+					},
+					{
 						"internalType": "bool",
 						"name": "isActive",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "second",
 						"type": "bool"
 					}
 				],
@@ -512,6 +551,67 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "_rentOwner",
+						"type": "address"
+					}
+				],
+				"name": "getBuyerRentNFTs",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "count",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "month",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "price",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "coordinate",
+								"type": "string"
+							},
+							{
+								"internalType": "bool",
+								"name": "isActive",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "second",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct Marketplace.rentOffer[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "_to",
 						"type": "address"
 					}
@@ -660,8 +760,28 @@
 					{
 						"components": [
 							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
 								"internalType": "uint256",
 								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "count",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "month",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "price",
 								"type": "uint256"
 							},
 							{
@@ -670,27 +790,17 @@
 								"type": "string"
 							},
 							{
-								"internalType": "address",
-								"name": "seller",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "owner",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "price",
-								"type": "uint256"
+								"internalType": "bool",
+								"name": "isActive",
+								"type": "bool"
 							},
 							{
 								"internalType": "bool",
-								"name": "listed",
+								"name": "second",
 								"type": "bool"
 							}
 						],
-						"internalType": "struct Marketplace.NFT[]",
+						"internalType": "struct Marketplace.rentOffer[]",
 						"name": "",
 						"type": "tuple[]"
 					}
@@ -748,8 +858,28 @@
 					{
 						"components": [
 							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
 								"internalType": "uint256",
 								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "count",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "month",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "price",
 								"type": "uint256"
 							},
 							{
@@ -758,27 +888,17 @@
 								"type": "string"
 							},
 							{
-								"internalType": "address",
-								"name": "seller",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "owner",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "price",
-								"type": "uint256"
+								"internalType": "bool",
+								"name": "isActive",
+								"type": "bool"
 							},
 							{
 								"internalType": "bool",
-								"name": "listed",
+								"name": "second",
 								"type": "bool"
 							}
 						],
-						"internalType": "struct Marketplace.NFT[]",
+						"internalType": "struct Marketplace.rentOffer[]",
 						"name": "",
 						"type": "tuple[]"
 					}
@@ -836,12 +956,44 @@
 			},
 			{
 				"inputs": [],
+				"name": "getTotalRented",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "ownerRentProfit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -857,6 +1009,32 @@
 			{
 				"inputs": [],
 				"name": "tokenID",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalRented",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSales",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -913,7 +1091,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -1056,11 +1234,11 @@
 			]
 		},
 		"contracts/Astrline/Marketplace.sol": {
-			"keccak256": "0x5b84dfcbcbb57ded03e3e729d47f174bf7b82422847a34e6f4b41ec8fcd901c3",
+			"keccak256": "0xd3c8b1eaa0b758298062f361cd1521a3884801fb07ea826c0689e66cc78c4e09",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://eaee0ecc7c01155b2c54d9a6f36945161e89f551fd61aa971fb5833b2c935955",
-				"dweb:/ipfs/QmPzo4P2RHTvxneZPJ2BV5ZGCryGAhoA5RE7H22tgSMFzR"
+				"bzz-raw://02e5e87daa19f32c6d5b99803ab02bed93d951373d685c996b4607ac15e779ac",
+				"dweb:/ipfs/QmZDrPyBdp24G4teCaZMgo5wUHks27SkJQUrWuxyQ5kNkb"
 			]
 		}
 	},

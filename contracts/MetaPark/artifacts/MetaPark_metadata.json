@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.20+commit.a1b79de6"
+		"version": "0.8.21+commit.d9974bed"
 	},
 	"language": "Solidity",
 	"output": {
@@ -756,7 +756,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MetaPark/MParkContract.sol": "MetaPark"
+			"contracts/MetaPark/metaPark.sol": "MetaPark"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -764,7 +764,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -874,12 +874,12 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/MetaPark/MParkContract.sol": {
-			"keccak256": "0x4ad7afd9f0b2bf7da9d612aac667546044518aade9b873b5209a1ced544b29bd",
+		"contracts/MetaPark/metaPark.sol": {
+			"keccak256": "0x7236881fa61d7b65d6edad3ddd3aa9d392c40587bbc9218f26008253f59442b3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e61285d8afb259fd341d7ff3d3c0797e6cebeb18d22f96a49a6d21b3cd085b75",
-				"dweb:/ipfs/QmefKB3y1nBuoCd7kRx57PoZiMHuSsr6vWEoGbJUME49ZF"
+				"bzz-raw://65f0fcaeb327ccf5856ab5490cd32b0e652d9b37091146feb44ff50cfab824bc",
+				"dweb:/ipfs/QmcZGeQru7ZxCkdPWDQuZeAm1qVEfmqUTN1zXqV4Q131EQ"
 			]
 		}
 	},

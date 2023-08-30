@@ -14,6 +14,8 @@ contract Marketplace is ReentrancyGuard , Ownable{
     using SafeERC20 for IERC20;
     using Counters for Counters.Counter;
     Counters.Counter public _nftCount;
+    Counters.Counter public totalSales;
+    Counters.Counter public totalRented;
     Counters.Counter public _URICount;
     Counters.Counter public tokenID;
     ERC721 token;
@@ -30,6 +32,8 @@ contract Marketplace is ReentrancyGuard , Ownable{
     mapping (address => mapping(uint256 => uint)) public getRentTokenId;
     mapping (uint => buyRentOffer ) public ActiveRentOffer;
     mapping (address => uint256) public countBuyRentNFTs;
+    mapping (uint => address) public BuyerAddress;
+    mapping (address => uint) public ownerRentProfit;
     struct NFT {
         uint256 tokenId;
         string coordinate;
@@ -62,6 +66,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
     event NFTListed(uint256 tokenId,address seller,address owner,uint256 price);
     event NFTSold(uint256 tokenId,address seller,address owner,uint256 price);
     event NFTCancel(uint256 tokenId,address seller,address owner,uint256 price);
+
     constructor(address ERC20FT,address ERC721NFT, address _AdminAddress){
         token = ERC721(ERC721NFT);
         MinterAddress = ERC721NFT;
@@ -101,13 +106,20 @@ contract Marketplace is ReentrancyGuard , Ownable{
         require(token.ownerOf(_tokenId) != _buyer,"You are Not Eligible to buy Rent Offer");
         require(NFTOwner[_tokenId].isActive,"This Is Not For Rent!");
         require(_price == NFTOwner[_tokenId].price,"Insuficent Amount!");
+        if(countBuyRentNFTs[_buyer] == 0){
+            totalRented.increment();
+            BuyerAddress[totalRented.current()] = _buyer;
+        }
         getRentTokenId[_buyer][countBuyRentNFTs[_buyer]+1] = _tokenId;
         IERC20(usdtToken).safeTransferFrom(_buyer,NFTOwner[_tokenId].owner,NFTOwner[_tokenId].price);
         ActiveRentOffer[_tokenId] = buyRentOffer(_buyer,_tokenId,block.timestamp,((NFTOwner[_tokenId].month*2629743)+block.timestamp));
         NFTOwner[_tokenId].isActive = false;
+        ownerRentProfit[NFTOwner[_tokenId].owner] += NFTOwner[_tokenId].price;
         countBuyRentNFTs[_buyer]++;
+
     }
     function getBuyerRentNFTs(address _rentOwner) external view returns(rentOffer[] memory){
+
         uint myNftCount = 0;
         for (uint i = 1; i <= countBuyRentNFTs[_rentOwner]; i++) {
             if (((ActiveRentOffer[getRentTokenId[_rentOwner][i]].startTime < block.timestamp ) && (block.timestamp < ActiveRentOffer[getRentTokenId[_rentOwner][i]].endTime))) {
@@ -125,11 +137,25 @@ contract Marketplace is ReentrancyGuard , Ownable{
         }
         return rentNfts;
     }
+    function getTotalRented() external view returns(uint){
+        // totalRented
+        uint myNftCount = 0;
+        for (uint j ; j <= totalRented.current() ; j++) 
+        {
+            for (uint i = 1; i <= countBuyRentNFTs[BuyerAddress[j]]; i++) {
+                if (((ActiveRentOffer[getRentTokenId[BuyerAddress[j]][i]].startTime < block.timestamp ) && (block.timestamp < ActiveRentOffer[getRentTokenId[BuyerAddress[j]][i]].endTime))) {
+                    myNftCount++;
+                }
+            }
+        }
+
+        return myNftCount;
+    }
     // ============ CancelRentOffer FUNCTIONS ============
     function CancelRentOffer(address _owner,uint _tokenId) external nonReentrant{
         require(token.ownerOf(_tokenId)==_owner,"You are Not Owner of this NFT");
         require(NFTOwner[_tokenId].isActive,"This Is Not For Rent!");
-        require(!((ActiveRentOffer[_tokenId].startTime < block.timestamp ) && (block.timestamp  < ActiveRentOffer[_tokenId].endTime)),"Already for Rent");
+        require(!((ActiveRentOffer[_tokenId].startTime < block.timestamp ) && (block.timestamp  < ActiveRentOffer[_tokenId].endTime)),"Already for Rented");
         NFTOwner[_tokenId].isActive = false;
     }
     // ============ ListNft FUNCTIONS ============
@@ -140,9 +166,9 @@ contract Marketplace is ReentrancyGuard , Ownable{
     */
     function ListNft(uint256 _price,uint256 _tokenId) public nonReentrant {
         require(!NFTOwner[_tokenId].isActive,"This NFT_ID Is for Rent!");
+        require(!((ActiveRentOffer[_tokenId].startTime < block.timestamp ) && (block.timestamp  < ActiveRentOffer[_tokenId].endTime)),"Already for Rent");
         require(_price >= 0, "Price Must Be At Least 0 Wei");
-        token.transferFrom(msg.sender, address(this), _tokenId);
-        
+        token.transferFrom(msg.sender, address(this), _tokenId);  
         _idToNFT[Id[_tokenId]] = NFT(_tokenId,_idToNFT[Id[_tokenId]].coordinate,msg.sender,address(this),_price,false);
         _nftCount.increment();
         emit NFTListed(_tokenId, msg.sender, address(this), _price);
@@ -156,10 +182,11 @@ contract Marketplace is ReentrancyGuard , Ownable{
         require(_idToNFT[Id[_tokenId]].seller != msg.sender, "An offer cannot buy this Seller !!!");
         require(price >= _idToNFT[Id[_tokenId]].price , "Not enough ether to cover asking price !!!");
         // payable(_idToNFT[Id[_tokenId]].seller).transfer(_idToNFT[Id[_tokenId]].price);
-        IERC20(usdtToken).safeTransferFrom(msg.sender, _idToNFT[_tokenId].seller ,_idToNFT[_tokenId].price);
+        IERC20(usdtToken).safeTransferFrom(msg.sender, _idToNFT[Id[_tokenId]].seller ,_idToNFT[Id[_tokenId]].price);
         token.transferFrom(address(this), msg.sender, _tokenId);
         _idToNFT[Id[_tokenId]] = NFT(_tokenId,_idToNFT[Id[_tokenId]].coordinate,msg.sender,msg.sender,_idToNFT[Id[_tokenId]].price,true);
         _nftCount.decrement();
+        totalSales.increment();
         emit NFTSold(_idToNFT[Id[_tokenId]].tokenId, _idToNFT[Id[_tokenId]].seller, msg.sender, msg.value);
     }
     // ============ CancelOffer FUNCTIONS ============
@@ -227,12 +254,24 @@ contract Marketplace is ReentrancyGuard , Ownable{
         }
         
         rentOffer[] memory rentNfts = new rentOffer[](remaning);
+        bool isTrue = true;
         uint nftsRentIndex = 0;
         for (uint i = 1; i <= nftCount ; i++) {
-            if ((NFTOwner[getTokenId[_idToNFT[i].seller][i]].owner != _to) && (NFTOwner[getTokenId[_idToNFT[i].seller][i]].isActive)) {
-                rentNfts[nftsRentIndex] =  NFTOwner[getTokenId[_idToNFT[i].seller][i]];
-                nftsRentIndex++;
+            for(uint k = 0; k < i ; k++ ){
+                if(countRentNFTs[_idToNFT[i].seller] == countRentNFTs[_idToNFT[k].seller]){
+                    isTrue = false;
+                    break;
+                }
             }
+            if(isTrue){
+                for(uint j = 1; j <= countRentNFTs[_idToNFT[i].seller] ; j++){
+                    if (NFTOwner[getTokenId[_idToNFT[i].seller][j]].owner != _to && NFTOwner[getTokenId[_idToNFT[i].seller][j]].isActive) {
+                        rentNfts[nftsRentIndex] = NFTOwner[getTokenId[_idToNFT[i].seller][j]];
+                        nftsRentIndex++;
+                    }
+                }
+            }
+            isTrue = true;
         }
         return (nfts,rentNfts);
     }
@@ -258,12 +297,24 @@ contract Marketplace is ReentrancyGuard , Ownable{
             }
         }
         uint nftsRentIndex = 0;
+        bool isTrue = true;
         rentOffer[] memory rentNfts = new rentOffer[](myNftCount);
         for (uint i = 1; i <= nftCount ; i++) {
-            if (NFTOwner[getTokenId[_idToNFT[i].seller][i]].owner == _sender && NFTOwner[getTokenId[_idToNFT[i].seller][i]].isActive) {
-                rentNfts[nftsRentIndex] = NFTOwner[getTokenId[_idToNFT[i].seller][i]];
-                nftsRentIndex++;
+            for(uint k = 0; k < i ; k++ ){
+                if(countRentNFTs[_idToNFT[i].seller] == countRentNFTs[_idToNFT[k].seller]){
+                    isTrue = false;
+                    break;
+                }
             }
+            if(isTrue){
+                for(uint j = 1; j <= countRentNFTs[_idToNFT[i].seller] ; j++){
+                    if (NFTOwner[getTokenId[_idToNFT[i].seller][j]].owner == _sender && NFTOwner[getTokenId[_idToNFT[i].seller][j]].isActive) {
+                        rentNfts[nftsRentIndex] = NFTOwner[getTokenId[_idToNFT[i].seller][j]];
+                        nftsRentIndex++;
+                    }
+                }
+            }
+            isTrue = true;
         }
         return (nfts,rentNfts);
     }

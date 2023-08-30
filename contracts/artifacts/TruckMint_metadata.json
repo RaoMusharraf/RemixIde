@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.21+commit.d9974bed"
 	},
 	"language": "Solidity",
 	"output": {
@@ -247,19 +247,6 @@
 						"internalType": "string",
 						"name": "",
 						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "check",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -569,6 +556,17 @@
 			}
 		],
 		"devdoc": {
+			"events": {
+				"Approval(address,address,uint256)": {
+					"details": "Emitted when `owner` enables `approved` to manage the `tokenId` token."
+				},
+				"ApprovalForAll(address,address,bool)": {
+					"details": "Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets."
+				},
+				"Transfer(address,address,uint256)": {
+					"details": "Emitted when `tokenId` token is transferred from `from` to `to`."
+				}
+			},
 			"kind": "dev",
 			"methods": {
 				"approve(address,uint256)": {
@@ -631,15 +629,15 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/TruckMint.sol": "TruckMint"
+			"contracts/TruckMinting.sol": "TruckMint"
 		},
-		"evmVersion": "london",
+		"evmVersion": "shanghai",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -781,12 +779,12 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/TruckMint.sol": {
-			"keccak256": "0x907de5736f8b9db97862919a802e2c0571e1f16e1544f956f0d1e0a930623c7a",
+		"contracts/TruckMinting.sol": {
+			"keccak256": "0x9e4057406be48f4d563c7a7529108b6783cfadedd0ce49574aef9d3b195182dd",
 			"license": "Apache-2.0",
 			"urls": [
-				"bzz-raw://c2ee5dfbdb7e4bfed6d86651cce01a501d45aa31d480ef062ea1557e8fe9a3f6",
-				"dweb:/ipfs/QmTeVMaWDbi2UeugjHgEb42xTDvmATTngDC7LBbdoJGKQX"
+				"bzz-raw://f82f51cc873dfcb252cacb4b79814dcbde3c2ebcae1aa375afe1cadcb6c4e68f",
+				"dweb:/ipfs/QmV8nHv7bAxNP4aYyvoBMvM5zMJ7mYeMZjN7mxxNWRyviZ"
 			]
 		}
 	},

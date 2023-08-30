@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.20+commit.a1b79de6"
+		"version": "0.8.21+commit.d9974bed"
 	},
 	"language": "Solidity",
 	"output": {
@@ -208,19 +208,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "mint",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "name",
 				"outputs": [
@@ -418,7 +405,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -465,11 +452,11 @@
 			]
 		},
 		"contracts/Marketplace/ERC20.sol": {
-			"keccak256": "0x7ff2b6e15ecb191a2f843bcde8662f94f7844df6bbbb4ae153297149c8226ab5",
+			"keccak256": "0xe266abaa205e3afb455b2a8903dab0d3e81f147cb148cbf8d1b0f41a6f6f0cdb",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d56a0c9914d3850ebfabdb6c789759efdf836ca50a74a202e6d7f0a4942a5400",
-				"dweb:/ipfs/QmS49j4SXXAsbr6eXNFSpKgWZwDW9JaqZjFKF55nh2yi2c"
+				"bzz-raw://2dcc64a60d0f6f0185c484c1c370a4cecc8e346ec0ede67dc3e01518d982910d",
+				"dweb:/ipfs/QmfWUKxUn3S9NgwFs4YuLETwmUpS6Z5vf34VfBddNrRKsz"
 			]
 		}
 	},

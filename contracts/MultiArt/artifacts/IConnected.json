@@ -49,8 +49,7 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"getTokenId(address)": "f1537686",
-			"safeMint(address,uint256,string,string)": "37f68552"
+			"updateTokenId(address,uint256,address)": "6e0cee09"
 		}
 	},
 	"abi": [
@@ -60,43 +59,19 @@
 					"internalType": "address",
 					"name": "_to",
 					"type": "address"
-				}
-			],
-			"name": "getTokenId",
-			"outputs": [
-				{
-					"internalType": "uint256[]",
-					"name": "",
-					"type": "uint256[]"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "_to",
-					"type": "address"
 				},
 				{
 					"internalType": "uint256",
-					"name": "tokenID",
+					"name": "_tokenId",
 					"type": "uint256"
 				},
 				{
-					"internalType": "string",
-					"name": "uri",
-					"type": "string"
-				},
-				{
-					"internalType": "string",
-					"name": "collectionId",
-					"type": "string"
+					"internalType": "address",
+					"name": "seller",
+					"type": "address"
 				}
 			],
-			"name": "safeMint",
+			"name": "updateTokenId",
 			"outputs": [],
 			"stateMutability": "nonpayable",
 			"type": "function"

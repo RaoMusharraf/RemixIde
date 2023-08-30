@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.20+commit.a1b79de6"
+		"version": "0.8.21+commit.d9974bed"
 	},
 	"language": "Solidity",
 	"output": {
@@ -105,13 +105,551 @@
 				"type": "event"
 			},
 			{
-				"inputs": [],
-				"name": "TheWinnerIs",
-				"outputs": [
+				"inputs": [
 					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"name": "ClaimCountEND",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "ClaimCountMFG",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "ClaimDetail",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "MFGowner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "endUser",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "claimDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TIN",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "claim",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TIN",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "claimDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					}
+				],
+				"name": "ClaimTire",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "Counter",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "DISTINnum",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "DISTRIBUTORdetail",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "MFGOwner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "DISOwner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "saleDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "warranty",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TIN",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "sold",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "DIScount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "ENDTINnum",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "ENDcount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "DISowner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "purchase",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "WarStart",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "WarEnd",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TIN",
+						"type": "uint256"
+					}
+				],
+				"name": "EndUSER",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "EndUserDetail",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "DISowner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "endUser",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "saleDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "warranty",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "warrantyStart",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "warrantyEnd",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TIN",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "ClaimStatus",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "SignIn",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "SignOut",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "SignUp",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Signer",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "Up",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "InOut",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "TINnum",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "TierInfo",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "MFGOwner",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "Company",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "size",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "typ",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "model",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "MFGdate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "MFGaddress",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Description",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TIN",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "sold",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -125,28 +663,78 @@
 						"type": "uint256"
 					}
 				],
-				"name": "TicketNumber",
+				"name": "TotalTire",
 				"outputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "MFGOwner",
 						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "Company",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "size",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "typ",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "model",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "MFGdate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "MFGaddress",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Description",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TIN",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "sold",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
 				"type": "function"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "_tokenIdCounter",
+				"outputs": [
 					{
-						"internalType": "address",
-						"name": "to",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
 					}
 				],
-				"name": "UserBuyTicket",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -187,8 +775,14 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "counter",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "count",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -197,6 +791,39 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "DISowner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "time",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "warranty",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TIN",
+						"type": "uint256"
+					}
+				],
+				"name": "destributor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -290,6 +917,59 @@
 			{
 				"inputs": [],
 				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "size",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "typ",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "model",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "MFGdate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "MFGaddress",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TINnumber",
+						"type": "uint256"
+					}
+				],
+				"name": "safeMint",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -449,13 +1129,6 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "winner",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -531,7 +1204,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/lotary_sysytem.sol": "MyToken"
+			"contracts/ERCTire.sol": "MyToken"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -539,7 +1212,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -641,12 +1314,12 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/lotary_sysytem.sol": {
-			"keccak256": "0x981845e44afb26f81818fc4d3da7a05bed0e18169e547614da4c98cd6e88f660",
+		"contracts/ERCTire.sol": {
+			"keccak256": "0xfb5fbf5dcb0ebdb417732f0e8cafb0799770dca63922d93380e8a12ebf24db8c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c5fc1080d0cf6f1a2db76a4e3261643c3a2e656e5ad6bc54850b88a41fd2720e",
-				"dweb:/ipfs/QmZwXh9cp3GKhncjnfo94TaEbWSivBhE3Kt6k3Qj2mTk69"
+				"bzz-raw://e8380343490a58991bccb80ac6999ec9435fb9bc7e810d7b096598f55fdcee90",
+				"dweb:/ipfs/QmRdULTr8wu7YDAxWNseoBZTd7JbCahgYocM8A3vsZtKmH"
 			]
 		}
 	},

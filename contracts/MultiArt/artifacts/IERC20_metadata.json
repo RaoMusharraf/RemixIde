@@ -1,0 +1,98 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_marketplace",
+						"type": "address"
+					}
+				],
+				"name": "allowance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_marketplace",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "setApprove",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Required interface of an IERC20 compliant contract.",
+			"kind": "dev",
+			"methods": {
+				"setApprove(address,address,uint256)": {
+					"details": "update Token Id in the minted contract."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/MultiArt/IConnectedERC20.sol": "IERC20"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/MultiArt/IConnectedERC20.sol": {
+			"keccak256": "0xacb558868113640f08549078ef61200c80d415b1d5437cefdba35e3be20544cd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://84d30c535c2f830fe0528d8110d760607b6d73e6dadc7c6e1ffd2603d74714b0",
+				"dweb:/ipfs/Qmczmj7cqsF31axsMBtVJZqr3iA1MzJa3KTWBLAijGySxx"
+			]
+		}
+	},
+	"version": 1
+}

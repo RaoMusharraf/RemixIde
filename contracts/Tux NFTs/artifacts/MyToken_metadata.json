@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.18+commit.87f61d96"
+		"version": "0.8.21+commit.d9974bed"
 	},
 	"language": "Solidity",
 	"output": {
@@ -238,6 +238,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string",
+						"name": "collectionId",
+						"type": "string"
+					}
+				],
+				"name": "getTokenIdsByCollection",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
@@ -327,10 +346,21 @@
 						"internalType": "string",
 						"name": "uri",
 						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "collectionId",
+						"type": "string"
 					}
 				],
 				"name": "safeMint",
-				"outputs": [],
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -561,15 +591,15 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Tux NFTs/ERC721.sol": "MyToken"
+			"contracts/Tux NFTs/newERC721.sol": "MyToken"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "shanghai",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -679,12 +709,12 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/Tux NFTs/ERC721.sol": {
-			"keccak256": "0x0f57216f1ead4bb1ba9204161a28c115df42cb6bd76333bd070adfebd2945708",
+		"contracts/Tux NFTs/newERC721.sol": {
+			"keccak256": "0xfca2f2277e74d4ce5251d84c6b582f7b57f830326ed62b1cbf9c2e3b2a5ed4a6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e5e410d3c42f4d7a009e4765e1563dd1e9c7952027b5ff5339d7e73aa92f22c2",
-				"dweb:/ipfs/QmcVwGBLtLzhMfMkDfRVAVYTqsUbJ2pTevY8MmUo37cHaN"
+				"bzz-raw://cba0c01d3a62b4c44767a35544cc9e041773252ea5255c55b19b8d3874daf1f4",
+				"dweb:/ipfs/QmeCU7dspjwZ8Z3mn34QzedWVyGdFVDaDvXPaQrUB3QPpS"
 			]
 		}
 	},

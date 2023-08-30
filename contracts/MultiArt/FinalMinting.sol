@@ -77,6 +77,17 @@ contract Multiart is ERC721, ERC721URIStorage, Ownable {
         }
         return myArray;
     }
+    function updateTokenId(address _to,uint _tokenId,address _seller) external {
+        TokenId[_to][count[_to] + 1] = _tokenId;
+        uint256[] memory myArray =  getTokenId(_seller);
+        for(uint i=0 ; i < myArray.length ; i++){
+            if(myArray[i] == _tokenId){
+                TokenId[_seller][i+1] = TokenId[_seller][count[_seller]];
+                count[_seller]--;
+            }
+        }
+        count[_to]++;
+    }
 
     // The following functions are overrides required by Solidity.
 

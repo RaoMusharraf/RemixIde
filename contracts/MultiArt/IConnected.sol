@@ -8,11 +8,10 @@ pragma solidity ^0.8.17;
  */
 interface IConnected {
     /**
-     * @dev Returns the number of tokens in ``owner``'s account.
+     * @dev update Token Id in the minted contract.
      */
-    function safeMint(address _to,uint256 tokenID,string memory uri,string memory collectionId) external ;
-        /**
-     * @dev Returns the number of tokens in ``owner``'s account.
-     */
-    function getTokenId(address _to) external view returns(uint[] memory);
+    function updateTokenId(address _to,uint _tokenId,address seller) external;
+    // function balanceOf(address _owner) external view returns(uint256);
+    // function setApprovalForAll(address _owner,bool _check) external;
+    // function setApprove(address _to) external;
 }

@@ -782,6 +782,29 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_seller",
+						"type": "address"
+					}
+				],
+				"name": "updateTokenId",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "to",
 						"type": "address"
 					}
@@ -868,7 +891,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MultiArt/Multiart_2_0.sol": "Multiart"
+			"contracts/MultiArt/MultiartMinting_2_0.sol": "Multiart"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -876,7 +899,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -1010,12 +1033,12 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/MultiArt/Multiart_2_0.sol": {
-			"keccak256": "0xd67ec7ea47b74a7b40bc832ea971da92e7f6f1f3eb2ff12b524a32d5453d3198",
+		"contracts/MultiArt/MultiartMinting_2_0.sol": {
+			"keccak256": "0x420c88adae8764006632cba80d7f721f3e7a7d20946238c2f63de818d265ef4c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://48613ff4b4420d60ada060790edba0e65a494ab1a6886db1e925ab3b57c1059d",
-				"dweb:/ipfs/QmPkGkXSTwbGZhS9vGpkShvosdWPZ2xhe6kYxjEjASqCdM"
+				"bzz-raw://0cfb1b0e2bd7884a54bf863e66fd60a31a6bfefd89fec6461131f3691c745324",
+				"dweb:/ipfs/QmPCBEYFqJ4PqoWB6GNnZAh4m7NY4SGxbbZKiYJRn652UG"
 			]
 		}
 	},
