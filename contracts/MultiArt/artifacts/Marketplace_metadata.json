@@ -142,12 +142,17 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "_totalBidTime",
+						"name": "_minimumBid",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
 						"name": "_startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_endTime",
 						"type": "uint256"
 					}
 				],
@@ -158,6 +163,11 @@
 			},
 			{
 				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
 					{
 						"internalType": "uint256",
 						"name": "",
@@ -189,6 +199,30 @@
 					{
 						"internalType": "uint256",
 						"name": "biddingTime",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "BuyTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -258,29 +292,6 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "_tokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_totalListTime",
-						"type": "uint256"
-					}
-				],
-				"name": "IncreaseListTime",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_mintContract",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
 						"name": "_price",
 						"type": "uint256"
 					},
@@ -291,7 +302,12 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "_totalTimeInHour",
+						"name": "_startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_endTime",
 						"type": "uint256"
 					}
 				],
@@ -327,12 +343,22 @@
 					},
 					{
 						"internalType": "uint256",
+						"name": "minimumBid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
 						"name": "startTime",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
 						"name": "endTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "listTime",
 						"type": "uint256"
 					},
 					{
@@ -415,6 +441,11 @@
 					{
 						"internalType": "uint256",
 						"name": "count",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "listTime",
 						"type": "uint256"
 					},
 					{
@@ -525,12 +556,22 @@
 									},
 									{
 										"internalType": "uint256",
+										"name": "minimumBid",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
 										"name": "startTime",
 										"type": "uint256"
 									},
 									{
 										"internalType": "uint256",
 										"name": "endTime",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "listTime",
 										"type": "uint256"
 									},
 									{
@@ -569,12 +610,22 @@
 									},
 									{
 										"internalType": "uint256",
+										"name": "minimumBid",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
 										"name": "startTime",
 										"type": "uint256"
 									},
 									{
 										"internalType": "uint256",
 										"name": "endTime",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "listTime",
 										"type": "uint256"
 									},
 									{
@@ -596,25 +647,6 @@
 						"internalType": "struct Marketplace.ListTokenId[]",
 						"name": "",
 						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_mint",
-						"type": "address"
-					}
-				],
-				"name": "getBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -711,6 +743,11 @@
 										"type": "uint256"
 									},
 									{
+										"internalType": "uint256",
+										"name": "listTime",
+										"type": "uint256"
+									},
+									{
 										"internalType": "bool",
 										"name": "listed",
 										"type": "bool"
@@ -767,6 +804,11 @@
 									{
 										"internalType": "uint256",
 										"name": "count",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "listTime",
 										"type": "uint256"
 									},
 									{
@@ -861,14 +903,31 @@
 				"name": "selectUser",
 				"outputs": [
 					{
-						"internalType": "address",
-						"name": "selectedUser",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
+						"components": [
+							{
+								"internalType": "address",
+								"name": "user",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "userName",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "price",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "biddingTime",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Marketplace.userDetail",
+						"name": "",
+						"type": "tuple"
 					}
 				],
 				"stateMutability": "view",
@@ -931,7 +990,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MultiArt/Marketplace_3_0.sol": "Marketplace"
+			"contracts/MultiArt/MultiArtMarketplace_2_0.sol": "Marketplace"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -939,7 +998,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -1074,19 +1133,19 @@
 			]
 		},
 		"contracts/MultiArt/IConnected.sol": {
-			"keccak256": "0x00ad8c66dcb1f484025da1e76a0c5f56f833d53041d868141cf7a91e5ba785f9",
+			"keccak256": "0xec4de6892b7b31ddb2dbe62b7b1ff08798465df575ab1333633a67630a54d473",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7bc8e9a851a92eef4fcb7a7093d043d6c00d71dc70937dc3180eba33265618d7",
-				"dweb:/ipfs/QmcUwBk1WEHxV84tH2auWuYZo1jbTcATCr4xm7FWkuKe7Q"
+				"bzz-raw://a2c20c3a0351f4b42bff740f7fcb1f5071f502eecba9d730aab4b6f42f71ddef",
+				"dweb:/ipfs/QmbaQoktpVGA13mu1kYWCTUtMvcVJSKwvUBCffNCrvZPvo"
 			]
 		},
-		"contracts/MultiArt/Marketplace_3_0.sol": {
-			"keccak256": "0xb2105bb5f05c1799464a32845d7936bf3a068b1a9103e522ccb28bb8b641dff0",
+		"contracts/MultiArt/MultiArtMarketplace_2_0.sol": {
+			"keccak256": "0x50d8f285090d6a0a117dfedd60810fc4211e9b0746bff14d0b01b68a2b49fbb9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://358bbb23b4c666ef3aaaa27ed04a67e2d358cb688751933a8b577958280c6d91",
-				"dweb:/ipfs/QmVhsCYd45qpo5vLVkbBrjSyvgLFdcG7URm3hzx5Cb6gTR"
+				"bzz-raw://77da04964ef7185711de9c2df85bcff38a97b9cb8b1aa149ccbdc98dc021889f",
+				"dweb:/ipfs/QmTf4UfjxHrNTjDbUigJc1WKFv4YR12hjLBmcHFVteyaJQ"
 			]
 		}
 	},

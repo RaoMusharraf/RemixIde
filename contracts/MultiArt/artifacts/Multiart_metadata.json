@@ -9,22 +9,12 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_adminAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
 						"name": "_mintPriceReceiver",
 						"type": "address"
 					},
 					{
 						"internalType": "address",
 						"name": "_transferFeeReceiver",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_tokenAddress",
 						"type": "address"
 					},
 					{
@@ -205,19 +195,6 @@
 						"internalType": "uint256",
 						"name": "_value",
 						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "adminAddress",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -507,16 +484,6 @@
 						"type": "string"
 					},
 					{
-						"internalType": "uint256",
-						"name": "StartTime",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "EndTime",
-						"type": "uint256"
-					},
-					{
 						"internalType": "string",
 						"name": "NFT_doc",
 						"type": "string"
@@ -539,11 +506,6 @@
 					{
 						"internalType": "uint256",
 						"name": "perNFTPrice",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "typ",
 						"type": "uint256"
 					},
 					{
@@ -604,19 +566,6 @@
 					}
 				],
 				"name": "safeTransferFrom",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_adminAddress",
-						"type": "address"
-					}
-				],
-				"name": "setAdminAddress",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -891,7 +840,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MultiArt/MultiartMinting_2_0.sol": "Multiart"
+			"contracts/MultiArt/FinalMinting.sol": "Multiart"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -899,7 +848,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -911,30 +860,6 @@
 			"urls": [
 				"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2",
 				"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34",
-				"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/extensions/draft-IERC20Permit.sol": {
-			"keccak256": "0xf41ca991f30855bf80ffd11e9347856a517b977f0a6c2d52e6421a99b7840329",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://b2717fd2bdac99daa960a6de500754ea1b932093c946388c381da48658234b95",
-				"dweb:/ipfs/QmP6QVMn6UeA3ByahyJbYQr5M6coHKBKsf3ySZSfbyA8R7"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
-			"keccak256": "0x9b72f93be69ca894d8492c244259615c4a742afc8d63720dbc8bb81087d9b238",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://f5a7b96e511be78d5cdf635c784e6ab8cdd38625bb8cafb8a80914a1c89cf0f6",
-				"dweb:/ipfs/QmVzTCwJxQAkjRQHboT5QrvsVJGWQHgfEjeTbvyxoKBrds"
 			]
 		},
 		"@openzeppelin/contracts/token/ERC721/ERC721.sol": {
@@ -1033,12 +958,12 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/MultiArt/MultiartMinting_2_0.sol": {
-			"keccak256": "0x420c88adae8764006632cba80d7f721f3e7a7d20946238c2f63de818d265ef4c",
+		"contracts/MultiArt/FinalMinting.sol": {
+			"keccak256": "0x23587f0175149ff5db7eb23e5cf7004544563f145cb1db65a81d726a2d8aa5a7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0cfb1b0e2bd7884a54bf863e66fd60a31a6bfefd89fec6461131f3691c745324",
-				"dweb:/ipfs/QmPCBEYFqJ4PqoWB6GNnZAh4m7NY4SGxbbZKiYJRn652UG"
+				"bzz-raw://5500e3b7a4d4a63a88b76864442bbffdcd22e6ee3f68f861267267b62649b2f1",
+				"dweb:/ipfs/QmWnvLdy4Vv7CWFeMKSmujKynrndTzGd8YjRJM7SF6TBBG"
 			]
 		}
 	},
