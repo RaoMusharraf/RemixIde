@@ -65,7 +65,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
     event NFTListed(uint256 tokenId,address seller,address owner,uint256 price);
     event NFTSold(uint256 tokenId,address seller,address owner,uint256 price);
     event NFTCancel(uint256 tokenId,address seller,address owner,uint256 price);
-    
+
     constructor(address _tokenAddress){
         tokenAddress = _tokenAddress;
     }
@@ -169,13 +169,13 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @param _price set price of NFT
     */
     function NftBidding(uint _auctionListCount,string memory _name, uint _price) external {
-        require(NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].owner != msg.sender,"You are Not Eligible for Bidding");
-        require(NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].isActive,"Not Listed In Auction!");
-        require(NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].startTime < block.timestamp ,"Bidding Not Start!");
-        require(_price > NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].minimumBid,"Amount Should be greater than MinimumBid");
-        require(block.timestamp < NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].endTime,"Bidding is going on!");
         address contractAddress = auctionListCount[_auctionListCount].contractAddress;
         uint tokenId = auctionListCount[_auctionListCount].tokenId;
+        require(NftAuction[contractAddress][tokenId].owner != msg.sender,"You are Not Eligible for Bidding");
+        require(NftAuction[contractAddress][tokenId].isActive,"Not Listed In Auction!");
+        require(NftAuction[contractAddress][tokenId].startTime < block.timestamp ,"Bidding Not Start!");
+        require(_price > NftAuction[contractAddress][tokenId].minimumBid,"Amount Should be greater than MinimumBid");
+        require(block.timestamp < NftAuction[contractAddress][tokenId].endTime,"Bidding is going on!");
         Bidding[contractAddress][tokenId][userListCount[_auctionListCount]+1] = userDetail(msg.sender,_name,_price,block.timestamp);
         if(Bidding[contractAddress][tokenId][0].price < _price){
            Bidding[contractAddress][tokenId][0] = userDetail(msg.sender,_name,_price,block.timestamp); 
@@ -211,7 +211,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         require(selectedUser.user == msg.sender ,"you are not sellected bidder");
         if(typ == 1){ 
             require(msg.value >= selectedUser.price,"Incorrect Price");
-           payable(NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].owner).transfer(selectedUser.price);
+            payable(NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].owner).transfer(selectedUser.price);
         }  
         else if(typ == 2){  
             IERC20(tokenAddress).safeTransferFrom(selectedUser.user,NftAuction[auctionListCount[_auctionListCount].contractAddress][auctionListCount[_auctionListCount].tokenId].owner,selectedUser.price);

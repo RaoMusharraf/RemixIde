@@ -998,7 +998,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -1141,11 +1141,11 @@
 			]
 		},
 		"contracts/MultiArt/MultiArtMarketplace_2_0.sol": {
-			"keccak256": "0x50d8f285090d6a0a117dfedd60810fc4211e9b0746bff14d0b01b68a2b49fbb9",
+			"keccak256": "0xe4b5bcc31edca8d67ebff3fa8211b0e609191a359ad80a8eb5666f6ace493e4f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://77da04964ef7185711de9c2df85bcff38a97b9cb8b1aa149ccbdc98dc021889f",
-				"dweb:/ipfs/QmTf4UfjxHrNTjDbUigJc1WKFv4YR12hjLBmcHFVteyaJQ"
+				"bzz-raw://6926d689152d6606de1519797465f38dcacfaa6c6d22a83c7cb29566bd9efe4d",
+				"dweb:/ipfs/QmXxhFheUS7WjsTc7QVwZhout4ZeM1VbnYaD8USkE2fMzL"
 			]
 		}
 	},
