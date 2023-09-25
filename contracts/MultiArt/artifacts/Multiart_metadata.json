@@ -9,11 +9,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_marketplaceAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
 						"name": "_adminAddress",
 						"type": "address"
 					},
@@ -648,19 +643,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_to",
-						"type": "address"
-					}
-				],
-				"name": "setApprove",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "_mintPriceReceiver",
 						"type": "address"
 					}
@@ -800,29 +782,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_to",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_tokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "_seller",
-						"type": "address"
-					}
-				],
-				"name": "updateTokenId",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "to",
 						"type": "address"
 					}
@@ -909,7 +868,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MultiArt/Minting_1_0.sol": "Multiart"
+			"contracts/MultiArt/Multiart_2_0.sol": "Multiart"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -917,7 +876,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -1051,12 +1010,12 @@
 				"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz"
 			]
 		},
-		"contracts/MultiArt/Minting_1_0.sol": {
-			"keccak256": "0xc8450af67ddde63e9c07b9403fcc57e4bfe9d45ff83d2f94c6ec2bcb31d96093",
+		"contracts/MultiArt/Multiart_2_0.sol": {
+			"keccak256": "0xd67ec7ea47b74a7b40bc832ea971da92e7f6f1f3eb2ff12b524a32d5453d3198",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4925ef5daf80ad2194d1e4262b67ef9327ac7b610f51123363c2616ddf5aa6b7",
-				"dweb:/ipfs/QmRUem9YaKpAt9bxnjbZbUKRxHXdCSryyCVfdmKs3XPKWQ"
+				"bzz-raw://48613ff4b4420d60ada060790edba0e65a494ab1a6886db1e925ab3b57c1059d",
+				"dweb:/ipfs/QmPkGkXSTwbGZhS9vGpkShvosdWPZ2xhe6kYxjEjASqCdM"
 			]
 		}
 	},

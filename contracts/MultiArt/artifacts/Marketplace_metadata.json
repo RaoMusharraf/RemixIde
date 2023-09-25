@@ -216,6 +216,40 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "BiddingCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"name": "BuyTime",
@@ -526,6 +560,19 @@
 					}
 				],
 				"name": "cancelAuctionList",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_auctionListIndex",
+						"type": "uint256"
+					}
+				],
+				"name": "cancelBid",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -949,6 +996,35 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "userBiddingCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
@@ -1141,11 +1217,11 @@
 			]
 		},
 		"contracts/MultiArt/MultiArtMarketplace_2_0.sol": {
-			"keccak256": "0xe4b5bcc31edca8d67ebff3fa8211b0e609191a359ad80a8eb5666f6ace493e4f",
+			"keccak256": "0x8921da99cb60ee7f31bd6380f6b3f3379481bad925422eb440eb4346cf7c1553",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6926d689152d6606de1519797465f38dcacfaa6c6d22a83c7cb29566bd9efe4d",
-				"dweb:/ipfs/QmXxhFheUS7WjsTc7QVwZhout4ZeM1VbnYaD8USkE2fMzL"
+				"bzz-raw://c1b511c42906c3382229c52d8d4ee76f30173398eacfa7186c69ee00a9b5902f",
+				"dweb:/ipfs/QmPAAh2Pyny5yCTrsqrhYYkVWDjoAHw4aURgUWR9sTbC9F"
 			]
 		}
 	},
