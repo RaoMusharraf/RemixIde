@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.21+commit.d9974bed"
+		"version": "0.8.17+commit.8df45f5f"
 	},
 	"language": "Solidity",
 	"output": {
@@ -36,20 +36,13 @@
 				"type": "event"
 			},
 			{
-				"inputs": [],
-				"name": "Owner",
-				"outputs": [
+				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "_owner",
 						"type": "address"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "checkBalance",
 				"outputs": [
 					{
@@ -75,7 +68,18 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
 				"name": "ownerDeposit",
 				"outputs": [],
 				"stateMutability": "payable",
@@ -120,7 +124,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
 				"name": "userDeposit",
 				"outputs": [],
 				"stateMutability": "payable",
@@ -168,9 +178,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Amount_Trnafering_Contreact.sol": "TransferBNB"
+			"contracts/ERC20.sol": "TransferBNB"
 		},
-		"evmVersion": "shanghai",
+		"evmVersion": "london",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -198,12 +208,12 @@
 				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
 			]
 		},
-		"contracts/Amount_Trnafering_Contreact.sol": {
-			"keccak256": "0x1801c93d047acaca950952712fab72797157242a75601f6c13493df21864e567",
+		"contracts/ERC20.sol": {
+			"keccak256": "0xe6df2f499792265a15b5eb85a3a1ee5e8f5c66a38293d7b92e9f2f5d0deea947",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://08a9d8a535ee6b187c70226bb6b6a1335c7c0c4ad0f81ae6c840756852b9cf4c",
-				"dweb:/ipfs/QmTa9iAynbaKSj9RJLSm7nmhYmDrqoRknPFHr8Mt9B6nPu"
+				"bzz-raw://9c16a8865becca2067a84db8ff53bcd7a9350fb23796a4d1038ee3c801ac8e86",
+				"dweb:/ipfs/QmaGCxfELTvCGxx4YT8rum98DoimV2yJ8Zx3dSoXS826xM"
 			]
 		}
 	},
