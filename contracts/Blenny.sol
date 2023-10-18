@@ -44,7 +44,6 @@ contract Blenny is ERC721, ERC721URIStorage, Pausable, Ownable,ERC721Enumerable 
     */
     function safeMint(string memory uri) public{
         require(check,"Mint is Not Open");
-
         _tokenSupply.increment();
         _safeMint(msg.sender, _tokenSupply.current());
         _setTokenURI(_tokenSupply.current(), uri);

@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MultiArt is ERC20, ERC20Burnable, Pausable, Ownable {
+contract Token is ERC20, ERC20Burnable, Pausable, Ownable {
     /** 
         Default Constructor With Initial Supply Arguments
     **/

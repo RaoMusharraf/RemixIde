@@ -1,0 +1,65 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "data",
+						"type": "uint256[]"
+					}
+				],
+				"name": "sort",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/QuickSort/sort.sol": "QuickSort"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/QuickSort/sort.sol": {
+			"keccak256": "0xf2964edc80130cff285d269347752a6f300f5c169045358e875731c4ae1747fd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7dab45966e00af23456ef0287c5bebfdb5143cfb3af6cdcb48aa98515a2fa005",
+				"dweb:/ipfs/QmUDagZWiyKtALyNQMZKn39fY1YccdzTckeRPFbnxMHvW4"
+			]
+		}
+	},
+	"version": 1
+}

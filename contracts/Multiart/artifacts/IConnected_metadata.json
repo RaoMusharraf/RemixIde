@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.21+commit.d9974bed"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -31,11 +31,35 @@
 								"internalType": "address",
 								"name": "mintContract",
 								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "uri",
+								"type": "string"
 							}
 						],
 						"internalType": "struct IConnected.MyNft[]",
 						"name": "",
 						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "getTokenUri",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -98,7 +122,7 @@
 		"compilationTarget": {
 			"contracts/Multiart/IConnected.sol": "IConnected"
 		},
-		"evmVersion": "shanghai",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -111,11 +135,11 @@
 	},
 	"sources": {
 		"contracts/Multiart/IConnected.sol": {
-			"keccak256": "0x69b2b5bf4c32675af45a22826a7a17c72996f373c57761ba0aab847dc3858aee",
+			"keccak256": "0x2339512cee1ba2fb7f5f54e6d71c68f7d52219762a9115c00e1d4cf09bddfbca",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9d7824e6087485c81da10cc3d37956315f1b65c4b16b9f5801d52f25db01e394",
-				"dweb:/ipfs/QmS2jhB6tgUd6MYWTFApeTw5D8wMLmDR5RXikngkfSPdEe"
+				"bzz-raw://327c7154b7ea5586ae1e6cadad651b588dd22dddae3f1f19da14ed399b324822",
+				"dweb:/ipfs/QmRQJv1KpwytadCDxqdt7XbRDW5WCHfx9X5DZP7mFRhwFv"
 			]
 		}
 	},

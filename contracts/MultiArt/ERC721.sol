@@ -45,7 +45,7 @@ contract NFTContract is ERC721, ERC721URIStorage, Ownable {
     function tokenURI(uint256 tokenId)
         public
         view
-        override(ERC721, ERC721URIStorage)
+         (ERC721, ERC721URIStorage)
         returns (string memory)
     {
         return super.tokenURI(tokenId);

@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.21+commit.d9974bed"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -810,7 +810,7 @@
 		"compilationTarget": {
 			"contracts/Blenny.sol": "Blenny"
 		},
-		"evmVersion": "shanghai",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -983,11 +983,11 @@
 			]
 		},
 		"contracts/Blenny.sol": {
-			"keccak256": "0xcaf9a0ff30885bc748b0fde3e57d13fccff3501570e667954f2fae35d92afefd",
+			"keccak256": "0x97e6a55f40cdde59486e4011fbf4df0f7dcd8b8efc430a26bf9d8938855ca885",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e603469051867d9c0547030ecca0ba0331e568367d7c8bf21b62dee571044aef",
-				"dweb:/ipfs/QmTQMhm4G5Y4MBm9zqHNVBqi1uhXyvibt9svDXgMsHvHWQ"
+				"bzz-raw://faf7fff546125a7ce3f49554c263b2b214cc347e43004411023427e89e8ba47d",
+				"dweb:/ipfs/QmSTEzpoRYGVKkRvpmtaMi5cbYkcxXrgnASAE28xv7Um82"
 			]
 		}
 	},

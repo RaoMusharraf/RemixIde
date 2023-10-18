@@ -50,6 +50,7 @@
 		"gasEstimates": null,
 		"methodIdentifiers": {
 			"getTokenId(address)": "f1537686",
+			"getTokenUri(uint256)": "8ad91345",
 			"updateTokenId(address,uint256,address)": "6e0cee09",
 			"update_TokenIdTime(uint256)": "4c2a3f6c"
 		}
@@ -81,11 +82,35 @@
 							"internalType": "address",
 							"name": "mintContract",
 							"type": "address"
+						},
+						{
+							"internalType": "string",
+							"name": "uri",
+							"type": "string"
 						}
 					],
 					"internalType": "struct IConnected.MyNft[]",
 					"name": "",
 					"type": "tuple[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_tokenId",
+					"type": "uint256"
+				}
+			],
+			"name": "getTokenUri",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
 				}
 			],
 			"stateMutability": "view",

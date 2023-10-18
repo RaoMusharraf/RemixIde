@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-contract Multiart is ERC721URIStorage, Ownable {
+contract Minting is ERC721URIStorage, Ownable {
     using SafeERC20 for IERC20;
     using Counters for Counters.Counter;
     Counters.Counter public _tokenIdCounter;
@@ -20,6 +20,7 @@ contract Multiart is ERC721URIStorage, Ownable {
         uint256 tokenId;
         uint256 mintTime;
         address mintContract;
+        string uri;
     }
     mapping(address => mapping(uint256 => uint256)) public TokenId;
     mapping(address => uint256) public count;
@@ -91,7 +92,7 @@ contract Multiart is ERC721URIStorage, Ownable {
     function getTokenId(address to) public view returns (MyNft[] memory) {
         MyNft[] memory myArray = new MyNft[](count[to]);
         for (uint256 i = 0; i < count[to]; i++) {
-            myArray[i] = MyNft(TokenId[to][i + 1],NFTMetadata[TokenId[to][i + 1]].mintTime,address(this));
+            myArray[i] = MyNft(TokenId[to][i + 1],NFTMetadata[TokenId[to][i + 1]].mintTime,address(this),tokenURI(TokenId[to][i + 1]));
         }
         return myArray;
     }
@@ -146,5 +147,8 @@ contract Multiart is ERC721URIStorage, Ownable {
     function setAdminAddress(address _adminAddress) external {
         require(adminAddress==msg.sender,"You are not Admin");
         adminAddress = _adminAddress;
+    }
+    function getTokenUri(uint tokenId) external view returns(string memory){
+        return tokenURI(tokenId);
     }
 }
