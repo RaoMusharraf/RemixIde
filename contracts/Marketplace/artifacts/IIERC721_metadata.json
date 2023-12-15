@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.19+commit.7dd6d404"
+		"version": "0.8.22+commit.4fc1097e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -16,6 +16,11 @@
 						"internalType": "uint256",
 						"name": "tokenID",
 						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
 					}
 				],
 				"name": "safeMint",
@@ -28,7 +33,7 @@
 			"details": "Required interface of an ERC721 compliant contract.",
 			"kind": "dev",
 			"methods": {
-				"safeMint(address,uint256)": {
+				"safeMint(address,uint256,string)": {
 					"details": "Returns the number of tokens in ``owner``'s account."
 				}
 			},
@@ -42,9 +47,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Marketplace/IConnected.sol": "IIERC721"
+			"contracts/Marketplace/IIERC721.sol": "IIERC721"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "shanghai",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -56,12 +61,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Marketplace/IConnected.sol": {
-			"keccak256": "0x8f59dc387dce49df3d2b250ebf4a5557a2dc8e3a5620c94c9c71021b6252a279",
+		"contracts/Marketplace/IIERC721.sol": {
+			"keccak256": "0x1fd6d9452f3055ed537fff5aff3e40fb45b265ac81df9a670015a28020ba076f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2c5e9d1ad478ca220401dc3b2b3dd899338336e8a18ff14470a7c955542ddd7d",
-				"dweb:/ipfs/Qmb9egQfDgD9bp7VTsWNrac9CCJacyAc2QeR2JySAWBYPd"
+				"bzz-raw://27a9e25117420568a6a5c3a07073e857b54b4f247ec5fd83ab5923c8e8a0d847",
+				"dweb:/ipfs/QmSb5s19jqkq1xL9HCAzx6mzFracRoGtA5UEG9rE24mS8F"
 			]
 		}
 	},

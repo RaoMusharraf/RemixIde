@@ -39,7 +39,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
     event NFTSold(uint256 tokenId,address seller,address owner,uint256 price);
     event NFTCancel(uint256 tokenId,address seller,address owner,uint256 price);
 
-    constructor(address ERC721NFT,address ERC20FT ){
+    constructor(address ERC721NFT,address ERC20FT ,address initialOwner ) Ownable(initialOwner){
         token = ERC721(ERC721NFT);
         MinterAddress = ERC721NFT;
         // AddminAddress = admin;

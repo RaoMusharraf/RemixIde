@@ -10,7 +10,7 @@ contract Gladiator is ERC20, ERC20Burnable, Pausable, Ownable {
     /** 
         Default Constructor With Initial Supply Arguments
     **/
-    constructor() ERC20("GLADIATORS VERSE", "GAVE") {
+    constructor(address initialOwner) Ownable(initialOwner) ERC20("GLADIATORS VERSE", "GAVE") {
         _mint(msg.sender, 1000000000 * 10**decimals());
     }
 
@@ -32,11 +32,11 @@ contract Gladiator is ERC20, ERC20Burnable, Pausable, Ownable {
         Check Token Not Pause Before Transfer
     **/
 
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal override whenNotPaused {
-        super._beforeTokenTransfer(from, to, amount);
-    }
+    // function _beforeTokenTransfer(
+    //     address from,
+    //     address to,
+    //     uint256 amount
+    // ) internal override whenNotPaused {
+    //     super._beforeTokenTransfer(from, to, amount);
+    // }
 }

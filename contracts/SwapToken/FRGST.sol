@@ -40,7 +40,7 @@ contract Token is ERC20, Ownable,ERC20Burnable {
     IERC20 public linkToken;
     IERC20 public WBNBToken;
 
-    constructor() ERC20("Froggies Token", "FRGST") {
+    constructor(address initialOwner) ERC20("Froggies Token", "FRGST") Ownable(initialOwner) {
         _mint(msg.sender, 100000000000000 * 10 ** decimals());
         WBNBToken = IERC20(WBNB);
         Wallet = address(this);
