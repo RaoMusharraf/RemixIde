@@ -1,31 +1,13 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
-import "@openzeppelin/contracts/security/Pausable.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract YieldToken is ERC20, ERC20Burnable, Pausable, Ownable {
-    /** 
-        Default Constructor With Initial Supply Arguments
-    **/
-    constructor(address owner) ERC20("USDT Token", "USDT") Ownable(owner) {
-        _mint(msg.sender, 1000000000 * 10**decimals());
-    }
+contract MyToken is ERC721, Ownable {
+    constructor(address initialowner) Ownable(initialowner) ERC721("MyToken", "MTK") {}
 
-    /** 
-        Pause Token Function Controlled by Owner Only
-    **/
-    function pause() public onlyOwner {
-        _pause();
+    function safeMint(address to, uint256 tokenId) public {
+        _safeMint(to, tokenId);
     }
-
-    /** 
-        Unpause Token Function Controlled by Owner Only
-    **/
-    function unpause() public onlyOwner {
-        _unpause();
-    }
-
 }
