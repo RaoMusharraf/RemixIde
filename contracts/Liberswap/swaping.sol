@@ -11,7 +11,6 @@ contract TokenSwap is Ownable {
     event swapToken(address sender,uint amount);
     event swapSubstrateToken(address sender,uint amount);
     event Hold_USDM_Token(address sender,uint amount);
-    // address constant usdt = 0xdAC17F958D2ee523a2206206994597C13D831ec7;
     address constant usdt =  0x1059dc58FeE94Fd0caF8A5c9a9b936843F0c5329;
     address constant usdc = 0x07B25CC8082ABc65C70b9e5f00b7f3b8FcF6814B;
     address constant dai = 0x2DF4FAecE2eA8b8FB5eFa8e022eDec520c2f0FA4;
@@ -19,6 +18,7 @@ contract TokenSwap is Ownable {
     // address constant usdc = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
     // address constant dai = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
     // address constant usdm = 0x59D9356E565Ab3A36dD77763Fc0d87fEaf85508C;
+    // address constant usdt = 0xdAC17F958D2ee523a2206206994597C13D831ec7;
 
     mapping(address => bool) public whiteList;
     address[] public whilistedAddress;
@@ -39,7 +39,7 @@ contract TokenSwap is Ownable {
         require(_ethToken == usdm || _ethToken == usdc || _ethToken == dai || _ethToken == usdt,"Accept only (USDM,DIA,USDT,USDC) Tokens");
         require(IERC20(_ethToken).allowance(msg.sender, address(this)) >= _amount, "Allowance not set");
         require(IERC20(_ethToken).balanceOf(msg.sender) >= _amount, "Insufficient balance");
-        
+
         if(_ethToken == usdm){
             IERC20(_ethToken).transferFrom(msg.sender, address(this), (_amount));
             currentHoldings += (_amount);

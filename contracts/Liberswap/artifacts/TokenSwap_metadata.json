@@ -468,11 +468,11 @@
 			]
 		},
 		"contracts/Liberswap/swaping.sol": {
-			"keccak256": "0xbba38c015dd75dc346b8f0ffb06f9a91dccb8bb9e879b496861ed3752325fb8b",
+			"keccak256": "0xcb773c99b5a13ad03ece04a9610afaf26916fe7e8036353ef61810839554e68e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fb91f929b7975c35a48b3bbb52d989b8f4663c9309badb340e24c75b03f0c633",
-				"dweb:/ipfs/Qme2sM34BpvEQaewJHuSHzYBxbbAcXzGVQ5xf9sbCi3sEV"
+				"bzz-raw://bc25cb979f70eb2728f23ae38f0941b6a91805bb2db68ebbc4f187f68492e247",
+				"dweb:/ipfs/QmNuo2WxkxbMAsDV2FPSCuVCfGTJLUYE7oTJkcZmPQPf4R"
 			]
 		}
 	},
