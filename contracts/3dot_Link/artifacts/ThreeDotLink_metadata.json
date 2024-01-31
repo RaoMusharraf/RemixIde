@@ -103,6 +103,16 @@
 				"type": "error"
 			},
 			{
+				"inputs": [],
+				"name": "EnforcedPause",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ExpectedPause",
+				"type": "error"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -287,37 +297,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "value",
-						"type": "uint256"
-					}
-				],
-				"name": "burn",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "account",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "value",
-						"type": "uint256"
-					}
-				],
-				"name": "burnFrom",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "decimals",
 				"outputs": [
@@ -484,6 +463,7 @@
 			}
 		],
 		"devdoc": {
+			"author": "3 Dot Link Team",
 			"errors": {
 				"ERC20InsufficientAllowance(address,uint256,uint256)": [
 					{
@@ -537,6 +517,16 @@
 						}
 					}
 				],
+				"EnforcedPause()": [
+					{
+						"details": "The operation failed because the contract is paused."
+					}
+				],
+				"ExpectedPause()": [
+					{
+						"details": "The operation failed because the contract is not paused."
+					}
+				],
 				"OwnableInvalidOwner(address)": [
 					{
 						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
@@ -573,11 +563,10 @@
 				"balanceOf(address)": {
 					"details": "See {IERC20-balanceOf}."
 				},
-				"burn(uint256)": {
-					"details": "Destroys a `value` amount of tokens from the caller. See {ERC20-_burn}."
-				},
-				"burnFrom(address,uint256)": {
-					"details": "Destroys a `value` amount of tokens from `account`, deducting from the caller's allowance. See {ERC20-_burn} and {ERC20-allowance}. Requirements: - the caller must have allowance for ``accounts``'s tokens of at least `value`."
+				"constructor": {
+					"params": {
+						"initialOwner": "Address of owner who can pause and unpause the contract"
+					}
 				},
 				"decimals()": {
 					"details": "Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5.05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the default value returned by this function, unless it's overridden. NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}."
@@ -587,6 +576,9 @@
 				},
 				"owner()": {
 					"details": "Returns the address of the current owner."
+				},
+				"pause()": {
+					"details": "Implementation of the ERC-20 token standard with the ability to pause and unpause transfers and approvals. This function provides the owner with the ability to pause the token functionality in case of emergencies, security vulnerabilities, or other unforeseen circumstances. The pausing mechanism allows the contract owner to temporarily halt all token transfers and approvals, preventing potential exploits or vulnerabilities from being exploited. Reasons to Pause: - Emergency situations - Security vulnerabilities - Upgrades and maintenance During the pause period: - Token transfers and approvals are disabled - Token balances remain unaffected - Paused status is visible to all users The contract owner should exercise caution when using the pause feature and ensure that the community is adequately informed of the reasons for pausing and any expected downtime."
 				},
 				"paused()": {
 					"details": "Returns true if the contract is paused, and false otherwise."
@@ -608,29 +600,28 @@
 				},
 				"transferOwnership(address)": {
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"unpause()": {
+					"details": "Unpause the token transfers and approvals. Can only be called by the contract owner."
 				}
 			},
+			"title": "3 Dot Link Project Main Utility Token",
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
 			"methods": {
 				"constructor": {
-					"notice": "Default Constructor With Initial Supply Arguments*"
-				},
-				"pause()": {
-					"notice": "Pause Token Function Controlled by Owner Only*"
-				},
-				"unpause()": {
-					"notice": "Unpause Token Function Controlled by Owner Only*"
+					"notice": "Constructor of contract"
 				}
 			},
+			"notice": "Contarct has fixed supply of tokens which is preminted",
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Gladiator/ERC20.sol": "Gladiator"
+			"contracts/3dot_Link/ERC20.sol": "ThreeDotLink"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -660,14 +651,6 @@
 				"dweb:/ipfs/QmcLLJppxKeJWqHxE2CUkcfhuRTgHSn8J4kijcLa5MYhSt"
 			]
 		},
-		"@openzeppelin/contracts/security/Pausable.sol": {
-			"keccak256": "0x0849d93b16c9940beb286a7864ed02724b248b93e0d80ef6355af5ef15c64773",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://4ddabb16009cd17eaca3143feadf450ac13e72919ebe2ca50e00f61cb78bc004",
-				"dweb:/ipfs/QmSPwPxX7d6TTWakN5jy5wsaGkS1y9TW8fuhGSraMkLk2B"
-			]
-		},
 		"@openzeppelin/contracts/token/ERC20/ERC20.sol": {
 			"keccak256": "0xc3e1fa9d1987f8d349dfb4d6fe93bf2ca014b52ba335cfac30bfe71e357e6f80",
 			"license": "MIT",
@@ -684,12 +667,12 @@
 				"dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq"
 			]
 		},
-		"@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol": {
-			"keccak256": "0x2659248df25e34000ed214b3dc8da2160bc39874c992b477d9e2b1b3283dc073",
+		"@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol": {
+			"keccak256": "0xb18c53aecf95e53339972e3d496a56c42e6b60a03a49ce8e6a37d3bd9d5d0a67",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c345af1b0e7ea28d1216d6a04ab28f5534a5229b9edf9ca3cd0e84950ae58d26",
-				"dweb:/ipfs/QmY63jtSrYpLRe8Gj1ep2vMDCKxGNNG3hnNVKBVnrs2nmA"
+				"bzz-raw://4a8e54b0924a1acd92806a843998568d6bec01798c550bc440a85cfcd9cfba99",
+				"dweb:/ipfs/QmZ26Y3ibYPbCRVB65NAQrGBF1UKDEu2fB8CHHMhYbBqmV"
 			]
 		},
 		"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
@@ -708,12 +691,20 @@
 				"dweb:/ipfs/QmNgFkoXNWoUbAyw71rr1sKQ95Rj2GfvYiWg79xEYDn2NY"
 			]
 		},
-		"contracts/Gladiator/ERC20.sol": {
-			"keccak256": "0x397c70b394055c640b4e86c5a7797ddac02613c32391c105629f280f3b8e1acb",
+		"@openzeppelin/contracts/utils/Pausable.sol": {
+			"keccak256": "0xb2e5f50762c27fb4b123e3619c3c02bdcba5e515309382e5bfb6f7d6486510bd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9a36b470d8824e58a9b816e22ba36c48de5022aa3e635959f38a1612f16ff1f3",
-				"dweb:/ipfs/QmVmJiktsRrbv8AZXkwXidJQ4M2BV4YCUgAQ6LVTFZ2WYh"
+				"bzz-raw://1a4b83328c98d518a2699c2cbe9e9b055e78aa57fa8639f1b88deb8b3750b5dc",
+				"dweb:/ipfs/QmXdcYj5v7zQxXFPULShHkR5p4Wa2zYuupbHnFdV3cHYtc"
+			]
+		},
+		"contracts/3dot_Link/ERC20.sol": {
+			"keccak256": "0x51586d8fdde289cf70fe6832759a06c100e5ac5cc994b826d6d2dfdb356a559b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4906f501d8dfaaa1cf14ecaa0c0ff571b4f347ca07fd72c8a7361f6296c4acb8",
+				"dweb:/ipfs/QmXTQ2cLTYk6PSjPvam6DfG32aJARR98qf5rPNSgjxanFt"
 			]
 		}
 	},
