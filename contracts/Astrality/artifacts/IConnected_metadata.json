@@ -1,0 +1,69 @@
+{
+	"compiler": {
+		"version": "0.8.24+commit.e11b9ed9"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenID",
+						"type": "uint256"
+					}
+				],
+				"name": "safeMint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Required interface of an ERC721 compliant contract.",
+			"kind": "dev",
+			"methods": {
+				"safeMint(address,uint256)": {
+					"details": "Returns the number of tokens in ``owner``'s account."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Astrality/IConnected.sol": "IConnected"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Astrality/IConnected.sol": {
+			"keccak256": "0xc6a8a5f6e92211f81aa8dd7e190c5b72c65d7b1395127d3c27be543c87398466",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d26de98431239f2f24602cc90387c882a2bfb8e6fc67dab861bcd76e2581e2a0",
+				"dweb:/ipfs/QmaK85W4j2zvKBBmwEZwmrixGVwHB5Z5CXJ2mY1cADNf7o"
+			]
+		}
+	},
+	"version": 1
+}

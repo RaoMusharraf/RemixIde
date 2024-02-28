@@ -1,13 +1,67 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity 0.8.24;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MyToken is ERC721, Ownable {
-    constructor(address initialowner) Ownable(initialowner) ERC721("MyToken", "MTK") {}
+/// @title USDM Token
+/// @author USDM Team
+/// @notice Contarct has fixed supply of tokens which is preminted
+contract USDM is ERC20, ERC20Pausable, Ownable {
+    /// @notice Constructor of contract
+    /// @param initialOwner Address of owner who can pause and unpause the contract
+    constructor(address initialOwner)
+        ERC20("Tether", "USDM")
+        Ownable(initialOwner)
+    {
+        _mint(msg.sender, 1000000000 * 10 ** decimals());
+    }
 
-    function safeMint(address to, uint256 tokenId) public {
-        _safeMint(to, tokenId);
+    /**
+    * @dev Implementation of the ERC-20 token standard with the ability to pause and unpause
+    * transfers and approvals.
+    *
+    * This function provides the owner with the ability to pause the token functionality
+    * in case of emergencies, security vulne3 Dot Linkrabilities, or other unforeseen circumstances.
+    *
+    * The pausing mechanism allows the contract owner to temporarily halt all token transfers and
+    * approvals, preventing potential exploits or vulnerabilities from being exploited.
+    *
+    * Reasons to Pause:
+    * - Emergency situations
+    * - Security vulnerabilities
+    * - Upgrades and maintenance
+    *
+    * During the pause period:
+    * - Token transfers and approvals are disabled
+    * - Token balances remain unaffected
+    * - Paused status is visible to all users
+    *
+    * The contract owner should exercise caution when using the pause feature and ensure that the
+    * community is adequately informed of the reasons for pausing and any expected downtime.
+    */
+    function pause() public onlyOwner {
+        _pause();
+    }
+
+
+    /**
+     * @dev Unpause the token transfers and approvals.
+     * Can only be called by the contract owner.
+     */
+    function unpause() public onlyOwner {
+        _unpause();
+    }
+
+    /** 
+        Check Token Not Pause Before Transfer
+    **/
+
+    function _update(address from, address to, uint256 value)
+        internal
+        override(ERC20, ERC20Pausable)
+    {
+        super._update(from, to, value);
     }
 }

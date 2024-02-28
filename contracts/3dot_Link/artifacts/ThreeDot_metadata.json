@@ -26,11 +26,6 @@
 						"internalType": "uint256",
 						"name": "_privateValue",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_publicValue",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -126,6 +121,11 @@
 						"internalType": "uint256",
 						"name": "roundTyp",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Typ",
+						"type": "uint256"
 					}
 				],
 				"name": "ClaimToken",
@@ -134,13 +134,59 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "TotalDays",
-				"outputs": [
+				"inputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Rounds",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "erc20",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalHolding",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "claimTokens",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "usdAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "withdrawTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isActive",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -156,6 +202,11 @@
 					{
 						"internalType": "uint256",
 						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_round",
 						"type": "uint256"
 					}
 				],
@@ -175,23 +226,10 @@
 						"internalType": "uint256",
 						"name": "_amount",
 						"type": "uint256"
-					}
-				],
-				"name": "addPublic",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_Holder",
-						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_amount",
+						"name": "_round",
 						"type": "uint256"
 					}
 				],
@@ -211,13 +249,23 @@
 						"internalType": "uint256",
 						"name": "roundTyp",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Typ",
+						"type": "uint256"
 					}
 				],
 				"name": "checkClaimReward",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "userClaimTokens",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "calSec",
 						"type": "uint256"
 					}
 				],
@@ -235,37 +283,16 @@
 						"internalType": "uint256",
 						"name": "endDate",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "roundTyp",
+						"type": "uint256"
 					}
 				],
 				"name": "claimActive",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "claimEndDate",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "claimStartDate",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -287,9 +314,14 @@
 						"internalType": "address",
 						"name": "_Holder",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_roundType",
+						"type": "uint256"
 					}
 				],
-				"name": "getSeed",
+				"name": "getRound",
 				"outputs": [
 					{
 						"components": [
@@ -305,49 +337,17 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "Price",
+								"name": "claimTokens",
 								"type": "uint256"
 							},
 							{
 								"internalType": "uint256",
-								"name": "value",
+								"name": "usdAmount",
 								"type": "uint256"
 							},
 							{
 								"internalType": "uint256",
-								"name": "withdrawTime",
-								"type": "uint256"
-							},
-							{
-								"internalType": "bool",
-								"name": "isActive",
-								"type": "bool"
-							}
-						],
-						"internalType": "struct ThreeDot.Round[]",
-						"name": "",
-						"type": "tuple[]"
-					},
-					{
-						"components": [
-							{
-								"internalType": "address",
-								"name": "erc20",
-								"type": "address"
-							},
-							{
-								"internalType": "uint256",
-								"name": "totalHolding",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "Price",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "value",
+								"name": "tokenPrice",
 								"type": "uint256"
 							},
 							{
@@ -379,12 +379,17 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "Price",
+								"name": "claimTokens",
 								"type": "uint256"
 							},
 							{
 								"internalType": "uint256",
-								"name": "value",
+								"name": "usdAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenPrice",
 								"type": "uint256"
 							},
 							{
@@ -407,13 +412,29 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "isClaimActive",
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "initialTokens",
 				"outputs": [
 					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
+						"internalType": "uint256",
+						"name": "claimTokens",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TGE",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -433,21 +454,44 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "privateValue",
-				"outputs": [
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_Holder",
+						"type": "address"
+					},
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "roundTyp",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
+				"name": "pausePrivate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_Holder",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "roundTyp",
+						"type": "uint256"
+					}
+				],
+				"name": "pauseSeed",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "publicValue",
+				"name": "privateValue",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -468,46 +512,31 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "rounds",
+				"name": "roundDetail",
 				"outputs": [
 					{
-						"internalType": "address",
-						"name": "erc20",
-						"type": "address"
-					},
-					{
 						"internalType": "uint256",
-						"name": "totalHolding",
+						"name": "startDate",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "Price",
+						"name": "endDate",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "value",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "withdrawTime",
+						"name": "TotalDays",
 						"type": "uint256"
 					},
 					{
 						"internalType": "bool",
-						"name": "isActive",
+						"name": "isClaimActive",
 						"type": "bool"
 					}
 				],
@@ -530,12 +559,12 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "_privateValue",
-						"type": "uint256"
+						"internalType": "address",
+						"name": "_erc20",
+						"type": "address"
 					}
 				],
-				"name": "setPrivatePrice",
+				"name": "setErc20Address",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -544,11 +573,11 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_publicValue",
+						"name": "_privateValue",
 						"type": "uint256"
 					}
 				],
-				"name": "setPublicPrice",
+				"name": "setPrivatePrice",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -617,76 +646,91 @@
 			},
 			"kind": "dev",
 			"methods": {
-				"ClaimToken(address,uint256)": {
+				"ClaimToken(address,uint256,uint256)": {
 					"details": "Claims are based on the duration since the last claim",
 					"params": {
-						"_Holder": "The address of the holder making the claim"
+						"Typ": "number of the rounds of the selectedType to their claim reward",
+						"_Holder": "The address of the holder making the claim",
+						"roundTyp": "number of the round(1 = seed or 2 = private) to their claim reward"
 					}
 				},
-				"addPrivate(address,uint256)": {
+				"addPrivate(address,uint256,uint256)": {
+					"details": "Can only be called by the contract owner",
+					"params": {
+						"_Holder": "The address of the holder receiving the private",
+						"_amount": "The amount of tokens associated with the private",
+						"_round": "Owner will add rounds of private "
+					}
+				},
+				"addSeed(address,uint256,uint256)": {
 					"details": "Can only be called by the contract owner",
 					"params": {
 						"_Holder": "The address of the holder receiving the seed",
-						"_amount": "The amount of tokens associated with the seed"
+						"_amount": "The amount of tokens associated with the seed",
+						"_round": "Owner will add rounds of seed "
 					}
 				},
-				"addPublic(address,uint256)": {
-					"details": "Can only be called by the contract owner",
+				"checkClaimReward(address,uint256,uint256)": {
 					"params": {
-						"_Holder": "The address of the holder receiving the seed",
-						"_amount": "The amount of tokens associated with the seed"
+						"_Holder": "The address of the holder checking the claim",
+						"roundTyp": "number of the round to check their claim reward"
 					}
 				},
-				"addSeed(address,uint256)": {
-					"details": "Can only be called by the contract owner",
-					"params": {
-						"_Holder": "The address of the holder receiving the seed",
-						"_amount": "The amount of tokens associated with the seed"
-					}
-				},
-				"checkClaimReward(address,uint256)": {
-					"params": {
-						"_Holder": "The address of the holder checking the claim"
-					}
-				},
-				"claimActive(uint256,uint256)": {
+				"claimActive(uint256,uint256,uint256)": {
 					"details": "Can only be called by the contract owner",
 					"params": {
 						"endDate": "The end date for the claim period",
+						"roundTyp": "number of the round(1 = seed or 2 = private) to Activate claim",
 						"startDate": "The start date for the claim period"
 					}
 				},
 				"constructor": {
 					"params": {
 						"_ERC20": "The ERC20 token address associated with the contract",
-						"_seedValue": "The initial value assigned to each seed",
+						"_privateValue": "The initial value assigned to each private round",
+						"_seedValue": "The initial value assigned to each seed round",
 						"initialOwner": "The address of the initial owner of the contract"
 					}
 				},
-				"getSeed(address)": {
+				"getRound(address,uint256)": {
 					"params": {
-						"_Holder": "The address of the holder"
+						"_Holder": "The address of the holder",
+						"_roundType": "number of the rounds(1 = seed and 2 = private) to get the round Holders details"
 					},
 					"returns": {
-						"_0": "An array containing the seed , private and public information of the requested holder"
+						"_0": "An array containing the seed , private and private2 information of the requested holder"
 					}
 				},
 				"owner()": {
 					"details": "Returns the address of the current owner."
 				},
+				"pausePrivate(address,uint256)": {
+					"details": "Can only be called by the contract owner",
+					"params": {
+						"_Holder": "The address of the holder ",
+						"roundTyp": "The seed roundtype pause the specific roundtype and inActive the specific round of holder"
+					}
+				},
+				"pauseSeed(address,uint256)": {
+					"details": "Can only be called by the contract owner",
+					"params": {
+						"_Holder": "The address of the holder ",
+						"roundTyp": "The seed roundtype pause the specific roundtype and inActive the specific round of holder"
+					}
+				},
 				"renounceOwnership()": {
 					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"setErc20Address(address)": {
+					"details": "Can only be called by the contract owner",
+					"params": {
+						"_erc20": "The address of the ERC20 token that is being vested in this contract"
+					}
 				},
 				"setPrivatePrice(uint256)": {
 					"details": "Can only be called by the contract owner",
 					"params": {
 						"_privateValue": "The new privateValue value"
-					}
-				},
-				"setPublicPrice(uint256)": {
-					"details": "Can only be called by the contract owner",
-					"params": {
-						"_publicValue": "The new publicValue value"
 					}
 				},
 				"setSeedPrice(uint256)": {
@@ -699,41 +743,53 @@
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				}
 			},
-			"title": "A smart contract for Vasting token",
+			"title": "A smart contract for Vasting",
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"ClaimToken(address,uint256)": {
+				"ClaimToken(address,uint256,uint256)": {
 					"notice": "Function for holders to claim their tokens"
 				},
-				"addPrivate(address,uint256)": {
-					"notice": "Function to add a seed to a holder"
+				"Rounds(uint256,uint256,address)": {
+					"notice": "Maps RoundType and round number to holder's round information"
 				},
-				"addPublic(address,uint256)": {
-					"notice": "Function to add a seed to a holder"
+				"addPrivate(address,uint256,uint256)": {
+					"notice": "Function to add a priateRound to a holder"
 				},
-				"addSeed(address,uint256)": {
-					"notice": "Function to add a seed to a holder"
+				"addSeed(address,uint256,uint256)": {
+					"notice": "Function to add a seedRound to a holder"
 				},
-				"checkClaimReward(address,uint256)": {
+				"checkClaimReward(address,uint256,uint256)": {
 					"notice": "Function for holders to check their tokens"
 				},
-				"claimActive(uint256,uint256)": {
+				"claimActive(uint256,uint256,uint256)": {
 					"notice": "Function to activate the claim feature"
 				},
 				"constructor": {
 					"notice": "Constructor to set initial values for the contract"
 				},
-				"getSeed(address)": {
+				"getRound(address,uint256)": {
 					"notice": "Function to get the seed information of a specific holder"
+				},
+				"initialTokens(uint256,uint256)": {
+					"notice": "Maps round number and type to its TGE details"
+				},
+				"pausePrivate(address,uint256)": {
+					"notice": "Function to pause private roundType"
+				},
+				"pauseSeed(address,uint256)": {
+					"notice": "Function to pause seed roundType"
+				},
+				"roundDetail(uint256)": {
+					"notice": "Maps round number to its details"
+				},
+				"setErc20Address(address)": {
+					"notice": "Function to set a new ERC20 Address"
 				},
 				"setPrivatePrice(uint256)": {
 					"notice": "Function to set a new privateValue value"
-				},
-				"setPublicPrice(uint256)": {
-					"notice": "Function to set a new publicValue value"
 				},
 				"setSeedPrice(uint256)": {
 					"notice": "Function to set a new seed value"
@@ -808,11 +864,11 @@
 			]
 		},
 		"contracts/3dot_Link/smartContract.sol": {
-			"keccak256": "0x4bbf9373e65b6945796e96e483aee58336d434823561811c36ad577db9a34896",
+			"keccak256": "0xe2e21779cae6fe0740e065335ce7c7b0ec13b26584f808628989ea765e47bc27",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2f752904bb63dce92dd8f683f81a3bcabf982ff36a8535c76dd1fd2045694aac",
-				"dweb:/ipfs/QmYaPhu4WLpvgvkn32vCqxH6QqN15k7hC2DogQffTACUj1"
+				"bzz-raw://167a764f4d6be7b6d5ec6c896bfb49d7fa7861828b9a3293f9b06ab616f23112",
+				"dweb:/ipfs/QmQD29Q8VH7DhvpbAy3Aqo1LFVggax5eD3BpyCFrpGLTXv"
 			]
 		}
 	},

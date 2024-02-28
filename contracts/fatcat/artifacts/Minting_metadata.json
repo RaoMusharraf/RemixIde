@@ -963,11 +963,11 @@
 			]
 		},
 		"contracts/fatcat/ERC721.sol": {
-			"keccak256": "0x9c8281f11d0aa709ee184ec504438c9380406087f84d06e799c285256f8eb4f7",
+			"keccak256": "0x9d80ef0d9ef27110449dcdfccf8e14f3d4c395327a8121d43cbda13050049e78",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0eefb56ba9408bfe2ad232b8decb85a67ce17a448d9ff127bee4bb88df7e270a",
-				"dweb:/ipfs/QmRxDbnwHymogHGR1Pwe7Nszes633offp6HjSz4RsEt2vP"
+				"bzz-raw://c675bddea040fd5b874d11a97345dae65484faaf9922390eb778aeef44d348ec",
+				"dweb:/ipfs/QmabqiJGoAxjqFQWM1fCDAUrKMxQ8Kbmok4FbXXpgXNnAE"
 			]
 		}
 	},

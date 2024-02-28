@@ -130,7 +130,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "swapSubstrateToken",
+				"name": "substrateSwapToken",
 				"type": "event"
 			},
 			{
@@ -151,6 +151,19 @@
 				],
 				"name": "swapToken",
 				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "Owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
 				"inputs": [
@@ -179,19 +192,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "feeOwner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -204,6 +204,95 @@
 					{
 						"internalType": "uint256",
 						"name": "holdings",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "holder",
+						"type": "address"
+					}
+				],
+				"name": "holdingOf_DAI",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "holdings",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "holder",
+						"type": "address"
+					}
+				],
+				"name": "holdingOf_USDC",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "holdings",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "holder",
+						"type": "address"
+					}
+				],
+				"name": "holdingOf_USDM",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "holdings",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "holder",
+						"type": "address"
+					}
+				],
+				"name": "holdingOf_USDT",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "holdings",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "overColleteralFeeAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -256,6 +345,29 @@
 						"type": "uint256"
 					}
 				],
+				"name": "substrateSwapTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_ethToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "substrateAddress",
+						"type": "string"
+					}
+				],
 				"name": "swapTokens",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -278,7 +390,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "UserAddress",
 						"type": "address"
 					}
 				],
@@ -287,6 +399,54 @@
 					{
 						"internalType": "uint256",
 						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "UserAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "TokenAddress",
+						"type": "address"
+					}
+				],
+				"name": "userTokenAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "UserAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "userTotalSwapAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "Amount",
 						"type": "uint256"
 					}
 				],
@@ -337,11 +497,6 @@
 						"internalType": "address",
 						"name": "_ethToken",
 						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
 					}
 				],
 				"name": "withdrawBalanceTokens",
@@ -351,6 +506,7 @@
 			}
 		],
 		"devdoc": {
+			"author": "LiberSwap Team",
 			"errors": {
 				"AddressEmptyCode(address)": [
 					{
@@ -385,21 +541,87 @@
 			},
 			"kind": "dev",
 			"methods": {
+				"WhiteList(address)": {
+					"details": "Adds an address to the whitelist. Only the owner of the contract can call this function. Emits an event once an address is successfully whitelisted. ",
+					"params": {
+						"_address": "The address to be added to the whitelist."
+					}
+				},
+				"holdingOfTokens(address)": {
+					"details": "Returns the balance of a specific ERC20 token held by this contract.",
+					"params": {
+						"_ethToken": "The address of the ERC20 token."
+					},
+					"returns": {
+						"holdings": "The amount of the specified tokens held by this contract."
+					}
+				},
+				"holdingOf_DAI(address)": {
+					"details": "Returns the DAI token balance of this contract.",
+					"returns": {
+						"holdings": "The amount of DAI tokens held by this contract."
+					}
+				},
+				"holdingOf_USDC(address)": {
+					"details": "Returns the USDC token balance of this contract.",
+					"returns": {
+						"holdings": "The amount of USDC tokens held by this contract."
+					}
+				},
+				"holdingOf_USDM(address)": {
+					"details": "Returns the USDM token balance of this contract.",
+					"returns": {
+						"holdings": "The amount of USDM tokens held by this contract."
+					}
+				},
+				"holdingOf_USDT(address)": {
+					"details": "Returns the USDT token balance of this contract.",
+					"returns": {
+						"holdings": "The amount of USDT tokens held by this contract."
+					}
+				},
 				"owner()": {
 					"details": "Returns the address of the current owner."
+				},
+				"removeFromWhiteList(address)": {
+					"details": "Removes an address from the whitelist. Only the owner can call this function.",
+					"params": {
+						"_address": "The address to be removed from the whitelist."
+					}
 				},
 				"renounceOwnership()": {
 					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
 				},
+				"substrateSwapTokens(address,uint256)": {
+					"details": "Allows users to swap tokens back from the contract or distribute a fee among whitelisted addresses before sending back the tokens. If the token being swapped back is USDM, it is directly transferred to the sender. For other tokens, a 0.3% fee is distributed among all whitelisted addresses before sending the remaining tokens back to the sender. ",
+					"params": {
+						"_amount": "The amount of the token to be swapped back.",
+						"_ethToken": "The address of the ERC20 token to be swapped back."
+					}
+				},
+				"swapTokens(address,uint256,string)": {
+					"details": "Allows users to swap tokens by transferring them to the contract or distribute a fee among whitelisted addresses. If the token being swapped is USDM, it is simply collected by the contract. For other tokens, a 0.3% fee is distributed among all whitelisted addresses, and the rest is collected by the contract. ",
+					"params": {
+						"_amount": "The amount of the token to be swapped.",
+						"_ethToken": "The address of the ERC20 token to be swapped."
+					}
+				},
 				"transferOwnership(address)": {
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"withdrawBalanceTokens(address)": {
+					"params": {
+						"_ethToken": "The address of the ERC20 token to be swapped back. Only owner can withdaraw the Overcolleteral fee."
+					}
 				}
 			},
+			"title": "TokenSwap contract for swapping tokens, inheriting from Ownable for access control",
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
 			"methods": {},
+			"notice": "Contarct is based on swaping the usd tokens to substrate and vice versa  ",
 			"version": 1
 		}
 	},
@@ -413,7 +635,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -468,11 +690,11 @@
 			]
 		},
 		"contracts/Liberswap/swaping.sol": {
-			"keccak256": "0xcb773c99b5a13ad03ece04a9610afaf26916fe7e8036353ef61810839554e68e",
+			"keccak256": "0x96e8d5597726a3bb1ac985c05465177fbfaa7cbc60f92247a8b2868153805570",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bc25cb979f70eb2728f23ae38f0941b6a91805bb2db68ebbc4f187f68492e247",
-				"dweb:/ipfs/QmNuo2WxkxbMAsDV2FPSCuVCfGTJLUYE7oTJkcZmPQPf4R"
+				"bzz-raw://94939a3be2d4d093747548460eed562d96820680af935ba8955126417e60cfaf",
+				"dweb:/ipfs/QmUNffivqYQiaXFKrVuJJ8n3ZZm8FazS9h4gxUKn9DFmQa"
 			]
 		}
 	},

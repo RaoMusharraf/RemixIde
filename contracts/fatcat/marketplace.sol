@@ -28,6 +28,8 @@ interface IConnected {
  * @title MarketPlace
  */
 contract Marketplace is ReentrancyGuard , Ownable{
+
+    
     using SafeERC20 for IERC20;
     //Counter
     using Counters for Counters.Counter;
@@ -40,6 +42,9 @@ contract Marketplace is ReentrancyGuard , Ownable{
     address public sellerFee;
     uint public buyerFeePerAge;
     uint public sellerFeePerAge;
+    //State Variables 
+    uint public totalVolume;
+    uint public totalSales;
     //Mapping
     mapping (address => mapping(uint256 => NFT)) public _idToNFT;
     mapping (uint => addressToken) public listCount;
@@ -134,6 +139,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         _nftCount.increment();
         _idToNFT[_mintContract][_tokenId] = NFT(_tokenId,msg.sender,address(this),_price,_nftCount.current(),block.timestamp,true,artist,artistFeePerAge);
         listCount[_nftCount.current()] = addressToken(_mintContract,_tokenId);
+        totalVolume += _price;
         ERC721(_mintContract).transferFrom(msg.sender, address(this), _tokenId); 
         emit NFTListed(_tokenId, msg.sender, address(this), _price);
     }   
@@ -179,6 +185,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
         _idToNFT[listCount[_nftCount.current()].contractAddress][listCount[_nftCount.current()].tokenId].count = listIndex;
         listCount[listIndex] = listCount[_nftCount.current()];
         _nftCount.decrement();
+        totalSales += price;
         emit Fee(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].artist,artistFee,_royalityAddress,royaltyAmount);
         emit NFTSold(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].tokenId, _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller, msg.sender, msg.value,block.timestamp);
     }

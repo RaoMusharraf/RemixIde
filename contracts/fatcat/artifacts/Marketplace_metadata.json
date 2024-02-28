@@ -1033,6 +1033,32 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "totalSales",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalVolume",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -1126,7 +1152,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -1269,11 +1295,11 @@
 			]
 		},
 		"contracts/fatcat/marketplace.sol": {
-			"keccak256": "0xfc7ace2f27d8d36c78917a67431db0aadc2f87f7cb077acb0eaebcb627984a5c",
+			"keccak256": "0x0019b868c03768a6a164e075e88602a23c695efb725af6007a0351e86ce73685",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1faa3d178ac627c3ab5f2ccb5a2894a137b7a3d6048f5ac96be33e3c9b1fc480",
-				"dweb:/ipfs/QmWscWjdFaMNaYKxtZwiXRV3jcCMhuXUbumWThDKKQTLaM"
+				"bzz-raw://2707d1a2d4ecad5daa663facec6ebe48191afd88bb61196cd1d2e7b9d25e4419",
+				"dweb:/ipfs/QmRF4eKvpiCJfCYtcQVkhUL6i68JvMZDqCJPFm3mLieJEx"
 			]
 		}
 	},
