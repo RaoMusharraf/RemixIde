@@ -5,10 +5,10 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-/// @title Astrality Main Utility Token
-/// @author Astrality Team
+/// @title USDT Main Utility Token
+/// @author USDT Team
 /// @notice Contarct has fixed supply of tokens which is preminted
-contract Astrality is ERC20, ERC20Pausable, Ownable {
+contract USDT is ERC20, ERC20Pausable, Ownable {
     /// @notice Constructor of contract
     /// @param initialOwner Address of owner who can pause and unpause the contract
     constructor(address initialOwner)

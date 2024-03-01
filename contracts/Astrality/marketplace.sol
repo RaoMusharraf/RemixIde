@@ -87,6 +87,10 @@ contract Marketplace is ReentrancyGuard , Ownable{
         
     }
     // ============ MakeOffer FUNCTIONS ============
+    /*
+        @dev MakeRentOffer In this function user wants to list their NFT/Property For rent.
+        @param _owner, _tokenId, _month, _price, _coordinate that are created by owner when owner enter data.
+    */
     function MakeRentOffer(address _owner,uint _tokenId,uint _month,uint _price,string memory _coordinate) external nonReentrant{
         require(token.ownerOf(_tokenId)==_owner,"You are Not Owner of this NFT");
         require(_idToNFT[Id[_tokenId]].listed,"Please Cancel the NFT from List!");
@@ -101,6 +105,10 @@ contract Marketplace is ReentrancyGuard , Ownable{
         }
     }
     // ============ BuyRentOffer FUNCTIONS ============
+    /*
+        @dev BuyRentOffer In this function user NFT/Property For rent at specific time.
+        @param _buyer, _tokenId, _price that are created by user when user enter data.
+    */
     function BuyRentOffer(address _buyer,uint _tokenId,uint _price) external nonReentrant{
         require(token.ownerOf(_tokenId) != _buyer,"You are Not Eligible to buy Rent Offer");
         require(NFTOwner[_tokenId].isActive,"This Is Not For Rent!");
@@ -153,6 +161,10 @@ contract Marketplace is ReentrancyGuard , Ownable{
         return myNftCount;
     }
     // ============ CancelRentOffer FUNCTIONS ============
+    /*
+        @dev CancelRentOffer In this function owner can cancel NFT/Property untill user accept offer.
+        @param _tokenId, _owner that are created by owner when owner enter data.
+    */
     function CancelRentOffer(address _owner,uint _tokenId) external nonReentrant{
         require(token.ownerOf(_tokenId)==_owner,"You are Not Owner of this NFT");
         require(NFTOwner[_tokenId].isActive,"This Is Not For Rent!");

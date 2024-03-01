@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT
-// Compatible with OpenZeppelin Contracts ^5.0.0
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -7,7 +6,10 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 
-contract MyToken is ERC721, ERC721Pausable, Ownable, ERC721Burnable {
+/// @title Astrality
+/// @author Astrality Team
+/// @notice Contarct has fixed supply of tokens which is preminted
+contract Astrality is ERC721, ERC721Pausable, Ownable, ERC721Burnable {
     constructor(address initialOwner)
         ERC721("Astrality", "Astrality")
         Ownable(initialOwner)
@@ -20,12 +22,14 @@ contract MyToken is ERC721, ERC721Pausable, Ownable, ERC721Burnable {
     function unpause() public onlyOwner {
         _unpause();
     }
-
+    // ============ Mint FUNCTIONS ============
+    /*
+        @dev safeMint mint NFTs from User using id.
+        @param to is the address of the active User and tokenId that are created by User when User enter data.
+    */
     function safeMint(address to, uint256 tokenId) public {
         _safeMint(to, tokenId);
     }
-
-    // The following functions are overrides required by Solidity.
 
     function _update(address to, uint256 tokenId, address auth)
         internal

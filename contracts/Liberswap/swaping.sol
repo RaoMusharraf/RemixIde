@@ -104,14 +104,14 @@ contract TokenSwap is Ownable {
      * @param _ethToken The address of the ERC20 token to be swapped back.
      * @param _amount The amount of the token to be swapped back.
      */
-    function substrateSwapTokens(address _ethToken,uint256 _amount) public {
+    function substrateSwapTokens(address _ethToken,uint256 _amount,address _to) public {
         require(IERC20(_ethToken).balanceOf(address(this)) >= _amount, "Insufficient balance");
         if(_ethToken == usdm){
-            IERC20(_ethToken).safeTransfer(msg.sender,_amount);
+            IERC20(_ethToken).safeTransfer(_to,_amount);
             currentHoldings -= (_amount);
-            userAmount[msg.sender] = _amount;
-            userTokenAmount[msg.sender][_ethToken] -= _amount;
-            emit swapToken(msg.sender,_amount);
+            userAmount[_to] = _amount;
+            userTokenAmount[_to][_ethToken] -= _amount;
+            emit swapToken(_to,_amount);
         }
         else{
 
@@ -121,11 +121,11 @@ contract TokenSwap is Ownable {
             {
                 IERC20(_ethToken).safeTransfer(whilistedAddress[i],eachWhilitedAddressFee);
             }
-             IERC20(_ethToken).safeTransfer(msg.sender,(_amount-overColleteralFeeAmount));
+             IERC20(_ethToken).safeTransfer(_to,(_amount-overColleteralFeeAmount));
             currentHoldings -= (_amount-overColleteralFeeAmount);
-            userAmount[msg.sender] = (_amount-overColleteralFeeAmount);
-            userTokenAmount[msg.sender][_ethToken] -= (_amount-overColleteralFeeAmount);
-            emit substrateSwapToken(msg.sender,(_amount-overColleteralFeeAmount));
+            userAmount[_to] = (_amount-overColleteralFeeAmount);
+            userTokenAmount[_to][_ethToken] -= (_amount-overColleteralFeeAmount);
+            emit substrateSwapToken(_to,(_amount-overColleteralFeeAmount));
         }
     
     }

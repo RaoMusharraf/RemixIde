@@ -1183,7 +1183,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -1342,11 +1342,11 @@
 			]
 		},
 		"contracts/Astrality/marketplace.sol": {
-			"keccak256": "0x906517ae162f7ea1d0b2011d87fb6b67ee882e45b24e4dc7ebfb1e4e71e12e60",
+			"keccak256": "0xd4b55c77439246b27c7d995e521b402848113b50c7ed8495293c569b8e4c3e78",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b40ad406d229803b04fbec637c9560c3437a2422ba2d13d9c26dfe9eff7be5b8",
-				"dweb:/ipfs/QmTcAybggCMwUGxqQ4afaddWfx2JgrNUzRUP6jVDH1MCWj"
+				"bzz-raw://e84ba96bf0d10f0f242781e250b07cc59ab529585615fe27786d2a1ad41390e1",
+				"dweb:/ipfs/Qmf9zSKpM2x2nuVqyCGCvg959JGhjkr5hVutMbZviXWZkb"
 			]
 		}
 	},

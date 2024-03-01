@@ -800,7 +800,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -927,11 +927,11 @@
 			]
 		},
 		"contracts/Astrality/Mint.sol": {
-			"keccak256": "0x84283f9a908e414b9c5ac89a3a91586c23fd302fe692fe10cca049a9e1d0b375",
+			"keccak256": "0x42772baf5d8f5965b54db0226a93558a939b5379dd7817ca3c34ce9753b6a826",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://407556f6de1c10221407a9c653c767bfe568d4193f144365818a3ff0e84b1b3d",
-				"dweb:/ipfs/Qmb4J2T6wptdXttmKUpHAYtsChtJJhXMAkoVYEwo1d82Wz"
+				"bzz-raw://6c417ca6f4945c6795cd3f389846c746bc2bc7fd4e89d5051c98d68f7c6739f0",
+				"dweb:/ipfs/QmZSc4TMG1niJTamaPzRcyE1yTbRmyAMk4JUdL954cop2s"
 			]
 		}
 	},

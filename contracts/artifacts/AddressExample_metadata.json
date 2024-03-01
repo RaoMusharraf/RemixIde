@@ -1,0 +1,78 @@
+{
+	"compiler": {
+		"version": "0.8.24+commit.e11b9ed9"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "doSomethingWithAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAddressBalance",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/PureView.sol": "AddressExample"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/PureView.sol": {
+			"keccak256": "0x285f646e90c85b13701d3ed02623f32bff244a2664e14a1c34a3f630cfe82cd8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://946c9ec74852da1acfc9f06c4a583718390290704beea79d4e536baa17621812",
+				"dweb:/ipfs/Qmb591vsu5Zk5qqJJgegVUTPEJHcXGmfjocC52nGfERYxk"
+			]
+		}
+	},
+	"version": 1
+}
