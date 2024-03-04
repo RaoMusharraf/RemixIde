@@ -321,31 +321,19 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "to",
 						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
-				"name": "getAllURI",
+				"name": "getAllURIPerUser",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "string[]",
 						"name": "",
-						"type": "string"
+						"type": "string[]"
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getAllURIPerUser",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -362,6 +350,30 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "getURI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -932,11 +944,11 @@
 			]
 		},
 		"contracts/Lavocate/mint.sol": {
-			"keccak256": "0x07647db662b547e799f3e7b67a2ec40f2749c1ca51fc437286dbd8cd91f10067",
+			"keccak256": "0x1d9ad81cac726d562c8b708840134214de035becc1e8febf310c6cdd4059a0fa",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://799c930beffbba4e0ac37ab903da0a7a2d927f3d9f5e28ac2f2b0680f5a886f6",
-				"dweb:/ipfs/QmPLjsebKBevbSvUE27a8VVrFhHhoAqZEKX4Df8GFHMp6m"
+				"bzz-raw://b9de38eaada398b471092666330b4151f55b836b1a66d1a2009aa5466d63c4cb",
+				"dweb:/ipfs/QmdmrXPujfbwcacWE13bCWuQhycDubAZrCeMdX5SGvAKAa"
 			]
 		}
 	},
