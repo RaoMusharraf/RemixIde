@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.24+commit.e11b9ed9"
+		"version": "0.8.22+commit.4fc1097e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -292,32 +292,8 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
 						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "TokenId",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
+						"name": "id",
 						"type": "uint256"
 					}
 				],
@@ -325,7 +301,7 @@
 				"outputs": [
 					{
 						"internalType": "string",
-						"name": "URI",
+						"name": "uri",
 						"type": "string"
 					},
 					{
@@ -348,8 +324,51 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "_value",
+						"name": "",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "_nextTokenId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "allTokenURIs",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "uri",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "capAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Count",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Dispatch.Admin[]",
+						"name": "",
+						"type": "tuple[]"
 					}
 				],
 				"stateMutability": "view",
@@ -395,12 +414,22 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string[]",
+						"name": "_uri",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "capAmount",
+						"type": "uint256[]"
+					},
+					{
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "leng",
 						"type": "uint256"
 					}
 				],
-				"name": "burn",
+				"name": "bulkEnterData",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -409,7 +438,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "user",
 						"type": "address"
 					}
 				],
@@ -449,6 +478,93 @@
 						"internalType": "address",
 						"name": "to",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "getToken",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "uri",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "capAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "points",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Dispatch.Token[]",
+						"name": "token",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "getTokenDetail",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "uri",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "capAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "points",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Dispatch.Token[]",
+						"name": "TokensDetail",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
 					}
 				],
 				"name": "getTokenId",
@@ -457,6 +573,47 @@
 						"internalType": "uint256[]",
 						"name": "",
 						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "getTokensDeails",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "uri",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "capAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "points",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Dispatch.Token[]",
+						"name": "token",
+						"type": "tuple[]"
 					}
 				],
 				"stateMutability": "view",
@@ -564,6 +721,11 @@
 						"internalType": "address",
 						"name": "to",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
 					}
 				],
 				"name": "safeMint",
@@ -673,12 +835,38 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "tokenIdCounter",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "counter",
+						"type": "uint256"
+					}
+				],
+				"name": "tokenDetail",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "_value",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "capAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "points",
 						"type": "uint256"
 					}
 				],
@@ -886,9 +1074,6 @@
 				"balanceOf(address)": {
 					"details": "See {IERC721-balanceOf}."
 				},
-				"burn(uint256)": {
-					"details": "Burns `tokenId`. See {ERC721-_burn}. Requirements: - The caller must own `tokenId` or be an approved operator."
-				},
 				"getApproved(uint256)": {
 					"details": "See {IERC721-getApproved}."
 				},
@@ -945,7 +1130,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Dispatch_AI/mintStones.sol": "Dispatch"
+			"contracts/Dispatch_AI/mintStoneFinal.sol": "Dispatch"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -999,14 +1184,6 @@
 				"dweb:/ipfs/QmWBAn6y2D1xgftci97Z3qR9tQnkvwQpYwFwkTvDMvqU4i"
 			]
 		},
-		"@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol": {
-			"keccak256": "0xc48434419baa510862ba4b4802bc0500ccddadd02ae2f195548af748c3206b20",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://85ae0bacd8623ce1cfad08c70ed111e995d23c66ad057b779b838ad2e5598681",
-				"dweb:/ipfs/QmWZGSEjZ9DmbQmHjjsdkRbJtU25Ai65VScDnEziRCkPRB"
-			]
-		},
 		"@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol": {
 			"keccak256": "0xab7469fb4d5dbca13494abb44b720b63b62a48d594083312de4865ba50cd80b3",
 			"license": "MIT",
@@ -1029,14 +1206,6 @@
 			"urls": [
 				"bzz-raw://0c4e6cb30d3601e2f7af5af09e265508147cb275a8dcd99d6f7363645cc56867",
 				"dweb:/ipfs/QmNgFkoXNWoUbAyw71rr1sKQ95Rj2GfvYiWg79xEYDn2NY"
-			]
-		},
-		"@openzeppelin/contracts/utils/Counters.sol": {
-			"keccak256": "0xf0018c2440fbe238dd3a8732fa8e17a0f9dce84d31451dc8a32f6d62b349c9f1",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://59e1c62884d55b70f3ae5432b44bb3166ad71ae3acd19c57ab6ddc3c87c325ee",
-				"dweb:/ipfs/QmezuXg5GK5oeA4F91EZhozBFekhq5TD966bHPH18cCqhu"
 			]
 		},
 		"@openzeppelin/contracts/utils/Pausable.sol": {
@@ -1087,12 +1256,12 @@
 				"dweb:/ipfs/QmVBEei6aTnvYNZp2CHYVNKyZS4q1KkjANfY39WVXZXVoT"
 			]
 		},
-		"contracts/Dispatch_AI/mintStones.sol": {
-			"keccak256": "0x2577a165d271bd6bd4ce7645d95b3be6710373848a02e753a8e3a03d3e8d7c4f",
+		"contracts/Dispatch_AI/mintStoneFinal.sol": {
+			"keccak256": "0xc61da1b257a52772bde13eb18df41136729338fe9ff56c39f504042f99e28790",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1d87f5c7b363528f9be99f6ceae686b2507a2da0ea4ba97ad12ea6a84c6ceb00",
-				"dweb:/ipfs/QmfQaBXtpFeuaKvx8eecXHZFPSGYRjeY8aTusbw16JSvA1"
+				"bzz-raw://6cd7eb12ed01c1904154ade56e2b8fdacb86712cc13a0e4e85f0472a546542b4",
+				"dweb:/ipfs/Qmao1H5wArm6nhC9MKDKot8GGa5HjJG5iLtoGQrFXcr6du"
 			]
 		}
 	},

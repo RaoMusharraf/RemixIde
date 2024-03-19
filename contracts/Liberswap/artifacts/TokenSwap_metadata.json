@@ -179,8 +179,51 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "UserAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "TokenAddress",
+						"type": "address"
+					}
+				],
+				"name": "checkUser",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "currentHoldings",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "getMaticPrice",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -348,6 +391,11 @@
 						"internalType": "address",
 						"name": "_to",
 						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "substrateAddress",
+						"type": "string"
 					}
 				],
 				"name": "substrateSwapTokens",
@@ -375,7 +423,7 @@
 				],
 				"name": "swapTokens",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -428,6 +476,30 @@
 					{
 						"internalType": "uint256",
 						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "SubstrateAddress",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "Owner",
+						"type": "address"
+					}
+				],
+				"name": "userTotalSubstrateSwapAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "Amount",
 						"type": "uint256"
 					}
 				],
@@ -597,7 +669,7 @@
 				"renounceOwnership()": {
 					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
 				},
-				"substrateSwapTokens(address,uint256,address)": {
+				"substrateSwapTokens(address,uint256,address,string)": {
 					"details": "Allows users to swap tokens back from the contract or distribute a fee among whitelisted addresses before sending back the tokens. If the token being swapped back is USDM, it is directly transferred to the sender. For other tokens, a 0.3% fee is distributed among all whitelisted addresses before sending the remaining tokens back to the sender. ",
 					"params": {
 						"_amount": "The amount of the token to be swapped back.",
@@ -632,7 +704,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Liberswap/swaping.sol": "TokenSwap"
+			"contracts/Liberswap/SwappingContract_2.sol": "TokenSwap"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -646,6 +718,14 @@
 		"remappings": []
 	},
 	"sources": {
+		"@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol": {
+			"keccak256": "0xfe4e8bb4861bb3860ba890ab91a3b818ec66e5a8f544fb608cfcb73f433472cd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://644cff84052e1e82b5bb502b2a46e8f142a62b0db4cd9b38200798ba8373c6f7",
+				"dweb:/ipfs/QmTa99QHrJBn3SXDizquPBUiTxVCNKQrHgaWJhuds5Sce2"
+			]
+		},
 		"@openzeppelin/contracts/access/Ownable.sol": {
 			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
 			"license": "MIT",
@@ -694,12 +774,12 @@
 				"dweb:/ipfs/QmNgFkoXNWoUbAyw71rr1sKQ95Rj2GfvYiWg79xEYDn2NY"
 			]
 		},
-		"contracts/Liberswap/swaping.sol": {
-			"keccak256": "0xbcd2c87675a48ed3e3ab7475a55ac10756dbfa828dffbed7eb0a0016a7b0e093",
+		"contracts/Liberswap/SwappingContract_2.sol": {
+			"keccak256": "0x72af300911f8817b94ed7c7975abb256c7749a10eeaef0598c56d56f9230e08e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f4acdcfa10b2c494fa58cc21780f87e5ff1223b8a7026f04d37b059ecd284feb",
-				"dweb:/ipfs/QmNp34SPBGia4zDRzF2VFAorFvWNEPBCppAVduPkvNJDuk"
+				"bzz-raw://9bc7d7d4fb57b3b3857459f593ceca76d2948c179e24c4303cf5764f44d6971b",
+				"dweb:/ipfs/QmZPWh9XcwutK8KLHEqohcccEgmLz9CZYrPfcNqY5zkwCp"
 			]
 		}
 	},

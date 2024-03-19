@@ -40,6 +40,14 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         _unpause();
     }
 
+    function bulkEnterData (string[] memory _uri,uint[] memory capAmount,uint leng) public onlyOwner{
+        for (uint i = 0 ; i < leng; i++) 
+        {
+            URICount++;
+            URI[URICount] = Admin(_uri[i],capAmount[i],URICount);
+        }
+    }
+
     function EnterData (string memory _uri,uint capAmount) public onlyOwner{
         URICount++;
         URI[URICount] = Admin(_uri,capAmount,URICount);
@@ -62,6 +70,7 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         }
         return myArray;
     }
+
     function getToken(address to,uint _tokenId) public view returns (Token[] memory token) {
         Token[] memory myArray =  new Token[](1);
         for(uint i=0 ; i < count[to] ; i++){
@@ -80,6 +89,7 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         }
         return myArray;
     }
+
     function updateTokenId(address _to,uint _tokenId,address _seller) external {
         require(ownerOf(_tokenId) == _seller,"You are not Owner Of this NFT!"); 
         tokenDetail[_to][count[_to] + 1].tokenId = _tokenId;
@@ -99,5 +109,22 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         returns (address)
     {
         return super._update(to, tokenId, auth);
+    }
+
+    function allTokenURIs() public view returns (Admin[] memory) {
+        Admin[] memory myArray = new Admin[](URICount);
+        for (uint i = 1; i <= URICount ; i++) 
+        {
+            myArray[i-1] = URI[i];
+        }
+        return(myArray);
+    }
+
+    function getTokensDeails(address to) public view returns (Token[] memory token) {
+        Token[] memory myArray =  new Token[](count[to]);
+        for (uint i = 0 ; i < count[to]; i++) {
+            myArray[i] = tokenDetail[to][i + 1];
+        }
+        return myArray;
     }
 }

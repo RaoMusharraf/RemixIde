@@ -21,17 +21,17 @@ contract TokenSwap is Ownable {
     event substrateSwapToken(address sender, uint amount);
     event Hold_USDM_Token(address sender, uint amount);
 
-    // // Constant addresses for USDT, USDC, DAI, and USDM tokens (Polygon)
-    // address constant usdt = 0xa5014eA627Ac22A63f2Bf3b46e26d408e72f55c1;
-    // address constant usdc = 0x9951342D994001468506DF88F71A582867B50dd4;
-    // address constant dai = 0x77F146ca2943294CC53e6c3B5980B572c961ae23;
-    // address constant usdm = 0x4b3a514Dd71850277bBa82491f26dACDF089cb68;
+    // Constant addresses for USDT, USDC, DAI, and USDM tokens (Polygon)
+    address constant usdt = 0xa5014eA627Ac22A63f2Bf3b46e26d408e72f55c1;
+    address constant usdc = 0x9951342D994001468506DF88F71A582867B50dd4;
+    address constant dai = 0x77F146ca2943294CC53e6c3B5980B572c961ae23;
+    address constant usdm = 0x4b3a514Dd71850277bBa82491f26dACDF089cb68;
 
-    // Constant addresses for USDT, USDC, DAI, and USDM tokens (Sepoliya)
-    address constant usdt = 0x0FE9446Ca97d95B6f02c556f0D5Da557A79eE4d3;
-    address constant usdc = 0x8501787De19D25539F52f1fd21d3749B1117a211;
-    address constant dai = 0x4a5BB27bee2DCFBab49C5cE5278D2459F1B4d3DE;
-    address constant usdm = 0x7cdCf6fd48ffb7096AB96bC9a4E75b1281f81354;
+    // // Constant addresses for USDT, USDC, DAI, and USDM tokens (Sepoliya)
+    // address constant usdt = 0x0FE9446Ca97d95B6f02c556f0D5Da557A79eE4d3;
+    // address constant usdc = 0x8501787De19D25539F52f1fd21d3749B1117a211;
+    // address constant dai = 0x4a5BB27bee2DCFBab49C5cE5278D2459F1B4d3DE;
+    // address constant usdm = 0x7cdCf6fd48ffb7096AB96bC9a4E75b1281f81354;
 
     // Mapping to track whitelisted addresses
     mapping(address => bool) public whiteList;
@@ -39,6 +39,7 @@ contract TokenSwap is Ownable {
     address[] public whilistedAddress;
     // Nested mapping to track amounts of tokens held by users
     mapping (address UserAddress=> mapping (address TokenAddress  => uint)) public userTokenAmount;
+    mapping (address UserAddress=> mapping (address TokenAddress  => bool)) public checkUser;
     mapping (address UserAddress => uint) public userAmount;
     // mapping (address UserAddress => uint Amount) public userTotalSwapAmount;
     mapping (address UserAddress =>  mapping(string => uint Amount)) public userTotalSwapAmount;
@@ -72,7 +73,7 @@ contract TokenSwap is Ownable {
         AggregatorV3Interface priceFeed = AggregatorV3Interface(0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada);
         (, int256 answer, , , ) = priceFeed.latestRoundData();
         require(answer > 0, "Negative Matic price received");
-        uint256 fee = ((_amount * 5)/100)/uint256(answer);
+        uint256 fee = ((_amount * 5)/100)/(uint256(answer));
         return fee;
     }
 
@@ -89,7 +90,7 @@ contract TokenSwap is Ownable {
         require(IERC20(_ethToken).allowance(msg.sender, address(this)) >= _amount, "Allowance not set");
         require(IERC20(_ethToken).balanceOf(msg.sender) >= _amount, "Insufficient balance");
         if(_ethToken == usdm){
-            // payable(owner()).transfer(getMaticPrice(_amount));
+            payable(owner()).transfer(getMaticPrice(_amount)*10**8);
             IERC20(_ethToken).transferFrom(msg.sender, address(this), (_amount));
             currentHoldings += (_amount);
             userAmount[msg.sender] = _amount;
@@ -98,7 +99,7 @@ contract TokenSwap is Ownable {
             emit swapToken(msg.sender,_amount);
         }
         else{
-            // payable(owner()).transfer(getMaticPrice(_amount));
+            payable(owner()).transfer(getMaticPrice(_amount)*10**8);
             overColleteralFeeAmount = (_amount*3)/1000;
             uint eachWhilitedAddressFee = overColleteralFeeAmount/whilistedAddress.length;
             for (uint i=0; i<whilistedAddress.length; i++) 
