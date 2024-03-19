@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.22+commit.4fc1097e"
+		"version": "0.8.24+commit.e11b9ed9"
 	},
 	"language": "Solidity",
 	"output": {
@@ -695,11 +695,11 @@
 			]
 		},
 		"contracts/Liberswap/swaping.sol": {
-			"keccak256": "0x6e42f2e27f78e42e2d75ca1c19b20036243443f4c9c93930a3fdb8b72cbcd961",
+			"keccak256": "0xbcd2c87675a48ed3e3ab7475a55ac10756dbfa828dffbed7eb0a0016a7b0e093",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://dbc2cef2ee3478a6ced7ade9ea3c0169b7ca8bb051b223c94c585a85bffbf3ba",
-				"dweb:/ipfs/QmZVohizvR4kF8iEB6ofU8Q6uCqkLYv7sboeVgmLiVcxUw"
+				"bzz-raw://f4acdcfa10b2c494fa58cc21780f87e5ff1223b8a7026f04d37b059ecd284feb",
+				"dweb:/ipfs/QmNp34SPBGia4zDRzF2VFAorFvWNEPBCppAVduPkvNJDuk"
 			]
 		}
 	},

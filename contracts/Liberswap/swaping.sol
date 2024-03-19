@@ -46,7 +46,6 @@ contract TokenSwap is Ownable {
     constructor(address initialOwner) Ownable(initialOwner) {
         Owner = initialOwner;
     }
-
     /**
      * @dev Adds an address to the whitelist.
      * Only the owner of the contract can call this function.
@@ -93,8 +92,7 @@ contract TokenSwap is Ownable {
             userTotalSwapAmount[msg.sender][substrateAddress] += (_amount-overColleteralFeeAmount);
             userTokenAmount[msg.sender][_ethToken] += (_amount-overColleteralFeeAmount);
             emit swapToken(msg.sender,(_amount-overColleteralFeeAmount));
-        }
-       
+        }    
     }
     /**
      * @dev Allows users to swap tokens back from the contract or distribute a fee among whitelisted addresses before sending back the tokens.
@@ -127,7 +125,6 @@ contract TokenSwap is Ownable {
             userTokenAmount[_to][_ethToken] -= (_amount-overColleteralFeeAmount);
             emit substrateSwapToken(_to,(_amount-overColleteralFeeAmount));
         }
-    
     }
     /**
      * @param _ethToken The address of the ERC20 token to be swapped back.
@@ -136,9 +133,6 @@ contract TokenSwap is Ownable {
     function withdrawBalanceTokens(address _ethToken) public onlyOwner {
         IERC20(_ethToken).safeTransfer(msg.sender, overColleteralFeeAmount);
     }
-
-
-
     /**
      * @dev Removes an address from the whitelist. Only the owner can call this function.
      * @param _address The address to be removed from the whitelist.

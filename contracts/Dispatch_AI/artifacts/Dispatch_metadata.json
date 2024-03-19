@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.22+commit.4fc1097e"
+		"version": "0.8.24+commit.e11b9ed9"
 	},
 	"language": "Solidity",
 	"output": {
@@ -274,6 +274,24 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string",
+						"name": "_uri",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "capAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "EnterData",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
@@ -289,6 +307,48 @@
 					{
 						"internalType": "uint256",
 						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "URI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "URI",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "capAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "Count",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "URICount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
 						"type": "uint256"
 					}
 				],
@@ -893,7 +953,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -1028,11 +1088,11 @@
 			]
 		},
 		"contracts/Dispatch_AI/mintStones.sol": {
-			"keccak256": "0x7541f5b97282f19949b3a08bdd6cbb6d7b1b54e4d19980d9addebd06baba4224",
+			"keccak256": "0x2577a165d271bd6bd4ce7645d95b3be6710373848a02e753a8e3a03d3e8d7c4f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9048506003b1099f5608dc4dc4fda4439372b98099512cf0b67483ae786bc7b8",
-				"dweb:/ipfs/QmVuzPeDNBrXq2YfGLJFbP9QbaGMRxkRKcRNPNm8BTW3A6"
+				"bzz-raw://1d87f5c7b363528f9be99f6ceae686b2507a2da0ea4ba97ad12ea6a84c6ceb00",
+				"dweb:/ipfs/QmfQaBXtpFeuaKvx8eecXHZFPSGYRjeY8aTusbw16JSvA1"
 			]
 		}
 	},
