@@ -275,7 +275,7 @@ abstract contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Er
      * WARNING: Usage of this method is discouraged, use {_safeMint} whenever possible
      *
      * Requirements:
-     *
+     *setApprovalForAll
      * - `tokenId` must not exist.
      * - `to` cannot be the zero address.
      *
@@ -419,7 +419,6 @@ abstract contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Er
                 emit Approval(owner, to, tokenId);
             }
         }
-
         _tokenApprovals[tokenId] = to;
     }
 

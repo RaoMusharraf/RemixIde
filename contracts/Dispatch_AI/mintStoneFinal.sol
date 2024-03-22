@@ -5,6 +5,9 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+interface IConnected {
+    function nftDetail(address _to,uint _tokenId) external view returns(bool onList);
+}
 
 contract Dispatch is ERC721, ERC721Pausable, Ownable {
     uint256 public  _nextTokenId;
@@ -12,6 +15,7 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
     mapping(address user => mapping(uint counter => Token)) public tokenDetail;
     mapping(address user => uint) public count;
     mapping(address user => mapping(uint id => bool)) isActive;
+    mapping(address user => uint rewardPoints) TotalRewardPoints;
     mapping (uint id => Admin) public URI;
 
     //Struct
@@ -20,6 +24,11 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         string uri;
         uint capAmount;
         uint points;
+    }
+    struct getTokenInfo{
+        Token tokenDetail;
+        address approvedAddress;
+        bool onList;
     }
     struct Admin {
         string uri;
@@ -56,17 +65,26 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
 
     function safeMint(address to,uint id) public {
         require(!isActive[to][id],"You have Already Mint this Stone!");
+        require(URI[id].capAmount <= TotalRewardPoints[to],"Insufficient Balance!");
         _nextTokenId++;
         _safeMint(to, _nextTokenId);
-        tokenDetail[to][count[to]+1] = Token(_nextTokenId,URI[id].uri,URI[id].capAmount,0);
+        tokenDetail[to][count[to]+1] = Token(_nextTokenId,URI[id].uri,URI[id].capAmount,URI[id].capAmount);
+        TotalRewardPoints[to] -= URI[id].capAmount;
         isActive[to][id] = true;
         count[to]++;
     }
 
-    function getTokenDetail(address to) public view returns (Token[] memory TokensDetail) {
-        Token[] memory myArray = new Token[](count[to]);
+    function getTokenDetail(address to,address marketplaceContractAddress) public view returns (getTokenInfo[] memory TokensDetail) {
+        getTokenInfo[] memory myArray = new getTokenInfo[](count[to]);
         for (uint256 i = 0; i < count[to]; i++) {
-            myArray[i] = tokenDetail[to][i + 1];
+            (bool onList, address approvedAddress) = approvedDetail(marketplaceContractAddress, address(this), tokenDetail[to][i + 1].tokenId);
+            myArray[i] = getTokenInfo(
+            {
+                tokenDetail:tokenDetail[to][i + 1],
+                approvedAddress:approvedAddress,
+                onList:onList
+            }
+            );
         }
         return myArray;
     }
@@ -81,21 +99,15 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         }
         return myArray;
     }
-
-    function getTokenId(address to) public view returns (uint256[] memory) {
-        uint256[] memory myArray = new uint256[](count[to]);
-        for (uint256 i = 0; i < count[to]; i++) {
-            myArray[i] = tokenDetail[to][i + 1].tokenId;
-        }
-        return myArray;
+    function gainReward (address to, uint petrolRewardsPoints) external {
+        TotalRewardPoints[to] += petrolRewardsPoints;
     }
 
-    function updateTokenId(address _to,uint _tokenId,address _seller) external {
-        require(ownerOf(_tokenId) == _seller,"You are not Owner Of this NFT!"); 
+    function updateTokenId(address _to,uint _tokenId,address _seller,address marketplaceAddress) external {
         tokenDetail[_to][count[_to] + 1].tokenId = _tokenId;
-        uint[] memory myArray =  getTokenId(_seller);
+        getTokenInfo[] memory myArray =  getTokenDetail(_seller,marketplaceAddress);
         for(uint i=0 ; i < myArray.length ; i++){
-            if(myArray[i] == _tokenId){
+            if(myArray[i].tokenDetail.tokenId == _tokenId){
                 tokenDetail[_seller][i+1] = tokenDetail[_seller][count[_seller]];
                 count[_seller]--;
             }
@@ -120,11 +132,9 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         return(myArray);
     }
 
-    function getTokensDeails(address to) public view returns (Token[] memory token) {
-        Token[] memory myArray =  new Token[](count[to]);
-        for (uint i = 0 ; i < count[to]; i++) {
-            myArray[i] = tokenDetail[to][i + 1];
-        }
-        return myArray;
+
+    function approvedDetail(address marketplaceContractAddress,address to,uint256 tokenId) private view returns (bool,address) {
+        bool onList = IConnected(marketplaceContractAddress).nftDetail(to,tokenId);
+        return (onList,super.getApproved(tokenId));
     }
 }

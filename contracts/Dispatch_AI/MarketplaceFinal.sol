@@ -10,28 +10,27 @@ import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
  * @dev Required interface of an ERC721 compliant contract.
  */
 interface IConnected {
-    struct Token {
-        uint tokenId;
-        string uri;
-        uint capAmount;
-        uint points;
-    }
-    function updateTokenId(address _to,uint _tokenId,address seller) external;
-    function getToken(address _to,uint _tokenId) external view returns(Token[] memory token);
+    // struct Token {
+    //     uint tokenId;
+    //     string uri;
+    //     uint capAmount;
+    //     uint points;
+    // }
+    function updateTokenId(address _to,uint _tokenId,address seller,address marketPlace) external;
+    // function getToken(address _to,uint _tokenId) external view returns(Token[] memory token);
 }
 /**
  * @title MarketPlace
 */
 contract Marketplace is ReentrancyGuard , Ownable{
     using SafeERC20 for IERC20;
-    //Counter
     using Counters for Counters.Counter;
     Counters.Counter public _nftCount;
     Counters.Counter public nftAuctionCount;
     //Address
     address tokenAddress;
     //Mapping
-    mapping (address => mapping(uint256 => NFT)) public _idToNFT;
+    mapping (address mintContractAddress=> mapping( uint256 tokenId => NFT)) public _idToNFT;
     mapping (uint => addressToken) public listCount;
     mapping (uint => uint ) public userListCount;
     //Struct
@@ -52,10 +51,10 @@ contract Marketplace is ReentrancyGuard , Ownable{
         NFT listedData;
         uint listCount;
     }
-    // modifire
+    // Modifire
     modifier listedRequirements(address mintStoneAddress,address userAddress,uint tokenId,uint _price) {
-        IConnected.Token[] memory connectedNft = IConnected(mintStoneAddress).getToken(userAddress,tokenId);
-        require(connectedNft[0].capAmount == connectedNft[0].points,"First Fill Stone Cap!");
+        // IConnected.Token[] memory connectedNft = IConnected(mintStoneAddress).getToken(userAddress,tokenId);
+        // require(connectedNft[0].capAmount == connectedNft[0].points,"First Fill Stone Cap!");
         require(!_idToNFT[mintStoneAddress][tokenId].listed,"Already Listed In Marketplace!");
         require(_price >= 0, "Price Must Be At Least 0 Wei");
         _;
@@ -86,27 +85,28 @@ contract Marketplace is ReentrancyGuard , Ownable{
         @dev BuyNft convert the ownership seller to the buyer
         @param _tokenId that are minted by the nftContract
     */
-    function buyNft(uint listIndex,uint256 price,uint typ) public payable nonReentrant {
+    function buyNft(uint listIndex,uint256 price) public nonReentrant {
 
         require(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller != msg.sender, "An offer cannot buy this Seller !!!");
         require(price == _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price , "Not enough ether to cover asking price !!!");
         ERC721(listCount[listIndex].contractAddress).transferFrom(address(this), msg.sender, listCount[listIndex].tokenId);
-        IConnected(listCount[listIndex].contractAddress).updateTokenId(msg.sender,listCount[listIndex].tokenId,_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller);
+        IConnected(listCount[listIndex].contractAddress).updateTokenId(msg.sender,listCount[listIndex].tokenId,_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller,address(this));
         uint256 amount = _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price;
-        if(typ == 1){ 
-            payable(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller).transfer(amount);
-        }  
-        else if(typ == 2){  
-            IERC20(tokenAddress).safeTransferFrom(msg.sender,_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller,amount);
-        }
-        else{
-            revert("Please Enter the correct payment Type");
-        }
+        // if(typ == 1){ price
+        //     payable(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller).transfer(amount);
+        // }  
+        // else if(typ == 2){  
+        //     IERC20(tokenAddress).safeTransferFrom(msg.sender,_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller,amount);
+        // }
+        // else{
+        //     revert("Please Enter the correct payment Type");
+        // }
+        IERC20(tokenAddress).safeTransferFrom(msg.sender,_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller,amount);
         _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].listed=false;
         _idToNFT[listCount[_nftCount.current()].contractAddress][listCount[_nftCount.current()].tokenId].count = listIndex;
         listCount[listIndex] = listCount[_nftCount.current()];
         _nftCount.decrement();
-        emit NFTSold(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].tokenId, _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller, msg.sender, msg.value);
+        emit NFTSold(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].tokenId, _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller, msg.sender, price);
     }
     // ============ CancelOffer FUNCTIONS ============
     /*
@@ -156,4 +156,8 @@ contract Marketplace is ReentrancyGuard , Ownable{
         }
         return (myListedNFT,listedNFT);
     }
+    function nftDetail(address mintContractAddress,uint tokenId) public view returns(bool onList){
+        return _idToNFT[mintContractAddress][tokenId].listed;
+    }
+
 }

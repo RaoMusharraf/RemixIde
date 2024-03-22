@@ -49,57 +49,10 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"getToken(address,uint256)": "43d7cce6",
-			"updateTokenId(address,uint256,address)": "6e0cee09"
+			"updateTokenId(address,uint256,address,address)": "9ae38d93"
 		}
 	},
 	"abi": [
-		{
-			"inputs": [
-				{
-					"internalType": "address",
-					"name": "_to",
-					"type": "address"
-				},
-				{
-					"internalType": "uint256",
-					"name": "_tokenId",
-					"type": "uint256"
-				}
-			],
-			"name": "getToken",
-			"outputs": [
-				{
-					"components": [
-						{
-							"internalType": "uint256",
-							"name": "tokenId",
-							"type": "uint256"
-						},
-						{
-							"internalType": "string",
-							"name": "uri",
-							"type": "string"
-						},
-						{
-							"internalType": "uint256",
-							"name": "capAmount",
-							"type": "uint256"
-						},
-						{
-							"internalType": "uint256",
-							"name": "points",
-							"type": "uint256"
-						}
-					],
-					"internalType": "struct IConnected.Token[]",
-					"name": "token",
-					"type": "tuple[]"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
 		{
 			"inputs": [
 				{
@@ -115,6 +68,11 @@
 				{
 					"internalType": "address",
 					"name": "seller",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "marketPlace",
 					"type": "address"
 				}
 			],

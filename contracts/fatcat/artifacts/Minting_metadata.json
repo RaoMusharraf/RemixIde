@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.22+commit.4fc1097e"
+		"version": "0.8.24+commit.e11b9ed9"
 	},
 	"language": "Solidity",
 	"output": {
@@ -396,9 +396,41 @@
 				"name": "getTokenIdsByCollection",
 				"outputs": [
 					{
-						"internalType": "uint256[]",
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "mintTime",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "mintContract",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "mintArtist",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "artistFeePerAge",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "uri",
+								"type": "string"
+							}
+						],
+						"internalType": "struct Minting.MyNft[]",
 						"name": "",
-						"type": "uint256[]"
+						"type": "tuple[]"
 					}
 				],
 				"stateMutability": "view",
@@ -734,6 +766,7 @@
 			}
 		],
 		"devdoc": {
+			"author": "FatCat Team",
 			"events": {
 				"Approval(address,address,uint256)": {
 					"details": "Emitted when `owner` enables `approved` to manage the `tokenId` token."
@@ -759,8 +792,41 @@
 				"balanceOf(address)": {
 					"details": "See {IERC721-balanceOf}."
 				},
+				"contractBalance()": {
+					"details": "Returns the contract's current balance.",
+					"returns": {
+						"_0": "The balance of the contract in wei. This function queries the contract's balance, allowing visibility into the amount of Ether held by the contract."
+					}
+				},
 				"getApproved(uint256)": {
 					"details": "See {IERC721-getApproved}."
+				},
+				"getTokenId(address)": {
+					"details": "Retrieves a list of NFTs owned by a given address.",
+					"params": {
+						"to": "The address to query for owned NFTs."
+					},
+					"returns": {
+						"_0": "An array of `MyNft` structs, each representing an NFT owned by the queried address. This function constructs an array of `MyNft` structs containing detailed information about each NFT owned by the specified address, including the token ID, mint time, contract address, minting artist, artist fee, and metadata URI."
+					}
+				},
+				"getTokenIdsByCollection(string)": {
+					"details": "Retrieves all NFTs associated with a given collection ID.",
+					"params": {
+						"collectionId": "The ID of the collection for which to retrieve NFTs."
+					},
+					"returns": {
+						"_0": "An array of `MyNft` structs, each representing an NFT in the specified collection. This function iterates through all token IDs associated with the given collection ID, constructing an array of `MyNft` structs that includes detailed information about each NFT, such as token ID, mint time, the contract address, the minting artist, artist fee, and the token's metadata URI."
+					}
+				},
+				"getTokenUri(uint256)": {
+					"details": "Retrieves the metadata URI for a specific token ID.",
+					"params": {
+						"tokenId": "The token ID for which to retrieve the metadata URI."
+					},
+					"returns": {
+						"_0": "The URI string of the requested token's metadata. This function provides a way to access the metadata URI associated with a given token ID, allowing external entities and interfaces to retrieve the metadata for display or processing purposes."
+					}
 				},
 				"isApprovedForAll(address,address)": {
 					"details": "See {IERC721-isApprovedForAll}."
@@ -777,11 +843,26 @@
 				"renounceOwnership()": {
 					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
 				},
+				"safeMint(string,address,uint256,string)": {
+					"details": "Allows a user to mint a new NFT.",
+					"params": {
+						"artist": "The address of the artist creating the NFT.",
+						"artistFeePerAge": "A specified fee related to the artist, potentially for royalties or similar.",
+						"collectionId": "The ID of the collection to which this NFT will be added. This function mints a new NFT to the caller's address, assigns it a unique token ID, sets its metadata URI, records its minting time, artist, and artist fee, and associates it with a collection. Emits a `SafeMinting` event upon successful minting.",
+						"uri": "The URI for the NFT metadata."
+					}
+				},
 				"safeTransferFrom(address,address,uint256)": {
 					"details": "See {IERC721-safeTransferFrom}."
 				},
 				"safeTransferFrom(address,address,uint256,bytes)": {
 					"details": "See {IERC721-safeTransferFrom}."
+				},
+				"setAdminAddress(address)": {
+					"details": "Allows the current admin to transfer admin rights to a new address.",
+					"params": {
+						"_adminAddress": "The address to be granted admin rights. This function updates the admin address of the contract. It includes a security check to ensure that only the current admin can perform this operation, enhancing the contract's security by preventing unauthorized changes to administrative privileges."
+					}
 				},
 				"setApprovalForAll(address,bool)": {
 					"details": "See {IERC721-setApprovalForAll}."
@@ -800,13 +881,29 @@
 				},
 				"transferOwnership(address)": {
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"updateTokenId(address,uint256,address)": {
+					"details": "Transfers a token ID from one owner to another and updates internal tracking.",
+					"params": {
+						"_seller": "The current owner of the token ID. This function updates the internal mapping of token IDs to reflect a change in ownership. It also adjusts the count of NFTs owned by both the seller and the buyer. Note: This function does not perform the actual transfer of tokens but is intended to be called in conjunction with a transfer function that handles ownership change.",
+						"_to": "The address to receive the token ID.",
+						"_tokenId": "The token ID to be transferred."
+					}
+				},
+				"update_TokenIdTime(uint256)": {
+					"details": "Updates the mint time of a specific token ID to the current block timestamp.",
+					"params": {
+						"_tokenId": "The token ID for which to update the mint time. This could be used to refresh or update the timestamp associated with an NFT, potentially for mechanisms that depend on the age or recency of minting."
+					}
 				}
 			},
+			"title": "Marketplace  for the NFTS",
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
 			"methods": {},
+			"notice": "Contarct is based on minting the Nfts ",
 			"version": 1
 		}
 	},
@@ -820,7 +917,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -963,11 +1060,11 @@
 			]
 		},
 		"contracts/fatcat/ERC721.sol": {
-			"keccak256": "0x9d80ef0d9ef27110449dcdfccf8e14f3d4c395327a8121d43cbda13050049e78",
+			"keccak256": "0xace1a888127b01a12768940be4127747cd1c4c3913f4bb2266d9599820a37c77",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c675bddea040fd5b874d11a97345dae65484faaf9922390eb778aeef44d348ec",
-				"dweb:/ipfs/QmabqiJGoAxjqFQWM1fCDAUrKMxQ8Kbmok4FbXXpgXNnAE"
+				"bzz-raw://3d6a20179bb22a17ae504f2f9d570d2b3f9011bc289f5d42bac8350697d6a794",
+				"dweb:/ipfs/QmdBa1t4E8WVu3LqbFqeNiEHJY42rnXGFNPJDkYYHgkqF6"
 			]
 		}
 	},

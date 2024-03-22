@@ -456,6 +456,24 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "petrolRewardsPoints",
+						"type": "uint256"
+					}
+				],
+				"name": "gainReward",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "tokenId",
 						"type": "uint256"
@@ -524,6 +542,11 @@
 						"internalType": "address",
 						"name": "to",
 						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "marketplaceContractAddress",
+						"type": "address"
 					}
 				],
 				"name": "getTokenDetail",
@@ -531,88 +554,45 @@
 					{
 						"components": [
 							{
-								"internalType": "uint256",
-								"name": "tokenId",
-								"type": "uint256"
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "tokenId",
+										"type": "uint256"
+									},
+									{
+										"internalType": "string",
+										"name": "uri",
+										"type": "string"
+									},
+									{
+										"internalType": "uint256",
+										"name": "capAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "points",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct Dispatch.Token",
+								"name": "tokenDetail",
+								"type": "tuple"
 							},
 							{
-								"internalType": "string",
-								"name": "uri",
-								"type": "string"
+								"internalType": "address",
+								"name": "approvedAddress",
+								"type": "address"
 							},
 							{
-								"internalType": "uint256",
-								"name": "capAmount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "points",
-								"type": "uint256"
+								"internalType": "bool",
+								"name": "onList",
+								"type": "bool"
 							}
 						],
-						"internalType": "struct Dispatch.Token[]",
+						"internalType": "struct Dispatch.getTokenInfo[]",
 						"name": "TokensDetail",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "to",
-						"type": "address"
-					}
-				],
-				"name": "getTokenId",
-				"outputs": [
-					{
-						"internalType": "uint256[]",
-						"name": "",
-						"type": "uint256[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "to",
-						"type": "address"
-					}
-				],
-				"name": "getTokensDeails",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "tokenId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "string",
-								"name": "uri",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "capAmount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "points",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct Dispatch.Token[]",
-						"name": "token",
 						"type": "tuple[]"
 					}
 				],
@@ -951,6 +931,11 @@
 						"internalType": "address",
 						"name": "_seller",
 						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "marketplaceAddress",
+						"type": "address"
 					}
 				],
 				"name": "updateTokenId",
@@ -1161,11 +1146,11 @@
 			]
 		},
 		"@openzeppelin/contracts/token/ERC721/ERC721.sol": {
-			"keccak256": "0x13dd061770956c8489b80cfc89d9cdfc8ea2783d953691ea037a380731d52784",
+			"keccak256": "0x44cee4d4c4cf77ea4da3fa6fefe80b1ac0eb29e6d0930ba56ba392dce4c959f9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ed37f0f86e7fe31659e48c3a2a5920a92dd7f13c85cf8991fb79fe5f01e08efd",
-				"dweb:/ipfs/QmUtm9bQGvjr9hHGwkPWrbgFmVqzaJcxjkaYDex2oGsonS"
+				"bzz-raw://fda84cf5780abd86e477ff164656b12e3a79be7bec2979e05048291d107c34c8",
+				"dweb:/ipfs/QmPSdqJShPAAPqwLw1dT3SCYhHKWn5w9ThzfGpVkCVDkfh"
 			]
 		},
 		"@openzeppelin/contracts/token/ERC721/IERC721.sol": {
@@ -1257,11 +1242,11 @@
 			]
 		},
 		"contracts/Dispatch_AI/mintStoneFinal.sol": {
-			"keccak256": "0xc61da1b257a52772bde13eb18df41136729338fe9ff56c39f504042f99e28790",
+			"keccak256": "0xd29d21549680d7ad27f41f0abbb1761123d6160f95a7f402515f04b09ca0df71",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6cd7eb12ed01c1904154ade56e2b8fdacb86712cc13a0e4e85f0472a546542b4",
-				"dweb:/ipfs/Qmao1H5wArm6nhC9MKDKot8GGa5HjJG5iLtoGQrFXcr6du"
+				"bzz-raw://ed30fa0e4dcddbd88a83f0e2a722e27accd343b10f2a613ee71a9784c246dd78",
+				"dweb:/ipfs/QmW843b5p4zxyxS8a8Fkjr7xzi6FALn7VGs4way2h6cT73"
 			]
 		}
 	},

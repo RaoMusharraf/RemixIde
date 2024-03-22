@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.22+commit.4fc1097e"
+		"version": "0.8.24+commit.e11b9ed9"
 	},
 	"language": "Solidity",
 	"output": {
@@ -69,18 +69,6 @@
 						"indexed": false,
 						"internalType": "uint256",
 						"name": "ArtistFee",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "RoyalityAddress",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "RoyalityFee",
 						"type": "uint256"
 					}
 				],
@@ -307,16 +295,6 @@
 						"internalType": "uint256",
 						"name": "_auctionListCount",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_royltyPercentage",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "_royalityAddress",
-						"type": "address"
 					}
 				],
 				"name": "ClaimNFT",
@@ -598,16 +576,6 @@
 						"internalType": "uint256",
 						"name": "price",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_royltyPercentage",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "_royalityAddress",
-						"type": "address"
 					}
 				],
 				"name": "buyNft",
@@ -1009,12 +977,38 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "_setBuyerFee",
+						"type": "uint256"
+					}
+				],
+				"name": "setBuyerFee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "_address",
 						"type": "address"
 					}
 				],
 				"name": "setBuyerFeeAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_setSellerFee",
+						"type": "uint256"
+					}
+				],
+				"name": "setSellerFee",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -1030,32 +1024,6 @@
 				"name": "setSellerFeeAddress",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "totalSales",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "totalVolume",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -1121,24 +1089,136 @@
 			}
 		],
 		"devdoc": {
+			"author": "FatCat Team",
 			"kind": "dev",
 			"methods": {
+				"CancelOffer(uint256)": {
+					"details": "Allows a seller to cancel their listed NFT offer on the marketplace. This function is designed to cancel an active listing of an NFT on the marketplace, allowing the seller to withdraw their offer. It handles the transfer of the NFT back to the seller and updates the listing status accordingly. ",
+					"params": {
+						"listIndex": "The index of the listed NFT in the marketplace's tracking data structure. This index                  is used to identify the specific NFT listing to be canceled. Requirements: - The NFT identified by `listIndex` must currently be listed on the marketplace. The function checks   for the `listed` status to ensure that only active listings can be canceled. - The caller of this function should be the owner or have appropriate permissions to cancel the listing.  The function performs the following operations: 1. Validates that the NFT is currently listed. 2. Updates the owner of the NFT to be the original seller, effectively preparing for the transfer back. 3. Transfers the NFT from the marketplace contract back to the original seller (now the owner). 4. Marks the NFT as no longer listed by setting its `listed` status to false. 5. Adjusts the marketplace's internal tracking of listed NFTs to reflect the removal of the listing. 6. Decrements the counter tracking the total number of listed NFTs.  Emits an `NFTCancel` event to log the cancellation of the listing, including details such as the tokenId, seller, the address who performed the cancellation, and the price at which the NFT was listed."
+					}
+				},
+				"ClaimNFT(uint256)": {
+					"details": "Allows the highest bidder to claim the NFT after winning the auction. The function handles the transfer of funds including the bid amount to the seller, a fee to the artist, and any additional fees defined by the contract. Finally, it transfers ownership of the NFT to the winning bidder.",
+					"params": {
+						"_auctionListCount": "The index of the auction in the `auctionListCount` mapping. It identifies                          which auction is being settled and which NFT is being claimed. Requirements: - A winning bidder must have been selected for the auction (`SelectedUser[_auctionListCount]` must not be 0). - The caller must be the winning bidder as determined in the auction. - The value sent with the transaction must at least match the winning bid price. Operation: 1. Validates the auction status and that the caller is the winning bidder. 2. Calculates fees payable to the artist, the seller, and any platform fees. 3. Distributes the funds accordingly: to the seller, artist, and fee accounts. 4. Transfers the NFT from the smart contract to the winning bidder, completing the auction. 5. Emits a `Claim` event for tracking and notification purposes. 6. Updates the token ownership and timestamp in the connected NFT contract, if applicable. 7. Marks the auction as inactive and cleans up the auction and user list mappings."
+					}
+				},
+				"ListNft(address,uint256,uint256,address,uint256)": {
+					"details": "Lists an NFT on the marketplace for sale.  This function allows a user to list an NFT for sale in the marketplace. The function ensures that the NFT is not already listed for sale or auction. It sets the sale price and records the listing details in the marketplace's storage. ",
+					"params": {
+						"_mintContract": "The address of the NFT contract where the NFT was minted. This contract must                      comply with the ERC721 standard.",
+						"_price": "The price at which the NFT is to be sold. This value must be non-negative.",
+						"_tokenId": "The unique identifier for the NFT being listed. This tokenId must have been minted                 by the specified `_mintContract`.",
+						"artist": "The address of the artist or creator of the NFT. This is used for tracking and possibly               distributing royalties or fees.",
+						"artistFeePerAge": "The fee or royalty amount that the artist is entitled to from the sale. The                        specific usage of this parameter can vary, such as a percentage of the sale price.  Requirements: - The NFT must not already be listed for sale in the marketplace. - The NFT must not be active in any auction within this marketplace. - The sale price `_price` must be at least 0 wei, allowing for free listings. - The caller must own the NFT and approve the marketplace contract to transfer it.  On successful listing, the NFT is transferred from the seller to the marketplace contract, effectively escrowing the NFT until the sale is complete or the listing is cancelled. The function emits an `NFTListed` event detailing the tokenId, seller, marketplace address as the current owner, and the sale price."
+					}
+				},
+				"NftOffers(uint256,string,uint256)": {
+					"details": "Allows users to place bids on NFTs that are listed for auction. Participants can bid on NFTs by specifying the auction they wish to participate in, their name, and the bid amount. This function updates the auction state with the new bid details.",
+					"params": {
+						"_auctionListCount": "The index of the auction in the `auctionListCount` mapping, indicating                          which NFT the bid is for. This index helps identify the specific auction.",
+						"_name": "The name of the bidder. This parameter can be used for identification or display purposes              in a UI.",
+						"_price": "The amount of the bid placed by the user. This value must be higher than the current               highest bid for the auction to be considered valid. Requirements: - The caller (bidder) must not be the owner of the NFT. Owners cannot bid on their own NFTs. - The auction for the NFT must be active. Bids cannot be placed on NFTs not listed for auction or   after the auction has ended.  The function performs the following operations: 1. Retrieves the contract address and token ID of the NFT being bid on, based on `_auctionListCount`. 2. Validates that the caller is not the owner of the NFT and that the auction is active. 3. Increments the count of bids placed by the user for this specific NFT. 4. Records the new bid in the `Bidding` mapping, which stores all bids for each auction. 5. Updates the user's bidding count and the overall list of bids for this auction. This setup ensures that bids are accurately tracked and associated with the correct auction and bidder. It allows for a transparent bidding process where all participants can place bids until the auction concludes."
+					}
+				},
+				"OfferList(address,uint256,uint256,address,uint256)": {
+					"details": "Lists an NFT for auction on the marketplace. This function allows a user to list an NFT for auction by specifying the NFT's contract address, token ID, minimum starting price, and artist details. It ensures that the NFT is not already listed for sale or auction elsewhere in the marketplace. ",
+					"params": {
+						"_maxPrice": "The starting or minimum price for the auction. Bids below this price will not be accepted.",
+						"_mintContract": "The address of the ERC721 contract where the NFT is minted. This contract address                      is used to identify and interact with the NFT.",
+						"_tokenId": "The unique identifier of the NFT within its minting contract. This ID is used to specify                 the exact NFT being listed for auction.",
+						"artist": "The address of the artist or creator of the NFT. This is used to allocate any artist fees               from the sale.",
+						"artistFeePerAge": "The percentage of the sale price that will be paid as a fee to the artist. This fee                        is calculated based on the final sale price of the NFT. Requirements: - The NFT identified by `_tokenId` from `_mintContract` must not already be listed in the marketplace or   be active in another auction.  The function performs the following operations: 1. Validates that the NFT is not currently listed for sale or active in another auction. 2. Increments the counter tracking the total number of auctions. 3. Creates a new `nftAuction` struct with the provided details and marks the auction as active. 4. Updates the auction listing tracking with the new auction's details. 5. Sets the initial bid count for the auction to 0. 6. Transfers the NFT from the seller to the marketplace contract to hold in escrow during the auction. This setup ensures that the NFT is securely held while the auction takes place and facilitates a seamless transfer to the winning bidder at the conclusion of the auction."
+					}
+				},
+				"buyNft(uint256,uint256)": {
+					"details": "Facilitates the purchase of an NFT listed on the marketplace.  This function allows a buyer to purchase an NFT that has been listed for sale on the marketplace. It handles the transfer of ownership of the NFT, the distribution of funds including the sale price to the seller, and any applicable fees to the marketplace and artist. ",
+					"params": {
+						"listIndex": "The index of the NFT in the marketplace's list of listed NFTs. This index is used                  to retrieve the details of the NFT to be purchased.",
+						"price": "The price at which the buyer is willing to purchase the NFT. This is validated against              the listing price of the NFT.  Requirements: - The caller (buyer) must not be the seller of the NFT. - The provided `price` must be at least equal to the asking price of the NFT. - The caller must send enough ether to cover the asking price and any applicable fees.  The function performs the following operations: 1. Transfers the NFT from the marketplace contract to the buyer. 2. Updates the ownership and other relevant details of the NFT in the connected NFT contract. 3. Calculates the fees to be distributed to the marketplace, artist, and any other parties. 4. Distributes the sale proceeds and fees accordingly. 5. Marks the NFT as no longer listed in the marketplace. 6. Updates the marketplace's listing to reflect the sale and adjusts the list of available NFTs.  Emits a `Fee` event to log the distribution of fees to the artist and a `NFTSold` event to log the sale of the NFT, including details such as the tokenId, seller, buyer, sale price, and timestamp."
+					}
+				},
+				"cancelOfferList(uint256)": {
+					"details": "Allows the owner of an NFT listed for auction to cancel the auction. This function enables auction creators to retract their listings before a sale occurs.",
+					"params": {
+						"_auctionListCount": "The index of the auction in the `auctionListCount` mapping. It identifies                          which auction (and therefore which NFT) is being cancelled. Requirements: - The caller must be the owner of the NFT listed for auction. This ensures that only the rightful   owner can cancel the auction. Operation: 1. Validates that the caller is the owner of the NFT. 2. Transfers the NFT from the smart contract back to the owner, effectively removing it from auction. 3. Marks the auction as inactive by setting its `isActive` flag to false. 4. Reassigns the last auction in the list to the position of the cancelled auction, and then    deletes the last entry. This step maintains a compact list of auctions. 5. Decrements the overall count of auctions."
+					}
+				},
+				"getAllListedNfts()": {
+					"details": "Retrieves all NFTs currently listed in the marketplace, both for direct sale and auction.",
+					"returns": {
+						"_0": "ListedNftTokenId[] An array of `ListedNftTokenId` structs containing details of NFTs listed for direct sale.",
+						"_1": "ListTokenId[] An array of `ListTokenId` structs containing details of NFTs listed for auction. Operation: 1. Initializes two arrays to hold details of NFTs listed for sale and auction, respectively. 2. Iterates over each listing and auction, adding their details to the respective arrays. 3. Returns the two arrays, one for direct sale listings and the other for auctions."
+					}
+				},
+				"getBiddingHistory(uint256)": {
+					"details": "Retrieves the bidding history for a specific NFT listed in the marketplace.",
+					"params": {
+						"_listCount": "The index of the NFT in the `auctionListCount` mapping, identifying which NFT's bidding history to return."
+					},
+					"returns": {
+						"_0": "userDetail[] An array of `userDetail` structs, each containing details of a user's bid on the NFT. Operation: 1. Initializes an array to hold the bidding history. 2. Iterates over each bid made on the NFT and adds it to the `BiddingHistory` array. 3. Returns the compiled list of bids as an array of `userDetail` structs."
+					}
+				},
+				"getNFTDetail(address,address[])": {
+					"details": "Retrieves details of NFTs owned by a specific address across multiple contracts.",
+					"params": {
+						"_to": "The owner address whose NFTs are being queried.",
+						"contractAddresses": "An array of contract addresses to query for NFT ownership."
+					},
+					"returns": {
+						"_0": "MyNft[][] A two-dimensional array where each element represents an array of `MyNft` structs         containing details of NFTs owned by `_to` in the corresponding contract. Operation: 1. Initializes a two-dimensional array to hold NFT details from each contract. 2. Iterates over each contract address, querying for NFTs owned by `_to`. 3. Constructs an array of `MyNft` structs for each contract and fills it with the NFT details. 4. Returns a two-dimensional array containing NFT details for each contract."
+					}
+				},
 				"owner()": {
 					"details": "Returns the address of the current owner."
 				},
 				"renounceOwnership()": {
 					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
 				},
+				"selectUser(uint256,uint256)": {
+					"details": "Selects the highest bidder for an NFT auction. This function is called to finalize the bidding process and prepare the NFT for transfer to the winning bidder.",
+					"params": {
+						"_auctionListCount": "The index of the auction in the `auctionListCount` mapping.",
+						"bidCount": "The bid count representing the highest bidder in the auction. Operation: 1. Sets the selected user (highest bidder) for the given auction using the `bidCount` provided."
+					}
+				},
+				"setBuyerFee(uint256)": {
+					"details": "Sets the percentage fee charged to buyers in NFT sales. Can only be called by the contract owner.",
+					"params": {
+						"_setBuyerFee": "The fee percentage to be charged to buyers."
+					}
+				},
+				"setBuyerFeeAddress(address)": {
+					"details": "Sets the address to receive buyer fees from NFT sales. Can only be called by the contract owner.",
+					"params": {
+						"_address": "The address to which buyer fees will be sent."
+					}
+				},
+				"setSellerFee(uint256)": {
+					"details": "Sets the percentage fee charged to sellers in NFT sales. Can only be called by the contract owner.",
+					"params": {
+						"_setSellerFee": "The fee percentage to be charged to sellers."
+					}
+				},
+				"setSellerFeeAddress(address)": {
+					"details": "Sets the address to receive seller fees from NFT sales. Can only be called by the contract owner.",
+					"params": {
+						"_address": "The address to which seller fees will be sent."
+					}
+				},
 				"transferOwnership(address)": {
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				}
 			},
-			"title": "MarketPlace",
+			"title": "Marketplace  for the NFTS",
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
 			"methods": {},
+			"notice": "Contarct is based on directly purchese or auction ",
 			"version": 1
 		}
 	},
@@ -1152,7 +1232,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -1172,30 +1252,6 @@
 			"urls": [
 				"bzz-raw://41319e7f621f2dc3733511332c4fd032f8e32ad2aa7fd6f665c19741d9941a34",
 				"dweb:/ipfs/QmcYR3bd862GD1Bc7jwrU9bGxrhUu5na1oP964bDCu2id1"
-			]
-		},
-		"@openzeppelin/contracts@4.9.0/token/ERC20/IERC20.sol": {
-			"keccak256": "0x287b55befed2961a7eabd7d7b1b2839cbca8a5b80ef8dcbb25ed3d4c2002c305",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://bd39944e8fc06be6dbe2dd1d8449b5336e23c6a7ba3e8e9ae5ae0f37f35283f5",
-				"dweb:/ipfs/QmPV3FGYjVwvKSgAXKUN3r9T9GwniZz83CxBpM7vyj2G53"
-			]
-		},
-		"@openzeppelin/contracts@4.9.0/token/ERC20/extensions/IERC20Permit.sol": {
-			"keccak256": "0xec63854014a5b4f2b3290ab9103a21bdf902a508d0f41a8573fea49e98bf571a",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://bc5b5dc12fbc4002f282eaa7a5f06d8310ed62c1c77c5770f6283e058454c39a",
-				"dweb:/ipfs/Qme9rE2wS3yBuyJq9GgbmzbsBQsW2M2sVFqYYLw7bosGrv"
-			]
-		},
-		"@openzeppelin/contracts@4.9.0/token/ERC20/utils/SafeERC20.sol": {
-			"keccak256": "0x909d608c2db6eb165ca178c81289a07ed2e118e444d0025b2a85c97d0b44a4fa",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://656cda26512ddd7373c2d5551c8fae759fc30f05b10f0fc2e738e9274199dbd4",
-				"dweb:/ipfs/QmTSArSzQRFbQmHgq7U1PZXnsDFhvDZhKVu9CzMG4yo6Lx"
 			]
 		},
 		"@openzeppelin/contracts@4.9.0/token/ERC721/ERC721.sol": {
@@ -1295,11 +1351,11 @@
 			]
 		},
 		"contracts/fatcat/marketplace.sol": {
-			"keccak256": "0x0019b868c03768a6a164e075e88602a23c695efb725af6007a0351e86ce73685",
+			"keccak256": "0x3e6f9da1c3030354c779ab86c9e69e0a9d281c789927fc34bae6f07ed42d3978",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2707d1a2d4ecad5daa663facec6ebe48191afd88bb61196cd1d2e7b9d25e4419",
-				"dweb:/ipfs/QmRF4eKvpiCJfCYtcQVkhUL6i68JvMZDqCJPFm3mLieJEx"
+				"bzz-raw://05f191cc9fb982cf48893d084423e90d0c04dbfce647177cc63aed9a9b0c6ba0",
+				"dweb:/ipfs/QmNdRcNUSYRxWeiwiMGVfxGArfzPJSzHgCef6SAwgfksid"
 			]
 		}
 	},
