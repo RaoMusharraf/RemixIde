@@ -205,28 +205,28 @@ contract Marketplace is ReentrancyGuard , Ownable{
     * Emits a `Fee` event to log the distribution of fees to the artist and a `NFTSold` event to log the
     * sale of the NFT, including details such as the tokenId, seller, buyer, sale price, and timestamp.
     */
-        function buyNft(uint listIndex,uint256 price) public payable nonReentrant { 
-            require(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller != msg.sender, "An offer cannot buy this Seller !!!");
-            require(price >= _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price , "Not enough ether to cover asking price !!!");
-            ERC721(listCount[listIndex].contractAddress).transferFrom(address(this), msg.sender, listCount[listIndex].tokenId);
-            IConnected(listCount[listIndex].contractAddress).updateTokenId(msg.sender,listCount[listIndex].tokenId,_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller);
-            uint buyerFeeCul =  (_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price * buyerFeePerAge) / 1000;
-            uint sellerFeeCul = (_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price * sellerFeePerAge) / 1000;
-            uint artistFeePerAge = _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].artistFeePerAge;
-            uint artistFee = (_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price * artistFeePerAge) / 100;
-            uint sellerAmount = _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price - (artistFee + buyerFeeCul + sellerFeeCul);
-            payable(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller).transfer(sellerAmount);
-            payable (_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].artist).transfer(artistFee);
-            payable (buyerFee).transfer(buyerFeeCul);
-            payable (sellerFee).transfer(sellerFeeCul);
-            _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].listed=false;
-            IConnected(listCount[listIndex].contractAddress).update_TokenIdTime(listCount[listIndex].tokenId);
-            _idToNFT[listCount[_nftCount.current()].contractAddress][listCount[_nftCount.current()].tokenId].count = listIndex;
-            listCount[listIndex] = listCount[_nftCount.current()];
-            _nftCount.decrement();
-            emit Fee(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].artist,artistFee);
-            emit NFTSold(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].tokenId, _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller, msg.sender, msg.value,block.timestamp);
-        }
+    function buyNft(uint listIndex,uint256 price) public payable nonReentrant { 
+        require(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller != msg.sender, "An offer cannot buy this Seller !!!");
+        require(price == _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price , "Not enough ether to cover asking price !!!");
+        ERC721(listCount[listIndex].contractAddress).transferFrom(address(this), msg.sender, listCount[listIndex].tokenId);
+        IConnected(listCount[listIndex].contractAddress).updateTokenId(msg.sender,listCount[listIndex].tokenId,_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller);
+        uint buyerFeeCul =  (_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price * buyerFeePerAge) / 1000;
+        uint sellerFeeCul = (_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price * sellerFeePerAge) / 1000;
+        uint artistFeePerAge = _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].artistFeePerAge;
+        uint artistFee = (_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price * artistFeePerAge) / 100;
+        uint sellerAmount = _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price - (artistFee + buyerFeeCul + sellerFeeCul);
+        payable (_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller).transfer(sellerAmount);
+        payable (_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].artist).transfer(artistFee);
+        payable (buyerFee).transfer(buyerFeeCul);
+        payable (sellerFee).transfer(sellerFeeCul);
+        _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].listed=false;
+        IConnected(listCount[listIndex].contractAddress).update_TokenIdTime(listCount[listIndex].tokenId);
+        _idToNFT[listCount[_nftCount.current()].contractAddress][listCount[_nftCount.current()].tokenId].count = listIndex;
+        listCount[listIndex] = listCount[_nftCount.current()];
+        _nftCount.decrement();
+        emit Fee(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].artist,artistFee);
+        emit NFTSold(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].tokenId, _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller, msg.sender, msg.value,block.timestamp);
+    }
 
     /**
     * @dev Allows a seller to cancel their listed NFT offer on the marketplace.

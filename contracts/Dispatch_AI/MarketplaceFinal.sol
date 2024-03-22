@@ -10,14 +10,14 @@ import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
  * @dev Required interface of an ERC721 compliant contract.
  */
 interface IConnected {
-    // struct Token {
-    //     uint tokenId;
-    //     string uri;
-    //     uint capAmount;
-    //     uint points;
-    // }
+    struct Token {
+        uint tokenId;
+        string uri;
+        uint capAmount;
+        uint points;
+    }
     function updateTokenId(address _to,uint _tokenId,address seller,address marketPlace) external;
-    // function getToken(address _to,uint _tokenId) external view returns(Token[] memory token);
+    function getToken(address _to,uint _tokenId) external view returns(Token[] memory token);
 }
 /**
  * @title MarketPlace
@@ -43,13 +43,20 @@ contract Marketplace is ReentrancyGuard , Ownable{
         uint listTime;
         bool listed;
     }
+    struct Token {
+        string uri;
+        uint capAmount;
+        uint points;
+    }
     struct addressToken{
         address contractAddress;
         uint tokenId;
     }
     struct ListedNftTokenId{
         NFT listedData;
+        Token tokenDetail;
         uint listCount;
+
     }
     // Modifire
     modifier listedRequirements(address mintStoneAddress,address userAddress,uint tokenId,uint _price) {
@@ -140,7 +147,8 @@ contract Marketplace is ReentrancyGuard , Ownable{
             uint myListedIndex = 0;
             for (uint i = 1; i <= _nftCount.current() ; i++) {
                 if ((_idToNFT[listCount[i].contractAddress][listCount[i].tokenId].seller == _to) && (_idToNFT[listCount[i].contractAddress][listCount[i].tokenId].listed)) {
-                    myListedNFT[myListedIndex] = ListedNftTokenId(_idToNFT[listCount[i].contractAddress][listCount[i].tokenId],i);
+                    IConnected.Token[] memory connectedNft = IConnected(listCount[i].contractAddress).getToken(_to,listCount[i].tokenId);
+                    myListedNFT[myListedIndex] = ListedNftTokenId(_idToNFT[listCount[i].contractAddress][listCount[i].tokenId],Token(connectedNft[0].uri,connectedNft[0].capAmount,connectedNft[0].points),i);
                     myListedIndex++;
                 }
             }
@@ -150,7 +158,8 @@ contract Marketplace is ReentrancyGuard , Ownable{
         uint listedIndex = 0;
         for (uint i = 1; i <= _nftCount.current() ; i++) {
             if ((_idToNFT[listCount[i].contractAddress][listCount[i].tokenId].seller != _to) && (_idToNFT[listCount[i].contractAddress][listCount[i].tokenId].listed)) {
-                listedNFT[listedIndex] = ListedNftTokenId(_idToNFT[listCount[i].contractAddress][listCount[i].tokenId],i);
+                IConnected.Token[] memory connectedNft = IConnected(listCount[i].contractAddress).getToken(_to,listCount[i].tokenId);
+                listedNFT[listedIndex] = ListedNftTokenId(_idToNFT[listCount[i].contractAddress][listCount[i].tokenId],Token(connectedNft[0].uri,connectedNft[0].capAmount,connectedNft[0].points),i);
                 listedIndex++;
             }
         }

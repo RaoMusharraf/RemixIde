@@ -16,6 +16,52 @@
 						"internalType": "uint256",
 						"name": "_tokenId",
 						"type": "uint256"
+					}
+				],
+				"name": "getToken",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "uri",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "capAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "points",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct IConnected.Token[]",
+						"name": "token",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
 					},
 					{
 						"internalType": "address",
@@ -56,7 +102,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -207,11 +253,11 @@
 			]
 		},
 		"contracts/Dispatch_AI/MarketplaceFinal.sol": {
-			"keccak256": "0xc9509166c62828a02f41770fd8173eb23769834e6395178a8794d6ceb9f7c654",
+			"keccak256": "0x42f5dcf6894acc0e589d4f9d3f01fdbd42e0a142efed8c5b4d7eedbcd3c907c5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4e532a68ef5b80faff54b8a9ced7eadc1cc8d2ef860ed387e365db0500dbe4c0",
-				"dweb:/ipfs/QmdqMuSbGboKrSHKtMkSHjqrwABaGqUFHRUoWd2o9mUB28"
+				"bzz-raw://8013f13a329a9a88ed3ae65b28c0ae36ae0d877bce27c81b28f0d8de00ee4f89",
+				"dweb:/ipfs/QmcStNqsqm7iX8cocaKBbH695PDvGwxCaGvwDQ49ZKFshD"
 			]
 		}
 	},

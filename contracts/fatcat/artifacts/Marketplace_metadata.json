@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.24+commit.e11b9ed9"
+		"version": "0.8.22+commit.4fc1097e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -1232,7 +1232,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -1351,11 +1351,11 @@
 			]
 		},
 		"contracts/fatcat/marketplace.sol": {
-			"keccak256": "0x3e6f9da1c3030354c779ab86c9e69e0a9d281c789927fc34bae6f07ed42d3978",
+			"keccak256": "0xa6ed916cc8daba668fa5933409f4bc346ec1d7edcbe35862bd5f764ce0bb8cbc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://05f191cc9fb982cf48893d084423e90d0c04dbfce647177cc63aed9a9b0c6ba0",
-				"dweb:/ipfs/QmNdRcNUSYRxWeiwiMGVfxGArfzPJSzHgCef6SAwgfksid"
+				"bzz-raw://3707a045c8458739ab86d36a1c85afa4b0eaccbbd75b172e4fbfea98e1856dd9",
+				"dweb:/ipfs/QmS5B58yi4VMizrEY3AaGCrRhoHWmoXWT43Fx94YYZyEmX"
 			]
 		}
 	},
