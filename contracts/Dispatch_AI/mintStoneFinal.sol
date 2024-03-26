@@ -111,7 +111,12 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         }
         return myArray;
     }
-
+    // ============ getToken FUNCTIONS ============
+    /*
+        @dev getToken Get all Tokens of connected user.
+        @param _tokenId that are minted by the nftContract
+        @param to connected user.
+    */
     function getToken(address to,uint _tokenId) public view returns (Token[] memory token) {
         Token[] memory myArray =  new Token[](1);
         for(uint i=0 ; i < count[to] ; i++){

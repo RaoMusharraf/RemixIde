@@ -170,11 +170,11 @@
 			]
 		},
 		"contracts/Dispatch_AI/mintStoneFinal.sol": {
-			"keccak256": "0xa9eac3c9931cae08fb8b68f08779d2445278407db3474e9ba3553d9c54bee764",
+			"keccak256": "0x8f29fff6b9dd18658a50f8022752fd098e621f71ad1830865969c7112feb68d3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://794b6516ac5bf4662a57e743bc6d89bc2b9a1ce4d98476ad8d1e713f207e61f8",
-				"dweb:/ipfs/QmapR4w8YAPi7fCoYqyWVhTANjBTQWJPS7QwtPrtuKDFdg"
+				"bzz-raw://65b76bad9622783b0097948a23030aa4fb42db9dd6323a4908f8298be48d0d2c",
+				"dweb:/ipfs/QmXXTNGqi5tpjduKFh2u87WiRpFbGmskKsyfUf8g2P3sKU"
 			]
 		}
 	},
