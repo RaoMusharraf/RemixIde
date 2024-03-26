@@ -18,70 +18,19 @@
 						"type": "uint256"
 					}
 				],
-				"name": "getToken",
+				"name": "nftDetail",
 				"outputs": [
 					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "tokenId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "string",
-								"name": "uri",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "capAmount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "points",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct IConnected.Token[]",
-						"name": "token",
-						"type": "tuple[]"
+						"internalType": "bool",
+						"name": "onList",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
 				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_to",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_tokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "seller",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "marketPlace",
-						"type": "address"
-					}
-				],
-				"name": "updateTokenId",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
 			}
 		],
 		"devdoc": {
-			"details": "Required interface of an ERC721 compliant contract.",
 			"kind": "dev",
 			"methods": {},
 			"version": 1
@@ -94,7 +43,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Dispatch_AI/MarketplaceFinal.sol": "IConnected"
+			"contracts/Dispatch_AI/mintStoneFinal.sol": "IConnected"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -124,38 +73,6 @@
 				"dweb:/ipfs/QmcLLJppxKeJWqHxE2CUkcfhuRTgHSn8J4kijcLa5MYhSt"
 			]
 		},
-		"@openzeppelin/contracts/security/ReentrancyGuard.sol": {
-			"keccak256": "0xa535a5df777d44e945dd24aa43a11e44b024140fc340ad0dfe42acf4002aade1",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://41319e7f621f2dc3733511332c4fd032f8e32ad2aa7fd6f665c19741d9941a34",
-				"dweb:/ipfs/QmcYR3bd862GD1Bc7jwrU9bGxrhUu5na1oP964bDCu2id1"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://0ea104e577e63faea3b69c415637e99e755dcbf64c5833d7140c35a714d6d90c",
-				"dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol": {
-			"keccak256": "0x6008dabfe393240d73d7dd7688033f72740d570aa422254d29a7dce8568f3aff",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://f5196ec75139918c6c7bb4251b36395e668f1fa6d206beba7e7520e74913940d",
-				"dweb:/ipfs/QmSyqjksXxmm2mCG6qRd1yuwLykypkSVBbnBnGqJRcuJMi"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
-			"keccak256": "0x37bb49513c49c87c4642a891b13b63571bc87013dde806617aa1efb54605f386",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://b3036b3a83b7c48f96641f2a9002b9f2dcb6a5958dd670894ada21ae8229b3d0",
-				"dweb:/ipfs/QmUNfSBdoVtjhETaUJCYcaC7pTMgbhht926tJ2uXJbiVd3"
-			]
-		},
 		"@openzeppelin/contracts/token/ERC721/ERC721.sol": {
 			"keccak256": "0x44cee4d4c4cf77ea4da3fa6fefe80b1ac0eb29e6d0930ba56ba392dce4c959f9",
 			"license": "MIT",
@@ -180,20 +97,20 @@
 				"dweb:/ipfs/QmWBAn6y2D1xgftci97Z3qR9tQnkvwQpYwFwkTvDMvqU4i"
 			]
 		},
+		"@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol": {
+			"keccak256": "0xab7469fb4d5dbca13494abb44b720b63b62a48d594083312de4865ba50cd80b3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://334002204a6c9af1bb233295dfae3052ea887c2f1913130fb931fe1b11692319",
+				"dweb:/ipfs/Qme5siHWg53YLWpXBb1rBTSRaTVbtWLnYUBa4Pjq2CYFpt"
+			]
+		},
 		"@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
 			"keccak256": "0x37d1aaaa5a2908a09e9dcf56a26ddf762ecf295afb5964695937344fc6802ce1",
 			"license": "MIT",
 			"urls": [
 				"bzz-raw://ed0bfc1b92153c5000e50f4021367b931bbe96372ac6facec3c4961b72053d02",
 				"dweb:/ipfs/Qmbwp8VDerjS5SV1quwHH1oMXxPQ93fzfLVqJ2RCqbowGE"
-			]
-		},
-		"@openzeppelin/contracts/utils/Address.sol": {
-			"keccak256": "0xaf28a975a78550e45f65e559a3ad6a5ad43b9b8a37366999abd1b7084eb70721",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://b7bd24e224f67f65bfadf85dc2929fa965456bb2415478bd0125471b5ce35245",
-				"dweb:/ipfs/QmRaydGr8BTHs1kvaZfsNU69pKzUAGFrvABn1KiRSbE51y"
 			]
 		},
 		"@openzeppelin/contracts/utils/Context.sol": {
@@ -204,12 +121,12 @@
 				"dweb:/ipfs/QmNgFkoXNWoUbAyw71rr1sKQ95Rj2GfvYiWg79xEYDn2NY"
 			]
 		},
-		"@openzeppelin/contracts/utils/Counters.sol": {
-			"keccak256": "0xf0018c2440fbe238dd3a8732fa8e17a0f9dce84d31451dc8a32f6d62b349c9f1",
+		"@openzeppelin/contracts/utils/Pausable.sol": {
+			"keccak256": "0xb2e5f50762c27fb4b123e3619c3c02bdcba5e515309382e5bfb6f7d6486510bd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://59e1c62884d55b70f3ae5432b44bb3166ad71ae3acd19c57ab6ddc3c87c325ee",
-				"dweb:/ipfs/QmezuXg5GK5oeA4F91EZhozBFekhq5TD966bHPH18cCqhu"
+				"bzz-raw://1a4b83328c98d518a2699c2cbe9e9b055e78aa57fa8639f1b88deb8b3750b5dc",
+				"dweb:/ipfs/QmXdcYj5v7zQxXFPULShHkR5p4Wa2zYuupbHnFdV3cHYtc"
 			]
 		},
 		"@openzeppelin/contracts/utils/Strings.sol": {
@@ -252,12 +169,12 @@
 				"dweb:/ipfs/QmVBEei6aTnvYNZp2CHYVNKyZS4q1KkjANfY39WVXZXVoT"
 			]
 		},
-		"contracts/Dispatch_AI/MarketplaceFinal.sol": {
-			"keccak256": "0x42f5dcf6894acc0e589d4f9d3f01fdbd42e0a142efed8c5b4d7eedbcd3c907c5",
+		"contracts/Dispatch_AI/mintStoneFinal.sol": {
+			"keccak256": "0xa9eac3c9931cae08fb8b68f08779d2445278407db3474e9ba3553d9c54bee764",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8013f13a329a9a88ed3ae65b28c0ae36ae0d877bce27c81b28f0d8de00ee4f89",
-				"dweb:/ipfs/QmcStNqsqm7iX8cocaKBbH695PDvGwxCaGvwDQ49ZKFshD"
+				"bzz-raw://794b6516ac5bf4662a57e743bc6d89bc2b9a1ce4d98476ad8d1e713f207e61f8",
+				"dweb:/ipfs/QmapR4w8YAPi7fCoYqyWVhTANjBTQWJPS7QwtPrtuKDFdg"
 			]
 		}
 	},

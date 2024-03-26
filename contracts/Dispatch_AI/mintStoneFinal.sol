@@ -15,7 +15,7 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
     mapping(address user => mapping(uint counter => Token)) public tokenDetail;
     mapping(address user => uint) public count;
     mapping(address user => mapping(uint id => bool)) isActive;
-    mapping(address user => uint rewardPoints) TotalRewardPoints;
+    mapping(address user => uint rewardPoints) public TotalRewardPoints;
     mapping (uint id => Admin) public URI;
 
     //Struct
@@ -88,6 +88,29 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         }
         return myArray;
     }
+    function getToken_w_r_t_Rewards(address to,address marketplaceContractAddress) public view returns (getTokenInfo[] memory TokensDetail) {
+        uint increment = 0;
+        while (increment < count[to]) 
+        {
+            if (tokenDetail[to][increment + 1].capAmount < TotalRewardPoints[to]) {
+                increment++;
+            }
+        }
+        getTokenInfo[] memory myArray = new getTokenInfo[](increment);
+        for (uint256 i = 0; i < count[to]; i++) {
+            if (tokenDetail[to][i + 1].capAmount < TotalRewardPoints[to]) {
+                (bool onList, address approvedAddress) = approvedDetail(marketplaceContractAddress, address(this), tokenDetail[to][i + 1].tokenId);
+                myArray[i] = getTokenInfo(
+                {
+                    tokenDetail:tokenDetail[to][i + 1],
+                    approvedAddress:approvedAddress,
+                    onList:onList
+                }
+                );
+            }
+        }
+        return myArray;
+    }
 
     function getToken(address to,uint _tokenId) public view returns (Token[] memory token) {
         Token[] memory myArray =  new Token[](1);
@@ -99,8 +122,9 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         }
         return myArray;
     }
-    function gainReward (address to, uint petrolRewardsPoints) external {
-        TotalRewardPoints[to] += petrolRewardsPoints;
+    function gainReward (address to, uint gram) external {
+        uint rewardPoints = gram/100;
+        TotalRewardPoints[to] += rewardPoints;
     }
 
     function updateTokenId(address _to,uint _tokenId,address _seller,address marketplaceAddress) external {

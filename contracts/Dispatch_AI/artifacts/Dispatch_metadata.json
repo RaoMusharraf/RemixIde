@@ -292,6 +292,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "TotalRewardPoints",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "rewardPoints",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "id",
 						"type": "uint256"
@@ -462,7 +481,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "petrolRewardsPoints",
+						"name": "gram",
 						"type": "uint256"
 					}
 				],
@@ -550,6 +569,69 @@
 					}
 				],
 				"name": "getTokenDetail",
+				"outputs": [
+					{
+						"components": [
+							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "tokenId",
+										"type": "uint256"
+									},
+									{
+										"internalType": "string",
+										"name": "uri",
+										"type": "string"
+									},
+									{
+										"internalType": "uint256",
+										"name": "capAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "points",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct Dispatch.Token",
+								"name": "tokenDetail",
+								"type": "tuple"
+							},
+							{
+								"internalType": "address",
+								"name": "approvedAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "onList",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct Dispatch.getTokenInfo[]",
+						"name": "TokensDetail",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "marketplaceContractAddress",
+						"type": "address"
+					}
+				],
+				"name": "getToken_w_r_t_Rewards",
 				"outputs": [
 					{
 						"components": [
@@ -1123,7 +1205,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -1242,11 +1324,11 @@
 			]
 		},
 		"contracts/Dispatch_AI/mintStoneFinal.sol": {
-			"keccak256": "0xd29d21549680d7ad27f41f0abbb1761123d6160f95a7f402515f04b09ca0df71",
+			"keccak256": "0xa9eac3c9931cae08fb8b68f08779d2445278407db3474e9ba3553d9c54bee764",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ed30fa0e4dcddbd88a83f0e2a722e27accd343b10f2a613ee71a9784c246dd78",
-				"dweb:/ipfs/QmW843b5p4zxyxS8a8Fkjr7xzi6FALn7VGs4way2h6cT73"
+				"bzz-raw://794b6516ac5bf4662a57e743bc6d89bc2b9a1ce4d98476ad8d1e713f207e61f8",
+				"dweb:/ipfs/QmapR4w8YAPi7fCoYqyWVhTANjBTQWJPS7QwtPrtuKDFdg"
 			]
 		}
 	},
