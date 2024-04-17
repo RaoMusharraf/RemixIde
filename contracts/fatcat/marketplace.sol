@@ -255,7 +255,7 @@ contract Marketplace is ReentrancyGuard , Ownable{
     * seller, the address who performed the cancellation, and the price at which the NFT was listed.
     */
      
-    function CancelOffer(uint listIndex) public nonReentrant {
+    function CancelListForSale(uint listIndex) public nonReentrant {
         require(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].listed,"Please List First !!!");
         _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].owner = _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller;
         ERC721(listCount[listIndex].contractAddress).transferFrom(address(this), msg.sender, listCount[listIndex].tokenId);
@@ -264,6 +264,11 @@ contract Marketplace is ReentrancyGuard , Ownable{
         listCount[listIndex] = listCount[_nftCount.current()];
         _nftCount.decrement();
         emit NFTCancel(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].tokenId, _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller, msg.sender, _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price);
+    }
+    function editListForSale(uint listIndex,uint price) public nonReentrant {
+        require(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].listed,"Please List First !!!");
+        require(_idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].seller == msg.sender,"You are not owner of this NFT");
+        _idToNFT[listCount[listIndex].contractAddress][listCount[listIndex].tokenId].price=price;
     }
 
     /**

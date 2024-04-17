@@ -49,7 +49,7 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         _unpause();
     }
 
-    function bulkEnterData (string[] memory _uri,uint[] memory capAmount,uint leng) public onlyOwner{
+    function bulkEnterData (string[] memory _uri,uint[] memory capAmount,uint leng) public onlyOwner {
         for (uint i = 0 ; i < leng; i++) 
         {
             URICount++;
@@ -57,7 +57,7 @@ contract Dispatch is ERC721, ERC721Pausable, Ownable {
         }
     }
 
-    function EnterData (string memory _uri,uint capAmount) public onlyOwner{
+    function EnterData (string memory _uri,uint capAmount) public onlyOwner {
         URICount++;
         URI[URICount] = Admin(_uri,capAmount,URICount);
     }

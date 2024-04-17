@@ -1205,7 +1205,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -1324,11 +1324,11 @@
 			]
 		},
 		"contracts/Dispatch_AI/mintStoneFinal.sol": {
-			"keccak256": "0x8f29fff6b9dd18658a50f8022752fd098e621f71ad1830865969c7112feb68d3",
+			"keccak256": "0x1ceb3ea0f27e6170b36250c9d5b3f7aa56ac1931201d6e30dff7f485a031515f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://65b76bad9622783b0097948a23030aa4fb42db9dd6323a4908f8298be48d0d2c",
-				"dweb:/ipfs/QmXXTNGqi5tpjduKFh2u87WiRpFbGmskKsyfUf8g2P3sKU"
+				"bzz-raw://6a9a294603bace71e397db444d51ca0c22a32b35a2b2bf29b286c24affb79baa",
+				"dweb:/ipfs/QmUm9gNHJSqyCMfBSrx3NUYszZNwCeQiNhJ3fHfLcWWjGa"
 			]
 		}
 	},
