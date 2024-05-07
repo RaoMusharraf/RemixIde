@@ -125,7 +125,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/fatcat/marketplaceWithoutAuction.sol": "IConnected"
+			"contracts/fatcat/marketplace.sol": "IConnected"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -251,12 +251,12 @@
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
 			]
 		},
-		"contracts/fatcat/marketplaceWithoutAuction.sol": {
-			"keccak256": "0xfec412030d169f72d671ba796704cee61cb3919a234e4901a21f086f34bf5878",
+		"contracts/fatcat/marketplace.sol": {
+			"keccak256": "0xcd869662d7de86b96d20b72538836c2d8106c807f604c692391505e3d6d541ae",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b0e55815f4fc86acd9af07703c0f211830c63f3291b4e7ab15e6466ebdbc37ea",
-				"dweb:/ipfs/QmTzR2M7aEVeHL9SksNQnoHcb4rdFH8J3YrhHEVDzQH9oS"
+				"bzz-raw://4e1a1f38bb72c636ae4d78cf1289e920b54f67ae97894d129d71ce2d6020ab0f",
+				"dweb:/ipfs/QmSzcu8pWeESBvC7R7o6hyMeqAyS2qAmwxhr99Dn6j9j9W"
 			]
 		}
 	},

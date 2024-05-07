@@ -6,7 +6,7 @@ import "@openzeppelin/contracts@4.9.0/access/Ownable.sol";
 import "@openzeppelin/contracts@4.9.0/utils/Counters.sol";
 /// @title Marketplace  for the NFTS
 /// @author FatCat Team
-/// @notice Contarct is based on minting the Nfts 
+/// @notice Contarct is based on minting the Nfts
 contract Minting is ERC721URIStorage, Ownable {
    // Utility from OpenZeppelin for safely incrementing and decrementing numbers.
     using Counters for Counters.Counter;
@@ -58,7 +58,7 @@ contract Minting is ERC721URIStorage, Ownable {
     * sets its metadata URI, records its minting time, artist, and artist fee, and associates it with a collection.
     * Emits a `SafeMinting` event upon successful minting.
     */
-    function safeMint(string memory uri,address artist,uint artistFeePerAge,string memory collectionId) public payable {
+    function safeMint(string memory uri,address artist,uint artistFeePerAge,string memory collectionId) public {
         _tokenIdCounter.increment();
         TokenId[msg.sender][count[msg.sender] + 1] = _tokenIdCounter.current();
         _safeMint(msg.sender, _tokenIdCounter.current());
@@ -95,7 +95,7 @@ contract Minting is ERC721URIStorage, Ownable {
     * Note: This function does not perform the actual transfer of tokens but is intended to be called
     * in conjunction with a transfer function that handles ownership change.
     */
-    function updateTokenId(address _to,uint _tokenId,address _seller) external {
+    function updateTokenId(address _to,uint _tokenId,address _seller) public {
         TokenId[_to][count[_to] + 1] = _tokenId;
         MyNft[] memory myArray =  getTokenId(_seller);
         for(uint i=0 ; i < myArray.length ; i++){
@@ -130,6 +130,10 @@ contract Minting is ERC721URIStorage, Ownable {
         returns (string memory)
     {
         return super.tokenURI(tokenId);
+    }
+    function safeTransferFrom(address from, address to, uint256 tokenId) public virtual override {
+        updateTokenId(to,tokenId,from);
+        super.safeTransferFrom(from, to, tokenId);
     }
     /**
     * @dev Retrieves all NFTs associated with a given collection ID.
@@ -184,5 +188,14 @@ contract Minting is ERC721URIStorage, Ownable {
     */
     function getTokenUri(uint tokenId) external view returns(string memory){
         return tokenURI(tokenId);
+    }
+        // The following functions are overrides required by Solidity.
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721URIStorage)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
     }
 }
